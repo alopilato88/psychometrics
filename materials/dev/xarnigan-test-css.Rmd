@@ -25,6 +25,9 @@ Test to see if the title moves
 class: left, middle
 
 
+### H3 Title
+
+---
 
 
 
