@@ -1,0 +1,26 @@
+---
+title: "Psychometrics Overview"
+subtitle: "Statistical and Programming Primers"
+format: 
+  revealjs:
+   theme: [default, psych-lecture-theme.scss] 
+   css: psych-lecture-style.css
+---
+
+# Welcome! 
+
+## Quick Intro
+
+Some things about me: 
+
+:::{.incremental}
+
+- Graduated from this program in 2015 (Triple Dawg!)
+- Currently a manager on McKinsey & Company's internal People, Analytics, & Measurement (PAM) team
+- Love all things analytics! 
+
+:::
+
+# Your turn!
+
+
