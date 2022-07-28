@@ -3,6 +3,7 @@ title: "Quarto Test"
 format: 
   revealjs:
    theme: [default, custom.scss] 
+   css: quarto-style.css
 ---
 
 ## Quarto
