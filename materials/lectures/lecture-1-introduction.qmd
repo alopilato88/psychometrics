@@ -7,20 +7,176 @@ format:
    css: psych-lecture-style.css
 ---
 
-# Welcome! 
+# Welcome!
 
-## Quick Intro
+## Introduction
 
-Some things about me: 
+Some things about me:
 
-:::{.incremental}
-
-- Graduated from this program in 2015 (Triple Dawg!)
-- Currently a manager on McKinsey & Company's internal People, Analytics, & Measurement (PAM) team
-- Love all things analytics! 
-
+::: incremental
+-   Graduated from this program in 2015 (Triple Dawg!)
+-   Currently a manager on McKinsey & Company's internal People, Analytics, & Measurement (PAM) team
+-   Love all things analytics!
 :::
 
-# Your turn!
+## Your turn!
 
+::: columns
+::: {.column width="60%"}
+Round Robin!
 
+-   What's your name?
+-   What are you studying?
+-   Do you hate, tolerate, or love methods courses?
+:::
+
+::: {.column width="40%"}
+![](lecture-1-img/round-robin.png)
+:::
+:::
+
+# What We'll Cover
+
+## Course Goals
+
+-   <strong>Psychometric Theories & Survey Development</strong>
+    -   Classical Test Theory, Generalizability Theory, & Validity Theory
+-   <strong>Statistical Modeling</strong>
+    -   Latent Variable Models, Network Models
+-   <strong>R Programming</strong>
+
+## Goals of this Lecture
+
+-   Overview of Psychometrics
+    -   What it is
+    -   The theoretical: Test theories & latent variable models
+    -   The practical: Assessment / Questionnaire design
+-   Statistical Primer
+    -   Review of probability theory
+    -   Review of statistical inference
+
+## What is Psychometics?
+
+> Psychometrics, or quantitative psychology, is the disciplinary home of a set of statistical models and methods that have been developed primarily to summarize, describe, and draw inferences from empirical data collected in psychological research.
+
+# The Theoretical Side of Psychometrics: Test Theories & Latent Variable Models
+
+## Theory & Methods in Psychometrics
+
+-   Test Theory: A mixture of theoretical and statistical models that have been developed to advance educational and psychological measurement.
+
+-   Latent Variable Models: A family of statistical models that explain statistical dependencies among sets of observed random variables (e.g. survey responses) by appealing to variation in a smaller set of unobserved (latent) variables.
+
+## Test Theories in Psychometrics
+
+-   There are three major test theories in Psychometrics:
+    -   Classical Test Theory (CTT)
+    -   Generalizability Theory (G-Theory)
+    -   Item Response Theory (IRT)
+-   The above theories have introduced and further refined the theories of test validity and test reliability.
+
+## Classical Test Theory
+
+-   CTT set the foundations for future test theories with the idea that an individual's observed test score is composed of two different additive components: True Score and Error.
+
+$$\text{Observed Score} = \text{True Score} + \text{Error}$$
+
+-   Through its introduction of True Score and Error, CTT helped to formalize the theories of test validity and reliability, respectively.
+
+## Generalizability Theory
+
+-   Build on CTT by further specifying the different sources of error that comprise an individual's observed score.
+
+$$\text{Observed Scored} = \mu + E_{rater} + E_{item} + E_{rater\times{}item}$$ \* G-Theory really furthered the development of reliability theory by introducing different types of reliability indices and drawing a distinction between relative and absolute test score comparisons.
+
+## Item Response Theory
+
+-   IRT is a modern measurement theory that focuses on the measurement characteristics of the individual items that make up an assessment.
+
+-   Unlike CTT and G-Theory, IRT estimates measurement characteristics of the individual items independently from the abilities of the test takers---this is a big plus!
+
+$$p(x_{ij} = 1 |\theta_{i},b_{j},a_{j})=\frac{1}{1 + e^{-a_{j}(\theta_{i}-b_{j})}}$$
+
+## Latent Variable Models: An Overview
+
+# The Practical Side of Psychometrics: Survey Development
+
+## Some Survey Jargon
+
+![](lecture-1-img/robinson-scale-image.png)
+
+## The Many Uses of Surveys and Assessments
+
+-   Surveys / Assessments are used to assess a wide variety of constructs:
+    -   Knowledge (SAT, GRE)
+    -   Mental health disorders (Beck's Depression Inventory)
+    -   Personality (Hogan PEI, Big 5 scales)
+    -   Attitudes
+    -   Skills
+
+## The Scale Development Process
+
+```{mermaid}
+flowchart LR
+
+  subgraph cluster_develop[Developing the Scale]
+  direction LR
+  a1[Measurement <br/> framework]-->a2[Generate <br/> Items]<-->a3[Evaluate <br/> Preliminary Items]
+  end
+
+  subgraph cluster_test[Testing the Scale]
+  direction LR
+  b1[Pilot the <br/> new scale]<-->b2[Analyze the <br/> pilot data]
+  b2-->b3[Administer <br/> final scale]-->b4[Analyze the <br/> final data]
+  end
+  
+  cluster_develop-->cluster_test
+```
+
+# A Primer on Probability Theory and Statistical Inference
+
+## Who cares?
+
+-   Why do we care about probability theory and statistical inference? What have they ever done for us?
+
+## Statistical Inference
+
+![](lecture-1-img/statistical-inference.png){fig-align="center"}
+
+## Model-Based Statistical Inference
+
+-   Model-based inference allows us to make inferences to an <strong>infinite population</strong> from non-random samples as long as we are willing to make three (strong) assumptions:
+    -   Assume a generative statistical model
+    -   Assume parametric distributional assumptions on our model
+    -   Assume a selection mechanism
+
+## Model-Based Statistical Inference
+
+$$\underbrace{y_{i}=\beta_{0} + \beta_{1}x_{i} + \epsilon_{i}}_{\text{Generative Model}}$$
+
+$$\underbrace{\epsilon_{i}\stackrel{iid}{\sim}N(0, \sigma^{2})}_{\text{Parametric Assumptions & Selection Mech.}}$$
+
+## Role of Probability Theory in Statistics
+
+$$\underbrace{f_{Y|X}(y_{i}|x_{i})}_{\text{Conditional}\\ \;\;\;\;\text{PDF}}\overbrace{\stackrel{iid}{\sim}}^{\;\;\text{Dist.}\\\text{Assump.}}\underbrace{N(\beta_{0} + \beta_{1}x_{i}, \sigma^{2})}_{\text{Normal PDF}}\;\;\;\;\to$$ $$y_{i}=\beta_{0} + \beta_{1}x_{i} + \epsilon_{i}$$
+
+## What is Probability Theory?
+
+-   <strong>Probability theory</strong> is a mathematical construct used to represent processes involving randomness, unpredictability, or intrinsic uncertainty.
+
+-   <strong>Probability theory is a model!</strong> It allows for us to deal with the uncertainty that comes from being unable to measure every little thing that may be related to our outcome.
+
+## Random Generative Process (RGP)
+
+::: columns
+::: {.column width="50%"}
+-   Sample Space: Set of all possible states of an RGP
+-   Event Space: Subset of the sample space
+-   Event: An outcome of the event space that may occur across multiple states
+-   Probability Measure: A function that maps the event to a real number between 0 and 1
+:::
+
+::: {.column width="50%"}
+![](lecture-1-img/probability-space.png){fig-align="center"}
+:::
+:::
