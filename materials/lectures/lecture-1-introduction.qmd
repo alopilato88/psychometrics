@@ -170,10 +170,11 @@ $$\underbrace{f_{Y|X}(y_{i}|x_{i})}_{\text{Conditional}\\ \;\;\;\;\text{PDF}}\ov
 
 ::: columns
 ::: {.column width="50%"}
--   Sample Space: Set of all possible states of an RGP
--   Event Space: Subset of the sample space
--   Event: An outcome of the event space that may occur across multiple states
--   Probability Measure: A function that maps the event to a real number between 0 and 1
+* Random Generative Process:
+  + <strong>Sample Space</strong>: Set of all possible states of an RGP
+  + <strong>Event Space</strong>: Subset of the sample space
+  + <strong>Event</strong>: An outcome of the event space that may occur across multiple states
+  + <strong>Probability Measure</strong>: A function that maps the event to a real number between 0 and 1
 :::
 
 ::: {.column width="50%"}
