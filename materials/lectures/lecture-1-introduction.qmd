@@ -7,6 +7,12 @@ format:
    css: psych-lecture-style.css
 ---
 
+```{r}
+library(dplyr)
+library(knitr)
+library(kableExtra)
+```
+
 # Welcome!
 
 ## Introduction
@@ -59,7 +65,7 @@ Round Robin!
 
 > Psychometrics, or quantitative psychology, is the disciplinary home of a set of statistical models and methods that have been developed primarily to summarize, describe, and draw inferences from empirical data collected in psychological research.
 
-# The Theoretical Side of Psychometrics: Test Theories & Latent Variable Models
+# The Theoretical Side
 
 ## Theory & Methods in Psychometrics
 
@@ -99,7 +105,7 @@ $$p(x_{ij} = 1 |\theta_{i},b_{j},a_{j})=\frac{1}{1 + e^{-a_{j}(\theta_{i}-b_{j})
 
 ## Latent Variable Models: An Overview
 
-# The Practical Side of Psychometrics: Survey Development
+# The Practical Side
 
 ## Some Survey Jargon
 
@@ -111,7 +117,7 @@ $$p(x_{ij} = 1 |\theta_{i},b_{j},a_{j})=\frac{1}{1 + e^{-a_{j}(\theta_{i}-b_{j})
     -   Knowledge (SAT, GRE)
     -   Mental health disorders (Beck's Depression Inventory)
     -   Personality (Hogan PEI, Big 5 scales)
-    -   Attitudes
+    -   Employee Attitude Surveys (There are many!)
     -   Skills
 
 ## The Scale Development Process
@@ -133,7 +139,7 @@ flowchart LR
   cluster_develop-->cluster_test
 ```
 
-# A Primer on Probability Theory and Statistical Inference
+# Probability Theory and Statistical Inference
 
 ## Who cares?
 
@@ -156,9 +162,21 @@ $$\underbrace{y_{i}=\beta_{0} + \beta_{1}x_{i} + \epsilon_{i}}_{\text{Generative
 
 $$\underbrace{\epsilon_{i}\stackrel{iid}{\sim}N(0, \sigma^{2})}_{\text{Parametric Assumptions & Selection Mech.}}$$
 
-## Role of Probability Theory in Statistics
+## Role of Probability Theory in Statistics {.small}
 
-$$\underbrace{f_{Y|X}(y_{i}|x_{i})}_{\text{Conditional}\\ \;\;\;\;\text{PDF}}\overbrace{\stackrel{iid}{\sim}}^{\;\;\text{Dist.}\\\text{Assump.}}\underbrace{N(\beta_{0} + \beta_{1}x_{i}, \sigma^{2})}_{\text{Normal PDF}}\;\;\;\;\to$$ $$y_{i}=\beta_{0} + \beta_{1}x_{i} + \epsilon_{i}$$
+::: columns
+::: {.column width="35%"}
+<br/> <br/> $$y_{i}=\beta_{0} + \beta_{1}x_{i} + \epsilon_{i}$$
+:::
+
+::: {.column width="3%"}
+<br/> <br/> $$\to$$
+:::
+
+::: {.column width="62%"}
+$$\underbrace{f_{Y|X}(y_{i}|x_{i})}_{\text{Conditional}\\ \;\;\;\;\text{PDF}}\overbrace{\stackrel{iid}{\sim}}^{\;\;\text{Dist.}\\\text{Assump.}}\underbrace{N(\beta_{0} + \beta_{1}x_{i}, \sigma^{2})}_{\text{Normal PDF}}$$
+:::
+:::
 
 ## What is Probability Theory?
 
@@ -166,18 +184,259 @@ $$\underbrace{f_{Y|X}(y_{i}|x_{i})}_{\text{Conditional}\\ \;\;\;\;\text{PDF}}\ov
 
 -   <strong>Probability theory is a model!</strong> It allows for us to deal with the uncertainty that comes from being unable to measure every little thing that may be related to our outcome.
 
-## Random Generative Process (RGP)
+## Random Generative Process (RGP) {.smaller}
 
 ::: columns
 ::: {.column width="50%"}
-* Random Generative Process:
-  + <strong>Sample Space</strong>: Set of all possible states of an RGP
-  + <strong>Event Space</strong>: Subset of the sample space
-  + <strong>Event</strong>: An outcome of the event space that may occur across multiple states
-  + <strong>Probability Measure</strong>: A function that maps the event to a real number between 0 and 1
+-   <strong>Random Generative Process</strong> is a mechanism that selects an outcome from a set of multiple outcomes. It consists of three components:
+    -   <strong>Sample Space</strong>: Set of all possible states of an RGP.
+    -   <strong>Event Space</strong>: Subset of the sample space that consists of possible events that could occur across multiple states.
+    -   <strong>Probability Measure</strong>: A function that maps the event to a real number.
 :::
 
 ::: {.column width="50%"}
 ![](lecture-1-img/probability-space.png){fig-align="center"}
 :::
 :::
+
+## Probability Space: Properties {.small}
+
+::: {layout="[[50,50], [50,50]]"}
+![$P(A \cup B) = P(A) + P(B)$](lecture-1-img/disjoint-probability-crop.png){fig-align="left" height="200" width="200"}
+
+![$B \subseteq A, P(B) \leq P(A)$](lecture-1-img/subset-probability-crop.png){fig-align="left" height="200" width="200"}
+
+![$P(A \cup B) = P(A) + P(B) - P(A \cap B)$](lecture-1-img/intersect-probability-crop.png){fig-align="left" height="200" width="200"}
+
+![$P(A^{C}) = 1 - P(A)$](lecture-1-img/setminus-probability-crop.png){fig-align="left" height="200" width="200"}
+:::
+
+## Joint & Conditional Probability
+
+* <strong>Joint</strong> and <strong>conditional</strong> probability describe how the probabilities of two different events are related.
+
+* <strong>Joint probability</strong> tells us the probability that two events will both occur: 
+  + <strong>$P(A \cap B)$</strong>
+
+* <strong>Conditional probability</strong> tell us how the probability of one event changes given that another event already occurred: 
+  + $P(A|B) = \frac{P(A \cap B)}{P(B)}$
+
+## Employee Selection Example
+
+## Joint Probabilities: Employee Selection {.smaller}
+
+::: columns
+::: {.column width="48%"}
+* The table displays the joint probabilities for <strong>Hiring Outcome</strong> and <strong>Assessment Outcome</strong>.
+  + What is the probability that <strong>Hiring Outcome = Hire</strong> and <strong>Assessment Outcome = Fail</strong>?
+  + What is the probability that <strong>Hiring Outcome = Hire</strong> and <strong>Assessment Outcome = Pass</strong>?
+:::
+
+::: {.column width="2%"}
+:::
+
+::: {.column width="50%"}
+```{r echo=FALSE}
+
+set.seed(9000) # Power level over 9000!
+test_group <- c(rep("Fail", 1000), rep("Pass", 4000), rep("Pass+", 500))
+test_group_mat <- model.matrix(~as.factor(test_group))
+beta <- 
+  (c(qlogis(.20), qlogis(.60) - qlogis(.20), qlogis(.80) - qlogis(.20))) |>
+  as.matrix(ncol = 1)
+hire_latent <- test_group_mat%*%beta 
+hire_outcome <- rbinom(length(hire_latent), size = 1, prob = plogis(hire_latent))
+hire_data <- 
+  data.frame(
+    TEST_OUTCOME = test_group,
+    HIRE_OUTCOME = hire_outcome,
+    HIRE_CATEGORY = dplyr::case_when(
+      hire_outcome == 0 ~ "Turndown",
+      TRUE ~ "Hire"
+    )
+  )
+
+xtabs(~TEST_OUTCOME + HIRE_CATEGORY, hire_data) |> 
+  prop.table() |> 
+  round(3) |>
+  kableExtra::kbl() |>
+  kableExtra::kable_minimal()
+
+```
+:::
+:::
+
+## Conditonal Probabilities {.smaller}
+
+::: columns
+::: {.column width="48%"}
+
+* The tables to the right display the conditional probabilities for <strong>Hiring Outcome</strong> and <strong>Assessment Outcome</strong>.
+  + What is the probability that <strong>Hiring Outcome = Hire</strong> given that <strong>Assessment Outcome = Fail</strong>?
+  + What is the probability that <strong>Assessment Outcome = Fail</strong> given that <strong>Hiring Category = Hire</strong>?
+
+:::
+
+::: {.column width="2%"}
+:::
+
+::: {.column width="50%"}
+
+```{r echo=FALSE}
+xtabs(~TEST_OUTCOME + HIRE_CATEGORY, hire_data) |> 
+  prop.table(1) |> 
+  round(3) |>
+  kableExtra::kbl(
+    caption = "<em><strong>P(Selection Decision) given Assessment Outcome</strong></em>"
+  ) |>
+  kableExtra::kable_minimal()
+```
+
+<br/>
+
+```{r}
+xtabs(~TEST_OUTCOME + HIRE_CATEGORY, hire_data) |> 
+  prop.table(2) |> 
+  round(3) |>
+  kableExtra::kbl(
+    caption = "<em><strong>P(Assessment Outcome) given Selection Decision</strong></em>"
+  ) |>
+  kableExtra::kable_minimal()
+```
+
+:::
+:::
+
+## More Conditional Probabilities {.smaller}
+
+::: columns
+::: {.column width="33%"}
+
+* <u><strong>Multiplicative Law of Probability</strong></u>
+
+$P(A \cap B)=P(A|B)P(B)$
+
+:::
+::: {.column width="33%"}
+
+* <u><strong>Independence</strong></u>
+
+$P(A \cap B) = P(A)P(B)$
+
+<br/>
+
+$\begin{equation}\begin{aligned}
+P(A|B) &= \frac{P(A)P(B)}{P(B)} \\
+  &= P(A)
+\end{aligned}\end{equation}$
+
+:::
+::: {.column width="33%"}
+
+* <u><strong>Bayes' Rule</strong></u>
+
+$P(B|A) = \frac{P(A|B)P(B)}{P(A)}$
+
+:::
+:::
+
+## Random Variables {.smaller}
+
+::: columns
+::: {.column width="45%"}
+
+* <strong>Random variables</strong> are functions that take an <em>event (Hire or Fire) as the input</em> and <em>output a real number</em> (0 or 1). 
+* Random variables can be categorized as discrete or continuous based on the range of their output.
+  + Discrete Variables have a <strong>countable infinite range</strong> (e.g. integer valued output)
+  + Continuous Variables have an <strong>uncountable infinite range</strong> (e.g. real numbers)  
+
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="50%"}
+
+![](lecture-1-img/random-variable-crop.png){fig-align="right"}
+
+:::
+:::
+
+## Probability Functions {.smaller}
+
+We can summarize the probabilities of random variables using two related probability functions: 
+
+::: columns
+::: {.column width="45%"}
+
+<center><strong><u>Discrete Variables</u></strong></center>
+* <strong>Probability Mass Function (PMF):</strong>
+  + $f(x)=P(X=x)$
+
+* <strong>Cumulative Distribution Function (CDF)</strong>
+  + $F(x)=P(X \leq x)$
+
+:::
+::: {.column width="10%"}
+:::
+
+::: {.column width="45%"}
+
+<center><strong><u>Continuous Variables</u></strong></center>
+* <strong>Probability Density Function (PDF):</strong>
+  + $f(x)=\frac{dF(u)}{du}|_{u=x}$
+
+* <strong>Cumulative Distribution Function (CDF):</strong>
+  + $F(x)=P(X \leq x) = \int_{-\infty}^{x}f(u)du$
+  
+:::
+:::
+
+## Normal PDF and CDF
+
+::: columns
+::: {.column width="45%"}
+
+```{r echo=FALSE}
+ggplot2::ggplot(
+  data = data.frame(x = -3:3),
+  ggplot2::aes(x = x)
+) + 
+  ggplot2::xlim(c(-3, 3)) + 
+  ggplot2::geom_function(
+    fun = dnorm
+  ) + 
+  ggplot2::theme_minimal()
+```
+
+:::
+
+::: {.column width="10%"}
+:::
+
+::: {.column width="45%"}
+
+```{r echo=FALSE}
+ggplot2::ggplot(
+  data = data.frame(x = -3:3),
+  ggplot2::aes(x = x)
+) + 
+  ggplot2::xlim(c(-3, 3)) + 
+  ggplot2::geom_function(
+    fun = pnorm
+  ) + 
+  ggplot2::theme_minimal()
+```
+
+:::
+:::
+
+## Conditional PMF
+
+## Expected Value
+
+## Variance
+
+## Covariance
+
+## Correlation

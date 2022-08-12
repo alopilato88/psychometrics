@@ -7,7 +7,7 @@
 <link href="lecture-1-introduction_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="lecture-1-introduction_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="lecture-1-introduction_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.0.35">
+  <meta name="generator" content="quarto-1.0.38">
 
   <title>Psychometrics Overview</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -377,6 +377,9 @@
       margin-right: 0; 
     }
   </style>
+  
+  <script src="lecture-1-introduction_files/libs/kePrint-0.0.1/kePrint.js"></script>
+  <link href="lecture-1-introduction_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -387,6 +390,12 @@
   <p class="subtitle">Statistical and Programming Primers</p>
 </section>
 
+<section class="slide level2">
+
+<div class="cell">
+
+</div>
+</section>
 <section>
 <section id="welcome" class="title-slide slide level1 center">
 <h1>Welcome!</h1>
@@ -460,8 +469,8 @@
 </blockquote>
 </section></section>
 <section>
-<section id="the-theoretical-side-of-psychometrics-test-theories-latent-variable-models" class="title-slide slide level1 center">
-<h1>The Theoretical Side of Psychometrics: Test Theories &amp; Latent Variable Models</h1>
+<section id="the-theoretical-side" class="title-slide slide level1 center">
+<h1>The Theoretical Side</h1>
 
 </section>
 <section id="theory-methods-in-psychometrics" class="slide level2">
@@ -512,8 +521,8 @@
 <h2>Latent Variable Models: An Overview</h2>
 </section></section>
 <section>
-<section id="the-practical-side-of-psychometrics-survey-development" class="title-slide slide level1 center">
-<h1>The Practical Side of Psychometrics: Survey Development</h1>
+<section id="the-practical-side" class="title-slide slide level1 center">
+<h1>The Practical Side</h1>
 
 </section>
 <section id="some-survey-jargon" class="slide level2">
@@ -528,7 +537,7 @@
 <li>Knowledge (SAT, GRE)</li>
 <li>Mental health disorders (Beck’s Depression Inventory)</li>
 <li>Personality (Hogan PEI, Big 5 scales)</li>
-<li>Attitudes</li>
+<li>Employee Attitude Surveys (There are many!)</li>
 <li>Skills</li>
 </ul></li>
 </ul>
@@ -551,8 +560,8 @@
 <span id="cb1-14"><a href="#cb1-14"></a>  cluster_develop--&gt;cluster_test</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section></section>
 <section>
-<section id="a-primer-on-probability-theory-and-statistical-inference" class="title-slide slide level1 center">
-<h1>A Primer on Probability Theory and Statistical Inference</h1>
+<section id="probability-theory-and-statistical-inference" class="title-slide slide level1 center">
+<h1>Probability Theory and Statistical Inference</h1>
 
 </section>
 <section id="who-cares" class="slide level2">
@@ -581,9 +590,17 @@
 <p><span class="math display">\[\underbrace{y_{i}=\beta_{0} + \beta_{1}x_{i} + \epsilon_{i}}_{\text{Generative Model}}\]</span></p>
 <p><span class="math display">\[\underbrace{\epsilon_{i}\stackrel{iid}{\sim}N(0, \sigma^{2})}_{\text{Parametric Assumptions &amp; Selection Mech.}}\]</span></p>
 </section>
-<section id="role-of-probability-theory-in-statistics" class="slide level2">
+<section id="role-of-probability-theory-in-statistics" class="slide level2 small">
 <h2>Role of Probability Theory in Statistics</h2>
-<p><span class="math display">\[\underbrace{f_{Y|X}(y_{i}|x_{i})}_{\text{Conditional}\\ \;\;\;\;\text{PDF}}\overbrace{\stackrel{iid}{\sim}}^{\;\;\text{Dist.}\\\text{Assump.}}\underbrace{N(\beta_{0} + \beta_{1}x_{i}, \sigma^{2})}_{\text{Normal PDF}}\;\;\;\;\to\]</span> <span class="math display">\[y_{i}=\beta_{0} + \beta_{1}x_{i} + \epsilon_{i}\]</span></p>
+<div class="columns">
+<div class="column" style="width:35%;">
+<p><br> <br> <span class="math display">\[y_{i}=\beta_{0} + \beta_{1}x_{i} + \epsilon_{i}\]</span></p>
+</div><div class="column" style="width:3%;">
+<p><br> <br> <span class="math display">\[\to\]</span></p>
+</div><div class="column" style="width:62%;">
+<p><span class="math display">\[\underbrace{f_{Y|X}(y_{i}|x_{i})}_{\text{Conditional}\\ \;\;\;\;\text{PDF}}\overbrace{\stackrel{iid}{\sim}}^{\;\;\text{Dist.}\\\text{Assump.}}\underbrace{N(\beta_{0} + \beta_{1}x_{i}, \sigma^{2})}_{\text{Normal PDF}}\]</span></p>
+</div>
+</div>
 </section>
 <section id="what-is-probability-theory" class="slide level2">
 <h2>What is Probability Theory?</h2>
@@ -592,17 +609,16 @@
 <li><p><strong>Probability theory is a model!</strong> It allows for us to deal with the uncertainty that comes from being unable to measure every little thing that may be related to our outcome.</p></li>
 </ul>
 </section>
-<section id="random-generative-process-rgp" class="slide level2">
+<section id="random-generative-process-rgp" class="slide level2 smaller">
 <h2>Random Generative Process (RGP)</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <ul>
-<li>Random Generative Process:
+<li><strong>Random Generative Process</strong> is a mechanism that selects an outcome from a set of multiple outcomes. It consists of three components:
 <ul>
-<li><strong>Sample Space</strong>: Set of all possible states of an RGP</li>
-<li><strong>Event Space</strong>: Subset of the sample space</li>
-<li><strong>Event</strong>: An outcome of the event space that may occur across multiple states</li>
-<li><strong>Probability Measure</strong>: A function that maps the event to a real number between 0 and 1</li>
+<li><strong>Sample Space</strong>: Set of all possible states of an RGP.</li>
+<li><strong>Event Space</strong>: Subset of the sample space that consists of possible events that could occur across multiple states.</li>
+<li><strong>Probability Measure</strong>: A function that maps the event to a real number.</li>
 </ul></li>
 </ul>
 </div><div class="column" style="width:50%;">
@@ -613,6 +629,315 @@
 </div>
 </div>
 </div>
+</section>
+<section id="probability-space-properties" class="slide level2 small">
+<h2>Probability Space: Properties</h2>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><img data-src="lecture-1-img/disjoint-probability-crop.png" width="200"></p>
+<p></p><figcaption><span class="math inline">\(P(A \cup B) = P(A) + P(B)\)</span></figcaption><p></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><img data-src="lecture-1-img/subset-probability-crop.png" width="200"></p>
+<p></p><figcaption><span class="math inline">\(B \subseteq A, P(B) \leq P(A)\)</span></figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><img data-src="lecture-1-img/intersect-probability-crop.png" width="200"></p>
+<p></p><figcaption><span class="math inline">\(P(A \cup B) = P(A) + P(B) - P(A \cap B)\)</span></figcaption><p></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><img data-src="lecture-1-img/setminus-probability-crop.png" width="200"></p>
+<p></p><figcaption><span class="math inline">\(P(A^{C}) = 1 - P(A)\)</span></figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="joint-conditional-probability" class="slide level2">
+<h2>Joint &amp; Conditional Probability</h2>
+<ul>
+<li><p><strong>Joint</strong> and <strong>conditional</strong> probability describe how the probabilities of two different events are related.</p></li>
+<li><p><strong>Joint probability</strong> tells us the probability that two events will both occur:</p>
+<ul>
+<li><strong><span class="math inline">\(P(A \cap B)\)</span></strong></li>
+</ul></li>
+<li><p><strong>Conditional probability</strong> tell us how the probability of one event changes given that another event already occurred:</p>
+<ul>
+<li><span class="math inline">\(P(A|B) = \frac{P(A \cap B)}{P(B)}\)</span></li>
+</ul></li>
+</ul>
+</section>
+<section id="employee-selection-example" class="slide level2">
+<h2>Employee Selection Example</h2>
+</section>
+<section id="joint-probabilities-employee-selection" class="slide level2 smaller">
+<h2>Joint Probabilities: Employee Selection</h2>
+<div class="columns">
+<div class="column" style="width:48%;">
+<ul>
+<li>The table displays the joint probabilities for <strong>Hiring Outcome</strong> and <strong>Assessment Outcome</strong>.
+<ul>
+<li>What is the probability that <strong>Hiring Outcome = Hire</strong> and <strong>Assessment Outcome = Fail</strong>?</li>
+<li>What is the probability that <strong>Hiring Outcome = Hire</strong> and <strong>Assessment Outcome = Pass</strong>?</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:2%;">
+
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="cell-output-display">
+
+<table class=" lightable-minimal" style="font-family: &quot;Trebuchet MS&quot;, verdana, sans-serif; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:right;"> Hire </th>
+   <th style="text-align:right;"> Turndown </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Fail </td>
+   <td style="text-align:right;"> 0.033 </td>
+   <td style="text-align:right;"> 0.149 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Pass </td>
+   <td style="text-align:right;"> 0.436 </td>
+   <td style="text-align:right;"> 0.291 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Pass+ </td>
+   <td style="text-align:right;"> 0.071 </td>
+   <td style="text-align:right;"> 0.020 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="conditonal-probabilities" class="slide level2 smaller">
+<h2>Conditonal Probabilities</h2>
+<div class="columns">
+<div class="column" style="width:48%;">
+<ul>
+<li>The tables to the right display the conditional probabilities for <strong>Hiring Outcome</strong> and <strong>Assessment Outcome</strong>.
+<ul>
+<li>What is the probability that <strong>Hiring Outcome = Hire</strong> given that <strong>Assessment Outcome = Fail</strong>?</li>
+<li>What is the probability that <strong>Assessment Outcome = Fail</strong> given that <strong>Hiring Category = Hire</strong>?</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:2%;">
+
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="cell-output-display">
+
+<table class=" lightable-minimal" style="font-family: &quot;Trebuchet MS&quot;, verdana, sans-serif; margin-left: auto; margin-right: auto;">
+<caption><em><strong>P(Selection Decision) given Assessment Outcome</strong></em></caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:right;"> Hire </th>
+   <th style="text-align:right;"> Turndown </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Fail </td>
+   <td style="text-align:right;"> 0.182 </td>
+   <td style="text-align:right;"> 0.818 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Pass </td>
+   <td style="text-align:right;"> 0.600 </td>
+   <td style="text-align:right;"> 0.400 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Pass+ </td>
+   <td style="text-align:right;"> 0.778 </td>
+   <td style="text-align:right;"> 0.222 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<p><br></p>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class=" lightable-minimal" style="font-family: &quot;Trebuchet MS&quot;, verdana, sans-serif; margin-left: auto; margin-right: auto;">
+<caption><em><strong>P(Assessment Outcome) given Selection Decision</strong></em></caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:right;"> Hire </th>
+   <th style="text-align:right;"> Turndown </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Fail </td>
+   <td style="text-align:right;"> 0.061 </td>
+   <td style="text-align:right;"> 0.323 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Pass </td>
+   <td style="text-align:right;"> 0.808 </td>
+   <td style="text-align:right;"> 0.633 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Pass+ </td>
+   <td style="text-align:right;"> 0.131 </td>
+   <td style="text-align:right;"> 0.044 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="more-conditional-probabilities" class="slide level2 smaller">
+<h2>More Conditional Probabilities</h2>
+<div class="columns">
+<div class="column" style="width:33%;">
+<ul>
+<li><u><strong>Multiplicative Law of Probability</strong></u></li>
+</ul>
+<p><span class="math inline">\(P(A \cap B)=P(A|B)P(B)\)</span></p>
+</div><div class="column" style="width:33%;">
+<ul>
+<li><u><strong>Independence</strong></u></li>
+</ul>
+<p><span class="math inline">\(P(A \cap B) = P(A)P(B)\)</span></p>
+<p><br></p>
+<p><span class="math inline">\(\begin{equation}\begin{aligned} P(A|B) &amp;= \frac{P(A)P(B)}{P(B)} \\  &amp;= P(A) \end{aligned}\end{equation}\)</span></p>
+</div><div class="column" style="width:33%;">
+<ul>
+<li><u><strong>Bayes’ Rule</strong></u></li>
+</ul>
+<p><span class="math inline">\(P(B|A) = \frac{P(A|B)P(B)}{P(A)}\)</span></p>
+</div>
+</div>
+</section>
+<section id="random-variables" class="slide level2 smaller">
+<h2>Random Variables</h2>
+<div class="columns">
+<div class="column" style="width:45%;">
+<ul>
+<li><strong>Random variables</strong> are functions that take an <em>event (Hire or Fire) as the input</em> and <em>output a real number</em> (0 or 1).</li>
+<li>Random variables can be categorized as discrete or continuous based on the range of their output.
+<ul>
+<li>Discrete Variables have a <strong>countable infinite range</strong> (e.g.&nbsp;integer valued output)</li>
+<li>Continuous Variables have an <strong>uncountable infinite range</strong> (e.g.&nbsp;real numbers)</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:5%;">
+
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-right">
+<figure>
+<p><img data-src="lecture-1-img/random-variable-crop.png"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="probability-functions" class="slide level2 smaller">
+<h2>Probability Functions</h2>
+<p>We can summarize the probabilities of random variables using two related probability functions:</p>
+<div class="columns">
+<div class="column" style="width:45%;">
+<center>
+<strong><u>Discrete Variables</u></strong>
+</center>
+<ul>
+<li><strong>Probability Mass Function (PMF):</strong>
+<ul>
+<li><span class="math inline">\(f(x)=P(X=x)\)</span></li>
+</ul></li>
+<li><strong>Cumulative Distribution Function (CDF)</strong>
+<ul>
+<li><span class="math inline">\(F(x)=P(X \leq x)\)</span></li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:10%;">
+
+</div><div class="column" style="width:45%;">
+<center>
+<strong><u>Continuous Variables</u></strong>
+</center>
+<ul>
+<li><strong>Probability Density Function (PDF):</strong>
+<ul>
+<li><span class="math inline">\(f(x)=\frac{dF(u)}{du}|_{u=x}\)</span></li>
+</ul></li>
+<li><strong>Cumulative Distribution Function (CDF):</strong>
+<ul>
+<li><span class="math inline">\(F(x)=P(X \leq x) = \int_{-\infty}^{x}f(u)du\)</span></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="normal-pdf-and-cdf" class="slide level2">
+<h2>Normal PDF and CDF</h2>
+<div class="columns">
+<div class="column" style="width:45%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="lecture-1-introduction_files/figure-revealjs/unnamed-chunk-6-1.png" width="960"></p>
+</div>
+</div>
+</div><div class="column" style="width:10%;">
+
+</div><div class="column" style="width:45%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="lecture-1-introduction_files/figure-revealjs/unnamed-chunk-7-1.png" width="960"></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="conditional-pmf" class="slide level2">
+<h2>Conditional PMF</h2>
+</section>
+<section id="expected-value" class="slide level2">
+<h2>Expected Value</h2>
+</section>
+<section id="variance" class="slide level2">
+<h2>Variance</h2>
+</section>
+<section id="covariance" class="slide level2">
+<h2>Covariance</h2>
+</section>
+<section id="correlation" class="slide level2">
+<h2>Correlation</h2>
 <div class="footer footer-default">
 
 </div>
@@ -828,6 +1153,48 @@
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          // dispatch for htmlwidgets
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for reveal
+        if (window.Reveal) {
+          window.Reveal.addEventListener("slidechanged", function(event) {
+            fireSlideChanged(event.previousSlide, event.currentSlide);
+          });
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
