@@ -11,9 +11,9 @@ Measurement is foundational to any scientific field. In order to apply statistic
 
 ## Learning objectives
 
-To be able to:
+By the end of this course, you will: 
 * Have a deep understanding of psychometric theories and methods
-* Have an understanding of different statistcal models used by psychometricians / quantitative psychologists
+* Have an understanding of different statistical models used by psychometricians / quantitative psychologists
 * Have a deep understanding of scale development
 * Feel comfortable using R to estimate a variety of statistical models
 
