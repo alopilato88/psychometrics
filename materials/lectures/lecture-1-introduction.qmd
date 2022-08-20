@@ -11,6 +11,7 @@ format:
 library(dplyr)
 library(knitr)
 library(kableExtra)
+library(ggplot2)
 ```
 
 # Welcome!
@@ -111,15 +112,27 @@ $$p(x_{ij} = 1 |\theta_{i},b_{j},a_{j})=\frac{1}{1 + e^{-a_{j}(\theta_{i}-b_{j})
 
 - Essentially allows one to use observed measurements to infer something about an unobservable construct. 
 
-::: {layout-ncol=1}
-| Latent Variable Distribution | Continuous              | Categorical           |
-|------------------------------|-------------------------|-----------------------|
-| **Continuous**               | Factor Analysis         | Item Response Theory  |
-| **Categorical**              | Latent Profile Analysis | Latent Class Analysis |
-
-
-: **Manifest Variable Distribution**
-:::
+<table>
+  <tr>
+    <th></th>
+    <th colspan="2"> <center><em>Manifest Variable Distribution</em></center> </th>
+  </tr>
+  <tr>
+    <td> <em>Latent Variable Distribution</em> </td>
+    <td>**Continuous**</td>
+    <td>**Categorical**</td>
+  </tr>
+  <tr>
+    <td>**Continuous**</td>
+    <td>Factor Analysis</td>
+    <td>Item Response Theory</td>
+  </tr>
+  <tr>
+    <td>**Categorical**</td>
+    <td>Latent Profile Analysis</td>
+    <td>Latent Class Analysis</td>
+  </tr>
+</table>
 
 # The Practical Side
 
@@ -138,22 +151,15 @@ $$p(x_{ij} = 1 |\theta_{i},b_{j},a_{j})=\frac{1}{1 + e^{-a_{j}(\theta_{i}-b_{j})
 
 ## The Scale Development Process
 
-```{mermaid}
-flowchart LR
-
-  subgraph cluster_develop[Developing the Scale]
-  direction LR
-  a1[Measurement <br/> framework]-->a2[Generate <br/> Items]<-->a3[Evaluate <br/> Preliminary Items]
-  end
-
-  subgraph cluster_test[Testing the Scale]
-  direction LR
-  b1[Pilot the <br/> new scale]<-->b2[Analyze the <br/> pilot data]
-  b2-->b3[Administer <br/> final scale]-->b4[Analyze the <br/> final data]
-  end
-  
-  cluster_develop-->cluster_test
-```
+* **Developing the Scale** 
+  - Build a measurement framework
+  - Generate items 
+  - Evaluate preliminary items
+* **Testing the Scale**
+  - Pilot the new scale
+  - Analyze the pilot data
+  - Repeat if needed & possible
+* **Put the scale into operation**
 
 # Probability Theory and Statistical Inference
 
@@ -220,6 +226,28 @@ $$\underbrace{f_{Y|X}(y_{i}|x_{i})}_{\text{Conditional}\\ \;\;\;\;\text{PDF}}\ov
 
 ## Philsophy of Probability and Inference
 
+<table>
+  <tr>
+    <th></th>
+    <th colspan="2"><em>Philosophy of Probability</em></th>
+  </tr>
+  <tr>
+    <td> <em>Statistical Inference</em> </td>
+    <td> <strong>Frequentist</strong> </td>
+    <td> <strong>Bayesian</strong> </td>
+  </tr>
+  <tr>
+    <td> <strong>Model Based</strong> </td>
+    <td> <center>&#10006;</center></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td> <strong>Design Based</strong> </td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
+
 ## Random Generative Process (RGP) {.smaller}
 
 ::: columns
@@ -258,6 +286,8 @@ $$\underbrace{f_{Y|X}(y_{i}|x_{i})}_{\text{Conditional}\\ \;\;\;\;\text{PDF}}\ov
   + $P(A|B) = \frac{P(A \cap B)}{P(B)}$
 
 ## Employee Selection Example
+
+For the next few slides, we will imagine we are an workforce analytics analyst on the recruiting team. We want to look at the relationship between a candidate's select assessment performance, `Assessment Outcome`, and the organization's selection decision, `Hiring Outcome`.
 
 ## Joint Probabilities: Employee Selection {.smaller}
 
@@ -428,44 +458,78 @@ We can summarize the probabilities of random variables using two related probabi
 :::
 :::
 
-## Normal PDF and CDF
-
-::: columns
-::: {.column width="45%"}
+## Normal PDF
 
 ```{r echo=FALSE}
 ggplot2::ggplot(
-  data = data.frame(x = -3:3),
-  ggplot2::aes(x = x)
+  NULL,
+  ggplot2::aes(
+    c(-3, 3)
+  )
 ) + 
-  ggplot2::xlim(c(-3, 3)) + 
-  ggplot2::geom_function(
-    fun = dnorm
+  ggplot2::geom_area(
+    stat = "function",
+    fun = dnorm,
+    fill = "#A6D1E6",
+    color = "#3D3C42",
+    xlim = c(-3, 3)
   ) + 
-  ggplot2::theme_minimal()
+    ggplot2::theme(
+    plot.background = element_rect(fill = "#FEFBF6"),
+    panel.background = element_rect(fill = "#FEFBF6"),
+    axis.line.x = element_line(colour = "#3D3C42"),
+    axis.line.y = element_line(colour = "#3D3C42")
+  ) +
+  ggplot2::labs(
+    x = "Random Variable Value",
+    y = "Density"
+  )
+
+# ggplot(NULL, aes(c(-3,3))) + 
+#   geom_area(stat = "function", fun = dnorm, fill = "red", xlim = c(-3, 0)) +
+#   geom_area(stat = "function", fun = dnorm, fill = "blue", xlim = c(0, 3)) +
+#   ggplot2::theme(
+#     plot.background = element_rect(fill = "#FEFBF6"),
+#     panel.background = element_rect(fill = "#FEFBF6"),
+#     axis.line.x = element_line(colour = "#3D3C42"),
+#     axis.line.y = element_line(colour = "#3D3C42")
+#   )
 ```
 
-:::
-
-::: {.column width="10%"}
-:::
-
-::: {.column width="45%"}
+## Normal CDF
 
 ```{r echo=FALSE}
 ggplot2::ggplot(
-  data = data.frame(x = -3:3),
-  ggplot2::aes(x = x)
+  NULL,
+  ggplot2::aes(
+    c(-3, 3)
+  )
 ) + 
-  ggplot2::xlim(c(-3, 3)) + 
-  ggplot2::geom_function(
-    fun = pnorm
+  ggplot2::geom_area(
+    stat = "function",
+    fun = pnorm,
+    fill = "#A6D1E6",
+    color = "#3D3C42",
+    xlim = c(-3, 0)
   ) + 
-  ggplot2::theme_minimal()
+  ggplot2::geom_area(
+    stat = "function",
+    fun = pnorm,
+    fill = "#FEFBF6",
+    color = "#3D3C42",
+    xlim = c(0, 3)
+  ) +
+    ggplot2::theme(
+    plot.background = element_rect(fill = "#FEFBF6"),
+    panel.background = element_rect(fill = "#FEFBF6"),
+    axis.line.x = element_line(colour = "#3D3C42"),
+    axis.line.y = element_line(colour = "#3D3C42")
+  ) +
+  ggplot2::labs(
+    x = "Random Variable Value",
+    y = "P(X <= 0)"
+  )
 ```
-
-:::
-:::
 
 ## Bivariate Relationships
 
@@ -609,7 +673,19 @@ ggplot2::ggplot(
   )
 ) + 
   ggplot2::geom_histogram(
-    binwidth = .10
+    binwidth = .10,
+    fill = "#A6D1E6",
+    color = "#3D3C42"
+  ) + 
+    ggplot2::theme(
+    plot.background = element_rect(fill = "#FEFBF6"),
+    panel.background = element_rect(fill = "#FEFBF6"),
+    axis.line.x = element_line(colour = "#3D3C42"),
+    axis.line.y = element_line(colour = "#3D3C42")
+  ) +
+  ggplot2::labs(
+    x = "Sample Mean",
+    y = "Count"
   )
 ```
 
@@ -655,7 +731,17 @@ ggplot2::ggplot(
     y = SAMPLE_MEAN
   )
 ) +
-  ggplot2::geom_line()
+  ggplot2::geom_line() + 
+    ggplot2::theme(
+    plot.background = element_rect(fill = "#FEFBF6"),
+    panel.background = element_rect(fill = "#FEFBF6"),
+    axis.line.x = element_line(colour = "#3D3C42"),
+    axis.line.y = element_line(colour = "#3D3C42")
+  ) +
+  ggplot2::labs(
+    x = "Sample Size",
+    y = "Sample Mean"
+  )
 ```
 
 :::
@@ -786,7 +872,20 @@ ggplot2::ggplot(
     FAMILY ~ N,
     scales = "free"
   ) +
-  ggplot2::geom_histogram()
+  ggplot2::geom_histogram(
+    fill = "#A6D1E6",
+    color = "#3D3C42"
+  ) + 
+   ggplot2::theme(
+    plot.background = element_rect(fill = "#FEFBF6"),
+    panel.background = element_rect(fill = "#FEFBF6"),
+    axis.line.x = element_line(colour = "#3D3C42"),
+    axis.line.y = element_line(colour = "#3D3C42")
+  ) +
+  ggplot2::labs(
+    x = "Sample Means",
+    y = "Count"
+  )
 
 ```
 
@@ -884,6 +983,121 @@ $$\text{P value} = P(Data|Model)$$
 
 $$T = \frac{Est. - H_{0}}{SE_{est.}}$$
 $$\text{P Value}=2\times P(|T| \geq|t| \mid H_{0}=True, Model = True) $$
+
+## Visualizing P Values
+
+```{r}
+ggplot2::ggplot(
+  NULL,
+  ggplot2::aes(
+    c(
+      qnorm(.0013, sd = summary(mod)$coef[2, 2]),
+      qnorm(1 - .0013, sd = summary(mod)$coef[2, 2])
+    )
+  )
+) + 
+  ggplot2::geom_area(
+    stat = "function",
+    fun = dnorm,
+    args = list(mean = 0, sd = summary(mod)$coef[2, 2]),
+    fill = "#A6D1E6",
+    color = "#3D3C42",
+    xlim = c(qnorm(.0013, sd = summary(mod)$coef[2, 2]), qnorm(.025, mean = 0, sd = summary(mod)$coef[2, 2]))
+  ) +
+  ggplot2::geom_area(
+    stat = "function",
+    fun = dnorm,
+    args = list(mean = 0, sd = summary(mod)$coef[2, 2]),
+    color = "#3D3C42",
+    fill = "#FEFBF6",
+    xlim = c(qnorm(.025, mean = 0, sd = summary(mod)$coef[2, 2]), qnorm(.975, sd = summary(mod)$coef[2, 2]))
+  ) + 
+  ggplot2::geom_area(
+    stat = "function",
+    fun = dnorm,
+    args = list(mean = 0, sd = summary(mod)$coef[2, 2]),
+    fill = "#A6D1E6",
+    color = "#3D3C42",
+    xlim = c(qnorm(.975, mean = 0, sd = summary(mod)$coef[2, 2]), qnorm(1 - .0013, sd = summary(mod)$coef[2, 2]))
+  ) + 
+  ggplot2::theme(
+    plot.background = element_rect(fill = "#FEFBF6"),
+    panel.background = element_rect(fill = "#FEFBF6"),
+    axis.line.x = element_line(colour = "#3D3C42"),
+    axis.ticks.y = ggplot2::element_line(size = 0),
+    axis.text.y = ggplot2::element_blank(),
+    axis.title.y = ggplot2::element_blank()
+  ) +
+  ggplot2::labs(
+    x = "Effect Sizes",
+    title = "Null Hypothesis: 0"
+  ) +
+  ggplot2::geom_vline(
+    xintercept = 0,
+    color = "#3D3C42"
+  )
+
+```
+
+## Visualizing P Values
+
+```{r}
+ggplot2::ggplot(
+  NULL,
+  ggplot2::aes(
+    c(
+      qnorm(.0013, mean = 1, sd = summary(mod)$coef[2, 2]),
+      qnorm(1 - .0013, mean = 1, sd = summary(mod)$coef[2, 2])
+    )
+  )
+) + 
+  ggplot2::geom_area(
+    stat = "function",
+    fun = dnorm,
+    args = list(mean = 1, sd = summary(mod)$coef[2, 2]),
+    fill = "#A6D1E6",
+    color = "#3D3C42",
+    xlim = c(qnorm(.0013, mean = 1, sd = summary(mod)$coef[2, 2]), qnorm(.025, mean = 1, sd = summary(mod)$coef[2, 2]))
+  ) +
+  ggplot2::geom_area(
+    stat = "function",
+    fun = dnorm,
+    args = list(mean = 1, sd = summary(mod)$coef[2, 2]),
+    color = "#3D3C42",
+    fill = "#FEFBF6",
+    xlim = c(qnorm(.025, mean = 1, sd = summary(mod)$coef[2, 2]), qnorm(.975, mean = 1, sd = summary(mod)$coef[2, 2]))
+  ) + 
+  ggplot2::geom_area(
+    stat = "function",
+    fun = dnorm,
+    args = list(mean = 1, sd = summary(mod)$coef[2, 2]),
+    fill = "#A6D1E6",
+    color = "#3D3C42",
+    xlim = c(qnorm(.975, mean = 1, sd = summary(mod)$coef[2, 2]), qnorm(1 - .0013, mean = 1, sd = summary(mod)$coef[2, 2]))
+  ) + 
+  ggplot2::theme(
+    plot.background = element_rect(fill = "#FEFBF6"),
+    panel.background = element_rect(fill = "#FEFBF6"),
+    axis.line.x = element_line(colour = "#3D3C42"),
+    axis.ticks.y = ggplot2::element_line(size = 0),
+    axis.text.y = ggplot2::element_blank(),
+    axis.title.y = ggplot2::element_blank()
+  ) +
+  ggplot2::labs(
+    x = "Effect Sizes",
+    title = "Null Hypothesis: 1"
+  ) +
+  ggplot2::geom_vline(
+    xintercept = 1,
+    color = "#3D3C42"
+  ) +
+  ggplot2::geom_vline(
+    xintercept = round(summary(mod)$coef[2, 1], 2),
+    color = "#7F5283"
+  )
+
+```
+
 ## Coding P Values
 
 ```{r echo=TRUE}
@@ -916,6 +1130,63 @@ pnorm(abs(test_stat_25), mean = 0, sd = 1, lower.tail = FALSE) * 2 |>
 $$P(\hat{\beta}-SE_{\hat{\beta}}\times C\leq\beta\leq\hat{\beta}+SE_{\hat{\beta}}\times C)=.95$$
 
 * $C$ is usually set equal to 1.96 to create a normal distribution approximation. 
+
+## Visualizing a Confidence Interval
+
+```{r}
+cf_mean <- round(summary(mod)$coef[2, 1], 2)
+
+ggplot2::ggplot(
+  NULL,
+  ggplot2::aes(
+    c(
+      qnorm(.0013, mean = cf_mean, sd = summary(mod)$coef[2, 2]),
+      qnorm(1 - .0013, mean = cf_mean, sd = summary(mod)$coef[2, 2])
+    )
+  )
+) + 
+  ggplot2::geom_area(
+    stat = "function",
+    fun = dnorm,
+    args = list(mean = cf_mean, sd = summary(mod)$coef[2, 2]),
+    fill = "#FEFBF6",
+    color = "#3D3C42",
+    xlim = c(qnorm(.0013, mean = 1, sd = summary(mod)$coef[2, 2]), qnorm(.025, mean = 1, sd = summary(mod)$coef[2, 2]))
+  ) +
+  ggplot2::geom_area(
+    stat = "function",
+    fun = dnorm,
+    args = list(mean = cf_mean, sd = summary(mod)$coef[2, 2]),
+    color = "#3D3C42",
+    fill = "#A6D1E6",
+    xlim = c(qnorm(.025, mean = cf_mean, sd = summary(mod)$coef[2, 2]), qnorm(.975, mean = cf_mean, sd = summary(mod)$coef[2, 2]))
+  ) + 
+  ggplot2::geom_area(
+    stat = "function",
+    fun = dnorm,
+    args = list(mean = cf_mean, sd = summary(mod)$coef[2, 2]),
+    fill = "#FEFBF6",
+    color = "#3D3C42",
+    xlim = c(qnorm(.975, mean = cf_mean, sd = summary(mod)$coef[2, 2]), qnorm(1 - .0013, mean = cf_mean, sd = summary(mod)$coef[2, 2]))
+  ) + 
+  ggplot2::theme(
+    plot.background = element_rect(fill = "#FEFBF6"),
+    panel.background = element_rect(fill = "#FEFBF6"),
+    axis.line.x = element_line(colour = "#3D3C42"),
+    axis.ticks.y = ggplot2::element_line(size = 0),
+    axis.text.y = ggplot2::element_blank(),
+    axis.title.y = ggplot2::element_blank()
+  ) +
+  ggplot2::labs(
+    x = "Effect Sizes",
+    title = "95% Confidence Interval"
+  ) +
+  ggplot2::geom_vline(
+    xintercept = round(summary(mod)$coef[2, 1], 2),
+    color = "#7F5283"
+  )
+
+```
 
 ## Confidence Interval: Interpretation 1
 
