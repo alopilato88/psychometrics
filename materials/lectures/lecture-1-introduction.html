@@ -9,7 +9,7 @@
 <link href="lecture-1-introduction_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.0.38">
 
-  <title>Psychometrics Overview</title>
+  <title>Introduction to Psychometrics</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -386,20 +386,16 @@
     <div class="slides">
 
 <section id="title-slide" class="center">
-  <h1 class="title">Psychometrics Overview</h1>
-  <p class="subtitle">Statistical and Programming Primers</p>
+  <h1 class="title">Introduction to Psychometrics</h1>
+  <p class="subtitle">Psychometric and Statistical Primer</p>
 </section>
 
-<section class="slide level2">
-
-<div class="cell">
-
-</div>
-</section>
 <section>
 <section id="welcome" class="title-slide slide level1 center">
 <h1>Welcome!</h1>
+<div class="cell">
 
+</div>
 </section>
 <section id="introduction" class="slide level2">
 <h2>Introduction</h2>
@@ -423,7 +419,7 @@
 <li>Do you hate, tolerate, or love methods courses?</li>
 </ul>
 </div><div class="column" style="width:40%;">
-<p><img data-src="lecture-1-img/round-robin.png"></p>
+<p><img data-src="lecture-1-img/round-robin-edit.png"></p>
 </div>
 </div>
 </section></section>
@@ -451,22 +447,22 @@
 <ul>
 <li>Overview of Psychometrics
 <ul>
-<li>What it is</li>
-<li>The theoretical: Test theories &amp; latent variable models</li>
-<li>The practical: Assessment / Questionnaire design</li>
+<li>The Theoretical: Test Theories &amp; Latent Variable Models</li>
+<li>The Practical: Assessment / Questionnaire Design</li>
 </ul></li>
 <li>Statistical Primer
 <ul>
-<li>Review of probability theory</li>
-<li>Review of statistical inference</li>
+<li>Review of Probability Theory</li>
+<li>Review of Statistical Inference</li>
 </ul></li>
 </ul>
 </section>
 <section id="what-is-psychometics" class="slide level2">
 <h2>What is Psychometics?</h2>
 <blockquote>
-<p>Psychometrics, or quantitative psychology, is the disciplinary home of a set of statistical models and methods that have been developed primarily to summarize, describe, and draw inferences from empirical data collected in psychological research. (Jones &amp; Thissen, 2007)</p>
+<p>Psychometrics, or quantitative psychology, is the disciplinary home of a set of statistical models and methods that have been developed primarily to summarize, describe, and draw inferences from empirical data collected in psychological research.</p>
 </blockquote>
+<p>Jones &amp; Thissen, 2007</p>
 </section></section>
 <section>
 <section id="the-theoretical-side" class="title-slide slide level1 center">
@@ -486,7 +482,7 @@
 <li><p>There are three major test theories in Psychometrics:</p>
 <ul>
 <li>Classical Test Theory (CTT)</li>
-<li>Generalizability Theory (G-Theory)</li>
+<li>Generalizability Theory (GT)</li>
 <li>Item Response Theory (IRT)</li>
 </ul></li>
 <li><p>The above theories have introduced and further refined the theories of test validity and test reliability.</p></li>
@@ -495,25 +491,24 @@
 <section id="classical-test-theory" class="slide level2">
 <h2>Classical Test Theory</h2>
 <ul>
-<li>CTT set the foundations for future test theories with the idea that an individual’s observed test score is composed of two different additive components: True Score and Error.</li>
+<li><p>CTT set the foundations for future test theories with the idea that an individual’s observed test score is composed of two different additive components: True Score and Error.</p></li>
+<li><p>Through its introduction of True Score and Error, CTT helped to formalize the theories of test validity and reliability.</p></li>
 </ul>
 <p><span class="math display">\[\text{Observed Score} = \text{True Score} + \text{Error}\]</span></p>
-<ul>
-<li>Through its introduction of True Score and Error, CTT helped to formalize the theories of test validity and reliability, respectively.</li>
-</ul>
 </section>
 <section id="generalizability-theory" class="slide level2">
 <h2>Generalizability Theory</h2>
 <ul>
-<li>Build on CTT by further specifying the different sources of error that comprise an individual’s observed score.</li>
+<li><p>Built on CTT by further specifying the different sources of error that comprise an individual’s observed score.</p></li>
+<li><p>GT really furthered the development of reliability theory by introducing different types of reliability indices and drawing a distinction between relative and absolute test score comparisons.</p></li>
 </ul>
-<p><span class="math display">\[\text{Observed Scored} = \mu + E_{rater} + E_{item} + E_{rater\times{}item}\]</span> * G-Theory really furthered the development of reliability theory by introducing different types of reliability indices and drawing a distinction between relative and absolute test score comparisons.</p>
+<p><span class="math display">\[\text{Observed Scored} = \mu + E_{rater} + E_{item} + E_{rater\times{}item}\]</span></p>
 </section>
 <section id="item-response-theory" class="slide level2">
 <h2>Item Response Theory</h2>
 <ul>
 <li><p>IRT is a modern measurement theory that focuses on the measurement characteristics of the individual items that make up an assessment.</p></li>
-<li><p>Unlike CTT and G-Theory, IRT estimates measurement characteristics of the individual items independently from the abilities of the test takers—this is a big plus!</p></li>
+<li><p>Unlike CTT and GT, IRT estimates measurement characteristics of the individual items independently from the abilities of the test takers—this is a big plus!</p></li>
 </ul>
 <p><span class="math display">\[p(x_{ij} = 1 |\theta_{i},b_{j},a_{j})=\frac{1}{1 + e^{-a_{j}(\theta_{i}-b_{j})}}\]</span></p>
 </section>
@@ -578,17 +573,17 @@ Latent Class Analysis
 <section id="some-survey-jargon" class="slide level2">
 <h2>Some Survey Jargon</h2>
 
-<img data-src="lecture-1-img/robinson-scale-image.png" class="r-stretch"></section>
+<img data-src="lecture-1-img/robinson-scale-image.png" class="r-stretch quarto-figure-center"><p class="caption">Robinson (2018). Using multi-item psychometric scales for research and practice in human resource management</p></section>
 <section id="the-many-uses-of-surveys-and-assessments" class="slide level2">
 <h2>The Many Uses of Surveys and Assessments</h2>
 <ul>
 <li>Surveys / Assessments are used to assess a wide variety of constructs:
 <ul>
-<li>Knowledge (SAT, GRE)</li>
+<li>Educational Assessment (SAT, GRE)</li>
 <li>Mental health disorders (Beck’s Depression Inventory)</li>
 <li>Personality (Hogan PEI, Big 5 scales)</li>
 <li>Employee Attitude Surveys (There are many!)</li>
-<li>Skills</li>
+<li>Employee Knowledge, Skills, Abilities (KSAs!)</li>
 </ul></li>
 </ul>
 </section>
@@ -618,8 +613,9 @@ Latent Class Analysis
 <section id="a-reassuring-reminder" class="slide level2">
 <h2>A Reassuring Reminder</h2>
 <blockquote>
-<p>Statistics is hard, especially when effects are small and variable and measurements are noisy. (McShane et al., 2019)</p>
+<p>Statistics is hard, especially when effects are small and variable and measurements are noisy.</p>
 </blockquote>
+<p>McShane et al., 2019</p>
 </section>
 <section id="who-cares" class="slide level2">
 <h2>Who cares?</h2>
@@ -640,6 +636,7 @@ Latent Class Analysis
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="lecture-1-img/statistical-inference.png"></p>
+<p></p><figcaption>Sterba, S. K. (2009). Alternative Model-Based and Design-Based Frameworks for Inference From Samples to Populations</figcaption><p></p>
 </figure>
 </div>
 </div>
@@ -967,7 +964,7 @@ Latent Class Analysis
 <div class="columns">
 <div class="column" style="width:45%;">
 <ul>
-<li><strong>Random variables</strong> are functions that take an <em>event (Hire or Fire) as the input</em> and <em>output a real number</em> (0 or 1).</li>
+<li><strong>Random variables</strong> are functions that take an event (Hire or Fire) as the input and output a real number (0 or 1).</li>
 <li>Random variables can be categorized as discrete or continuous based on the range of their output.
 <ul>
 <li>Discrete Variables have a <strong>countable infinite range</strong> (e.g.&nbsp;integer valued output)</li>
@@ -1132,8 +1129,8 @@ Latent Class Analysis
 </div>
 </div>
 </section>
-<section id="estimation-sample-statistics" class="slide level2 smaller">
-<h2>Estimation: Sample Statistics</h2>
+<section id="sample-statistics" class="slide level2 smaller">
+<h2>Sample Statistics</h2>
 <ul>
 <li><p>The goal of statistical inference is to estimate population parameters (like the mean and variance) of a population distribution from a sample. Sample statistics allow us to accomplish this goal.</p></li>
 <li><p><strong>Sample statistics</strong> are functions of our sample data that estimate some feature of a random variable’s population distribution:</p>
@@ -1144,8 +1141,8 @@ Latent Class Analysis
 </ul></li>
 </ul>
 </section>
-<section id="estimation-sampling-distributions" class="slide level2 smaller">
-<h2>Estimation: Sampling Distributions</h2>
+<section id="sampling-distributions" class="slide level2 smaller">
+<h2>Sampling Distributions</h2>
 <ul>
 <li><p>Because a sample statistics is a function of a random variable, it is therefore also a random variable with its own distribution: <strong>Sampling Distribution</strong>.</p></li>
 <li><p>Imagine drawing 1,000 <strong>iid</strong> samples of applicant scores on a selection assessment. For each sample you compute the sample mean. You could approximate the sampling distribution of the mean by making a histogram using the 1,000 sample means you computed.</p>
@@ -1156,8 +1153,8 @@ Latent Class Analysis
 </ul></li>
 </ul>
 </section>
-<section id="estimation-sampling-distribution-simulation" class="slide level2 smaller">
-<h2>Estimation: Sampling Distribution Simulation</h2>
+<section id="sampling-distribution-simulation" class="slide level2 smaller">
+<h2>Sampling Distribution Simulation</h2>
 <div class="columns">
 <div class="column" style="width:40%;">
 <div class="cell">
@@ -1200,8 +1197,8 @@ Latent Class Analysis
 </div>
 </div>
 </section>
-<section id="estimation-weak-law-of-large-numbers" class="slide level2 smaller">
-<h2>Estimation: Weak Law of Large Numbers</h2>
+<section id="weak-law-of-large-numbers" class="slide level2 smaller">
+<h2>Weak Law of Large Numbers</h2>
 <div class="columns">
 <div class="column" style="width:40%;">
 <div class="cell">
@@ -1231,8 +1228,8 @@ Latent Class Analysis
 </div>
 </div>
 </section>
-<section id="estimation-central-limit-theorem" class="slide level2">
-<h2>Estimation: Central Limit Theorem</h2>
+<section id="central-limit-theorem" class="slide level2">
+<h2>Central Limit Theorem</h2>
 <ul>
 <li><strong>The Central Limit Theorem</strong> proves that the sampling distribution of an estimate created by averaging many (<span class="math inline">\(n \approx 30\)</span>) iid random variables will tend to be approximately normal as <span class="math inline">\(n\)</span> increases <strong>even if the underlying distribution of the iid variables is not normal</strong>.</li>
 </ul>
@@ -1244,8 +1241,8 @@ Latent Class Analysis
 </div>
 </div>
 </section>
-<section id="estimation-central-limit-theorem-1" class="slide level2">
-<h2>Estimation: Central Limit Theorem</h2>
+<section id="central-limit-theorem-visualized" class="slide level2">
+<h2>Central Limit Theorem Visualized</h2>
 
 <img data-src="lecture-1-introduction_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch"></section>
 <section id="statistical-inference-two-questions" class="slide level2">

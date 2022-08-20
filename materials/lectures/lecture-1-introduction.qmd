@@ -1,20 +1,20 @@
 ---
-title: "Psychometrics Overview"
-subtitle: "Statistical and Programming Primers"
+title: "Introduction to Psychometrics"
+subtitle: "Psychometric and Statistical Primer"
 format: 
   revealjs:
     theme: [default, psych-lecture-theme.scss] 
     css: psych-lecture-style.css
 ---
 
-```{r}
+# Welcome!
+
+```{r echo=FALSE}
 library(dplyr)
 library(knitr)
 library(kableExtra)
 library(ggplot2)
 ```
-
-# Welcome!
 
 ## Introduction
 
@@ -38,7 +38,7 @@ Round Robin!
 :::
 
 ::: {.column width="40%"}
-![](lecture-1-img/round-robin.png)
+![](lecture-1-img/round-robin-edit.png)
 :::
 :::
 
@@ -55,16 +55,17 @@ Round Robin!
 ## Goals of this Lecture
 
 -   Overview of Psychometrics
-    -   What it is
-    -   The theoretical: Test theories & latent variable models
-    -   The practical: Assessment / Questionnaire design
+    -   The Theoretical: Test Theories & Latent Variable Models
+    -   The Practical: Assessment / Questionnaire Design
 -   Statistical Primer
-    -   Review of probability theory
-    -   Review of statistical inference
+    -   Review of Probability Theory
+    -   Review of Statistical Inference
 
 ## What is Psychometics?
 
-> Psychometrics, or quantitative psychology, is the disciplinary home of a set of statistical models and methods that have been developed primarily to summarize, describe, and draw inferences from empirical data collected in psychological research. (Jones & Thissen, 2007)
+> Psychometrics, or quantitative psychology, is the disciplinary home of a set of statistical models and methods that have been developed primarily to summarize, describe, and draw inferences from empirical data collected in psychological research. 
+
+Jones & Thissen, 2007
 
 # The Theoretical Side
 
@@ -79,30 +80,32 @@ Round Robin!
 * There are three major test theories in Psychometrics:
 
   - Classical Test Theory (CTT)
-  - Generalizability Theory (G-Theory)
+  - Generalizability Theory (GT)
   - Item Response Theory (IRT)
   
 * The above theories have introduced and further refined the theories of test validity and test reliability.
 
 ## Classical Test Theory
 
--   CTT set the foundations for future test theories with the idea that an individual's observed test score is composed of two different additive components: True Score and Error.
+- CTT set the foundations for future test theories with the idea that an individual's observed test score is composed of two different additive components: True Score and Error.
+
+- Through its introduction of True Score and Error, CTT helped to formalize the theories of test validity and reliability.
 
 $$\text{Observed Score} = \text{True Score} + \text{Error}$$
 
--   Through its introduction of True Score and Error, CTT helped to formalize the theories of test validity and reliability, respectively.
-
 ## Generalizability Theory
 
--   Build on CTT by further specifying the different sources of error that comprise an individual's observed score.
+- Built on CTT by further specifying the different sources of error that comprise an individual's observed score.
 
-$$\text{Observed Scored} = \mu + E_{rater} + E_{item} + E_{rater\times{}item}$$ \* G-Theory really furthered the development of reliability theory by introducing different types of reliability indices and drawing a distinction between relative and absolute test score comparisons.
+- GT really furthered the development of reliability theory by introducing different types of reliability indices and drawing a distinction between relative and absolute test score comparisons.
+
+$$\text{Observed Scored} = \mu + E_{rater} + E_{item} + E_{rater\times{}item}$$ 
 
 ## Item Response Theory
 
 -   IRT is a modern measurement theory that focuses on the measurement characteristics of the individual items that make up an assessment.
 
--   Unlike CTT and G-Theory, IRT estimates measurement characteristics of the individual items independently from the abilities of the test takers---this is a big plus!
+-   Unlike CTT and GT, IRT estimates measurement characteristics of the individual items independently from the abilities of the test takers---this is a big plus!
 
 $$p(x_{ij} = 1 |\theta_{i},b_{j},a_{j})=\frac{1}{1 + e^{-a_{j}(\theta_{i}-b_{j})}}$$
 
@@ -138,16 +141,16 @@ $$p(x_{ij} = 1 |\theta_{i},b_{j},a_{j})=\frac{1}{1 + e^{-a_{j}(\theta_{i}-b_{j})
 
 ## Some Survey Jargon
 
-![](lecture-1-img/robinson-scale-image.png)
+![Robinson (2018). Using multi-item psychometric scales for research and practice in human resource management](lecture-1-img/robinson-scale-image.png)
 
 ## The Many Uses of Surveys and Assessments
 
 -   Surveys / Assessments are used to assess a wide variety of constructs:
-    -   Knowledge (SAT, GRE)
+    -   Educational Assessment (SAT, GRE)
     -   Mental health disorders (Beck's Depression Inventory)
     -   Personality (Hogan PEI, Big 5 scales)
     -   Employee Attitude Surveys (There are many!)
-    -   Skills
+    -   Employee Knowledge, Skills, Abilities (KSAs!)
 
 ## The Scale Development Process
 
@@ -165,7 +168,9 @@ $$p(x_{ij} = 1 |\theta_{i},b_{j},a_{j})=\frac{1}{1 + e^{-a_{j}(\theta_{i}-b_{j})
 
 ## A Reassuring Reminder
 
-> Statistics is hard, especially when effects are small and variable and measurements are noisy. (McShane et al., 2019)
+> Statistics is hard, especially when effects are small and variable and measurements are noisy. 
+
+McShane et al., 2019
 
 ## Who cares?
 
@@ -184,7 +189,7 @@ $$p(x_{ij} = 1 |\theta_{i},b_{j},a_{j})=\frac{1}{1 + e^{-a_{j}(\theta_{i}-b_{j})
 
 ::: {.column width="49%"}
 
-![](lecture-1-img/statistical-inference.png){fig-align="center"}
+![Sterba, S. K. (2009). Alternative Model-Based and Design-Based Frameworks for Inference From Samples to Populations](lecture-1-img/statistical-inference.png){fig-align="center"}
 
 :::
 :::
@@ -411,7 +416,7 @@ $P(B|A) = \frac{P(A|B)P(B)}{P(A)}$
 ::: columns
 ::: {.column width="45%"}
 
-* <strong>Random variables</strong> are functions that take an <em>event (Hire or Fire) as the input</em> and <em>output a real number</em> (0 or 1). 
+* <strong>Random variables</strong> are functions that take an event (Hire or Fire) as the input and output a real number (0 or 1). 
 * Random variables can be categorized as discrete or continuous based on the range of their output.
   + Discrete Variables have a <strong>countable infinite range</strong> (e.g. integer valued output)
   + Continuous Variables have an <strong>uncountable infinite range</strong> (e.g. real numbers)  
@@ -475,10 +480,12 @@ ggplot2::ggplot(
     xlim = c(-3, 3)
   ) + 
     ggplot2::theme(
-    plot.background = element_rect(fill = "#FEFBF6"),
+    plot.background = element_rect(fill = "#FEFBF6", colour = "#FEFBF6"),
     panel.background = element_rect(fill = "#FEFBF6"),
     axis.line.x = element_line(colour = "#3D3C42"),
-    axis.line.y = element_line(colour = "#3D3C42")
+    axis.line.y = element_line(colour = "#3D3C42"),
+    panel.grid.minor = element_line(colour = "#FEFBF6"),
+    panel.grid.major = element_line(colour = "#FEFBF6")
   ) +
   ggplot2::labs(
     x = "Random Variable Value",
@@ -520,10 +527,12 @@ ggplot2::ggplot(
     xlim = c(0, 3)
   ) +
     ggplot2::theme(
-    plot.background = element_rect(fill = "#FEFBF6"),
+    plot.background = element_rect(fill = "#FEFBF6", colour = "#FEFBF6"),
     panel.background = element_rect(fill = "#FEFBF6"),
     axis.line.x = element_line(colour = "#3D3C42"),
-    axis.line.y = element_line(colour = "#3D3C42")
+    axis.line.y = element_line(colour = "#3D3C42"),
+    panel.grid.minor = element_line(colour = "#FEFBF6"),
+    panel.grid.major = element_line(colour = "#FEFBF6")
   ) +
   ggplot2::labs(
     x = "Random Variable Value",
@@ -617,7 +626,7 @@ ggplot2::ggplot(
 :::
 :::
 
-## Estimation: Sample Statistics {.smaller}
+## Sample Statistics {.smaller}
 
 * The goal of statistical inference is to estimate population parameters (like the mean and variance) of a population distribution from a sample. Sample statistics allow us to accomplish this goal. 
 
@@ -626,7 +635,7 @@ ggplot2::ggplot(
   + Sample Variance, $\hat{\sigma}=\frac{\sum{(X - \bar{X})^2}}{n-1}$, estimates the population variance, $\sigma^2$
   + Estimated Regression Coefficient, $\hat{\beta}$, estimates the population regression coefficient, $\beta$
 
-## Estimation: Sampling Distributions {.smaller}
+## Sampling Distributions {.smaller}
 
 * Because a sample statistics is a function of a random variable, it is therefore also a random variable with its own distribution: <strong>Sampling Distribution</strong>.
 
@@ -635,7 +644,7 @@ ggplot2::ggplot(
   + The standard deviation of those 1,000 means would equal something called the standard error of the estimate (the standard error of the mean), which tells us how much uncertainty is in our estimate. 
 
 
-## Estimation: Sampling Distribution Simulation {.smaller}
+## Sampling Distribution Simulation {.smaller}
 
 ::: columns
 ::: {.column width="40%"}
@@ -678,10 +687,12 @@ ggplot2::ggplot(
     color = "#3D3C42"
   ) + 
     ggplot2::theme(
-    plot.background = element_rect(fill = "#FEFBF6"),
+    plot.background = element_rect(fill = "#FEFBF6", colour = "#FEFBF6"),
     panel.background = element_rect(fill = "#FEFBF6"),
     axis.line.x = element_line(colour = "#3D3C42"),
-    axis.line.y = element_line(colour = "#3D3C42")
+    axis.line.y = element_line(colour = "#3D3C42"),
+    panel.grid.minor = element_line(colour = "#FEFBF6"),
+    panel.grid.major = element_line(colour = "#FEFBF6")
   ) +
   ggplot2::labs(
     x = "Sample Mean",
@@ -696,7 +707,7 @@ sd(sample_mean) # Standard Error of the Mean
 :::
 :::
   
-## Estimation: Weak Law of Large Numbers {.smaller}
+## Weak Law of Large Numbers {.smaller}
 
 ::: columns
 ::: {.column width="40%"}
@@ -733,21 +744,28 @@ ggplot2::ggplot(
 ) +
   ggplot2::geom_line() + 
     ggplot2::theme(
-    plot.background = element_rect(fill = "#FEFBF6"),
+    plot.background = element_rect(fill = "#FEFBF6", colour = "#FEFBF6"),
     panel.background = element_rect(fill = "#FEFBF6"),
     axis.line.x = element_line(colour = "#3D3C42"),
-    axis.line.y = element_line(colour = "#3D3C42")
+    axis.line.y = element_line(colour = "#3D3C42"),
+    panel.grid.minor = element_line(colour = "#FEFBF6"),
+    panel.grid.major = element_line(colour = "#FEFBF6")
   ) +
   ggplot2::labs(
     x = "Sample Size",
     y = "Sample Mean"
+  ) + 
+  ggplot2::geom_hline(
+    yintercept = 5,
+    color = "#7F5283",
+    size = 2
   )
 ```
 
 :::
 :::
 
-## Estimation: Central Limit Theorem
+## Central Limit Theorem
 
 * <strong>The Central Limit Theorem</strong> proves that the sampling distribution of an estimate created by averaging many ($n \approx 30$) iid random variables will tend to be approximately normal as $n$ increases <strong>even if the underlying distribution of the iid variables is not normal</strong>.  
 
@@ -764,7 +782,7 @@ $$Z \xrightarrow{d} N(0, 1)$$
 :::
 :::
 
-## Estimation: Central Limit Theorem
+## Central Limit Theorem Visualized
 
 ```{r}
 df <- 
@@ -877,10 +895,12 @@ ggplot2::ggplot(
     color = "#3D3C42"
   ) + 
    ggplot2::theme(
-    plot.background = element_rect(fill = "#FEFBF6"),
+    plot.background = element_rect(fill = "#FEFBF6", colour = "#FEFBF6"),
     panel.background = element_rect(fill = "#FEFBF6"),
     axis.line.x = element_line(colour = "#3D3C42"),
-    axis.line.y = element_line(colour = "#3D3C42")
+    axis.line.y = element_line(colour = "#3D3C42"),
+    panel.grid.minor = element_line(colour = "#FEFBF6"),
+    panel.grid.major = element_line(colour = "#FEFBF6")
   ) +
   ggplot2::labs(
     x = "Sample Means",
@@ -1021,12 +1041,14 @@ ggplot2::ggplot(
     xlim = c(qnorm(.975, mean = 0, sd = summary(mod)$coef[2, 2]), qnorm(1 - .0013, sd = summary(mod)$coef[2, 2]))
   ) + 
   ggplot2::theme(
-    plot.background = element_rect(fill = "#FEFBF6"),
+    plot.background = element_rect(fill = "#FEFBF6", colour = "#FEFBF6"),
     panel.background = element_rect(fill = "#FEFBF6"),
     axis.line.x = element_line(colour = "#3D3C42"),
     axis.ticks.y = ggplot2::element_line(size = 0),
     axis.text.y = ggplot2::element_blank(),
-    axis.title.y = ggplot2::element_blank()
+    axis.title.y = ggplot2::element_blank(),
+    panel.grid.minor = element_line(colour = "#FEFBF6"),
+    panel.grid.major = element_line(colour = "#FEFBF6")
   ) +
   ggplot2::labs(
     x = "Effect Sizes",
@@ -1034,7 +1056,13 @@ ggplot2::ggplot(
   ) +
   ggplot2::geom_vline(
     xintercept = 0,
-    color = "#3D3C42"
+    color = "#3D3C42",
+    size = 2
+  ) + 
+  ggplot2::geom_vline(
+    xintercept = qnorm(1- .0013, sd = summary(mod)$coef[2, 2]),
+    color = "#7F5283",
+    size = 2
   )
 
 ```
@@ -1076,12 +1104,14 @@ ggplot2::ggplot(
     xlim = c(qnorm(.975, mean = 1, sd = summary(mod)$coef[2, 2]), qnorm(1 - .0013, mean = 1, sd = summary(mod)$coef[2, 2]))
   ) + 
   ggplot2::theme(
-    plot.background = element_rect(fill = "#FEFBF6"),
+    plot.background = element_rect(fill = "#FEFBF6", color = "#FEFBF6"),
     panel.background = element_rect(fill = "#FEFBF6"),
     axis.line.x = element_line(colour = "#3D3C42"),
     axis.ticks.y = ggplot2::element_line(size = 0),
     axis.text.y = ggplot2::element_blank(),
-    axis.title.y = ggplot2::element_blank()
+    axis.title.y = ggplot2::element_blank(),
+    panel.grid.minor = element_line(colour = "#FEFBF6"),
+    panel.grid.major = element_line(colour = "#FEFBF6")
   ) +
   ggplot2::labs(
     x = "Effect Sizes",
@@ -1089,11 +1119,13 @@ ggplot2::ggplot(
   ) +
   ggplot2::geom_vline(
     xintercept = 1,
-    color = "#3D3C42"
+    color = "#3D3C42", 
+    size = 2
   ) +
   ggplot2::geom_vline(
     xintercept = round(summary(mod)$coef[2, 1], 2),
-    color = "#7F5283"
+    color = "#7F5283",
+    size = 2
   )
 
 ```
@@ -1170,12 +1202,14 @@ ggplot2::ggplot(
     xlim = c(qnorm(.975, mean = cf_mean, sd = summary(mod)$coef[2, 2]), qnorm(1 - .0013, mean = cf_mean, sd = summary(mod)$coef[2, 2]))
   ) + 
   ggplot2::theme(
-    plot.background = element_rect(fill = "#FEFBF6"),
+    plot.background = element_rect(fill = "#FEFBF6", color = "#FEFBF6"),
     panel.background = element_rect(fill = "#FEFBF6"),
     axis.line.x = element_line(colour = "#3D3C42"),
     axis.ticks.y = ggplot2::element_line(size = 0),
     axis.text.y = ggplot2::element_blank(),
-    axis.title.y = ggplot2::element_blank()
+    axis.title.y = ggplot2::element_blank(),
+    panel.grid.minor = element_line(colour = "#FEFBF6"),
+    panel.grid.major = element_line(colour = "#FEFBF6")
   ) +
   ggplot2::labs(
     x = "Effect Sizes",
@@ -1183,7 +1217,8 @@ ggplot2::ggplot(
   ) +
   ggplot2::geom_vline(
     xintercept = round(summary(mod)$coef[2, 1], 2),
-    color = "#7F5283"
+    color = "#7F5283",
+    size = 2
   )
 
 ```
