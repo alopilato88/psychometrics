@@ -1,0 +1,1866 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="lecture-1-introduction_files/libs/clipboard/clipboard.min.js"></script>
+<script src="lecture-1-introduction_files/libs/quarto-html/tabby.min.js"></script>
+<script src="lecture-1-introduction_files/libs/quarto-html/popper.min.js"></script>
+<script src="lecture-1-introduction_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="lecture-1-introduction_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="lecture-1-introduction_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="lecture-1-introduction_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.0.38">
+
+  <title>Psychometrics Overview</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="lecture-1-introduction_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="lecture-1-introduction_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="lecture-1-introduction_files/libs/revealjs/dist/theme/quarto.css" id="theme">
+  <link rel="stylesheet" href="psych-lecture-style.css">
+  <link href="lecture-1-introduction_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="lecture-1-introduction_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="lecture-1-introduction_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="lecture-1-introduction_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-captioned.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-captioned) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-captioned.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-captioned .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-captioned .callout-caption  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-captioned.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-captioned.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-caption {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-caption {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-caption {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-captioned .callout-body > .callout-content > :last-child {
+    margin-bottom: 0.5rem;
+  }
+
+  .callout.callout-captioned .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-captioned) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-caption {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-caption {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-caption {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-caption {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-caption {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  
+  <script src="lecture-1-introduction_files/libs/kePrint-0.0.1/kePrint.js"></script>
+  <link href="lecture-1-introduction_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="center">
+  <h1 class="title">Psychometrics Overview</h1>
+  <p class="subtitle">Statistical and Programming Primers</p>
+</section>
+
+<section class="slide level2">
+
+<div class="cell">
+
+</div>
+</section>
+<section>
+<section id="welcome" class="title-slide slide level1 center">
+<h1>Welcome!</h1>
+
+</section>
+<section id="introduction" class="slide level2">
+<h2>Introduction</h2>
+<p>Some things about me:</p>
+<div>
+<ul>
+<li class="fragment">Graduated from this program in 2015 (Triple Dawg!)</li>
+<li class="fragment">Currently a manager on McKinsey &amp; Company’s internal People, Analytics, &amp; Measurement (PAM) team</li>
+<li class="fragment">Love all things analytics!</li>
+</ul>
+</div>
+</section>
+<section id="your-turn" class="slide level2">
+<h2>Your turn!</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p>Round Robin!</p>
+<ul>
+<li>What’s your name?</li>
+<li>What are you studying?</li>
+<li>Do you hate, tolerate, or love methods courses?</li>
+</ul>
+</div><div class="column" style="width:40%;">
+<p><img data-src="lecture-1-img/round-robin.png"></p>
+</div>
+</div>
+</section></section>
+<section>
+<section id="what-well-cover" class="title-slide slide level1 center">
+<h1>What We’ll Cover</h1>
+
+</section>
+<section id="course-goals" class="slide level2">
+<h2>Course Goals</h2>
+<ul>
+<li><strong>Psychometric Theories &amp; Survey Development</strong>
+<ul>
+<li>Classical Test Theory, Generalizability Theory, &amp; Validity Theory</li>
+</ul></li>
+<li><strong>Statistical Modeling</strong>
+<ul>
+<li>Latent Variable Models, Network Models</li>
+</ul></li>
+<li><strong>R Programming</strong></li>
+</ul>
+</section>
+<section id="goals-of-this-lecture" class="slide level2">
+<h2>Goals of this Lecture</h2>
+<ul>
+<li>Overview of Psychometrics
+<ul>
+<li>What it is</li>
+<li>The theoretical: Test theories &amp; latent variable models</li>
+<li>The practical: Assessment / Questionnaire design</li>
+</ul></li>
+<li>Statistical Primer
+<ul>
+<li>Review of probability theory</li>
+<li>Review of statistical inference</li>
+</ul></li>
+</ul>
+</section>
+<section id="what-is-psychometics" class="slide level2">
+<h2>What is Psychometics?</h2>
+<blockquote>
+<p>Psychometrics, or quantitative psychology, is the disciplinary home of a set of statistical models and methods that have been developed primarily to summarize, describe, and draw inferences from empirical data collected in psychological research. (Jones &amp; Thissen, 2007)</p>
+</blockquote>
+</section></section>
+<section>
+<section id="the-theoretical-side" class="title-slide slide level1 center">
+<h1>The Theoretical Side</h1>
+
+</section>
+<section id="theory-methods-in-psychometrics" class="slide level2">
+<h2>Theory &amp; Methods in Psychometrics</h2>
+<ul>
+<li><p><strong>Test Theory</strong>: A mixture of theoretical and statistical models that have been developed to advance educational and psychological measurement.</p></li>
+<li><p><strong>Latent Variable Models</strong>: A family of statistical models that explain statistical dependencies among sets of observed random variables (e.g.&nbsp;survey responses) by appealing to variation in a smaller set of unobserved (latent) variables.</p></li>
+</ul>
+</section>
+<section id="test-theories-in-psychometrics" class="slide level2">
+<h2>Test Theories in Psychometrics</h2>
+<ul>
+<li><p>There are three major test theories in Psychometrics:</p>
+<ul>
+<li>Classical Test Theory (CTT)</li>
+<li>Generalizability Theory (G-Theory)</li>
+<li>Item Response Theory (IRT)</li>
+</ul></li>
+<li><p>The above theories have introduced and further refined the theories of test validity and test reliability.</p></li>
+</ul>
+</section>
+<section id="classical-test-theory" class="slide level2">
+<h2>Classical Test Theory</h2>
+<ul>
+<li>CTT set the foundations for future test theories with the idea that an individual’s observed test score is composed of two different additive components: True Score and Error.</li>
+</ul>
+<p><span class="math display">\[\text{Observed Score} = \text{True Score} + \text{Error}\]</span></p>
+<ul>
+<li>Through its introduction of True Score and Error, CTT helped to formalize the theories of test validity and reliability, respectively.</li>
+</ul>
+</section>
+<section id="generalizability-theory" class="slide level2">
+<h2>Generalizability Theory</h2>
+<ul>
+<li>Build on CTT by further specifying the different sources of error that comprise an individual’s observed score.</li>
+</ul>
+<p><span class="math display">\[\text{Observed Scored} = \mu + E_{rater} + E_{item} + E_{rater\times{}item}\]</span> * G-Theory really furthered the development of reliability theory by introducing different types of reliability indices and drawing a distinction between relative and absolute test score comparisons.</p>
+</section>
+<section id="item-response-theory" class="slide level2">
+<h2>Item Response Theory</h2>
+<ul>
+<li><p>IRT is a modern measurement theory that focuses on the measurement characteristics of the individual items that make up an assessment.</p></li>
+<li><p>Unlike CTT and G-Theory, IRT estimates measurement characteristics of the individual items independently from the abilities of the test takers—this is a big plus!</p></li>
+</ul>
+<p><span class="math display">\[p(x_{ij} = 1 |\theta_{i},b_{j},a_{j})=\frac{1}{1 + e^{-a_{j}(\theta_{i}-b_{j})}}\]</span></p>
+</section>
+<section id="latent-variable-models-an-overview" class="slide level2 smaller">
+<h2>Latent Variable Models: An Overview</h2>
+<ul>
+<li><p>A family of statistical models that relate covariation in observable variables (e.g.&nbsp;item responses) to latent variables (e.g.&nbsp;psychological constructs).</p></li>
+<li><p>Essentially allows one to use observed measurements to infer something about an unobservable construct.</p></li>
+</ul>
+
+<table>
+<tbody><tr>
+<th>
+</th>
+<th colspan="2">
+<center>
+<em>Manifest Variable Distribution</em>
+</center>
+</th>
+</tr>
+<tr>
+<td>
+<em>Latent Variable Distribution</em>
+</td>
+<td>
+<strong>Continuous</strong>
+</td>
+<td>
+<strong>Categorical</strong>
+</td>
+</tr>
+<tr>
+<td>
+<strong>Continuous</strong>
+</td>
+<td>
+Factor Analysis
+</td>
+<td>
+Item Response Theory
+</td>
+</tr>
+<tr>
+<td>
+<strong>Categorical</strong>
+</td>
+<td>
+Latent Profile Analysis
+</td>
+<td>
+Latent Class Analysis
+</td>
+</tr>
+
+</tbody></table>
+</section></section>
+<section>
+<section id="the-practical-side" class="title-slide slide level1 center">
+<h1>The Practical Side</h1>
+
+</section>
+<section id="some-survey-jargon" class="slide level2">
+<h2>Some Survey Jargon</h2>
+
+<img data-src="lecture-1-img/robinson-scale-image.png" class="r-stretch"></section>
+<section id="the-many-uses-of-surveys-and-assessments" class="slide level2">
+<h2>The Many Uses of Surveys and Assessments</h2>
+<ul>
+<li>Surveys / Assessments are used to assess a wide variety of constructs:
+<ul>
+<li>Knowledge (SAT, GRE)</li>
+<li>Mental health disorders (Beck’s Depression Inventory)</li>
+<li>Personality (Hogan PEI, Big 5 scales)</li>
+<li>Employee Attitude Surveys (There are many!)</li>
+<li>Skills</li>
+</ul></li>
+</ul>
+</section>
+<section id="the-scale-development-process" class="slide level2">
+<h2>The Scale Development Process</h2>
+<ul>
+<li><strong>Developing the Scale</strong>
+<ul>
+<li>Build a measurement framework</li>
+<li>Generate items</li>
+<li>Evaluate preliminary items</li>
+</ul></li>
+<li><strong>Testing the Scale</strong>
+<ul>
+<li>Pilot the new scale</li>
+<li>Analyze the pilot data</li>
+<li>Repeat if needed &amp; possible</li>
+</ul></li>
+<li><strong>Put the scale into operation</strong></li>
+</ul>
+</section></section>
+<section>
+<section id="probability-theory-and-statistical-inference" class="title-slide slide level1 center">
+<h1>Probability Theory and Statistical Inference</h1>
+
+</section>
+<section id="a-reassuring-reminder" class="slide level2">
+<h2>A Reassuring Reminder</h2>
+<blockquote>
+<p>Statistics is hard, especially when effects are small and variable and measurements are noisy. (McShane et al., 2019)</p>
+</blockquote>
+</section>
+<section id="who-cares" class="slide level2">
+<h2>Who cares?</h2>
+<ul>
+<li>Why do we care about probability theory and statistical inference? What have they ever done for us?</li>
+</ul>
+</section>
+<section id="statistical-inference" class="slide level2">
+<h2>Statistical Inference</h2>
+<div class="columns">
+<div class="column" style="width:49%;">
+<ul>
+<li><strong>Statistical inference</strong> is about drawing conclusions about an entire population based on the information in a sample.</li>
+</ul>
+</div><div class="column" style="width:2%;">
+
+</div><div class="column" style="width:49%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="lecture-1-img/statistical-inference.png"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="model-based-statistical-inference" class="slide level2">
+<h2>Model-Based Statistical Inference</h2>
+<ul>
+<li>Model-based inference allows us to make inferences to an <strong>infinite population</strong> from non-random samples as long as we are willing to make three (strong) assumptions:
+<ul>
+<li>Assume a generative statistical model</li>
+<li>Assume parametric distributional assumptions on our model</li>
+<li>Assume a selection mechanism</li>
+</ul></li>
+</ul>
+</section>
+<section id="model-based-statistical-inference-1" class="slide level2">
+<h2>Model-Based Statistical Inference</h2>
+<p><span class="math display">\[\underbrace{y_{i}=\beta_{0} + \beta_{1}x_{i} + \epsilon_{i}}_{\text{Generative Model}}\]</span></p>
+<p><span class="math display">\[\underbrace{\epsilon_{i}\stackrel{iid}{\sim}N(0, \sigma^{2})}_{\text{Parametric Assumptions &amp; Selection Mech.}}\]</span></p>
+</section>
+<section id="role-of-probability-theory-in-statistics" class="slide level2 small">
+<h2>Role of Probability Theory in Statistics</h2>
+<div class="columns">
+<div class="column" style="width:35%;">
+<p><br> <br> <span class="math display">\[y_{i}=\beta_{0} + \beta_{1}x_{i} + \epsilon_{i}\]</span></p>
+</div><div class="column" style="width:3%;">
+<p><br> <br> <span class="math display">\[\to\]</span></p>
+</div><div class="column" style="width:62%;">
+<p><span class="math display">\[\underbrace{f_{Y|X}(y_{i}|x_{i})}_{\text{Conditional}\\ \;\;\;\;\text{PDF}}\overbrace{\stackrel{iid}{\sim}}^{\;\;\text{Dist.}\\\text{Assump.}}\underbrace{N(\beta_{0} + \beta_{1}x_{i}, \sigma^{2})}_{\text{Normal PDF}}\]</span></p>
+</div>
+</div>
+</section>
+<section id="what-is-probability-theory" class="slide level2">
+<h2>What is Probability Theory?</h2>
+<ul>
+<li><p><strong>Probability theory</strong> is a mathematical construct used to represent processes involving randomness, unpredictability, or intrinsic uncertainty.</p></li>
+<li><p><strong>Probability theory is a model!</strong> It allows for us to deal with the uncertainty that comes from being unable to measure every little thing that may be related to our outcome.</p></li>
+</ul>
+</section>
+<section id="philsophy-of-probability-and-inference" class="slide level2">
+<h2>Philsophy of Probability and Inference</h2>
+
+<table>
+<tbody><tr>
+<th>
+</th>
+<th colspan="2">
+<em>Philosophy of Probability</em>
+</th>
+</tr>
+<tr>
+<td>
+<em>Statistical Inference</em>
+</td>
+<td>
+<strong>Frequentist</strong>
+</td>
+<td>
+<strong>Bayesian</strong>
+</td>
+</tr>
+<tr>
+<td>
+<strong>Model Based</strong>
+</td>
+<td>
+<center>
+✖
+</center>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<strong>Design Based</strong>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+
+</tbody></table>
+</section>
+<section id="random-generative-process-rgp" class="slide level2 smaller">
+<h2>Random Generative Process (RGP)</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li><strong>Random Generative Process</strong> is a mechanism that selects an outcome from a set of multiple outcomes. It consists of three components:
+<ul>
+<li><strong>Sample Space</strong>: Set of all possible states of an RGP.</li>
+<li><strong>Event Space</strong>: Subset of the sample space that consists of possible events that could occur across multiple states.</li>
+<li><strong>Probability Measure</strong>: A function that maps the event to a real number.</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="lecture-1-img/probability-space.png"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="probability-space-properties" class="slide level2 small">
+<h2>Probability Space: Properties</h2>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><img data-src="lecture-1-img/disjoint-probability-crop.png" width="200"></p>
+<p></p><figcaption><span class="math inline">\(P(A \cup B) = P(A) + P(B)\)</span></figcaption><p></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><img data-src="lecture-1-img/subset-probability-crop.png" width="200"></p>
+<p></p><figcaption><span class="math inline">\(B \subseteq A, P(B) \leq P(A)\)</span></figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><img data-src="lecture-1-img/intersect-probability-crop.png" width="200"></p>
+<p></p><figcaption><span class="math inline">\(P(A \cup B) = P(A) + P(B) - P(A \cap B)\)</span></figcaption><p></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><img data-src="lecture-1-img/setminus-probability-crop.png" width="200"></p>
+<p></p><figcaption><span class="math inline">\(P(A^{C}) = 1 - P(A)\)</span></figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="joint-conditional-probability" class="slide level2">
+<h2>Joint &amp; Conditional Probability</h2>
+<ul>
+<li><p><strong>Joint</strong> and <strong>conditional</strong> probability describe how the probabilities of two different events are related.</p></li>
+<li><p><strong>Joint probability</strong> tells us the probability that two events will both occur:</p>
+<ul>
+<li><strong><span class="math inline">\(P(A \cap B)\)</span></strong></li>
+</ul></li>
+<li><p><strong>Conditional probability</strong> tell us how the probability of one event changes given that another event already occurred:</p>
+<ul>
+<li><span class="math inline">\(P(A|B) = \frac{P(A \cap B)}{P(B)}\)</span></li>
+</ul></li>
+</ul>
+</section>
+<section id="employee-selection-example" class="slide level2">
+<h2>Employee Selection Example</h2>
+<p>For the next few slides, we will imagine we are an workforce analytics analyst on the recruiting team. We want to look at the relationship between a candidate’s select assessment performance, <code>Assessment Outcome</code>, and the organization’s selection decision, <code>Hiring Outcome</code>.</p>
+</section>
+<section id="joint-probabilities-employee-selection" class="slide level2 smaller">
+<h2>Joint Probabilities: Employee Selection</h2>
+<div class="columns">
+<div class="column" style="width:48%;">
+<ul>
+<li>The table displays the joint probabilities for <strong>Hiring Outcome</strong> and <strong>Assessment Outcome</strong>.
+<ul>
+<li>What is the probability that <strong>Hiring Outcome = Hire</strong> and <strong>Assessment Outcome = Fail</strong>?</li>
+<li>What is the probability that <strong>Hiring Outcome = Hire</strong> and <strong>Assessment Outcome = Pass</strong>?</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:2%;">
+
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="cell-output-display">
+
+<table class=" lightable-minimal" style="font-family: &quot;Trebuchet MS&quot;, verdana, sans-serif; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:right;"> Hire </th>
+   <th style="text-align:right;"> Turndown </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Fail </td>
+   <td style="text-align:right;"> 0.033 </td>
+   <td style="text-align:right;"> 0.149 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Pass </td>
+   <td style="text-align:right;"> 0.436 </td>
+   <td style="text-align:right;"> 0.291 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Pass+ </td>
+   <td style="text-align:right;"> 0.071 </td>
+   <td style="text-align:right;"> 0.020 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="conditonal-probabilities" class="slide level2 smaller">
+<h2>Conditonal Probabilities</h2>
+<div class="columns">
+<div class="column" style="width:48%;">
+<ul>
+<li>The tables to the right display the conditional probabilities for <strong>Hiring Outcome</strong> and <strong>Assessment Outcome</strong>.
+<ul>
+<li>What is the probability that <strong>Hiring Outcome = Hire</strong> given that <strong>Assessment Outcome = Fail</strong>?</li>
+<li>What is the probability that <strong>Assessment Outcome = Fail</strong> given that <strong>Hiring Category = Hire</strong>?</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:2%;">
+
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="cell-output-display">
+
+<table class=" lightable-minimal" style="font-family: &quot;Trebuchet MS&quot;, verdana, sans-serif; margin-left: auto; margin-right: auto;">
+<caption><em><strong>P(Selection Decision) given Assessment Outcome</strong></em></caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:right;"> Hire </th>
+   <th style="text-align:right;"> Turndown </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Fail </td>
+   <td style="text-align:right;"> 0.182 </td>
+   <td style="text-align:right;"> 0.818 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Pass </td>
+   <td style="text-align:right;"> 0.600 </td>
+   <td style="text-align:right;"> 0.400 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Pass+ </td>
+   <td style="text-align:right;"> 0.778 </td>
+   <td style="text-align:right;"> 0.222 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<p><br></p>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class=" lightable-minimal" style="font-family: &quot;Trebuchet MS&quot;, verdana, sans-serif; margin-left: auto; margin-right: auto;">
+<caption><em><strong>P(Assessment Outcome) given Selection Decision</strong></em></caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:right;"> Hire </th>
+   <th style="text-align:right;"> Turndown </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Fail </td>
+   <td style="text-align:right;"> 0.061 </td>
+   <td style="text-align:right;"> 0.323 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Pass </td>
+   <td style="text-align:right;"> 0.808 </td>
+   <td style="text-align:right;"> 0.633 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Pass+ </td>
+   <td style="text-align:right;"> 0.131 </td>
+   <td style="text-align:right;"> 0.044 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="more-conditional-probabilities" class="slide level2 smaller">
+<h2>More Conditional Probabilities</h2>
+<div class="columns">
+<div class="column" style="width:33%;">
+<ul>
+<li><u><strong>Multiplicative Law of Probability</strong></u></li>
+</ul>
+<p><span class="math inline">\(P(A \cap B)=P(A|B)P(B)\)</span></p>
+</div><div class="column" style="width:33%;">
+<ul>
+<li><u><strong>Independence</strong></u></li>
+</ul>
+<p><span class="math inline">\(P(A \cap B) = P(A)P(B)\)</span></p>
+<p><br></p>
+<p><span class="math inline">\(\begin{equation}\begin{aligned} P(A|B) &amp;= \frac{P(A)P(B)}{P(B)} \\  &amp;= P(A) \end{aligned}\end{equation}\)</span></p>
+</div><div class="column" style="width:33%;">
+<ul>
+<li><u><strong>Bayes’ Rule</strong></u></li>
+</ul>
+<p><span class="math inline">\(P(B|A) = \frac{P(A|B)P(B)}{P(A)}\)</span></p>
+</div>
+</div>
+</section>
+<section id="random-variables" class="slide level2 smaller">
+<h2>Random Variables</h2>
+<div class="columns">
+<div class="column" style="width:45%;">
+<ul>
+<li><strong>Random variables</strong> are functions that take an <em>event (Hire or Fire) as the input</em> and <em>output a real number</em> (0 or 1).</li>
+<li>Random variables can be categorized as discrete or continuous based on the range of their output.
+<ul>
+<li>Discrete Variables have a <strong>countable infinite range</strong> (e.g.&nbsp;integer valued output)</li>
+<li>Continuous Variables have an <strong>uncountable infinite range</strong> (e.g.&nbsp;real numbers)</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:5%;">
+
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-right">
+<figure>
+<p><img data-src="lecture-1-img/random-variable-crop.png"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="probability-functions" class="slide level2 smaller">
+<h2>Probability Functions</h2>
+<p>We can summarize the probabilities of random variables using two related probability functions: the Probability Mass (Density) Function and the Cumulative Distribution Function.</p>
+<div class="columns">
+<div class="column" style="width:45%;">
+<center>
+<strong><u>Discrete Variables</u></strong>
+</center>
+<ul>
+<li><strong>Probability Mass Function (PMF):</strong>
+<ul>
+<li><span class="math inline">\(f(x)=P(X=x)\)</span></li>
+</ul></li>
+<li><strong>Cumulative Distribution Function (CDF)</strong>
+<ul>
+<li><span class="math inline">\(F(x)=P(X \leq x)\)</span></li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:10%;">
+
+</div><div class="column" style="width:45%;">
+<center>
+<strong><u>Continuous Variables</u></strong>
+</center>
+<ul>
+<li><strong>Probability Density Function (PDF):</strong>
+<ul>
+<li><span class="math inline">\(f(x)=\frac{dF(u)}{du}|_{u=x}\)</span></li>
+</ul></li>
+<li><strong>Cumulative Distribution Function (CDF):</strong>
+<ul>
+<li><span class="math inline">\(F(x)=P(X \leq x) = \int_{-\infty}^{x}f(u)du\)</span></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="normal-pdf" class="slide level2">
+<h2>Normal PDF</h2>
+
+<img data-src="lecture-1-introduction_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
+<section id="normal-cdf" class="slide level2">
+<h2>Normal CDF</h2>
+
+<img data-src="lecture-1-introduction_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"></section>
+<section id="bivariate-relationships" class="slide level2">
+<h2>Bivariate Relationships</h2>
+<ul>
+<li>We can use PMFs / PDFs and CDFs to describe the probabilistic relationship between two random variables:
+<ul>
+<li>Joint PMF: <span class="math inline">\(f(x, y)=P(X = x, Y = y)\)</span></li>
+<li>Joint CDF: <span class="math inline">\(F(x,y) = P(X \leq x, Y \leq y)\)</span></li>
+<li>Marginal PMF: <span class="math inline">\(f_{Y}=P(Y = y) = \sum_{x}f(x,y)\)</span></li>
+<li>Conditional PMF: <span class="math inline">\(f_{Y|X}(y|x)=\frac{P(Y = y, X = x)}{P(X = x)}=\frac{f(x,y)}{f_{x}(x)}\)</span></li>
+</ul></li>
+</ul>
+</section>
+<section id="summarizing-distributions" class="slide level2 smaller">
+<h2>Summarizing Distributions</h2>
+<ul>
+<li><p>We often need to summarize the information contained in marginal and joint distributions. We can do this using several different summary measures:</p>
+<ul>
+<li><strong>Expectation Operator</strong>, <span class="math inline">\(E[X]\)</span>, provides us with information about the center of the distribution.</li>
+<li><strong>Variance</strong>, <span class="math inline">\(E[(X-E[X])^{2}]\)</span>, provides us with information about the shape of the distribution.</li>
+<li><strong>Covariance</strong>, <span class="math inline">\(E[(X - E[X])(Y - E[Y])]\)</span>, provides us with information about how X and Y move together.</li>
+<li><strong>Conditional Expectation</strong>, <span class="math inline">\(E[Y|X]\)</span>, provides us with information about <span class="math inline">\(E[Y]\)</span> given X occurred.</li>
+</ul></li>
+</ul>
+</section>
+<section id="expectation-operator" class="slide level2 smaller">
+<h2>Expectation Operator</h2>
+<ul>
+<li><p>The expectation, <span class="math inline">\(E\)</span>, of a random variable is the value we would get if we took the mean over an infinite number of realizations of a random variable (if we conducted the same experiment an infinite number of times).</p></li>
+<li><p>The expectation operator is a function that takes a random variable as an input and outputs a real number, the expected value of random number: <span class="math inline">\(E[X]=\sum_{x}xf_{x}(x)\)</span>.</p></li>
+<li><p>Some useful properties:</p>
+<ul>
+<li><span class="math inline">\(E[c]=c\)</span> if <span class="math inline">\(c\)</span> is a constant</li>
+<li><span class="math inline">\(E[aX]=aE[X]\)</span> if <span class="math inline">\(a\)</span> is a constant</li>
+<li><span class="math inline">\(E[aX + c]=aE[X] + c\)</span>—Linearity of Expectations</li>
+</ul></li>
+</ul>
+</section>
+<section id="variance-standard-deviation" class="slide level2 smaller">
+<h2>Variance &amp; Standard Deviation</h2>
+<ul>
+<li><p>The variance, <span class="math inline">\(\sigma^{2}\)</span>, of a random variable tells us about the spread of its distribution. The larger the variance the more unpredictable the random variable.</p></li>
+<li><p>The standard deviation, <span class="math inline">\(\sigma\)</span>, is the square root of the variance. It gives us the same information as the variance, but the standard deviation can be interpreted using the scaling of the random variable.</p></li>
+<li><p>Some useful properties:</p>
+<ul>
+<li><span class="math inline">\(V[X]=E[X^{2}] - E[X]^{2}\)</span>—an easier formula to compute the variance</li>
+<li><span class="math inline">\(V[c] = 0\)</span> if c is a constant</li>
+<li><span class="math inline">\(V[X + c]= V[X]\)</span> if c is a constant</li>
+<li><span class="math inline">\(V[aX]=a^{2}V[X]\)</span> if a is a constant</li>
+<li><span class="math inline">\(V[X + Y]=V[X]+V[Y]+2Cov[X, Y]\)</span>—variance of a sum score (this will come in handy when we talk about reliability)</li>
+</ul></li>
+</ul>
+</section>
+<section id="covariance-correlation" class="slide level2 smaller">
+<h2>Covariance &amp; Correlation</h2>
+<ul>
+<li><p>The <strong>positive covariance</strong> between two variables, X and Y, tells us if large values of X tend to occur with large values of Y (and small with small).</p></li>
+<li><p>The <strong>negative covariance</strong> tells us if large values of X tend to occur with small values of Y and if small values of X tend to occur with large values of Y.</p></li>
+<li><p>The correlation is just the standardized version of covariance: <span class="math inline">\(\frac{Cov[X, Y]}{\sigma_{x}\sigma_{y}}\)</span></p></li>
+<li><p>Some useful properties:</p>
+<ul>
+<li><span class="math inline">\(Cov[X, Y]=E[X, Y] - E[X]E[Y]\)</span>—easier to compute</li>
+<li><span class="math inline">\(Cov[X, c]=0\)</span> if c is a constant</li>
+<li><span class="math inline">\(Cov[X, Y] = Cov[Y, X]\)</span>—covariance is symmetrical</li>
+<li><span class="math inline">\(Cov[X, X]=V[X]\)</span>—the covariance of a variable with itself is its variance</li>
+<li><span class="math inline">\(Cov[aX + b, cY + d] = acCov[X, Y]\)</span> if a, b, c, and d are constants</li>
+</ul></li>
+</ul>
+</section>
+<section id="conditional-expectation" class="slide level2 smaller">
+<h2>Conditional Expectation</h2>
+<ul>
+<li><p>The conditional expectation of a random variable, <span class="math inline">\(E[Y|X=x]\)</span>, tells us the expected variable of one random variable given the value of another random variable.</p></li>
+<li><p>Conditional expectations allow us to describe how the expected variable of one variable changes once we condition on the observed value of another random variable. This is <strong>exactly</strong> what linear regression does!</p></li>
+<li><p>Some useful properties:</p>
+<ul>
+<li><span class="math inline">\(E[h(x,y)|X=x]=\sum_{y}h(x,y)f_{Y|X}(y|x)\)</span>—Conditional expectation of a function</li>
+<li><span class="math inline">\(E[g(X)Y|X=x]=g(x)E[Y|X=x]\)</span>—Functions of X, <span class="math inline">\(g(X)\)</span>, are treated as constants</li>
+<li><span class="math inline">\(E[g(X)Y+h(X)|X=x]=g(x)E[Y|X=x]+h(x)\)</span>—Linearity of Conditional Expectations</li>
+</ul></li>
+</ul>
+</section>
+<section id="samples-instead-of-populations" class="slide level2 smaller">
+<h2>Samples Instead of Populations</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<ul>
+<li><p>Every statistical model we will use assumes that our sample data are independently and identically distributed—the iid assumption.</p></li>
+<li><p>The iid assumption is basically a simplifying assumption that assumes two things:</p>
+<ul>
+<li>One observation of a random variable cannot give us any information about another observation of that same random variable (e.g.&nbsp;knowing my score on the selection assessment tells us nothing about Ben’s score).</li>
+<li>Our data all came from the same joint (marginal) probability distribution.</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:40%;">
+<div class="quarto-figure quarto-figure-right">
+<figure>
+<p><img data-src="lecture-1-img/sampling-cropped.png"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="estimation-sample-statistics" class="slide level2 smaller">
+<h2>Estimation: Sample Statistics</h2>
+<ul>
+<li><p>The goal of statistical inference is to estimate population parameters (like the mean and variance) of a population distribution from a sample. Sample statistics allow us to accomplish this goal.</p></li>
+<li><p><strong>Sample statistics</strong> are functions of our sample data that estimate some feature of a random variable’s population distribution:</p>
+<ul>
+<li>Sample Mean, <span class="math inline">\(\bar{X}=\frac{\sum{X}}{n}\)</span>, estimates the population mean, <span class="math inline">\(\mu=E[X]\)</span></li>
+<li>Sample Variance, <span class="math inline">\(\hat{\sigma}=\frac{\sum{(X - \bar{X})^2}}{n-1}\)</span>, estimates the population variance, <span class="math inline">\(\sigma^2\)</span></li>
+<li>Estimated Regression Coefficient, <span class="math inline">\(\hat{\beta}\)</span>, estimates the population regression coefficient, <span class="math inline">\(\beta\)</span></li>
+</ul></li>
+</ul>
+</section>
+<section id="estimation-sampling-distributions" class="slide level2 smaller">
+<h2>Estimation: Sampling Distributions</h2>
+<ul>
+<li><p>Because a sample statistics is a function of a random variable, it is therefore also a random variable with its own distribution: <strong>Sampling Distribution</strong>.</p></li>
+<li><p>Imagine drawing 1,000 <strong>iid</strong> samples of applicant scores on a selection assessment. For each sample you compute the sample mean. You could approximate the sampling distribution of the mean by making a histogram using the 1,000 sample means you computed.</p>
+<ul>
+<li>The mean of those 1,000 means would be equal (or close to) the population mean of the selection assessment scores.<br>
+</li>
+<li>The standard deviation of those 1,000 means would equal something called the standard error of the estimate (the standard error of the mean), which tells us how much uncertainty is in our estimate.</li>
+</ul></li>
+</ul>
+</section>
+<section id="estimation-sampling-distribution-simulation" class="slide level2 smaller">
+<h2>Estimation: Sampling Distribution Simulation</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb1-2"><a href="#cb1-2"></a>population_mean <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>population_variance <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a>number_samples <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>sample_size <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a>sample_mean <span class="ot">&lt;-</span> <span class="fu">numeric</span>()</span>
+<span id="cb1-7"><a href="#cb1-7"></a></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>number_samples) {</span>
+<span id="cb1-9"><a href="#cb1-9"></a>  x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(</span>
+<span id="cb1-10"><a href="#cb1-10"></a>    <span class="at">n =</span> sample_size, </span>
+<span id="cb1-11"><a href="#cb1-11"></a>    <span class="at">mean =</span> population_mean,</span>
+<span id="cb1-12"><a href="#cb1-12"></a>    <span class="at">sd =</span> <span class="fu">sqrt</span>(population_variance)</span>
+<span id="cb1-13"><a href="#cb1-13"></a>  )</span>
+<span id="cb1-14"><a href="#cb1-14"></a>  </span>
+<span id="cb1-15"><a href="#cb1-15"></a>  sample_mean_1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
+<span id="cb1-16"><a href="#cb1-16"></a>  sample_mean <span class="ot">&lt;-</span> </span>
+<span id="cb1-17"><a href="#cb1-17"></a>    <span class="fu">c</span>(sample_mean, </span>
+<span id="cb1-18"><a href="#cb1-18"></a>      sample_mean_1)</span>
+<span id="cb1-19"><a href="#cb1-19"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:60%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="lecture-1-introduction_files/figure-revealjs/unnamed-chunk-8-1.png" width="960"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">mean</span>(sample_mean) <span class="co"># Should be close to the population mean</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 9.993821</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">sd</span>(sample_mean) <span class="co"># Standard Error of the Mean</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.3151269</code></pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="estimation-weak-law-of-large-numbers" class="slide level2 smaller">
+<h2>Estimation: Weak Law of Large Numbers</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>mean_plot_data <span class="ot">&lt;-</span> </span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">data.frame</span>(</span>
+<span id="cb6-3"><a href="#cb6-3"></a>    <span class="at">N =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">500</span>,</span>
+<span id="cb6-4"><a href="#cb6-4"></a>    <span class="at">SAMPLE_MEAN =</span> <span class="cn">NA</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a>  )</span>
+<span id="cb6-6"><a href="#cb6-6"></a></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="cf">for</span>(n <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">500</span>) {</span>
+<span id="cb6-8"><a href="#cb6-8"></a>  </span>
+<span id="cb6-9"><a href="#cb6-9"></a>  sample_mean <span class="ot">&lt;-</span> </span>
+<span id="cb6-10"><a href="#cb6-10"></a>    <span class="fu">rnorm</span>(<span class="at">n =</span> n, <span class="at">mean =</span> <span class="dv">5</span>, <span class="at">sd =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a>    <span class="fu">mean</span>()</span>
+<span id="cb6-12"><a href="#cb6-12"></a>  </span>
+<span id="cb6-13"><a href="#cb6-13"></a>  mean_plot_data[n, <span class="dv">2</span>] <span class="ot">&lt;-</span> sample_mean</span>
+<span id="cb6-14"><a href="#cb6-14"></a>  </span>
+<span id="cb6-15"><a href="#cb6-15"></a>  </span>
+<span id="cb6-16"><a href="#cb6-16"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:60%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="lecture-1-introduction_files/figure-revealjs/unnamed-chunk-11-1.png" width="960"></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="estimation-central-limit-theorem" class="slide level2">
+<h2>Estimation: Central Limit Theorem</h2>
+<ul>
+<li><strong>The Central Limit Theorem</strong> proves that the sampling distribution of an estimate created by averaging many (<span class="math inline">\(n \approx 30\)</span>) iid random variables will tend to be approximately normal as <span class="math inline">\(n\)</span> increases <strong>even if the underlying distribution of the iid variables is not normal</strong>.</li>
+</ul>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><span class="math display">\[Z = \frac{\bar{X}-E[X]}{SE_{\bar{X}}}=\frac{\sqrt{n}(\bar{X}-\mu)}{\sigma}\]</span></p>
+</div><div class="column" style="width:50%;">
+<p><span class="math display">\[Z \xrightarrow{d} N(0, 1)\]</span></p>
+</div>
+</div>
+</section>
+<section id="estimation-central-limit-theorem-1" class="slide level2">
+<h2>Estimation: Central Limit Theorem</h2>
+
+<img data-src="lecture-1-introduction_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch"></section>
+<section id="statistical-inference-two-questions" class="slide level2">
+<h2>Statistical Inference: Two Questions</h2>
+<ul>
+<li>Statistical inference asks two broad questions:
+<ul>
+<li>What is the <strong>value of an unknown parameter</strong> and how do we <strong>quantify uncertainty</strong> about the estimate?</li>
+<li>How consistent are the data with a stated claim or hypothesis about the value of a parameter?</li>
+</ul></li>
+</ul>
+</section>
+<section id="population-example" class="slide level2">
+<h2>Population Example</h2>
+<ul>
+<li><p>We have all the tools we need to start making inferences from the data to the population!</p></li>
+<li><p><strong>Example</strong>: Here is the population model we will be making inferences about:</p></li>
+</ul>
+<p><span class="math display">\[Y = \beta_{0}+\beta_{1}X_{1}+\beta_{2}X_{2}+\epsilon\]</span></p>
+<p><span class="math display">\[\epsilon \sim N(0, \sigma^{2})\]</span></p>
+<ul>
+<li><span class="math inline">\(Y =\)</span> Job Performance, <span class="math inline">\(X_{1} =\)</span> Structured Interview, and <span class="math inline">\(X_{2} =\)</span> Graphology</li>
+</ul>
+</section>
+<section id="drawing-inferences-from-our-data" class="slide level2 smaller">
+<h2>Drawing Inferences from our Data</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># Set the parameters </span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="fu">set.seed</span>(<span class="dv">32</span>) <span class="co"># Seed for reproducibility</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>n <span class="ot">&lt;-</span> <span class="dv">500</span> <span class="co"># Sample size</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>b0 <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="co"># Population Regression Intercept</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a>b1 <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="co"># Population Regression Slope</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a>sigma <span class="ot">&lt;-</span> <span class="dv">4</span> <span class="co"># Population variance</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a></span>
+<span id="cb7-8"><a href="#cb7-8"></a>x1 <span class="ot">&lt;-</span> <span class="fu">sample</span>(</span>
+<span id="cb7-9"><a href="#cb7-9"></a>  <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, </span>
+<span id="cb7-10"><a href="#cb7-10"></a>  <span class="at">size =</span> n, </span>
+<span id="cb7-11"><a href="#cb7-11"></a>  <span class="at">replace =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb7-12"><a href="#cb7-12"></a>  <span class="at">prob =</span> <span class="fu">c</span>(.<span class="dv">10</span>, .<span class="dv">15</span>, .<span class="dv">15</span>, .<span class="dv">30</span>, .<span class="dv">30</span>)</span>
+<span id="cb7-13"><a href="#cb7-13"></a>)</span>
+<span id="cb7-14"><a href="#cb7-14"></a></span>
+<span id="cb7-15"><a href="#cb7-15"></a>x2 <span class="ot">&lt;-</span> <span class="fu">sample</span>(</span>
+<span id="cb7-16"><a href="#cb7-16"></a>  <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb7-17"><a href="#cb7-17"></a>  <span class="at">size =</span> n,</span>
+<span id="cb7-18"><a href="#cb7-18"></a>  <span class="at">replace =</span> <span class="cn">TRUE</span></span>
+<span id="cb7-19"><a href="#cb7-19"></a>)</span>
+<span id="cb7-20"><a href="#cb7-20"></a></span>
+<span id="cb7-21"><a href="#cb7-21"></a><span class="co"># Generate dependent var.</span></span>
+<span id="cb7-22"><a href="#cb7-22"></a>y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(</span>
+<span id="cb7-23"><a href="#cb7-23"></a>  <span class="at">n =</span> n, </span>
+<span id="cb7-24"><a href="#cb7-24"></a>  <span class="at">mean =</span> b0 <span class="sc">+</span> b1<span class="sc">*</span>x1 <span class="sc">+</span> <span class="dv">0</span><span class="sc">*</span>x2, </span>
+<span id="cb7-25"><a href="#cb7-25"></a>  <span class="at">sd =</span> <span class="fu">sqrt</span>(sigma)</span>
+<span id="cb7-26"><a href="#cb7-26"></a>) </span>
+<span id="cb7-27"><a href="#cb7-27"></a></span>
+<span id="cb7-28"><a href="#cb7-28"></a>mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2) <span class="co"># Estimate model </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = y ~ x1 + x2)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-5.9736 -1.3566 -0.0707  1.3735  7.1174 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  1.68456    0.32556   5.174 3.32e-07 ***
+x1           0.95949    0.06873  13.960  &lt; 2e-16 ***
+x2           0.11486    0.06581   1.745   0.0815 .  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 2.034 on 497 degrees of freedom
+Multiple R-squared:  0.2859,    Adjusted R-squared:  0.283 
+F-statistic: 99.48 on 2 and 497 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="conducting-statistical-inference" class="slide level2 smaller">
+<h2>Conducting Statistical Inference</h2>
+<ul>
+<li>How would you use the model output?</li>
+</ul>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = y ~ x1 + x2)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-5.9736 -1.3566 -0.0707  1.3735  7.1174 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  1.68456    0.32556   5.174 3.32e-07 ***
+x1           0.95949    0.06873  13.960  &lt; 2e-16 ***
+x2           0.11486    0.06581   1.745   0.0815 .  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 2.034 on 497 degrees of freedom
+Multiple R-squared:  0.2859,    Adjusted R-squared:  0.283 
+F-statistic: 99.48 on 2 and 497 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+</section>
+<section id="what-are-p-values" class="slide level2 smaller">
+<h2>What are P Values?</h2>
+<ul>
+<li>The P value is a statistical summary of the compatibility between the observed data and what we would predict or expect to see if we knew the <strong>entire</strong> statistical model were correct.</li>
+</ul>
+<p><span class="math display">\[\text{P value} = P(Data|Model)\]</span></p>
+<ul>
+<li><p>Most statistical programming languages report a P value based on the assumption that the effect under investigation is equal to 0.</p></li>
+<li><p>The P value of 0.082 for <span class="math inline">\(X_{2}\)</span> can be interpreted as: “Assuming all of our model assumptions are true including no effect of <span class="math inline">\(X_{2}\)</span>, the probability of seeing a value as or more extreme than 0.115 is 0.082.</p></li>
+</ul>
+</section>
+<section id="computing-p-values" class="slide level2 smaller">
+<h2>Computing P Values</h2>
+<ul>
+<li>We can compute a P value for any null hypothesis not just a null hypothesis of 0 effect. We just need four things:
+<ul>
+<li>Estimated effect</li>
+<li>Estimated standard error for the effect</li>
+<li>Value of the null hypothesis</li>
+<li>Model degrees of freedom</li>
+</ul></li>
+<li>Using these four pieces of information, we can construct our test statistic and P value:</li>
+</ul>
+<p><span class="math display">\[T = \frac{Est. - H_{0}}{SE_{est.}}\]</span></p>
+<p><span class="math display">\[\text{P Value}=2\times P(|T| \geq|t| \mid H_{0}=True, Model = True) \]</span></p>
+</section>
+<section id="visualizing-p-values" class="slide level2">
+<h2>Visualizing P Values</h2>
+
+<img data-src="lecture-1-introduction_files/figure-revealjs/unnamed-chunk-16-1.png" width="960" class="r-stretch"></section>
+<section id="visualizing-p-values-1" class="slide level2">
+<h2>Visualizing P Values</h2>
+
+<img data-src="lecture-1-introduction_files/figure-revealjs/unnamed-chunk-17-1.png" width="960" class="r-stretch"></section>
+<section id="coding-p-values" class="slide level2">
+<h2>Coding P Values</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># X2 coefficient and SE</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>x2_beta <span class="ot">&lt;-</span> <span class="fu">summary</span>(mod)<span class="sc">$</span>coef[<span class="dv">3</span>, <span class="dv">1</span>]</span>
+<span id="cb10-3"><a href="#cb10-3"></a>x2_se <span class="ot">&lt;-</span> <span class="fu">summary</span>(mod)<span class="sc">$</span>coef[<span class="dv">3</span>, <span class="dv">2</span>]</span>
+<span id="cb10-4"><a href="#cb10-4"></a></span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="co"># Test statistics</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a>test_stat_0 <span class="ot">&lt;-</span> (x2_beta <span class="sc">-</span> <span class="dv">0</span>) <span class="sc">/</span> x2_se <span class="co"># Null = 0</span></span>
+<span id="cb10-7"><a href="#cb10-7"></a>test_stat_25 <span class="ot">&lt;-</span> (x2_beta <span class="sc">-</span> .<span class="dv">25</span>) <span class="sc">/</span> x2_se <span class="co"># Null = .25</span></span>
+<span id="cb10-8"><a href="#cb10-8"></a></span>
+<span id="cb10-9"><a href="#cb10-9"></a><span class="co"># P-value for x2 when null hypothesis = 0 (using a central T distribution)</span></span>
+<span id="cb10-10"><a href="#cb10-10"></a><span class="fu">pnorm</span>(<span class="fu">abs</span>(test_stat_0), <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>) <span class="sc">*</span> <span class="dv">2</span> <span class="sc">|&gt;</span></span>
+<span id="cb10-11"><a href="#cb10-11"></a>  <span class="fu">round</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.08092986</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># P-value for x2 when null hypothesis = .25</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="fu">pnorm</span>(<span class="fu">abs</span>(test_stat_25), <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>) <span class="sc">*</span> <span class="dv">2</span> <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a>  <span class="fu">round</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.04001684</code></pre>
+</div>
+</div>
+</section>
+<section id="confidence-intervals-two-interpretations" class="slide level2 smaller">
+<h2>Confidence Intervals: Two Interpretations</h2>
+<ul>
+<li><p><strong>Confidence interval</strong>: A range of effect sizes whose tests produced <span class="math inline">\(\text{P Value}\gt .05\)</span> and thus are considered to be more compatible with the data compared to effect sizes outside of the interval <strong>GIVEN</strong> that the model and its assumptions are all correct.</p></li>
+<li><p><strong>Confidence Interval</strong>: A range of values that contain the population value, estimated by a sample statistic (e.g.&nbsp;regression coefficient), with a given probability—usually 95%.</p></li>
+</ul>
+<p><span class="math display">\[P(\hat{\beta}-SE_{\hat{\beta}}\times C\leq\beta\leq\hat{\beta}+SE_{\hat{\beta}}\times C)=.95\]</span></p>
+<ul>
+<li><span class="math inline">\(C\)</span> is usually set equal to 1.96 to create a normal distribution approximation.</li>
+</ul>
+</section>
+<section id="visualizing-a-confidence-interval" class="slide level2">
+<h2>Visualizing a Confidence Interval</h2>
+
+<img data-src="lecture-1-introduction_files/figure-revealjs/unnamed-chunk-19-1.png" width="960" class="r-stretch"></section>
+<section id="confidence-interval-interpretation-1" class="slide level2">
+<h2>Confidence Interval: Interpretation 1</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>confint_mod <span class="ot">&lt;-</span> <span class="fu">confint</span>(mod) <span class="co"># Creates 95% confidence intervals</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a>x1_coef <span class="ot">&lt;-</span> <span class="fu">summary</span>(mod)<span class="sc">$</span>coef[<span class="dv">2</span>, <span class="dv">1</span>]</span>
+<span id="cb14-3"><a href="#cb14-3"></a>x1_se <span class="ot">&lt;-</span> <span class="fu">summary</span>(mod)<span class="sc">$</span>coef[<span class="dv">2</span>, <span class="dv">2</span>]</span>
+<span id="cb14-4"><a href="#cb14-4"></a>x1_lower <span class="ot">&lt;-</span> confint_mod[<span class="dv">2</span>, <span class="dv">1</span>]</span>
+<span id="cb14-5"><a href="#cb14-5"></a>x1_upper <span class="ot">&lt;-</span> confint_mod[<span class="dv">2</span>, <span class="dv">2</span>]</span>
+<span id="cb14-6"><a href="#cb14-6"></a>x1_lower_pvalue <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(x1_coef, <span class="at">mean =</span> x1_lower, <span class="at">sd =</span> x1_se, <span class="at">lower.tail =</span> F)<span class="sc">*</span><span class="dv">2</span></span>
+<span id="cb14-7"><a href="#cb14-7"></a>x1_upper_pvalue <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(x1_coef, <span class="at">mean =</span> x1_upper, <span class="at">sd =</span> x1_se, <span class="at">lower.tail =</span> T)<span class="sc">*</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 6
+  X1_COEF X1_STD_ERROR X1_LOWER_CI X1_UPPER_CI X1_LOWER_P X1_UPPER_P
+    &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
+1   0.959        0.069       0.824        1.10      0.049      0.049</code></pre>
+</div>
+</div>
+</section>
+<section id="confidence-interval-interpretation-2" class="slide level2 smaller">
+<h2>Confidence Interval: Interpretation 2</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># Set the parameters </span></span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="fu">set.seed</span>(<span class="dv">3342</span>) <span class="co"># Seed for reproducibility</span></span>
+<span id="cb16-3"><a href="#cb16-3"></a>n <span class="ot">&lt;-</span> <span class="dv">500</span> <span class="co"># Sample size</span></span>
+<span id="cb16-4"><a href="#cb16-4"></a>b0 <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="co"># Population Regression Intercept</span></span>
+<span id="cb16-5"><a href="#cb16-5"></a>b1 <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="co"># Population Regression Slope</span></span>
+<span id="cb16-6"><a href="#cb16-6"></a>sigma <span class="ot">&lt;-</span> <span class="dv">4</span> <span class="co"># Population variance</span></span>
+<span id="cb16-7"><a href="#cb16-7"></a></span>
+<span id="cb16-8"><a href="#cb16-8"></a>x1 <span class="ot">&lt;-</span> <span class="fu">sample</span>(</span>
+<span id="cb16-9"><a href="#cb16-9"></a>  <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, </span>
+<span id="cb16-10"><a href="#cb16-10"></a>  <span class="at">size =</span> n, </span>
+<span id="cb16-11"><a href="#cb16-11"></a>  <span class="at">replace =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb16-12"><a href="#cb16-12"></a>  <span class="at">prob =</span> <span class="fu">c</span>(.<span class="dv">10</span>, .<span class="dv">15</span>, .<span class="dv">15</span>, .<span class="dv">30</span>, .<span class="dv">30</span>)</span>
+<span id="cb16-13"><a href="#cb16-13"></a>)</span>
+<span id="cb16-14"><a href="#cb16-14"></a></span>
+<span id="cb16-15"><a href="#cb16-15"></a>x2 <span class="ot">&lt;-</span> <span class="fu">sample</span>(</span>
+<span id="cb16-16"><a href="#cb16-16"></a>  <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb16-17"><a href="#cb16-17"></a>  <span class="at">size =</span> n,</span>
+<span id="cb16-18"><a href="#cb16-18"></a>  <span class="at">replace =</span> <span class="cn">TRUE</span></span>
+<span id="cb16-19"><a href="#cb16-19"></a>)</span>
+<span id="cb16-20"><a href="#cb16-20"></a></span>
+<span id="cb16-21"><a href="#cb16-21"></a>ci_vec <span class="ot">&lt;-</span> <span class="fu">numeric</span>() <span class="co"># Create CI vector</span></span>
+<span id="cb16-22"><a href="#cb16-22"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">500</span>) {</span>
+<span id="cb16-23"><a href="#cb16-23"></a>  </span>
+<span id="cb16-24"><a href="#cb16-24"></a>  <span class="co"># Generate dependent var.</span></span>
+<span id="cb16-25"><a href="#cb16-25"></a>  y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(</span>
+<span id="cb16-26"><a href="#cb16-26"></a>  <span class="at">n =</span> n, </span>
+<span id="cb16-27"><a href="#cb16-27"></a>  <span class="at">mean =</span> b0 <span class="sc">+</span> b1<span class="sc">*</span>x1 <span class="sc">+</span> <span class="dv">0</span><span class="sc">*</span>x2, </span>
+<span id="cb16-28"><a href="#cb16-28"></a>  <span class="at">sd =</span> <span class="fu">sqrt</span>(sigma)</span>
+<span id="cb16-29"><a href="#cb16-29"></a>) </span>
+<span id="cb16-30"><a href="#cb16-30"></a>  </span>
+<span id="cb16-31"><a href="#cb16-31"></a>  mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2) <span class="co"># Estimate model </span></span>
+<span id="cb16-32"><a href="#cb16-32"></a>  </span>
+<span id="cb16-33"><a href="#cb16-33"></a>  <span class="co"># Get CI</span></span>
+<span id="cb16-34"><a href="#cb16-34"></a>  ci_mod <span class="ot">&lt;-</span> <span class="fu">confint</span>(mod)</span>
+<span id="cb16-35"><a href="#cb16-35"></a>  ci_lower <span class="ot">&lt;-</span> ci_mod[<span class="dv">2</span>, <span class="dv">1</span>]</span>
+<span id="cb16-36"><a href="#cb16-36"></a>  ci_upper <span class="ot">&lt;-</span> ci_mod[<span class="dv">2</span>, <span class="dv">2</span>]</span>
+<span id="cb16-37"><a href="#cb16-37"></a>  </span>
+<span id="cb16-38"><a href="#cb16-38"></a>  <span class="co"># Does CI contain pop. par -- Yes or No</span></span>
+<span id="cb16-39"><a href="#cb16-39"></a>  coverage <span class="ot">&lt;-</span> ci_lower <span class="sc">&lt;=</span> b1 <span class="sc">&amp;</span> b1 <span class="sc">&lt;=</span> ci_upper</span>
+<span id="cb16-40"><a href="#cb16-40"></a>  ci_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(ci_vec, coverage)</span>
+<span id="cb16-41"><a href="#cb16-41"></a>  </span>
+<span id="cb16-42"><a href="#cb16-42"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># What proportion of CIs contained pop. par.?</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="fu">mean</span>(ci_vec)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.946</code></pre>
+</div>
+</div>
+<div class="footer footer-default">
+
+</div>
+</section></section>
+    </div>
+  </div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="lecture-1-introduction_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="lecture-1-introduction_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="lecture-1-introduction_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="lecture-1-introduction_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="lecture-1-introduction_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="lecture-1-introduction_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="lecture-1-introduction_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="lecture-1-introduction_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="lecture-1-introduction_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="lecture-1-introduction_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'smaller': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          // dispatch for htmlwidgets
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for reveal
+        if (window.Reveal) {
+          window.Reveal.addEventListener("slidechanged", function(event) {
+            fireSlideChanged(event.previousSlide, event.currentSlide);
+          });
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const clipboard = new window.ClipboardJS('.code-copy-button', {
+        target: function(trigger) {
+          return trigger.previousElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        setTimeout(function() {
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      });
+      function tippyHover(el, contentFn) {
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto-reveal',
+          placement: 'bottom-start'
+        };
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          let href = ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          return note.innerHTML;
+        });
+      }
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+        tippyHover(ref, function() {
+          var popup = window.document.createElement('div');
+          cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    });
+    </script>
+    
+
+</body></html>
