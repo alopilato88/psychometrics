@@ -23,6 +23,18 @@ By the end of this course, you will:
 | :------------ | :--------------- |
 | 1 | [Introduction and Overview of Psychometrics](https://alopilato88.github.io/psychometrics/materials/lectures/lecture-1-introduction.html) |
 | 2 | [Scale Development]()   | 
+| 3 | Labor Day               |
+| 4 | [Theorizing About Validity Theory]() |
+| 5 | [Validity Theory in Action]() |
+| 6 | [Rembering the Classics: Classical Test Theory]() |
+| 7 | [Reliability Theory: Generalizability Theory]() | 
+| 8 | [Reliability Theory: Advanced]() |
+| 9 | [Latent Variable Models: Factor Analysis]() |
+| 10 | [Latent Variable Models: Factor Analysis]() | 
+| 11 | [Latent Variable Models: Understanding Item Response Theory]() |
+| 12 | [Latent Variable Models: Applying Item Response Theory]() |
+| 13 | [Frontiers of Psychometrics: Network Psychometrics]() |
+| 14 | [Frontiers of Psychometrics: Computational Psychometrics]() |
 
 -----
 
