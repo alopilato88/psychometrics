@@ -5,3 +5,7 @@ a:link {
 a:visited {
   font-weight: bold;
 }
+
+.table-caption {
+  text-align: right;
+}

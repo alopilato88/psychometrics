@@ -3,8 +3,8 @@ title: "Psychometrics Overview"
 subtitle: "Statistical and Programming Primers"
 format: 
   revealjs:
-   theme: [default, psych-lecture-theme.scss] 
-   css: psych-lecture-style.css
+    theme: [default, psych-lecture-theme.scss] 
+    css: psych-lecture-style.css
 ---
 
 ```{r}
@@ -63,23 +63,25 @@ Round Robin!
 
 ## What is Psychometics?
 
-> Psychometrics, or quantitative psychology, is the disciplinary home of a set of statistical models and methods that have been developed primarily to summarize, describe, and draw inferences from empirical data collected in psychological research.
+> Psychometrics, or quantitative psychology, is the disciplinary home of a set of statistical models and methods that have been developed primarily to summarize, describe, and draw inferences from empirical data collected in psychological research. (Jones & Thissen, 2007)
 
 # The Theoretical Side
 
 ## Theory & Methods in Psychometrics
 
--   Test Theory: A mixture of theoretical and statistical models that have been developed to advance educational and psychological measurement.
+* <strong>Test Theory</strong>: A mixture of theoretical and statistical models that have been developed to advance educational and psychological measurement.
 
--   Latent Variable Models: A family of statistical models that explain statistical dependencies among sets of observed random variables (e.g. survey responses) by appealing to variation in a smaller set of unobserved (latent) variables.
+* <strong>Latent Variable Models</strong>: A family of statistical models that explain statistical dependencies among sets of observed random variables (e.g. survey responses) by appealing to variation in a smaller set of unobserved (latent) variables.
 
 ## Test Theories in Psychometrics
 
--   There are three major test theories in Psychometrics:
-    -   Classical Test Theory (CTT)
-    -   Generalizability Theory (G-Theory)
-    -   Item Response Theory (IRT)
--   The above theories have introduced and further refined the theories of test validity and test reliability.
+* There are three major test theories in Psychometrics:
+
+  - Classical Test Theory (CTT)
+  - Generalizability Theory (G-Theory)
+  - Item Response Theory (IRT)
+  
+* The above theories have introduced and further refined the theories of test validity and test reliability.
 
 ## Classical Test Theory
 
@@ -103,7 +105,21 @@ $$\text{Observed Scored} = \mu + E_{rater} + E_{item} + E_{rater\times{}item}$$ 
 
 $$p(x_{ij} = 1 |\theta_{i},b_{j},a_{j})=\frac{1}{1 + e^{-a_{j}(\theta_{i}-b_{j})}}$$
 
-## Latent Variable Models: An Overview
+## Latent Variable Models: An Overview {.smaller}
+
+- A family of statistical models that relate covariation in observable variables (e.g. item responses) to latent variables (e.g. psychological constructs).
+
+- Essentially allows one to use observed measurements to infer something about an unobservable construct. 
+
+::: {layout-ncol=1}
+| Latent Variable Distribution | Continuous              | Categorical           |
+|------------------------------|-------------------------|-----------------------|
+| **Continuous**               | Factor Analysis         | Item Response Theory  |
+| **Categorical**              | Latent Profile Analysis | Latent Class Analysis |
+
+
+: **Manifest Variable Distribution**
+:::
 
 # The Practical Side
 
@@ -141,13 +157,31 @@ flowchart LR
 
 # Probability Theory and Statistical Inference
 
+## A Reassuring Reminder
+
+> Statistics is hard, especially when effects are small and variable and measurements are noisy. (McShane et al., 2019)
+
 ## Who cares?
 
 -   Why do we care about probability theory and statistical inference? What have they ever done for us?
 
 ## Statistical Inference
 
+::: columns
+::: {.column width="49%"}
+
+* <strong>Statistical inference</strong> is about drawing conclusions about an entire population based on the information in a sample.
+
+:::
+::: {.column width="2%"}
+:::
+
+::: {.column width="49%"}
+
 ![](lecture-1-img/statistical-inference.png){fig-align="center"}
+
+:::
+:::
 
 ## Model-Based Statistical Inference
 
@@ -183,6 +217,8 @@ $$\underbrace{f_{Y|X}(y_{i}|x_{i})}_{\text{Conditional}\\ \;\;\;\;\text{PDF}}\ov
 -   <strong>Probability theory</strong> is a mathematical construct used to represent processes involving randomness, unpredictability, or intrinsic uncertainty.
 
 -   <strong>Probability theory is a model!</strong> It allows for us to deal with the uncertainty that comes from being unable to measure every little thing that may be related to our outcome.
+
+## Philsophy of Probability and Inference
 
 ## Random Generative Process (RGP) {.smaller}
 
@@ -364,7 +400,7 @@ $P(B|A) = \frac{P(A|B)P(B)}{P(A)}$
 
 ## Probability Functions {.smaller}
 
-We can summarize the probabilities of random variables using two related probability functions: 
+We can summarize the probabilities of random variables using two related probability functions: the Probability Mass (Density) Function and the Cumulative Distribution Function.  
 
 ::: columns
 ::: {.column width="45%"}
@@ -431,12 +467,536 @@ ggplot2::ggplot(
 :::
 :::
 
-## Conditional PMF
+## Bivariate Relationships
 
-## Expected Value
+* We can use PMFs / PDFs and CDFs to describe the probabilistic relationship between two random variables: 
+  + Joint PMF: $f(x, y)=P(X = x, Y = y)$
+  + Joint CDF: $F(x,y) = P(X \leq x, Y \leq y)$
+  + Marginal PMF: $f_{Y}=P(Y = y) = \sum_{x}f(x,y)$
+  + Conditional PMF: $f_{Y|X}(y|x)=\frac{P(Y = y, X = x)}{P(X = x)}=\frac{f(x,y)}{f_{x}(x)}$
 
-## Variance
+## Summarizing Distributions {.smaller}
 
-## Covariance
+* We often need to summarize the information contained in marginal and joint distributions. We can do this using several different summary measures: 
 
-## Correlation
+  + <strong>Expectation Operator</strong>, $E[X]$, provides us with information about the center of the distribution.
+  + <strong>Variance</strong>, $E[(X-E[X])^{2}]$, provides us with information about the shape of the distribution.
+  + <strong>Covariance</strong>, $E[(X - E[X])(Y - E[Y])]$, provides us with information about how X and Y move together. 
+  + <strong>Conditional Expectation</strong>, $E[Y|X]$, provides us with information about $E[Y]$ given X occurred. 
+
+## Expectation Operator {.smaller}
+
+* The expectation, $E$, of a random variable is the value we would get if we took the mean over an infinite number of realizations of a random variable (if we conducted the same experiment an infinite number of times).
+
+* The expectation operator is a function that takes a random variable as an input and outputs a real number, the expected value of random number: $E[X]=\sum_{x}xf_{x}(x)$.
+
+* Some useful properties:
+  + $E[c]=c$ if $c$ is a constant
+  + $E[aX]=aE[X]$ if $a$ is a constant 
+  + $E[aX + c]=aE[X] + c$---Linearity of Expectations
+
+## Variance & Standard Deviation {.smaller}
+
+* The variance, $\sigma^{2}$, of a random variable tells us about the spread of its distribution. The larger the variance the more unpredictable the random variable. 
+
+* The standard deviation, $\sigma$, is the square root of the variance. It gives us the same information as the variance, but the standard deviation can be interpreted using the scaling of the random variable.
+
+* Some useful properties: 
+  + $V[X]=E[X^{2}] - E[X]^{2}$---an easier formula to compute the variance
+  + $V[c] = 0$ if c is a constant
+  + $V[X + c]= V[X]$ if c is a constant
+  + $V[aX]=a^{2}V[X]$ if a is a constant
+  + $V[X + Y]=V[X]+V[Y]+2Cov[X, Y]$---variance of a sum score (this will come in handy when we talk about reliability)
+
+## Covariance & Correlation {.smaller}
+
+* The <strong>positive covariance</strong> between two variables, X and Y, tells us if large values of X tend to occur with large values of Y (and small with small). 
+
+* The <strong>negative covariance</strong> tells us if large values of X tend to occur with small values of Y and if small values of X tend to occur with large values of Y. 
+
+* The correlation is just the standardized version of covariance: $\frac{Cov[X, Y]}{\sigma_{x}\sigma_{y}}$
+
+* Some useful properties: 
+  + $Cov[X, Y]=E[X, Y] - E[X]E[Y]$---easier to compute 
+  + $Cov[X, c]=0$ if c is a constant
+  + $Cov[X, Y] = Cov[Y, X]$---covariance is symmetrical 
+  + $Cov[X, X]=V[X]$---the covariance of a variable with itself is its variance
+  + $Cov[aX + b, cY + d] = acCov[X, Y]$ if a, b, c, and d are constants 
+
+## Conditional Expectation {.smaller}
+
+* The conditional expectation of a random variable, $E[Y|X=x]$, tells us the expected variable of one random variable given the value of another random variable. 
+
+* Conditional expectations allow us to describe how the expected variable of one variable changes once we condition on the observed value of another random variable. This is <strong>exactly</strong> what linear regression does! 
+
+* Some useful properties: 
+  + $E[h(x,y)|X=x]=\sum_{y}h(x,y)f_{Y|X}(y|x)$---Conditional expectation of a function
+  + $E[g(X)Y|X=x]=g(x)E[Y|X=x]$---Functions of X, $g(X)$, are treated as constants
+  + $E[g(X)Y+h(X)|X=x]=g(x)E[Y|X=x]+h(x)$---Linearity of Conditional Expectations
+
+## Samples Instead of Populations {.smaller}
+
+::: columns
+::: {.column width="60%"}
+
+* Every statistical model we will use assumes that our sample data are independently and identically distributed---the iid assumption.
+
+* The iid assumption is basically a simplifying assumption that assumes two things: 
+  + One observation of a random variable cannot give us any information about another observation of that same random variable (e.g. knowing my score on the selection assessment tells us nothing about Ben's score).
+  + Our data all came from the same joint (marginal) probability distribution.
+
+:::
+::: {.column width="40%"}
+
+![](lecture-1-img/sampling-cropped.png){fig-align="right"}
+
+:::
+:::
+
+## Estimation: Sample Statistics {.smaller}
+
+* The goal of statistical inference is to estimate population parameters (like the mean and variance) of a population distribution from a sample. Sample statistics allow us to accomplish this goal. 
+
+* <strong>Sample statistics</strong> are functions of our sample data that estimate some feature of a random variable's population distribution: 
+  + Sample Mean, $\bar{X}=\frac{\sum{X}}{n}$, estimates the population mean, $\mu=E[X]$
+  + Sample Variance, $\hat{\sigma}=\frac{\sum{(X - \bar{X})^2}}{n-1}$, estimates the population variance, $\sigma^2$
+  + Estimated Regression Coefficient, $\hat{\beta}$, estimates the population regression coefficient, $\beta$
+
+## Estimation: Sampling Distributions {.smaller}
+
+* Because a sample statistics is a function of a random variable, it is therefore also a random variable with its own distribution: <strong>Sampling Distribution</strong>.
+
+* Imagine drawing 1,000 <strong>iid</strong> samples of applicant scores on a selection assessment. For each sample you compute the sample mean. You could approximate the sampling distribution of the mean by making a histogram using the 1,000 sample means you computed. 
+  + The mean of those 1,000 means would be equal (or close to) the population mean of the selection assessment scores.  
+  + The standard deviation of those 1,000 means would equal something called the standard error of the estimate (the standard error of the mean), which tells us how much uncertainty is in our estimate. 
+
+
+## Estimation: Sampling Distribution Simulation {.smaller}
+
+::: columns
+::: {.column width="40%"}
+
+```{r echo=TRUE}
+set.seed(42)
+population_mean <- 10
+population_variance <- 5
+number_samples <- 1000
+sample_size <- 50
+sample_mean <- numeric()
+
+for(i in 1:number_samples) {
+  x <- rnorm(
+    n = sample_size, 
+    mean = population_mean,
+    sd = sqrt(population_variance)
+  )
+  
+  sample_mean_1 <- mean(x)
+  sample_mean <- 
+    c(sample_mean, 
+      sample_mean_1)
+}
+```
+
+:::
+::: {.column width="60%"}
+
+```{r echo=FALSE}
+ggplot2::ggplot(
+  data = data.frame(X = sample_mean),
+  ggplot2::aes(
+    x = X
+  )
+) + 
+  ggplot2::geom_histogram(
+    binwidth = .10
+  )
+```
+
+```{r echo=TRUE}
+mean(sample_mean) # Should be close to the population mean
+sd(sample_mean) # Standard Error of the Mean
+```
+:::
+:::
+  
+## Estimation: Weak Law of Large Numbers {.smaller}
+
+::: columns
+::: {.column width="40%"}
+
+```{r echo=TRUE}
+mean_plot_data <- 
+  data.frame(
+    N = 1:500,
+    SAMPLE_MEAN = NA
+  )
+
+for(n in 1:500) {
+  
+  sample_mean <- 
+    rnorm(n = n, mean = 5, sd = 1) |>
+    mean()
+  
+  mean_plot_data[n, 2] <- sample_mean
+  
+  
+}
+```
+
+:::
+::: {.column width="60%"}
+
+```{r echo=FALSE}
+ggplot2::ggplot(
+  data = mean_plot_data,
+  ggplot2::aes(
+    x = N, 
+    y = SAMPLE_MEAN
+  )
+) +
+  ggplot2::geom_line()
+```
+
+:::
+:::
+
+## Estimation: Central Limit Theorem
+
+* <strong>The Central Limit Theorem</strong> proves that the sampling distribution of an estimate created by averaging many ($n \approx 30$) iid random variables will tend to be approximately normal as $n$ increases <strong>even if the underlying distribution of the iid variables is not normal</strong>.  
+
+::: columns
+::: {.column width="50%"}
+
+$$Z = \frac{\bar{X}-E[X]}{SE_{\bar{X}}}=\frac{\sqrt{n}(\bar{X}-\mu)}{\sigma}$$
+
+:::
+::: {.column width="50%"}
+
+$$Z \xrightarrow{d} N(0, 1)$$
+
+:::
+:::
+
+## Estimation: Central Limit Theorem
+
+```{r}
+df <- 
+  data.frame(
+    FAMILY = rep(c("Exponential", "Poisson", "Normal"), each = 1000),
+    N = rep("PDF", 3000),
+    OUTCOME = c(rexp(1000, .50), rpois(1000, lambda = 2), rnorm(1000, mean = 2))
+  )
+
+for(i in 1:1000) {
+  
+  # Exponential family
+  mean_rexp_30 <- 
+    rexp(10, .50) |>
+    mean()
+  
+  mean_rexp_100 <- 
+    rexp(100, .50) |>
+    mean()
+  
+  mean_rexp_1000 <- 
+    rexp(1000, .50) |>
+    mean()
+  
+  exp_df <- 
+    data.frame(
+      FAMILY = rep("Exponential", 3),
+      N = c("n = 10", "n = 100", "n = 1000"),
+      OUTCOME = c(mean_rexp_30, mean_rexp_100, mean_rexp_1000)
+    )
+  
+  # Poisson Family
+  mean_pois_30 <-
+    rpois(10, lambda = 2) |>
+    mean()
+  
+  mean_pois_100 <-
+    rpois(100, lambda = 2) |>
+    mean()
+  
+  mean_pois_1000 <-
+    rpois(1000, lambda = 2) |>
+    mean()
+  
+  pois_df <- 
+    data.frame(
+      FAMILY = rep("Poisson", 3),
+      N = c("n = 10", "n = 100", "n = 1000"),
+      OUTCOME = c(mean_pois_30, mean_pois_100, mean_pois_1000)
+    )
+  
+  # Normal family
+  mean_norm_30 <- 
+    rnorm(10, mean = 2) |>
+    mean()
+  
+  mean_norm_100 <-
+    rnorm(100, mean = 2) |>
+    mean()
+  
+  mean_norm_1000 <- 
+    rnorm(1000, mean = 2) |>
+    mean()
+  
+  norm_df <- 
+    data.frame(
+      FAMILY = rep("Normal", 3),
+      N = c("n = 10", "n = 100", "n = 1000"),
+      OUTCOME = c(mean_norm_30, mean_norm_100, mean_norm_1000)
+    )
+  
+  df <- 
+    df |>
+    rbind(
+      exp_df,
+      pois_df,
+      norm_df
+    )
+  
+}
+
+df <-
+  df |>
+  dplyr::mutate(
+    FAMILY = factor(
+      FAMILY, 
+      ordered = T, 
+      levels = c("Exponential", "Poisson", "Normal")
+    ),
+    N = factor(
+      N,
+      ordered = TRUE,
+      levels = c("PDF", "n = 10", "n = 100", "n = 1000")
+    )
+  )
+
+
+ggplot2::ggplot(
+  data = df,
+  ggplot2::aes(
+    x = OUTCOME
+  )
+) + 
+  ggplot2::facet_grid(
+    FAMILY ~ N,
+    scales = "free"
+  ) +
+  ggplot2::geom_histogram()
+
+```
+
+## Statistical Inference: Two Questions 
+
+* Statistical inference asks two broad questions: 
+  + What is the <strong>value of an unknown parameter</strong> and how do we <strong>quantify uncertainty</strong> about the estimate? 
+  + How consistent are the data with a stated claim or hypothesis about the value of a parameter?
+
+
+## Population Example 
+
+* We have all the tools we need to start making inferences from the data to the population! 
+
+* <strong>Example</strong>: Here is the population model we will be making inferences about: 
+
+$$Y = \beta_{0}+\beta_{1}X_{1}+\beta_{2}X_{2}+\epsilon$$
+$$\epsilon \sim N(0, \sigma^{2})$$
+
+* $Y =$ Job Performance, $X_{1} =$ Structured Interview, and $X_{2} =$ Graphology  
+
+## Drawing Inferences from our Data {.smaller}
+
+::: columns
+::: {.column width="50%"}
+
+```{r echo=TRUE}
+# Set the parameters 
+set.seed(32) # Seed for reproducibility
+n <- 500 # Sample size
+b0 <- 2 # Population Regression Intercept
+b1 <- 1 # Population Regression Slope
+sigma <- 4 # Population variance
+
+x1 <- sample(
+  1:5, 
+  size = n, 
+  replace = TRUE, 
+  prob = c(.10, .15, .15, .30, .30)
+)
+
+x2 <- sample(
+  1:5,
+  size = n,
+  replace = TRUE
+)
+
+# Generate dependent var.
+y <- rnorm(
+  n = n, 
+  mean = b0 + b1*x1 + 0*x2, 
+  sd = sqrt(sigma)
+) 
+
+mod <- lm(y ~ x1 + x2) # Estimate model 
+```
+
+:::
+::: {.column width="50%"}
+
+```{r}
+summary(mod)
+```
+
+:::
+:::
+
+## Conducting Statistical Inference {.smaller}
+
+* How would you use the model output? 
+
+```{r}
+summary(mod)
+```
+
+## What are P Values? {.smaller}
+
+* The P value is a statistical summary of the compatibility between the observed data and what we would predict or expect to see if we knew the <strong>entire</strong> statistical model were correct. 
+
+$$\text{P value} = P(Data|Model)$$
+
+* Most statistical programming languages report a P value based on the assumption that the effect under investigation is equal to 0. 
+
+* The P value of `r round(summary(mod)$coef[3, 4], 3)` for $X_{2}$ can be interpreted as: "Assuming all of our model assumptions are true including no effect of $X_{2}$, the probability of seeing a value as or more extreme than `r round(summary(mod)$coef[3, 1], 3)` is `r round(summary(mod)$coef[3, 4], 3)`.   
+
+## Computing P Values {.smaller}
+
+* We can compute a P value for any null hypothesis not just a null hypothesis of 0 effect. We just need four things: 
+  + Estimated effect 
+  + Estimated standard error for the effect
+  + Value of the null hypothesis
+  + Model degrees of freedom
+
+* Using these four pieces of information, we can construct our test statistic and P value: 
+
+$$T = \frac{Est. - H_{0}}{SE_{est.}}$$
+$$\text{P Value}=2\times P(|T| \geq|t| \mid H_{0}=True, Model = True) $$
+## Coding P Values
+
+```{r echo=TRUE}
+
+# X2 coefficient and SE
+x2_beta <- summary(mod)$coef[3, 1]
+x2_se <- summary(mod)$coef[3, 2]
+
+# Test statistics
+test_stat_0 <- (x2_beta - 0) / x2_se # Null = 0
+test_stat_25 <- (x2_beta - .25) / x2_se # Null = .25
+
+# P-value for x2 when null hypothesis = 0 (using a central T distribution)
+pnorm(abs(test_stat_0), mean = 0, sd = 1, lower.tail = FALSE) * 2 |>
+  round(3)
+
+# P-value for x2 when null hypothesis = .25
+pnorm(abs(test_stat_25), mean = 0, sd = 1, lower.tail = FALSE) * 2 |>
+  round(3)
+
+```
+
+
+## Confidence Intervals: Two Interpretations {.smaller}
+
+* <strong>Confidence interval</strong>: A range of effect sizes whose tests produced $\text{P Value}\gt .05$ and thus are considered to be more compatible with the data compared to effect sizes outside of the interval <strong>GIVEN</strong> that the model and its assumptions are all correct. 
+
+* <strong>Confidence Interval</strong>: A range of values that contain the population value, estimated by a sample statistic (e.g. regression coefficient), with a given probability---usually 95%. 
+
+$$P(\hat{\beta}-SE_{\hat{\beta}}\times C\leq\beta\leq\hat{\beta}+SE_{\hat{\beta}}\times C)=.95$$
+
+* $C$ is usually set equal to 1.96 to create a normal distribution approximation. 
+
+## Confidence Interval: Interpretation 1
+
+```{r echo=TRUE}
+
+confint_mod <- confint(mod) # Creates 95% confidence intervals
+x1_coef <- summary(mod)$coef[2, 1]
+x1_se <- summary(mod)$coef[2, 2]
+x1_lower <- confint_mod[2, 1]
+x1_upper <- confint_mod[2, 2]
+x1_lower_pvalue <- pnorm(x1_coef, mean = x1_lower, sd = x1_se, lower.tail = F)*2
+x1_upper_pvalue <- pnorm(x1_coef, mean = x1_upper, sd = x1_se, lower.tail = T)*2
+
+```
+
+<br>
+
+```{r echo=FALSE}
+
+tibble::tibble(
+  X1_COEF = x1_coef,
+  X1_STD_ERROR = x1_se,
+  X1_LOWER_CI = x1_lower,
+  X1_UPPER_CI = x1_upper,
+  X1_LOWER_P = x1_lower_pvalue,
+  X1_UPPER_P = x1_upper_pvalue
+) |>
+  round(3)
+
+```
+
+## Confidence Interval: Interpretation 2 {.smaller}
+
+```{r echo=TRUE}
+
+# Set the parameters 
+set.seed(3342) # Seed for reproducibility
+n <- 500 # Sample size
+b0 <- 2 # Population Regression Intercept
+b1 <- 1 # Population Regression Slope
+sigma <- 4 # Population variance
+
+x1 <- sample(
+  1:5, 
+  size = n, 
+  replace = TRUE, 
+  prob = c(.10, .15, .15, .30, .30)
+)
+
+x2 <- sample(
+  1:5,
+  size = n,
+  replace = TRUE
+)
+
+ci_vec <- numeric() # Create CI vector
+for(i in 1:500) {
+  
+  # Generate dependent var.
+  y <- rnorm(
+  n = n, 
+  mean = b0 + b1*x1 + 0*x2, 
+  sd = sqrt(sigma)
+) 
+  
+  mod <- lm(y ~ x1 + x2) # Estimate model 
+  
+  # Get CI
+  ci_mod <- confint(mod)
+  ci_lower <- ci_mod[2, 1]
+  ci_upper <- ci_mod[2, 2]
+  
+  # Does CI contain pop. par -- Yes or No
+  coverage <- ci_lower <= b1 & b1 <= ci_upper
+  ci_vec <- c(ci_vec, coverage)
+  
+}
+```
+
+
+```{r echo=TRUE}
+# What proportion of CIs contained pop. par.?
+mean(ci_vec)
+```

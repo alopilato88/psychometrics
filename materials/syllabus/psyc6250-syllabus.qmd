@@ -1,0 +1,257 @@
+---
+title: "PSYC 6250: Psychometrics"
+author: "Alex LoPilato"
+format: pdf
+---
+
+**Meeting Time:** Mondays, 5:20p to 7:50p
+
+**Location:** 628 Psychology
+
+**Email:** alex.lopilato@gmail.com (for quick responses) or acl88@uga.edu (for discussions about grades, personal info, etc.)
+
+**Office Hours:** By request (will likely be virtual as I do not have an office on campus)
+
+**Course Format:** Hybrid Synchronous
+
+### Course Description
+
+Measurement is foundational to any scientific field. In order to apply statistical models and methods to test our theories, we must first be able to accurately measure the concepts posited by our theory. Measurement can be more difficult in the social and behavioral sciences compared to the physical sciences. Unlike the physical sciences, in the social and behavioral sciences most measures are constructed to measure concepts that have no physical representation like attitudes and perceptions. That is, in the social and behavioral sciences measurement is almost always indirect and requires measurement theories that allow us to connect our observable measures (e.g. item responses) to their underlying concepts (or constructs). Psychometrics---more commonly referred to as Quantitative Psychology---is a sub-field of psychology that focuses on developing measurement theories and statistical models that allow us to more accurately measure, describe, and draw inferences about psychological phenomena. This course is designed to introduce students to the measurement theories and statistical models commonly used in the field of psychometrics. This course will cover Classical Test Theory, Generalizability Theory, Item Response Theory, and modern statistical and computational approaches to psychometrics.
+
+### Course Objectives
+
+By the end of this course, you will: 
+
+- Have a deep understanding of psychometric theories and methods 
+- Have an understanding of different statistical models used by psychometricians / quantitative psychologists 
+- Have a deep understanding of scale development 
+- Feel comfortable using R to estimate a variety of statistical models
+
+### Course Technology
+
+**This course will not use the e-Learning Commons technology. Please do not use ELC to email me! Use either of the emails listed above.** I will use Google Drive to share the reading materials with you. I need you to send me the email address you will be using and I will grant it access rights to the course directory. 
+
+#### Course Website
+
+The website for the course is: <https://github.com/alopilato88/psychometrics>. All of the lectures can be found there and will be made publicly available on the day of the lecture.
+
+#### Statistical Computing 
+
+This course will rely solely on the R programming language for all statistical computing. At the very least, you will need to download R to your local machine (or use your lab computer), and I highly recommend also downloading RStudio, which is an Integrated Development Environment (IDE) that makes programming in R (and other programming languages) much easier.  
+
+Please reach out to me if you are unable to install R. 
+
+### Grading Criteria
+
+A combination of homework and a final research project will be used to determine your grade for this course. Homework will account for 90% of your grade and the research project will account for 10%. While I encourage you to consult with your colleagues (your instructor, classmates, professors, twitter personas) when you are struggling with any of the homework assignments or the research project, your final products must be your own. 
+
+#### Homework
+
+I will send out periodic homework assignments in order to give you students experience applying the theories and methods we discuss in class. These assignments will be a mix of conceptual, statistical, and computational exercises. Each assignment will be due at the start of class the following week. For every day a homework assignment is late, I will deduct 10% from the final grade. **Please reach out to me if you find yourself struggling or overly stressing with these assignments. They are meant to be a learning tool not a major stressor!** 
+
+#### Research Project
+
+One of the more exciting things about being a graduate student is that you are able to explore the topics you find interesting. Use this research project to apply the theories and methods we learn to any topic of your choice. Please talk to me by the 5th week of class (September 19th) about your research project, even if your not 100% sure about it.  
+
+This project can take on many different forms, but regardless of form, each final project should have a written component for me to assess: 
+
+- Analyze data you have access to using any of the methods we learn about and write-up the results
+- Write a methods paper (not necessarily publication quality) about any of the methods we learn about
+- Build an open-source package in R that uses the methods we learn about and write a technical report about it
+- Build your own scale and validate it
+
+### Acadmic Honesty
+
+All academic work must meet UGA's standards, "A Culture of Honesty", found here: [Academic Honesty Policy](https://honesty.uga.edu/Academic-Honesty-Policy/). Each student has an individual responsibility to read over the standards themselves before starting any academic work.
+
+### Students with Disabilities
+
+If you are registered with the UGA Disability Services Office, please advise me privately within the first two weeks of the semester to ensure your learning needs are met.
+
+### Course Style
+
+I want this course to be an enjoyable and engaging experience for all, so although I will have lecture slides to talk through, I will also be using this course more as a discussion about psychometric topics, not a lecture about psychometric topics. 
+
+In order to meaningfully engage in this discussion, I encourage you to read at least one article a week (your choice) and skim through the remaining articles (although I think they are all interesting reads!). I understand everyone is busy, so I will not make the readings required, but to make this course useful you will need to engage with the material and come with questions! 
+
+To be successful in this course, you will need to:
+
+- Read a paper a week and skim the remaining
+- Come to class and bring questions
+- Engage in the course discussions
+- Most importantly, **ASK QUESTIONS**
+
+### Tentative Course Schedule
+
+**NOTE:** The course syllabus is a general plan for the course and as such there may be deviations throughout the semester. Readings in italics are supplemental.
+
++-------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
+| Date  | Topic                  | Readings                                                                                                              |
++:======+:=======================+:======================================================================================================================+
+| 8/22  | Overview & Stat Primer | - Jones & Thissen (2007). A history and overview of psychometrics.                                                    |
+|       |                        |                                                                                                                       |
+|       |                        | - Aronow & Miller (2019). Probability.                                                                                |
+|       |                        |                                                                                                                       |
+|       |                        | - Aronow & Miller (2019). Summarizing distributions.                                                                  |
+|       |                        |                                                                                                                       |
+|       |                        | - Aronow & Miller (2019). Learning from samples.                                                                      |
++-------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
+|       |                        |                                                                                                                       |
++-------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
+| 8/29  | Scale Development      | - Johnson & Morgan (2016). Survey Scales. Chapters 3-6.                                                               |
+|       |                        |                                                                                                                       |
+|       |                        | - Hinkin (2005). Scale development principles and practices.                                                          |
+|       |                        |                                                                                                                       |
+|       |                        | - Simms et al. (2019). Does the number of response options matter?                                                    |
+|       |                        |                                                                                                                       |
+|       |                        | - Robinson (2018). Using multi-item psychometric scales for research and practice in human resource management.       |
+|       |                        |                                                                                                                       |
+|       |                        | - Hinkin (1998). A brief tutorial on the development of measures for use in survey questionnaires.                    |
+|       |                        |                                                                                                                       |
+|       |                        | - Clark & Watson (2019). Constructing validity: New developments in constructing objective measuring instruments.     | 
+|       |                        |                                                                                                                       |
+|       |                        | - Dillman et al. (2014). The fundamentals of writing questions.                                                       |
+|       |                        |                                                                                                                       |
+|       |                        | - Dillman et al. (2014). Covering the population and selecting who to survey.                                         |
++-------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
+|       |                        |                                                                                                                       |
++-------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
+| 9/5   | Labor Day!             | - No class!                                                                                                           |
+|       |                        |                                                                                                                       |
++-------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
+|       |                        |                                                                                                                       |
++-------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
+| 9/12  | Validity Theory        | - Sireci (2009). Packing and unpacking sources of validity evidence: History repeats itself again.                    |
+|       |                        |                                                                                                                       |
+|       |                        | - Test Standards. Chapter 1.                                                                                          |
+|       |                        |                                                                                                                       |
+|       |                        | - Schmitt et al (2017). Validation strategies for primary studies.                                                    |
+|       |                        |                                                                                                                       |
+|       |                        | - Borsboom et al (2004). The concept of validity.                                                                     |
+|       |                        |                                                                                                                       |
+|       |                        | - Borsboom et al (2009). The end of construct validity.                                                               |
+|       |                        |                                                                                                                       |
+|       |                        | - *Cronbach & Meehl (1955). Construct validity in psychological tests.*                                               |
+|       |                        |                                                                                                                       |
+|       |                        | - *Slaney (2017). The philosophical backdrop of construct validity.*                                                  |
++-------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
+|       |                        |                                                                                                                       |
++-------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
+| 9/19  | Validity Theory        | - Principles for the validation of selection procedures. Pages 1-22.                                                  |
+|       |                        |                                                                                                                       |
+|       |                        | - Kehoe & Sackett (2017). Validity considerations in the design and implementation of selection systems.              |
+|       |                        |                                                                                                                       |
+|       |                        | - Schafer et al (2009). Validity in action.                                                                           |
++-------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
+|       |                        |                                                                                                                       |
++-------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
+| 9/26  | Classical Test Theory  | - Bandalos (2018). Introduction to reliability and the classical test theory model.                                   |
+|       |                        |                                                                                                                       |
+|       |                        | - Finch & French (2019). Classical test theory.                                                                       |
+|       |                        |                                                                                                                       |
+|       |                        | - Bandalos (2018). Methods of assessing reliability.                                                                  |
+|       |                        |                                                                                                                       |
+|       |                        | - Cortina (1993). What is coefficient alpha: An examination of theory and application.                                |
++-------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
+|       |                        |                                                                                                                       |
++-------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
+| 10/3  | Generalizability       | - Shavelson et al. (1989). Generalizability Theory.                                                                   |
+|       | Theory                 |                                                                                                                       |      
+|       |                        | - Brennan (2011). Generalizability theory and classical test theory.                                                  |
+|       |                        |                                                                                                                       |
+|       |                        | - Webb et al. (2007). Reliability coefficients and generalizability theory.                                           |
+|       |                        |                                                                                                                       |
+|       |                        | - Desjardins & Bulut (2018). Generalizability theory.                                                                 |
++-------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
+|       |                        |                                                                                                                       |
++-------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
+| 10/10 | Reliability Theory     | - Putka (2017). Reliability.                                                                                          |
+|       |                        |                                                                                                                       |
+|       |                        | - Cronbach (2004). My current thoughts on coefficient alpha and successor procedures.                                 |
+|       |                        |                                                                                                                       |
+|       |                        | - Cho & Kim (2015). Cronbach's coefficient alpha: Well known but poorly understood.                                   |
+|       |                        |                                                                                                                       |
+|       |                        | - *McNeish (2018). Thanks coefficient alpha, we'll take it form here.*                                                |
+|       |                        |                                                                                                                       |
+|       |                        | - *Raykov & Marcoulides (2019). Thanks coefficient alpha, we still need you.*                                          |
+|       |                        |                                                                                                                       |
+|       |                        | - *Revelle & Condon (2019). Reliability from alpha to omega.*                                                         |
++-------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
+|       |                        |                                                                                                                       |
++-------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
+| 10/17 | Factor Analysis        | - Borsboom et al. (2003). The theoretical status of latent variables.                                                 |
+|       |                        |                                                                                                                       |
+|       |                        | - Brown (2015). Introduction.                                                                                         |
+|       |                        |                                                                                                                       |
+|       |                        | - Brown (2015). The common factor model and EFA.                                                                      |
+|       |                        |                                                                                                                       |
+|       |                        | - Brown (2015). Introduction to CFA                                                                                   |
++-------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
+|       |                        |                                                                                                                       |
++-------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
+| 10/24 | Factor Analysis        | - Desjardin & Bulut (2018). Factor analytic approach in measurement.                                                  |
+|       |                        |                                                                                                                       |
+|       |                        | - Brown (2015). Specification and interpretation of CFA models.                                                       |
+|       |                        |                                                                                                                       |
+|       |                        | - Brown (2015). Model revision and comparison.                                                                        |
++-------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
+|       |                        |                                                                                                                       |
++-------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
+| 10/31 | Item Response Theory   | - Baker & Kim (2017). The item characteristic curve.                                                                  |
+|       |                        |                                                                                                                       |
+|       |                        | - Baker & Kim (2017). Item characteristic curve models.                                                               |
+|       |                        |                                                                                                                       |
+|       |                        | - Edwards (2009). An introduction to item response theory using the need for cognition scale.                         |
+|       |                        |                                                                                                                       |
+|       |                        | - Reise et al. (2005). Item response theory: Fundamentals, applications, and promise in psychological research.       |
+|       |                        |                                                                                                                       |
+|       |                        | - Bandalos (2018). Item response theory.                                                                              |
+|       |                        |                                                                                                                       |
+|       |                        | - *Mellenbergh (1994). Generalized linear item response theory.*                                                      |
+|       |                        |                                                                                                                       |
+|       |                        | - *Wirth & Edwards(2007). Item factor analysis.*                                                                      |
++-------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
+|       |                        |                                                                                                                       |
++-------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
+| 11/7  | Item Response Theory   | - Lang & Tay (2021). The science and practice of item response theory in organizations.                               |
+|       |                        |                                                                                                                       |
+|       |                        | - Desjardin & Bulut (2018). Item response theory for dichotomous items.                                               |
+|       |                        |                                                                                                                       |
+|       |                        | - Desjardin & Bulut (2018). Item response theory for polytomous items.                                                |
++-------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
+|       |                        |                                                                                                                       |
++-------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
+| 11/14 | Network Psychometrics  | - Borsboom & Cramer (2013). Network analysis: An integrative approach to the structure of psychopathology.            |
+|       |                        |                                                                                                                       |
+|       |                        | - Borsboom et al. (2021). Network analysis of multivariate data in psychological science.                             |
+|       |                        |                                                                                                                       |
+|       |                        | - Dalege et al. (2017). Network analysis of attitudes: A brief tutorial.                                              |
+|       |                        |                                                                                                                       |
+|       |                        | - Epskamp & Fried (2018). A tutorial on regularized partial correlations networks.                                    |
+|       |                        |                                                                                                                       |
+|       |                        | - Neal et al. Critiques of network analysis of multivariate data in psychological research.                           |
++-------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
+|       |                        |                                                                                                                       |
++-------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
+| 11/21 | Computational          | - Rust et al. (2021). Employing digital footprints in psychometrics.                                                  |  
+|       | Psychometrics          |                                                                                                                       |
+|       |                        | - Rust et al. (2021). Psychometrics in the era of the intelligent machine.                                            |
+|       |                        |                                                                                                                       |
+|       |                        | - von Davier (2017). Computational psychometrics in support of collaborative educational systems.                     |
+|       |                        |                                                                                                                       |
+|       |                        | - Landers & Sanchez (2022). Game-based, gamified, and gamefully designed assessments for employee selection.          |
++-------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
+|       |                        |                                                                                                                       |
++-------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
+| 11/28 | Bias, Fairness, and    | - Berry (2015). Test bias in an employment context.                                                                   |
+|       | legal issues           |                                                                                                                       |
+|       |                        | - Bandalos (2018). Bias, fairness, and legal issues in testing.                                                       |
+|       |                        |                                                                                                                       |
+|       |                        | - Principles (2018). Fairness and Bias.                                                                               |
+|       |                        |                                                                                                                       |
+|       |                        | - Lefkowitz & Lowman (2017). Ethics of employee selection.                                                            |
++-------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
+|       |                        |                                                                                                                       |
++-------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
+| 12/5  | Course Retro           | - Time for some reflection!                                                                                           |
++-------+------------------------+-----------------------------------------------------------------------------------------------------------------------+
