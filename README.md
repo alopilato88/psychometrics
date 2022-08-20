@@ -21,8 +21,8 @@ By the end of this course, you will:
 
 | Week          | Topic         |
 | :------------ | :--------------- |
-| 1 | [Introduction and Overview of Psychometrics](https://google.com) |
-| 2 | [Scale Development](https://google.com)   | 
+| 1 | [Introduction and Overview of Psychometrics](https://alopilato88.github.io/psychometrics/materials/lectures/lecture-1-introduction.html) |
+| 2 | [Scale Development]()   | 
 
 -----
 
