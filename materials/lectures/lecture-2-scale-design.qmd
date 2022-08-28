@@ -1,5 +1,5 @@
 ---
-title: "Scale Design with Noncognitive Items"
+title: "Scale Development with Noncognitive Items"
 subtitle: "An Introduction"
 format: 
   revealjs:
