@@ -1,0 +1,347 @@
+---
+title: "Scale Design with Noncognitive Items"
+subtitle: "An Introduction"
+format: 
+  revealjs:
+    theme: [default, psych-lecture-theme.scss] 
+    css: psych-lecture-style.css
+---
+
+## Learning Goals
+
+* Overview of the different skills and expertise needed to design survey scales
+* Understand the cognitive processes involved when responding to a scale question
+* Learn how to design and test a non-cognitive scale 
+
+## Scale Design Jargon
+
+![Robinson (2018). Using multi-item psychometric scales for research and practice in human resource management](lecture-2-img/robinson-scale-image.png)
+
+## Scale Design Jargon {.smaller}
+
+* <strong>Construct</strong>: An attribute or idea that not directly observable (or measurable)--a concept.
+* <strong>Questions / Statements</strong>: The stimuli that generate a response from a respondent. 
+* <strong>Response Points</strong>: A circle or check-box in which respondents indicate their response.
+* <strong>Response Labels</strong>: A label that accompanies a response point that clarifies the meaning of a response point (e.g. strongly agree).
+* <strong>Response / Rating Scales</strong>: The measure along which respondents respond to a question or statement. 
+* <strong>Items</strong>: A combination of a question or statement and a rating scale.
+* <strong>Scale</strong>: A set of closed-response items (preferably three or more) that are designed to measure the same underlying construct.
+* <strong>Questionnaire / Survey</strong>: A set of two or more scales. 
+
+## The Required Skills and Expertise
+
+* Designing and testing a scale or large-scale survey requires a diverse set of of skills and expertise:
+  + <strong>Statistics</strong>: Focused on adequately sampling the focal population and incorporating the sampling design into subsequent analyses.
+  + <strong>Cognitive Science</strong>: Focused on understanding the cognitive processes involved in question response to predict, explain, and reduce response errors and biases.
+  + <strong>Psychometrics</strong>: Focused on evaluating the reliability (response consistency) and validity of each individual scale. 
+
+# Cognitive Science and Scale Design
+
+## Cognitive Process Model of Question Response {.smaller}
+
+Originally developed by Roger Tourangeau (1984), the Cognitive Process Model of Question Response posits that a respondent engages in four distinct cognitive processes when responding to a question: 
+
+1. <strong>Comprehension</strong>: Work to understand what the question / statement is asking of you.
+2. <strong>Information Retrieval</strong>: Recall relevant information from long-term memory.
+3. <strong>Judgment & Estimation</strong>: Combining or supplementing the information you've retrieved into an answer.
+4. <strong>Reporting an Answer</strong>: Mapping your answer to the question's response options and altering the answer for <strong> consistency with prior answers, perceived acceptability, or other criteria</strong>.
+
+## Think Aloud Using Example Items
+
+Here are two items (question + response scale) to help us think through the cognitive processes involved in responding to a question or statement:
+
+1. My mentor treats me with respect. (Strongly Disagree to Strongly Agree)
+
+2. Senior administrators at UGA show that they care about the university employees. (Never to All the Time)
+
+Do you think they are well designed items?
+
+## Response Strategies: Optimizing or Satisficing {.smaller}
+
+* Optimizing and Satisficing make up the two ends of a continuum that describes how thoroughly a respondent engages in the information retrieval and integration needed to a question response. 
+  + <strong>Optimizing</strong>: Effortful engagement in Comprehension, Retrieval, Judgement & Estimation, and Reporting
+  + <strong>Satisficing</strong>: Providing a response that is "good enough."
+    - <strong>Weak Satisficing</strong>: Less effortful engagement in Comprehension, Retrieval, Judgment & Estimation, and Reporting
+    - <strong>Strong Satisficing</strong>: Skipping the Retrieval and Judgment & Estimation processes all together.
+
+* As scales (or surveys) get longer or harder, a respondent's motivation to accurately respond declines and they may start to take cognitive shortcuts to question response.
+
+## Errors and Biases in Question Response {.smaller}
+
+* Errors can occur during any of the cognitive processes:
+  + Misinterpret the question (comprehension error)
+  + Forgetting and other memory problems (retrieval error)
+  + Flawed judgment or estimation strategies (judgment & estimation error)
+* Biases can occur--especially when satisficing:
+  + Item non-response
+  + No Opinion / Middle Response Inflation
+  + Acquiescence Bias
+  
+## A Scale Development Workflow
+
+1. <strong>Design the scale</strong>
+    i) Create a measurement framework
+    i) Write a lot of questions
+    i) Write a response scale that matched your questions
+    i) Evaluate your initial items
+2. <strong>Pilot test the scale (or survey)</strong>
+    i) Select a representative respondent sample
+    i) Allow respondents to give feedback about the items
+    i) Evaluate the quality of the scale(s)
+    i) Remove poorly fitting items
+
+# Elements of Scale Design
+
+## Resonding to Items is Tiring
+
+> "Survey respondents are often asked to expend a great deal of cognitive effort for little or no apparent reward."
+
+Krosnick, 1991
+
+## Remember the Respondent!
+
+* Survey fatigue is real! 
+
+* All of our scale design choices should strike a balance between scientific rigor and helping out the respondent.
+
+## Building a Measurement Framework
+
+* For each scale being developed, a measurement framework: 
+  + Lists the goals of that scale (research questions / hypotheses it will test)
+  + Provides a definition of the construct being measured by the scale
+  + Hypothesizes how the focal construct is related to other established constructs
+
+## Designing Questions
+
+Writing questions is easy. Writing <strong>good</strong> questions is hard! There are four important dimensions to writing a good question: 
+
+<div class="list-tab">
+  1. <strong>Relevance</strong>
+  2. <strong>Audience</strong>
+  3. <strong>Language</strong>
+  4. <strong>Structure</strong>
+</div>
+  
+## Question Design: Relevance
+
+<strong>Questions should be relevant to the construct they are designed to measure.</strong>
+
+* Use the construct definition in your measurement framework to help generate questions.
+
+* Do not repeat questions, you need multiple distinct questions per scale.
+
+* Your question should measure one and only one construct.
+
+* Keep items and words within an item relevant. Use only words that your respondents will understand and are relevant to the study context.
+
+## Question Design: Audience
+
+<strong> Know your target respondents, and tailor the questions to them.</strong>
+
+* Consider the respondents' cognitive skills when writing questions (are they adults or children?)
+
+* Consider if respondents will have sufficient information to accurately respond to the question
+
+* Consider if respondents can accurately recall the information needed to answer the question
+
+* Consider the diversity of your respondents (multicultural, non-bias questions)
+
+## Question Design: Language 
+
+<strong>Use clear and simple language that is familiar to the respondents.</strong>
+
+* Use simple and familiar words
+
+* Use objective, non-leading phrases (stay away from emotion-laden words)
+
+* Use concrete and precise language
+
+* Write questions at a middle school reading level when possible
+
+## Question Design: Structure
+
+<strong>Questions should be structured as brief, simple sentences (subject, verb, complete thought).</strong>
+
+* Keep questions to 20 words or less with no more than three commas
+
+* Use complete sentences
+
+* Questions should present only a single idea---no conjunctions
+
+* Avoid negative phrases if possible
+
+## Designing Response Scales
+
+There are three important dimensions to writing a good response scale:
+
+<div class="list-tab">
+1. <strong>Response Scale Length</strong>
+2. <strong>Response Scale Labels</strong>
+3. <strong>Neutral and Opt-Out Options</strong>
+</div>
+
+## Response Scale Design: Length
+
+<strong>Response scales should have between five and seven response points.</strong>
+
+* Survey data collected using five to seven response points can be treated as continuous
+
+* Reliability levels off between five and seven response points
+
+* Consider how well respondents can discriminate among different response points
+
+## Response Scale Design: Labels
+
+<strong>You should label every response point with a distinct label.</strong>
+
+* Label should be consistent with the question / statement 
+
+* The two endpoint labels should be opposites (Strongly Disagree and Strongly Agree)
+
+* Labels should be equal intervals along a continuum (Strongly Disagree, Disagree, Agree, Strongly Agree)
+
+* Labels should be ordered from negative (Disagree) to positive (Agree)
+
+## Response Scale Design: Neutral and Do Not Know Options
+
+<strong>Avoid using response options that make it difficult to distinguish between respondents who hold different opinions, judgments, or attitudes.</strong>
+
+* Use an even number of response points (6 points)
+
+* Only use a "Do Not Know" option if you believe uninformed respondents might provide inaccurate responses
+
+* Visually separate the "Do Not Know" option from the rest of the response scale
+
+## Evaluating your Preliminary Items
+
+Before piloting your items, it is important to subject them to a content analysis or expert review: 
+
+<div class="list-tab">
+1. <strong>Content Adequacy</strong>
+2. <strong>Subject Matter Expert Review</strong>
+3. <strong>Psychometric Review</strong>
+4. <strong>Translator Review</strong>
+5. <strong>Editorial Review</strong>
+6. <strong>Bias Review</strong> 
+</div>
+
+## Content Adequacy {.smaller}
+
+Content Adequacy[^1] is an analysis that informs you as to how well your questions correspond to the construct they were designed to measure---it is similar to content validity. Colquitt et al. demonstrate how to expand this analysis to the scale level.[^2] 
+
+<div class="list-tab">
+1. Have a sample of individuals ($N \geq 50$) rate the extent to which a question corresponds to the definition of the construct it is measuring (1 = Not at all to 5 = Completely). These ratings are referred to as the <strong>definitional correspondence ratings</strong>.
+
+2. Have that same sample rate the extent to which a question corresponds to a definition of a different, but related construct---an orbiting construct. These ratings are referred to as the  <strong>orbital correspondence ratings</strong>.
+
+3. Use an ANOVA to compare the definitional correspondence ratings to the orbital correspondence ratings and retain only those items which have statistically higher average definitional correspondence values compared to the average orbital correspondence ratings.
+</div>
+
+[^1]: Hinkin & Tracey (1999). An analysis of variance approach to content validation.
+[^2]: Colquitt et al (2019). Content validation guidelines: Evaluation criteria for definitional correspondence and definitional distinctiveness.
+
+# Piloting your Scale 
+
+## Selecting your Pilot Sample
+
+* <strong>Target Population</strong>: The population of inferential interest.
+
+* <strong>Sample Frame</strong>: A list of units that make up the population.
+
+* <strong>Sample</strong>: A randomly drawn set of units from the sampling frame.
+
+* $\text{Sample Size} \approx\max(300, 10\times\text{number of questions})$
+
+
+## What to Include in your Pilot Survey
+
+1. The set of scales you are developing
+2. Additional established scales that can be used to validate your scales
+    i) Criterion-related validity evidence
+    ii) Convergent & Discriminant validity evidence
+3. Questions to gather respondent demographics
+
+## Gathering Item Feedback 
+
+For each item, you will want to know if respondents had any <strong>difficulty responding to the question or using the response scale</strong>. There are two ways to gather this information: 
+
+1. <strong>Think-alouds</strong>: Gather a sub-sample of respondents and have them talk through their thought processes as they respond to each question. 
+
+2. <strong>Closed-Response Questions about Item Quality</strong>: For each question, ask the respondent if they had any difficulty understanding what the question was asking or if the response scale was difficult to use.
+
+## Investigating Item and Scale Descriptives 
+
+* <strong>Item Response Distributions</strong>: Are respondents using the full response scale?
+
+* <strong>Item and Scale means</strong>: Are responses inflated or deflated?
+
+* <strong>Item and Scale variability</strong>: Are responses clumped together?
+
+* <strong>Corrected Item-Total Correlations</strong>: How correlated is the item with a sum score that consists of every other item in the scale?
+
+* <strong>Inter-item and inter-scale correlations</strong>: Are certain items / scales too related or not related enough?
+
+## Evaluating Reliability
+
+<strong>Reliability</strong> can be thought of as an index of how much of the observed variance in your scale is due to true variation on the focal construct. 
+
+* We can never actually calculate scale reliability, but we can estimate it:
+  + <strong>Coefficients of Internal Consistency</strong>: Coefficient alpha
+  + <strong>Coefficients of Stability</strong>: Test-Retest Correlation
+  + <strong>Coefficients of Equivalence</strong>: Alternate Forms Correlation
+
+## Coefficient Alpha
+
+* <strong> Coefficient Alpha </strong> is easily the most used and reported on reliability estimate.
+
+* Alpha ranges between 0 and 1 and you typically want values greater than .80
+
+* For each scale and item in a scale, you will want to calculate <strong>alpha-if-item-deleted values</strong>
+
+## Building your Validity Argument
+
+"<strong>Validity</strong> refers to the degree to which evidence and theory support the interpretation of test scores for proposed uses of test."[^1]
+
+<div class="small-text">
+* There are several types of validity evidence you can use to make the argument that inferences made from your scales are valid: 
+  + Evidence Based on Test Content
+  + Evidence Based on Response Process
+  + Evidence Based on Internal Structure
+  + Evidence Based on Relations to Other Variables
+  + Evidence for Validity and Consequences of Testing
+</div>
+
+[^1]: Standards for Educational and Psychological Testing (2014).
+
+## Finalize Your Scale and Repeat!
+
+* Remove or change items based on the information you gathered from the pilot sample
+
+* Give out the revised scales (survey) to a new sample (or a holdout sample from your original sample) and repeat the same analyses. 
+
+* Document all of your work in a test manual! 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
