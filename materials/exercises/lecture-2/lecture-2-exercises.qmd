@@ -1,7 +1,212 @@
 ---
 title: "Lecture 2: Survey Development Exercises"
-format: html
+format: 
+  html: 
+    theme: [default, psych-lecture-theme.scss] 
+    css: psych-lecture-style.css
 ---
+
+## Load necessary libraries
+```{r}
+#| message: false
+
+library(tidyr)
+library(dplyr)
+library(tibble)
+library(ggplot2)
+library(psych)
+library(readr)
+library(Hmisc)
+library(lavaan)
+```
 
 ## Read in Lecture 2 data
 
+To explore the data, you first need to read it from the class website: 
+
+```{r}
+#| message: false
+
+data_url <- "https://alopilato88.github.io/psychometrics/materials/data/lecture-2-exercise.csv"
+
+scale_data <- readr::read_csv(data_url)
+```
+
+I have created a data frame object called `scale_data` which contains the survey data.
+
+`readr::read_csv()` is an R function, exported from the `readr` package, that allows you to load .csv files into R.
+
+## Glimpse the Data
+
+Before analyzing your data, you will always want to look at it to ensure it loaded correctly.
+
+```{r}
+head(scale_data)
+```
+
+You can also use `names()` to retrieve the column names of your data frame.
+
+```{r}
+names(scale_data)
+```
+
+The first column `RESPONDENT_ID` contains a unique identification number for each respondent. The remaining columns follow the same naming convention: `CONSTRUCT_ITEM`. In our data frame, we see that there are three scales measuring `JOB_SAT` (job satisfaction), `AFFECTIVE_COMMITMENT` (affective dimension of organizational commitment), and `TURNOVER_INTENT` (turnover intetions). The scales contain 7, 5, and 6 items, respectively.
+
+You can also use the `View` function to open up a separate window in RStudio to manually explore your data. I do not recommend using `View` if you have a very large data frame loaded. 
+
+## Always plot your data first
+
+Before analyzing your data, it is always wise to first explore it graphically with a variety of plots. The package `ggplot2` gives us access to a variety of functions to plot our data and customize the plots.
+
+Below you will find code to explore the response distributions of the `JOB_SAT` item responses found in the `scale_data` data frame.
+
+```{r}
+#| message: false
+
+# Look at the response distributions for JOB_SAT items
+
+# First we have to format the scale_data 
+job_sat_plot_data <-
+  scale_data |>
+  dplyr::select(
+    RESPONDENT_ID,
+    dplyr::contains("JOB_SAT")
+  ) |>
+  tidyr::pivot_longer(
+    cols = dplyr::contains("JOB_SAT"),
+    names_to = "ITEM_ID",
+    values_to = "ITEM_RESPONSE"
+  )
+
+# Now we can use ggplot() to plot the data
+ggplot2::ggplot(
+  data = job_sat_plot_data,
+  ggplot2::aes(
+    x = ITEM_RESPONSE
+  )
+) +
+  ggplot2::facet_wrap(~ ITEM_ID) +
+  ggplot2::geom_histogram(
+    fill = "#A6D1E6",
+    color = "#3D3C42"
+  ) + 
+   ggplot2::theme(
+    plot.background = element_rect(fill = "#FEFBF6", colour = "#FEFBF6"),
+    panel.background = element_rect(fill = "#FEFBF6"),
+    axis.line.x = element_line(colour = "#3D3C42"),
+    axis.line.y = element_line(colour = "#3D3C42"),
+    panel.grid.minor = element_line(colour = "#FEFBF6"),
+    panel.grid.major = element_line(colour = "#FEFBF6")
+  ) +
+  ggplot2::labs(
+    x = "Response Options",
+    y = "Count"
+  )
+```
+
+### Try making your own plot
+
+Try to recreate the above, but use `AFFECTIVE_COMMITMENT` or `TURNOVER_INTENT`.
+
+## Explore the Item Descriptives
+
+The package `psych` contains many useful functions for scale development, one of which is `describe()`. As you can see below, this function outputs many of the necessary descriptive statistics needed for scale development. 
+
+```{r}
+scale_data |>
+  dplyr::select(
+    dplyr::contains("JOB_SAT")
+  ) |>
+  psych::describe()
+```
+
+We can also use the `rcorr()` function exported from the package `Hmisc` to explore the inter-correlations among the scale items. As you can see below, `rcorr()` provides the pearson correlations among the scale items as well as a p-value for each correlation.
+
+```{r}
+scale_data |>
+  dplyr::select(
+    dplyr::contains("JOB_SAT")
+  ) |>
+  as.matrix() |>
+  Hmisc::rcorr()
+```
+
+We can also use a combination of functions to calculate the corrected item-total correlation, which is the correlation between an item X and the sum score of the remaining items within a given scale. 
+
+```{r}
+#| warning: false
+
+total_score_data <-
+  scale_data |>
+  dplyr::select(
+    dplyr::contains("JOB_SAT")
+  ) |>
+  dplyr::rowwise() |>
+  dplyr::mutate(
+    TOTAL_SCORE = sum(dplyr::c_across(JOB_SAT_1:JOB_SAT_7))
+  )
+
+apply(total_score_data, 2, function(x) cor(x, (total_score_data$TOTAL_SCORE - x)))
+```
+
+The code block above creates a data frame called `total_score_data` that contains all of the `JOB_SAT` variables and creates a total sum score named `TOTAL_SCORE`. Then the `apply()` function below correlates each column (item) of the data frame with the `TOTAL_SCORE` minus the column it is being correlated with.
+
+### Explore the descriptives of a different scale
+
+Try to recreate the above, but use `AFFECTIVE_COMMITMENT` or `TURNOVER_INTENT`.
+
+## Estimate the Reliability of the Scales
+
+Thanks to the function `alpha()` which is also exported from the `psych` package, we can easily estimate the reliability of our scales as well as what the reliability will be if we drop an item and recalculate alpha. 
+
+```{r}
+#| warning: false
+
+scale_data |>
+  dplyr::select(
+    dplyr::contains("JOB_SAT")
+  ) |>
+  psych::alpha()
+```
+
+The output above provides a lot of information: 
+
+* Alerts us to the fact the `JOB_SAT_6` and `JOB_SAT_7` are negatively correlated with the total scale
+* Gives us the `raw_alpha` and `std.alpha` (standardized alpha) for the scale
+* Confidence intervals around `alpha`
+* Reliability if an item is dropped
+* Item statistics
+
+### Estimate reliability for one of the other scales.
+
+## Estimate a Latent Variable Model using Confirmatory Factor Analysis
+
+The final thing we can do is investigate the validity of the scale inferences. One of the pieces of validity evidence that we can provide is evidence of the internal structure of the scale. We do this by estimating a CFA model for the `JOB_SAT` items. 
+
+Below is code to fit a CFA model using the `lavaan` package. First we have to specify the model syntax, which we stored in an object named `job_sat_cfa_mod_syntax` (we will learn much more about this in later classes). Then we use the function `sem()` to estimate the model and `summary()` to display the model results. The `standardized` argument provides the standardized model estimates, which are useful for interpretation. 
+
+```{r}
+# Build your CFA model
+job_sat_cfa_mod_syntax <- '
+
+# This is the measurement model which specifies that JOB_SAT is measured
+# by these seven items.
+# NA* tells lavaan to freely estimate the factor loading for JOB_SAT_1
+
+JOB_SAT =~ NA*JOB_SAT_1 + JOB_SAT_2 + JOB_SAT_3 + 
+           JOB_SAT_4 + JOB_SAT_5 + JOB_SAT_6 +
+           JOB_SAT_7
+
+# Fixes the variance of the latent JOB_SAT variable to 1 for identification.
+# We will learn all about this later
+
+JOB_SAT ~~ 1*JOB_SAT
+'
+
+job_sat_cfa_model <- lavaan::sem(
+  model = job_sat_cfa_mod_syntax,
+  data = scale_data
+)
+
+summary(job_sat_cfa_model, standardized = TRUE)
+```
