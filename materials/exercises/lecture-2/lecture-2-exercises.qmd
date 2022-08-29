@@ -1,0 +1,7 @@
+---
+title: "Lecture 2: Survey Development Exercises"
+format: html
+---
+
+## Read in Lecture 2 data
+
