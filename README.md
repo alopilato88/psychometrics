@@ -22,7 +22,7 @@ By the end of this course, you will:
 | Week          | Topic         | Exercises |
 | :------------ | :--------------- | :--------------- |
 | 1 | [Introduction and Overview of Psychometrics](https://alopilato88.github.io/psychometrics/materials/lectures/lecture-1-introduction.html) | |
-| 2 | [Scale Development with Noncognitive Items](https://alopilato88.github.io/psychometrics/materials/lectures/lecture-2-scale-design.html)   | |
+| 2 | [Scale Development with Noncognitive Items](https://alopilato88.github.io/psychometrics/materials/lectures/lecture-2-scale-design.html)   | [Scale Development](https://alopilato88.github.io/psychometrics/materials/exercises/lecture-2/lecture-2-exercises.html) |
 | 3 | Labor Day               | |
 | 4 | [Theorizing About Validity Theory]() | |
 | 5 | [Validity Theory in Action]() | |
