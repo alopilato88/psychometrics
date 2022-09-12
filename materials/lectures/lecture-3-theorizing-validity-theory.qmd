@@ -155,7 +155,7 @@ format:
   - Refers to the interpretations or actions that are made on the basis of test scores.
   - Must be evaluated with respect to the purpose of the test and how test is used.
 
-## The Modern Validation Framework: Argument-Based Approach
+## The Modern Validation Framework: Argument-Based Approach {.smaller}
 
 * The argument-based approach to validation was developed to make the task of validating test score inferences both manageable and scientifically sound.
 
@@ -218,7 +218,7 @@ format:
   - Response times
   - Eye tracking
 
-## Evidence Based on Internal Structure
+## Evidence Based on Internal Structure {.smaller}
 
 * Indicates the degree to which the relationships among test items and test components conform to the construct on which the proposed test score interpretations are based.
 
@@ -274,9 +274,10 @@ Sireci, 2009
 
 Borsboom, et al. (2004, p. 1061)
 
-## Validity as a Property of the Test
+## Validity as a Property of the Test {.smaller}
 
 Test X Thought Experiment (Borsboom et al., 2009): 
+
 * Flip a coin 10 times and count the number of heads: this sum is your total score.
 * Have N people do this test
 * <strong>Score Interpretation</strong>: The scores on Test X measure nothing at all.
@@ -289,7 +290,7 @@ Test X Thought Experiment (Borsboom et al., 2009):
 
 Borsboom, et al. (2009)
 
-## What do we even mean by Measurement?
+## What do we even mean by Measurement? {.smaller}
 
 * The only viable measurement theory for psychological measurement is <strong>realism</strong>, which states that:
  - The measurement attribute exists independently of the researcher measuring it.
