@@ -274,7 +274,7 @@ Sireci, 2009
 
 Borsboom, et al. (2004, p. 1061)
 
-## Validity as a Property of the Test
+## Validity as a Property of the Test {.smaller}
 
 Test X Thought Experiment (Borsboom et al., 2009): 
 
