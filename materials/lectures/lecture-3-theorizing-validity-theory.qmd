@@ -1,0 +1,320 @@
+---
+title: "Theorizing about Validity Theory"
+format: 
+  revealjs:
+    theme: [default, psych-lecture-theme.scss] 
+    css: psych-lecture-style.css
+---
+
+## Learning Goals
+
+* Overview of the past, present, and future of Validity Theory.
+* Learn about the modern consensus on Validity Theory.
+* Learn about challenges to the modern consensus.
+
+## Tests and Society 
+
+* Test scores drive a lot of important societal decisions:
+  - Educational advancement
+  - Clinical decisions
+  - Employment decisions 
+  - Scientific advancement 
+
+* It is important that we understand if our interpretations / uses of test scores are correct in some sense: Concept of Validity
+
+## Validity Theory: A Model of Validity
+
+* We need a model of validity that does two things well: 
+  - Define what validity is 
+  - Provides a validation framework 
+
+* Modern Validity Theory is the culmination of the last 100 years or so of research on different models of validity.
+
+## Evolution of Validity Theory {.smaller}
+
+* Dust-bowl Empiricism (early 1920s-1940s)
+* Application-Specific Models (1940s-1970s)
+  - Criterion Model 
+  - Content Model
+  - Construct Validity Model
+* Unified Models of Validity (1970s to Now)
+* Approaches to Validity—Validation Frameworks (1980s to Now)
+  - Interpretation / Use Argument 
+* Challenges to the Consensus View of Validity Theory (2000s to Now)
+
+# The Early Days (1920s to 1940s)
+
+## The Wild West of Validity Theory
+
+* Early on there was no accepted definition of validity.
+
+* The test validation process involved correlating test scores with just about everything without much thought.
+  - Dust-bowl Empiricism ruled the day
+  - “A test is valid for anything with which it correlates.” (Guildford, 1946) 
+
+## The Beginnings of Validity Theory
+
+* Around the late 1920s, we start to see some structure around Validity Theory. 
+
+* Validity is defined as the extent to which a to which a test "really measures what it purports to measure" (Kelly, 1927, p. 14).
+
+* The test validation process, however, is still not given much thought beyond correlations. 
+
+# Rise of the Application-Specific Models (1940s - 1970s)
+
+## Application-Specific Models of Validity
+
+* Application-Specific Models of Validity are validity models that focus on one specific test application: 
+  - Criterion Model (Criterion-related Validity)
+  - Content Model (Content Validity)
+  - Construct Model (Construct Validity)
+
+* Each model defines a different “type” of validity and provides different validation frameworks. 
+
+## Criterion Model of Validity
+
+* Criterion-related validity is defined as the degree to which a test can predict a criterion variable (typically a measure of some non-test performance).
+
+* Under the criterion model, the test validation process involved getting a sample of test and criterion scores and correlating the two. 
+
+* Issues with validity of the criterion variable
+
+## Content Model of Validity
+
+* Content validity is defined as the degree to which the content of a test and the cognitive processes elicited by the test are appropriate and relevant samples of the construct domain. 
+
+* Under the content model, the test validation process typically involves SME ratings on the content of the test (e.g. content adequacy (Hinkin & Tracey, 1999)).
+
+## Construct Model of Validity
+
+* Construct validity is defined as the degree to which a test is to be interpreted as a measure of some construct (e.g. personality traits, attributes, etc.).
+
+* Under the construct model, the test validation process typically involves developing a scientific theory of the focal construct that hypothesizes a) how the focal construct relates to other orbital constructs and b) how the focal construct relates to the observed measures—a nomological network—and then empirically challenging the theory by testing its hypotheses with data.
+
+## Two Foundational Articles 
+
+* Cronbach, L. J., & Meehl, P. E. (1955). Construct Validity in psychological tests. <em>Psychological Bulletin</em>, 52, 281-302. 
+
+* Campbell, D. T., & Fiske, D. W. (1959). Convergent and discriminant validation by the multitrait-multimethod matrix. <em>Psychological Bulletin</em>, 56, 81-105.
+
+# Unifying Validity Theory (1970s - Now) 
+
+## Validity in Disarray
+
+* Despite seeming structured and orderly with the three application-specific models by the 1970s validity theory was messy: 
+  - Generalized Validity (Lawshe, 1952)
+  - Internal & External Validity (Loevinger, 1957)
+  - Domain Validity (Tyron, 1957)
+  - Empirical and Theoretical Validity (Lord & Novick, 1968)
+  - Occupational Validity (Bemis, 1968)
+  - And many more!
+  
+## Growing Discontent with Application-Specific Models
+
+* Dislike of how separating validity into three different types led to many researchers running through a checklist of validity without rhyme or reason.
+
+* Dislike of how different types of validity were being thought up of without a single, coherent model to guide their development.
+
+## Unitary Theories of Validity
+
+* In the 1970s, we see several big changes in how the Standards defines validity: “degree to which that evidence supports the inferences that are made from the scores".
+  - Validity is defined as unitary concept
+  - Validity is thought of as a property of the test score inferences
+  - Validity Aspects not Types: Criterion-Related, Content-Related, Construct-Related
+
+## Is Construct Validity All of Validity? 
+
+* Some prominent validity theorists, notably Samuel Messick, argue that construct validity is the whole of validity theory. 
+
+* Messick argued that the criterion and content models were subsumed under the construct model.
+
+* Led to even further disagreement and confusion around validity theory (especially for practitioners). 
+
+## What About Test Consequences?
+
+* <strong>Ongoing debate</strong>: Should the negative and unintended consequences of testing be incorporated in validity theory?
+
+* For a long time the positive, intended consequences of testing were acknowledged, but the negative, unintended consequences were not recognized until the 1970s. 
+
+* Currently, if the unintended consequences can be traced back to test invalidity, then it should be a validity concern: 
+  - Construct Irrelevant Variance
+  - Construct Underrepresentation 
+  
+# Here we are (Now)
+
+## Modern Consensus of Validity Theory
+
+* Validity is defined as “the degree to which evidence and theory support the interpretations of test scores for proposed uses of tests.” (Standards, 2014)
+
+* The validation process “involves accumulating relevant evidence to provide a sound scientific basis for the proposed score interpretations.” (Standards, 2014)
+
+## Validity Defined
+
+* Validity:
+  - Is NOT an inherent property of a test. “It is incorrect to use the unqualified phrase ‘the validity of the test’.” (Standards, 2014, p. 11).
+  - Refers to the interpretations or actions that are made on the basis of test scores.
+  - Must be evaluated with respect to the purpose of the test and how test is used.
+
+## The Modern Validation Framework: Argument-Based Approach
+
+* The argument-based approach to validation was developed to make the task of validating test score inferences both manageable and scientifically sound.
+
+* An argument has two basic elements (statements): 
+  - <strong>Premise</strong>: Supporting statement; Starting point of an argument that contains the known truth from which the inferential move begins.
+  - <strong>Conclusion</strong>: Supported statement or the statement that is accepted as true on the basis of the premise
+
+* A test-score interpretation always involves an interpretive argument:
+  - Test scores are the <strong>premise</strong> 
+  - Statements and decisions involved in the interpretations are the <strong>conclusions</strong>
+
+## Interpretive (Practical) Argument 
+
+* <strong>Interpretive (Practical) Argument</strong>: An argument based on assumptions that cannot be taken as given and evidence that is incomplete, and, thus, the argument is at best convincing or plausible. The conclusions are not proven.
+
+* <strong>Logical Arguments (Proofs)</strong>: The assumptions are taken as given, and the conclusions are formally proven, if the chain of inferences from premises to the conclusions follows certain explicit, formal rules. 
+
+## Steps to the Argument-Based Appraoch to Validation
+
+1. Clearly specify the claims being made. <strong>(Clarity of the Argument)</strong>
+2. Verify that the claims accurately represent the interpretation and use of the scores. <strong>(Coherence of the Argument)</strong>
+3. Verify that the claims are plausible by challenging them empirically. <strong>(Plausibility of the Assumptions)</strong>
+
+## Providing Validity Evidence
+
+* To evaluate the validity of a given interpretation of a test score, you must provide supporting evidence.
+
+* Parallel lines of evidence 
+  - <strong>Triangulation</strong>: More confidence in an assumption when it is supported by multiple independent sources of evidence even if any single piece of evidence is questionable.
+
+* Important to identify and provide support for the weakest assumptions and inferences as they limit the plausibility of a validity argument!
+
+## Source of Validity Evidence 
+
+* Evidence based on test content
+* Evidence based on response processes
+* Evidence based on internal structure
+* Evidence based on relations to other variables
+* Evidence based on the consequences of testing
+
+## Evidence Based on Test Content
+
+* Test content refers to the themes, wording, and format of the items, tasks, or questions on a test. 
+
+* This evidence can include logical or empirical analyses that demonstrate the content of the test is representative of the targeted content domain 
+
+* Evidence can come from: 
+  - Expert judgments
+  - Systematic observation of behaviors 
+
+
+## Evidence Based on Response Processes
+
+* When interpretations involve assumptions about the cognitive processes elicited by the test, you will need theoretical or empirical analyses of these response processes.
+
+* Often talked about in the form of process models (remember the cognitive response models we talked about in the Survey Development Module)
+
+* Evidence based on response processes can come from: 
+  - Questioning test takers on their responses and strategies
+  - Response times
+  - Eye tracking
+
+## Evidence Based on Internal Structure
+
+* Indicates the degree to which the relationships among test items and test components conform to the construct on which the proposed test score interpretations are based.
+
+* Conceptual framework (measurement framework / theory) for a test may specify a single dimension of performance or multiple dimensions. The extent to which the item interrelationships bear out the presumptions of this framework would be relevant to validity. 
+
+* Evidence based on internal structure can come from: 
+  - Evidence of item homogeneity if theory posited a unidimensional construct
+  - Predicted subgroup differences
+  - Latent variable models
+
+## Evidence Based on Relations to Other Variables
+
+* Indicates the degree to which test scores (construct) should be related to other constructs.
+
+* Test-Criterion Relationships
+  - Concurrent Designs
+  - Predictive Designs
+
+* Multitrait-Multimethod Matrices
+  - Convergent Evidence
+  - Discriminant Evidence
+
+* Validity Generalization
+
+## Evidence Based on Consequences of Testing
+
+* Claims made about test use that are not directly based on score interpretation.
+  - Those making the claims are responsible for evaluations of those claims!
+
+* Unintended consequences: Evidence about consequences is necessary when the consequences are due to a source of invalidity / error:
+  - Construct Underrepresentation
+  - Construct Irrelevant Variance
+  
+## Integrating Validity Evidence
+
+* A sound validity argument must integrate all the various sources of evidence into a coherent and plausible validity argument.
+
+* Much like the scientific process, the validation process never ends--you can always gather additional information!
+
+* Validity (interpretive) arguments <strong>are artifacts</strong>, <strong>they change with time</strong>, they may need to be <strong>modified for particular examinees or circumstances</strong>, and they are <strong>more-or-less plausible (not valid or invalid)</strong>. 
+
+## When Do you have enough Evidence?
+
+>“Perhaps the best question to guide test validation efforts is ‘If the use of this test for the purpose I am using it for were challenged in court, do I have sufficient evidence to persuade the judge or jury and win the case?’ If the answer is yes, the evidence will comprise a solid validity argument (see Phillips, 2000 or Sireci & Parker, 2006). If not, more evidence is needed, or use of the test cannot be defended."
+
+Sireci, 2009
+
+# Challenges to the Modern Consensus 
+
+## Redefining Validity 
+
+> "Thus, a test is valid for measuring an attribute if and only if (a) the attribute exists and (b) variations in the attribute causally produce variations in the outcomes of the measurement procedure.
+
+Borsboom, et al. (2004, p. 1061)
+
+## Validity as a Property of the Test
+
+Test X Thought Experiment (Borsboom et al., 2009): 
+* Flip a coin 10 times and count the number of heads: this sum is your total score.
+* Have N people do this test
+* <strong>Score Interpretation</strong>: The scores on Test X measure nothing at all.
+* We can find a lot of evidence showing this is the case, which means that the interpretation is supported by a lot of different types of evidence and suggests a high degree of validity. 
+* <strong>Conclusion</strong>: Validity applies to test score interpretations that deny that the test in question measures anything whatsoever just as easily as it does to test score interpretations that do claim that something is measured.
+
+## Validity as a Function of Truth not Evidence 
+
+> For propositions are not made true by the evidence that exists for them, but by their conformity to the state of affairs in the world, as is evident from the fact that once can have massive amounts of evidence for a false proposition and lack of any evidence for a true one. 
+
+Borsboom, et al. (2009)
+
+## What do we even mean by Measurement?
+
+* The only viable measurement theory for psychological measurement is <strong>realism</strong>, which states that:
+ - The measurement attribute exists independently of the researcher measuring it.
+ - The measurement instrument <strong>has the property</strong> that it is sensitive to differences in the attribute in 
+
+* Validity theory can only work within a realist measurement approach if it limits the number of allowable interpretations to: test scores can be interpreted as measures of the attribute. The only way this can be is if the test is able to measure this attribute: validity is now a property of the test.  
+
+## Is Validity Theory Doomed?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
