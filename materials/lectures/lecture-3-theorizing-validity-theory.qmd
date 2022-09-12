@@ -36,7 +36,7 @@ format:
 * Application-Specific Models (1940s-1970s)
   - Criterion Model 
   - Content Model
-  - Construct Validity Model
+  - Construct Model
 * Unified Models of Validity (1970s to Now)
 * Approaches to Validity—Validation Frameworks (1980s to Now)
   - Interpretation / Use Argument 
@@ -188,7 +188,7 @@ format:
 
 * Important to identify and provide support for the weakest assumptions and inferences as they limit the plausibility of a validity argument!
 
-## Source of Validity Evidence 
+## Sources of Validity Evidence 
 
 * Evidence based on test content
 * Evidence based on response processes
@@ -286,7 +286,7 @@ Test X Thought Experiment (Borsboom et al., 2009):
 
 ## Validity as a Function of Truth not Evidence 
 
-> For propositions are not made true by the evidence that exists for them, but by their conformity to the state of affairs in the world, as is evident from the fact that once can have massive amounts of evidence for a false proposition and lack of any evidence for a true one. 
+> For propositions are not made true by the evidence that exists for them, but by their conformity to the state of affairs in the world, as is evident from the fact that one can have massive amounts of evidence for a false proposition and lack of any evidence for a true one. 
 
 Borsboom, et al. (2009)
 

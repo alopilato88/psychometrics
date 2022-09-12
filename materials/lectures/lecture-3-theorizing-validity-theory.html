@@ -7,7 +7,7 @@
 <link href="lecture-3-theorizing-validity-theory_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="lecture-3-theorizing-validity-theory_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="lecture-3-theorizing-validity-theory_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.1.179">
+  <meta name="generator" content="quarto-1.0.38">
 
   <title>Theorizing about Validity Theory</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -18,15 +18,10 @@
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
-    ul.task-list li input[type="checkbox"] {
-      width: 0.8em;
-      margin: 0 0.8em 0.2em -1.6em;
-      vertical-align: middle;
-    }
   </style>
   <link rel="stylesheet" href="lecture-3-theorizing-validity-theory_files/libs/revealjs/dist/theme/quarto.css" id="theme">
   <link rel="stylesheet" href="psych-lecture-style.css">
@@ -367,7 +362,7 @@
 <ul>
 <li>Criterion Model</li>
 <li>Content Model</li>
-<li>Construct Validity Model</li>
+<li>Construct Model</li>
 </ul></li>
 <li>Unified Models of Validity (1970s to Now)</li>
 <li>Approaches to Validity—Validation Frameworks (1980s to Now)
@@ -569,8 +564,8 @@
 <li><p>Important to identify and provide support for the weakest assumptions and inferences as they limit the plausibility of a validity argument!</p></li>
 </ul>
 </section>
-<section id="source-of-validity-evidence" class="slide level2">
-<h2>Source of Validity Evidence</h2>
+<section id="sources-of-validity-evidence" class="slide level2">
+<h2>Sources of Validity Evidence</h2>
 <ul>
 <li>Evidence based on test content</li>
 <li>Evidence based on response processes</li>
@@ -689,7 +684,7 @@
 <section id="validity-as-a-function-of-truth-not-evidence" class="slide level2">
 <h2>Validity as a Function of Truth not Evidence</h2>
 <blockquote>
-<p>For propositions are not made true by the evidence that exists for them, but by their conformity to the state of affairs in the world, as is evident from the fact that once can have massive amounts of evidence for a false proposition and lack of any evidence for a true one.</p>
+<p>For propositions are not made true by the evidence that exists for them, but by their conformity to the state of affairs in the world, as is evident from the fact that one can have massive amounts of evidence for a false proposition and lack of any evidence for a true one.</p>
 </blockquote>
 <p>Borsboom, et al.&nbsp;(2009)</p>
 </section>
@@ -987,8 +982,7 @@
       for (var i=0; i<noterefs.length; i++) {
         const ref = noterefs[i];
         tippyHover(ref, function() {
-          // use id or data attribute instead here
-          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          let href = ref.getAttribute('href');
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);
