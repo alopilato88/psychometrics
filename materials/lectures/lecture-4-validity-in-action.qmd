@@ -1,0 +1,127 @@
+---
+title: "Validity Theory in Action"
+format: 
+  revealjs:
+    theme: [default, psych-lecture-theme.scss] 
+    css: psych-lecture-style.css
+---
+
+## Learning Goals
+
+* Learn how validation is done in practice.
+* Compare and contrast different validity perspectives.
+
+## Validity in Theory
+
+* <strong>Validity</strong> is the degree to which evidence and theory support the interpretations of test scores for proposed uses of tests. 
+
+* <strong>Validation</strong> is the process of accumulating relevant evidence to provide a sound scientific basis for the proposed score interpretations.
+
+## Sources of Validity Evidence
+
+* Evidence based on: 
+  - Content of the test
+  - Response process
+  - Internal structure of the test
+  - Relationships to other variables
+  - Consequences of the test
+  
+## Validity in Practice
+
+* <strong>Validity = Construct Validity</strong>: Construct validity is considered an umbrella term that encompasses all other types of validity (e.g. content and criterion-related validity).
+
+* <strong>Construct Validity</strong>: The extent to which a measurement instrument assesses the hypothesized construct of interest. 
+
+* Establishing different types of validity strengthens the construct validity argument.
+
+## Types of Validity
+
+* Construct Validity
+* Content Validity
+* Criterion-related Validity
+* Convergent & Discriminant Validity
+* Predictive Validity 
+* Incremental Validity
+
+## Validation in Practice: Clark, Smith, & Haynes (2020)
+
+* What are the aims of Clark et al. (2020)?
+
+* Based on the article, how would you characterize Clark et al.’s perspective on validity and validation? Does it fit better with the model of validity outlined by the Standards of Educational and Psychological Testing or the models outlined in the Validity chapter of Scale Development? 
+
+## Validation Strategy
+
+* Establish content validity
+* Establish the psychometric properties of the scale
+* Establish the construct validity: Nomological Network Validity
+* Establish the construct validity: Incremental Validity
+
+## Establish Content Validity
+
+How did they establish content validity?
+
+* <strong>Step 1</strong>: Deductive approach to item writing (83 items generated)
+
+* <strong>Step 2</strong>: Substantive Validity (Removed 13 items)
+  - Proportion of Substantive Agreement & Substantive Validity Coefficient
+
+* <strong>Step 3</strong>: Content Adequacy (Removed 31 items)
+
+* <strong>Step 4</strong>: Exploratory Factor Analysis (Removed 23 items)
+
+## Establish the Psychometric Properties
+
+* Estimated & ensured scale reliabilities were above .80 
+* Used Confirmatory Factor Analysis to test the proposed 4 factor model against competing models. 
+
+## Establish Nomological Network Validity
+
+* Placed workaholism in a network of other related constructs and provided evidence of convergent and discriminant validity.
+
+* <strong>Convergent Validity</strong>: When scores on our focal measure strongly correlate with scores on measures of theoretically related constructs.
+
+* <strong>Discriminant Validity</strong>: When scores on our focal measure do not correlate (or correlate weakly) with scores on measures of theoretically unrelated constructs.
+
+## Establish Incremental Validity
+
+* <strong>Incremental Validity</strong>: The extent to which adding the focal measure to a linear regression model explains additional variance in a criterion variable above and beyond what is explained by measures already included in the model.
+
+## Reframing into an Interpretive Argument
+
+* What interpretations are Clark et al. (2020) making about scores on the MWS?
+
+  - <strong>Theory-Based Inferences</strong>: a score is used to draw conclusions about a test taker’s standing on some trait or construct.
+
+  - <strong>Generalization Inferences</strong>: Inferences from the specific observations being made to a broader universe of observations. 
+  
+  - <strong>Extrapolation Inferences</strong>: Inferences from scores to non-test behaviors.
+
+## Validity Evidence for Theory-Based Inferences
+
+* Evidence based on test content 
+  - Documenting item generation
+  - Substantive agreement analysis
+  - Content adequacy analysis
+* Evidence based on internal structure
+  - EFA & CFA establishing multidimensional structure 
+* Evidence based on relationships with other variables 
+  - Convergent & Discriminant evidence
+  - Criterion-test relationship evidence
+
+## Validity Evidence for Generalization Inferences
+
+* Evidence based on internal structure 
+  - Evidence of internal consistency (coefficient alpha)
+  - What about occasions? 
+
+## Validity Evidence for Extrapolation Inferences
+
+* Evidence based on relationships with other variables
+  - Test-criterion relationship evidence
+
+## Do different perspectives lead to different actions?
+
+* Clark et al. (2020) appear to hold the perspective that construct validity subsumes all other types of validity. Does this change any of the actions taken in the validation process? 
+
+* Pros & Cons of different perspectives? 
+
