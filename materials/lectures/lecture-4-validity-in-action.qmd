@@ -17,6 +17,12 @@ format:
 
 * <strong>Validation</strong> is the process of accumulating relevant evidence to provide a sound scientific basis for the proposed score interpretations.
 
+## Validation Strategy: Interpretation / Use Argument
+
+* Specify the test claims / interpretations and determine the inferences and assumptions being made.
+
+* Challenge your inferences / assumptions through logical and empirical methods to determine if the claims can be supported. 
+
 ## Sources of Validity Evidence
 
 * Evidence based on: 
