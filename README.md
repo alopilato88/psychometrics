@@ -25,7 +25,7 @@ By the end of this course, you will:
 | 2 | [Scale Development with Noncognitive Items](https://alopilato88.github.io/psychometrics/materials/lectures/lecture-2-scale-design.html)   | [Scale Development](https://alopilato88.github.io/psychometrics/materials/exercises/lecture-2/lecture-2-exercises.html) |
 | 3 | Labor Day               | |
 | 4 | [Theorizing About Validity Theory](https://alopilato88.github.io/psychometrics/materials/lectures/lecture-3-theorizing-validity-theory.html) | |
-| 5 | [Validity Theory in Action]() | |
+| 5 | [Validity Theory in Action](https://alopilato88.github.io/psychometrics/materials/lectures/lecture-4-validity-in-action.html) | |
 | 6 | [Rembering the Classics: Classical Test Theory]() | |
 | 7 | [Reliability Theory: Generalizability Theory]() | |
 | 8 | [Reliability Theory: Advanced]() | |
