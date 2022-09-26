@@ -6,23 +6,91 @@ format:
     css: psych-lecture-style.css
 ---
 
-## Quarto
-
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
-
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
-
+## Load necessary libraries
 ```{r}
-1 + 1
+#| message: false
+
+library(tidyr)
+library(dplyr)
+library(tibble)
+library(ggplot2)
+library(psych)
+library(readr)
+library(Hmisc)
 ```
 
-You can add options to executable code like this 
+## Read in Lecture 5 data
+
+To explore the data, you first need to read it from the class website: 
 
 ```{r}
-#| echo: false
-2 * 2
+#| message: false
+
+data_url <- "https://alopilato88.github.io/psychometrics/materials/data/lecture-5-exercise-data.csv"
+
+scale_data <- readr::read_csv(data_url)
 ```
 
-The `echo: false` option disables the printing of code (only output is displayed).
+## Item Statistics 
+
+1. Using the ideas you learned in the previous lectures, explore `scale_data` and produce item level statistics (e.g. means, standard deviations) and response distributions (histogram of item responses):
+
+```{r}
+# Write R code below
+```
+
+## Measure Equivalence Models 
+
+2. Do the items seem to satisfy the assumptions for parallel, tau-equivalent, or congeneric measures? Provide your justification. No need to conduct any statistical tests, just eye ball the numbers. 
+
+```{r}
+# R Code here
+```
+
+## Reliability 
+
+3. Code the formula for Coefficient Alpha, then check your answer using `psych::alpha`:
+
+```{r}
+# R Code here
+```
+
+4. Write your own boostrap function for Coefficient Alpha. Feel free to use `psych::alpha` to calculate alpha:
+
+```{r}
+# R Code here
+```
+
+5. Use your boostrap function to calculate a 95% confidence interval for Alpha. How does it compare to the CIs produced by `psych::alpha`?
+
+```{r}
+# R Code here
+```
+
+## Standard Error of Measurement (SEM)
+
+6. For each respondent, calculate their mean response to all of the items and save it as `SCALE_MEAN` in your `scale_data` object:
+
+```{r}
+# R Code here
+```
+
+7. Calculate the SEM for your scale score, `SCALE_MEAN`:
+
+```{r}
+# R Code here
+```
+
+8. Using the formula for the SEM of a mean score, calculate the lower and upper CI bounds for each respondent: 
+
+```{r}
+# R Code here
+```
+
+## Interpretation 
+
+9. Use all of the information you learned from the above analyses to provide an interpretation of the scale scores reliability. You can talk about the scale in whatever research context works for you (e.g. maybe it is a scale measuring workaholism or job satisfaction):
+
+
+
+
