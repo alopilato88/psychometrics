@@ -218,7 +218,7 @@ $$\rho_{XX'}=\frac{\sigma^2_{T_{j}}}{\sigma^2_{X_{j}}}$$
 
 ## The Covariance Between Observed Score and True Score
 
-$$\sigma_{XT}=E(XT)-E(X)E(T)=\underbrace{E(T^2)-E(T)^2}_{\sigma^2_{T_{j}}}+\underbrace{E(Te)+E(T)E(e)}_{\sigma_{Te=0}}$$
+$$\sigma_{XT}=E(XT)-E(X)E(T)=\underbrace{E(T^2)-E(T)^2}_{\sigma^2_{T_{j}}}+\underbrace{E(Te)-E(T)E(e)}_{\sigma_{Te=0}}$$
 
 ## The Reliability Index
 
