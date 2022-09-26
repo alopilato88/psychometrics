@@ -50,6 +50,7 @@ $$T_{ij} \equiv E(X_{ijk}) = \int{X_{ijk}F^{'}_{X}(X_{ijk})dx}$$
 * Error in CTT, $e_{ijk}$, is defined as the deviation of a respondent's observed score from their true score: 
 
 $$e_{ijk} \equiv X_{ijk}-T_{ij}$$
+
 * Error can be thought of as a composite of many different factors that were not controlled by the measurement procedure.
 
 ## Within-Respondent Random Error Mean and Variance
