@@ -7,9 +7,9 @@
 <link href="lecture-2-scale-design_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="lecture-2-scale-design_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="lecture-2-scale-design_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.0.38">
+  <meta name="generator" content="quarto-1.1.179">
 
-  <title>Scale Design with Noncognitive Items</title>
+  <title>Scale Development with Noncognitive Items</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -18,10 +18,15 @@
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
   </style>
   <link rel="stylesheet" href="lecture-2-scale-design_files/libs/revealjs/dist/theme/quarto.css" id="theme">
   <link rel="stylesheet" href="psych-lecture-style.css">
@@ -319,7 +324,7 @@
     <div class="slides">
 
 <section id="title-slide" class="center">
-  <h1 class="title">Scale Design with Noncognitive Items</h1>
+  <h1 class="title">Scale Development with Noncognitive Items</h1>
   <p class="subtitle">An Introduction</p>
 </section>
 
@@ -439,8 +444,8 @@
 <h1>Elements of Scale Design</h1>
 
 </section>
-<section id="resonding-to-items-is-tiring" class="slide level2">
-<h2>Resonding to Items is Tiring</h2>
+<section id="responding-to-items-is-tiring" class="slide level2">
+<h2>Responding to Items is Tiring</h2>
 <blockquote>
 <p>“Survey respondents are often asked to expend a great deal of cognitive effort for little or no apparent reward.”</p>
 </blockquote>
@@ -579,7 +584,7 @@
 <li><p>Use an ANOVA to compare the definitional correspondence ratings to the orbital correspondence ratings and retain only those items which have statistically higher average definitional correspondence values compared to the average orbital correspondence ratings.</p></li>
 </ol>
 </div>
-<aside><ol class="aside-footnotes"><li id="fn1" role="doc-endnote"><p>Standards for Educational and Psychological Testing (2014).</p></li><li id="fn2" role="doc-endnote"><p>Colquitt et al (2019). Content validation guidelines: Evaluation criteria for definitional correspondence and definitional distinctiveness.</p></li></ol></aside></section></section>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>Standards for Educational and Psychological Testing (2014).</p></li><li id="fn2"><p>Colquitt et al (2019). Content validation guidelines: Evaluation criteria for definitional correspondence and definitional distinctiveness.</p></li></ol></aside></section></section>
 <section>
 <section id="piloting-your-scale" class="title-slide slide level1 center">
 <h1>Piloting your Scale</h1>
@@ -659,7 +664,7 @@
 </ul></li>
 </ul>
 </div>
-<aside><ol class="aside-footnotes"><li id="fn3" role="doc-endnote"><p>Standards for Educational and Psychological Testing (2014).</p></li></ol></aside></section>
+<aside><ol class="aside-footnotes"><li id="fn3"><p>Standards for Educational and Psychological Testing (2014).</p></li></ol></aside></section>
 <section id="finalize-your-scale-and-repeat" class="slide level2">
 <h2>Finalize Your Scale and Repeat!</h2>
 <ul>
@@ -951,7 +956,8 @@
       for (var i=0; i<noterefs.length; i++) {
         const ref = noterefs[i];
         tippyHover(ref, function() {
-          let href = ref.getAttribute('href');
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);

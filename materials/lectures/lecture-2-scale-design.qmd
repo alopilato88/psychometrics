@@ -92,7 +92,7 @@ Do you think they are well designed items?
 
 # Elements of Scale Design
 
-## Resonding to Items is Tiring
+## Responding to Items is Tiring
 
 > "Survey respondents are often asked to expend a great deal of cognitive effort for little or no apparent reward."
 
