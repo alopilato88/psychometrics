@@ -1,0 +1,584 @@
+---
+title: "Remembering the Classics"
+subtitle: "An Introduction to Classical Test Theory"
+format: 
+  revealjs:
+    theme: [default, psych-lecture-theme.scss] 
+    css: psych-lecture-style.css
+---
+
+## Overview
+
+```{r echo=FALSE}
+library(dplyr)
+library(knitr)
+library(kableExtra)
+library(ggplot2)
+library(tibble)
+library(psych)
+```
+
+* The statistical theory underlying CTT
+* CTT's definition of reliability
+* Estimates of different types of reliability
+
+## The Foundation of CTT
+
+$$X_{ijk} = T_{ij} + e_{ijk}$$
+
+* $X_{ijk}:$ Observed score for Person i, Item j, and Replication k
+* $T_{ij} = \text{True Score}$ True score for Person i and Item j
+* $e_{ijk} = \text{Random Error}$ Error score for Person i, Item j, and Replication k
+
+## Respondent's Propensity Distribution
+
+* To motivate the definition of true score and error, Lord & Novick (1968) introduce the idea of a respondent's propensity distribution: 
+
+$$F_{X}(X_{ijk}) = p(x_{ijk} \leq X_{ijk})$$
+
+* <strong>Propensity distribution</strong> is a hypothetical cumulative distribution function for a fixed person, i, and test (or item), j, where independent measurements, k, can be repeatedly sampled from over time without affecting the future (or past) within-respondent measurements (e.g. no memory or practice effects). 
+
+
+## True Score as an Expectation
+
+* The ith respondent's true score for item j is then defined as the expectation (mean) of their propensity distribution, which means the true score is constant within a respondent:
+
+$$T_{ij} \equiv E(X_{ijk}) = \int{X_{ijk}F^{'}_{X}(X_{ijk})dx}$$
+
+## Random Error as a Centered Random Variable 
+
+* Error in CTT, $e_{ijk}$, is defined as the deviation of a respondent's observed score from their true score: 
+
+$$e_{ijk} \equiv X_{ijk}-T_{ij}$$
+* Error can be thought of as a composite of many different factors that were not controlled by the measurement procedure.
+
+## Within-Respondent Random Error Mean and Variance
+
+* Defining error as a deviation from the true score ensures that the expectation or mean of $e_{ijk}$ will equal 0 and that its variance will equal the variance of $X_{ijk}$ (the variance of the respondent's propensity distribution):
+
+$$E(e_{ijk})= E(X_{ijk} - T_{ij})=E(X_{ijk}) - T_{ij} = 0$$
+
+$$E(e_{ijk}^2) - E(e_{ijk})^2=E(e_{ijk}^2)=E((X_{ijk}-T_{ij})^2)=\sigma^2_{X_{ij}}$$
+
+## Individual Respondent's Propensity Distribution 
+
+```{r}
+ggplot2::ggplot(
+  NULL,
+  ggplot2::aes(
+    c(
+      qnorm(.0013, mean = 5, sd = 3),
+      qnorm(1 - .0013, mean = 5, sd = 3)
+    )
+  )
+) + 
+  ggplot2::geom_area(
+    stat = "function",
+    fun = dnorm,
+    args = list(mean = 5, sd = 3),
+    fill = "#A6D1E6",
+    color = "#3D3C42",
+    xlim = c(qnorm(.0013, mean = 5, sd = 3), qnorm(.999, mean = 5, sd = 3))
+  ) + 
+    ggplot2::theme(
+    plot.background = element_rect(fill = "#FEFBF6", color = "#FEFBF6"),
+    panel.background = element_rect(fill = "#FEFBF6"),
+    axis.line.x = element_line(colour = "#3D3C42"),
+    axis.ticks.y = ggplot2::element_line(size = 0),
+    axis.text.y = ggplot2::element_blank(),
+    axis.title.y = ggplot2::element_blank(),
+    panel.grid.minor = element_line(colour = "#FEFBF6"),
+    panel.grid.major = element_line(colour = "#FEFBF6")
+  ) + 
+  ggplot2::geom_vline(
+    xintercept = 5,
+    color = "#7F5283",
+    size = 2
+  ) + 
+  ggplot2::labs(
+    x = "Response Value",
+    title = "Mean = 5, SD = 3"
+  )
+```
+
+## Within-Respondent CTT Assumptions 
+
+1. The propensity distribution, $F_{x}()$, has a finite mean and variance, but does not need to equal any parametric distribution (e.g. normal distribution). 
+
+2. Observed item (test) responses are sampled randomly and independently from the propensity distribution, $F_{x}()$--identical the independent and identically distributed assumption made in statistics. 
+
+## Propensity Distributions for Multiple Respondents 
+
+```{r}
+n_resp <- 9
+n_time <- 1000
+set.seed(32)
+n_resp_scale <- 7
+for(i in 1:n_resp) {
+  
+  p_vec <- runif(n = (n_resp_scale))
+  p_vec <- p_vec / sum(p_vec)
+
+  x <- sample(1:n_resp_scale, size = n_time, prob = p_vec, replace = TRUE)
+  
+  if(i == 1) {
+    data <- 
+      tibble::tibble(
+        ID = 1,
+        X = x,
+        T_SCORE = sum(p_vec*1:n_resp_scale)
+      ) |>
+      dplyr::mutate(
+        T2 = sum(p_vec*(1:n_resp_scale)^2),
+        VAR = T2 - T_SCORE^2
+      )
+  } else {
+    data <- 
+      data |>
+      dplyr::bind_rows(
+        tibble::tibble(
+          ID = i,
+          X = x,
+          T_SCORE = sum(p_vec*1:n_resp_scale)
+        ) |>
+          dplyr::mutate(
+            T2 = sum(p_vec*(1:n_resp_scale)^2),
+            VAR = T2 - T_SCORE^2
+          )
+      )
+  }
+}
+
+ggplot2::ggplot(
+  data |>
+    dplyr::mutate(
+      ID = paste0("Resp. ", ID),
+      T_SCORE = round(T_SCORE, 2),
+      ID_2 = paste0("True Score: ", T_SCORE, " / Error Variance: ", round(VAR, 2))
+    ),
+  ggplot2::aes(
+    x = X
+  )
+) + 
+  ggplot2::geom_histogram(
+    fill = "#A6D1E6",
+    color = "#3D3C42"
+  ) +
+  ggplot2::facet_wrap(ID + ID_2 ~ ., scales = "free_y") + 
+      ggplot2::theme(
+    plot.background = element_rect(fill = "#FEFBF6", color = "#FEFBF6"),
+    panel.background = element_rect(fill = "#FEFBF6"),
+    axis.line.x = element_line(colour = "#3D3C42"),
+    axis.ticks.y = ggplot2::element_line(size = 0),
+    axis.text.y = ggplot2::element_blank(),
+    axis.title.y = ggplot2::element_blank(),
+    panel.grid.minor = element_line(colour = "#FEFBF6"),
+    panel.grid.major = element_line(colour = "#FEFBF6")
+  ) +
+  labs(
+    x = "Response"
+  )
+```
+
+## Applying CTT Across Respondents 
+
+* Rarely will we have a series of independent measurements on the same person at many points in time for many different people, instead we typically have one observed measurement on many different people at a point in time.
+
+* Two things happen when we move to analyzing observed scores across respondents: 
+  - True Score and error are confounded (two unknowns).
+  - True Scores differ across respondents, which adds to the observed score variance across respondents.
+
+## Population Properties of True Score and Error
+
+1. The population mean of errors across respondents is equal to 0.
+2. The population covariance between true score and error is equal to 0.
+3. The population covariance between error scores from different tests / items is equal to 0.
+
+## Population Mean of Observed Scores
+
+* Population mean of observed scores is equal to the population mean of true scores:
+
+$$X_{ij} = T_{ij}+e_{ij}$$
+$$E(X_{ij})=E(T_{ij}+e_{ij})= E(T_{ij})+E(e_{ij})=E(T_{ij})=\mu_{T_{j}}$$
+
+## Population Variance of Observed Scores
+
+* Population variance of observed scores is equal to the population variance of true scores (across respondents) and the population error variance, which is the average of the within-individual error variances: 
+
+$$Var(X_{ij})=Var(T_{ij})+Var(e_{ij})=\sigma^2_{T_{j}}+\sigma^2_{e_{j}}$$
+
+$$\sigma^2_{e_{j}}=E(\sigma^2_{x_{ij}})$$
+
+## CTT Definition of Reliability
+
+* <strong>Reliability</strong> can be defined as the proportion of observed score variance that is due to true score variance: 
+
+$$\rho_{XX'}=\frac{\sigma^2_{T_{j}}}{\sigma^2_{X_{j}}}$$
+
+## The Covariance Between Observed Score and True Score
+
+$$\sigma_{XT}=E(XT)-E(X)E(T)=\underbrace{E(T^2)-E(T)^2}_{\sigma^2_{T_{j}}}+\underbrace{E(Te)+E(T)E(e)}_{\sigma_{Te=0}}$$
+
+## The Reliability Index
+
+* <strong>The Reliability Index</strong> is the population correlation between a respondent's true score and observed score:
+
+$$\text{Reliability Index: }\rho_{XT}=\frac{\sigma_{XT}}{\sigma_{X}\sigma_{T}}=\frac{\sigma^2_{T}}{\sigma_{X}\sigma_{T}}=\frac{\sigma_{T}}{\sigma_{X}}$$
+
+$$\text{Reliability}: \rho^2_{XT}=\frac{\sigma^2_{T}}{\sigma^2_X}=\rho_{XX'}$$
+
+## Making Reliability Less Theoretical
+
+* Propensity Distribution, True Score, Error, and Reliability are all theoretical and unobservable. 
+
+* We need a way to turn the concept of Reliability into something we can estimate. This is where the idea of parallel, tau-equivalent, and congeneric measures enters: <strong>Models of Measure Equivalence</strong>.
+
+## Models of Measure Equivalence {.smaller}
+
+| Model | Assumptions | Model Implication |
+|:-----:|:-----------:|:------:|
+| Parallel | Equal True Scores, Equal Error Variance | Equal observed means, variances, and covariances |
+| Tau-Equivalent | Equal True Scores | Equal observed means and covariances |
+| Essentially Tau-Equivalent | True Scores differ  by a constant | Equal observed covariances |
+| Congeneric | True scores linearly related | Observed means, variances, and covariances unequal |
+
+## Parallel Measures and Observed Means
+
+* Parallel measures are assumed to have the same true score and thus the same observed means:
+
+$$X_{i1}=T_{i} + e_{i1}$$
+$$X_{i2}=T_{i}+e_{i2}$$
+
+$$E(X_{i1})=E(X_{i2})=E(T_{i})=\mu_T$$
+
+## Parallel Measures and Observed Variances
+
+* Parallel measures are assumed to have the same error (and true score) variance and thus the same observed score variance: 
+
+$$E(X_{ij}^2)-E(X_{ij})^2=\sigma^2_{T_{j}}+\sigma^2_{e_{j}}$$
+
+## Parallel Meausres and Observed Covariances
+
+* Two or more parallel measures only covary because they share the same true score and the observed covariances are equal to true score variance:  
+
+$$\sigma_{X_{12}}=E(X_{i1}X_{i2})-E(X_{i1})E(X_{i2})$$
+$$E(T_{i}T_{i})-E(T_{i})E(T_{i})$$
+$$E(T_{i}^2)-E(T_{i})^2=\sigma_{T}^2$$
+
+## Reliability as the Correlation between Parallel Measures
+
+* The correlation between two parallel measures is equal to the theoretical definition of reliability: 
+
+$$\rho_{X_{1}X_{2}}=\frac{\sigma_{X_{1}X_{2}}}{\sigma_{X_{1}}\sigma_{X_{2}}}= \frac{\sigma^2_{T}}{\sigma^2_{X}}=\rho_{XX'}$$
+
+## Estimating Reliability 
+
+* Thinking of reliability as a correlation between two (or more) parallel measures tells us a few things:
+  - We can use the correlation coefficient to estimate reliability. 
+  - We need less restrictive models as it is unlikely we will ever satisfy the assumptions made by parallel measures.
+  - We need slightly different methods for estimating reliability depending on the design of the measurement procedure (e.g. are test scores multiple items, measurements across time points, etc.).
+
+## Types of Reliability 
+
+* Random measurement error can occur because of different facets of the measurement procedure such as the items used on a test, the measurement occasion, the form of the test, the raters providing a rating. 
+
+* To estimate the effects these different facets have on reliability, CTT requires different types of reliability: 
+  - Test-Retest Reliability
+  - Alternate Forms Reliability
+  - Internal Consistency Reliability
+
+## Scoring Procedure and Interpretation
+
+* For each of the following types of reliability, we will consider a test score to be equivalent to the average response to a survey scale that measures a psychological trait like Job Satisfaction (e.g. the mean of a respondent's responses to K items).
+
+* We will interpret each type of reliability type as a sample estimate of the reliability of the scale score (scale average response). 
+  
+## Test-Retest Reliability 
+
+* Test-retest reliability is concerned with the stability of test responses over multiple (or at least two) time points. In this measurement procedure, we are concerned with error that can arise due to multiple testing occasions.  
+
+* <strong>Estimation Procedure</strong>: 
+  - Administer the test at Time Point 1 and score it
+  - Administer the exact same test to the same sample at Time Point 2 and score it
+  - Correlate the scores from the two time points (Coefficient of Stability)
+
+## Factors Affecting Test-Retest Reliability
+
+* Sample heterogeneity 
+* Length of time between test administration (change in true score vs error)
+* Practice / Memory Effects
+* Sensitization Effects
+* Floor and Ceiling Effects
+
+## Alternate Forms Reliability 
+
+* Alternate forms reliability is concerned with the stability of test responses over different forms of the test. In this measurement procedure, we are concerned with error that can arise due to multiple forms. 
+
+* <strong>Estimation Procedure</strong>:
+  - Administer test form 1 and score it
+  - Administer test form 2 to the same sample and score it
+  - Correlate the scores from the two forms (Coefficient of Equivalence)
+
+## Factors Affecting Alternate Forms Reliability 
+
+* Sample heterogeneity 
+* Differences in form content
+* Differences in item difficulty or intensity 
+* Differences in item complexity 
+
+## Internal Consistency Reliability 
+
+* Internal consistency reliability is concerned with the stability of test responses over different items within the same test. In this measurement procedure, we are concerned with error that can arise due to multiple items on the same test. 
+
+* <strong>Estimation Procedure</strong>:
+  - Administer the test
+  - Split the test up according to some procedure (even / odd split) and score it
+  - Correlate the split (Split Half Reliability)
+
+## Issues with Split Half Reliability
+
+* No defensible way to make the split (odd / even vs. random split, etc.)
+* No unique estimate
+* What do we do? Can we somehow determine the average of all split half reliability?
+
+## Enter Coefficient Alpha
+
+* Popularized by Cronbach (1951), Coefficient Alpha is equivalent to the average of all possible split half coefficients.
+
+$$\frac{k}{k-1}(1-\frac{\sum{\sigma^2_{i}}}{\sum{\sigma_{ij}}+\sum{\sigma^2_{i}}})$$
+
+## Visualizing Internal Consistency 
+
+```{r}
+set.seed(534)
+
+# N respondents and items
+n_resp <- 5
+n_item <- 6
+
+# Resp and item variance
+var_resp <- 2
+var_item <- 1
+
+# Levels of reliability (alpha)
+alpha_high <- .99
+alpha_med <- .70
+alpha_low <- .10
+
+# Corresponding error variance
+var_error_high <- (n_item * var_resp) * ((1 /alpha_low) - 1)
+var_error_med <- (n_item * var_resp) * ((1 /alpha_med) - 1)
+var_error_low <- (n_item * var_resp) * ((1 /alpha_high) - 1)
+
+# ID vectors
+id_resp <- rep(1:n_resp, each = n_item)
+id_item <- rep(1:n_item, n_resp)
+
+# Random effects design matrices
+Z_resp <- model.matrix(~as.factor(id_resp) - 1)
+Z_item <- model.matrix(~as.factor(id_item) - 1)
+Z <- cbind(Z_resp, Z_item)
+
+# Random effects
+re_item <- rnorm(n_item, mean = 0, sd = sqrt(var_item))
+re_resp <- rnorm(n_resp, mean = 0, sd = sqrt(var_resp))
+rand_effect <- c(re_resp, re_item)
+
+error_low <- rnorm(n_resp*n_item, mean = 0, sd = sqrt(var_error_low))
+error_med <- rnorm(n_resp*n_item, mean = 0, sd = sqrt(var_error_med))
+error_high <- rnorm(n_resp*n_item, mean = 0, sd = sqrt(var_error_high))
+
+# Realized responses
+response_low <- 3 + Z%*%rand_effect + error_low
+response_med <- 3 + Z%*%rand_effect + error_med
+response_high <- 3 + Z%*%rand_effect + error_high
+
+# Data
+data <-
+  tibble::tibble(
+    ID_RESP = as.factor(id_resp),
+    ID_ITEM = as.factor(id_item),
+    RESPONSE_ALPHA_HIGH = response_low,
+    RESPONSE_ALPHA_MED = response_med,
+    RESPONSE_ALPHA_LOW = response_high
+  )
+
+data_long <- 
+  data |>
+  tidyr::pivot_longer(
+    cols = c(RESPONSE_ALPHA_HIGH, RESPONSE_ALPHA_MED, RESPONSE_ALPHA_LOW),
+    names_to = "ALPHA_LEVEL",
+    values_to = "RESPONSE_VALUE"
+  ) |>
+  dplyr::mutate(
+    ID_RESP = paste0("Resp. ", ID_RESP),
+    REL_LEVEL = dplyr::case_when(
+      ALPHA_LEVEL == "RESPONSE_ALPHA_HIGH" ~ "High Reliability",
+      ALPHA_LEVEL == "RESPONSE_ALPHA_LOW" ~ "Low Reliability",
+      ALPHA_LEVEL == "RESPONSE_ALPHA_MED" ~ "Moderate Reliability"
+    ),
+    REL_LEVEL = factor(
+      REL_LEVEL,
+      ordered = TRUE,
+      levels = c("High Reliability", "Moderate Reliability", "Low Reliability")
+    )
+  )
+
+
+ggplot2::ggplot(
+  data_long,
+  ggplot2::aes(
+    x = ID_ITEM,
+    y = RESPONSE_VALUE
+  )
+) + ggplot2::geom_point(
+  fill = "#A6D1E6",
+  color = "#3D3C42",
+  size = 4,
+  shape = 21,
+  stroke = 1
+) +
+  ggplot2::facet_grid(
+    REL_LEVEL ~ ID_RESP
+  ) +
+  ggplot2::theme(
+    plot.background = element_rect(fill = "#FEFBF6", color = "#FEFBF6"),
+    panel.background = element_rect(fill = "#FEFBF6", color = "#3D3C42"),
+    axis.line.x = element_line(colour = "#3D3C42"),
+    axis.ticks.y = ggplot2::element_line(size = 0),
+    axis.text.y = ggplot2::element_blank(),
+    axis.title.y = ggplot2::element_blank(),
+    panel.grid.minor = ggplot2::element_blank(),
+    panel.grid.major = ggplot2::element_blank()
+  ) +
+  ggplot2::labs(
+    x = "Items"
+  )
+```
+
+## Comments on Coefficient Alpha
+
+* Coefficient Alpha increases as the level of covariation among the items increases, but careful not to artificially inflate covariances by including items that are too similar. 
+
+* Coefficient Alpha increases as you include more items up to a point (~19 items). 
+
+* Coefficient Alpha should not be interpreted as a measure of unidimensionality. 
+
+* If items are not at least essentially tau-equivalent, then Coefficient Alpha will be an underestimate of reliability.
+
+## Factors Affecting Coefficient Alpha
+
+* Sample heterogeneity 
+
+* Item covariance levels 
+
+* Item type--objective vs subjective
+
+* Test standardization 
+
+* Test speededness 
+
+## Acceptable Values of Reliability Estimates 
+
+* Generally, values greater than equal to .80 are thought of as good, but this very subjective. It would be better to benchmark your reliability estimates against similar, published scales. 
+
+## A Computational Example {.smaller}
+
+```{r echo=FALSE, warning=FALSE}
+# Generate 4 continuous item responses using a single latent variable
+set.seed(59324)
+n <- 400
+lv <- rnorm(n)
+x1 <- .7*lv + rnorm(n, sd = sqrt(1 - var(.7*lv)))
+x2 <- .7*lv + rnorm(n, sd = sqrt(1 - var(.7*lv)))
+x3 <- .7*lv + rnorm(n, sd = sqrt(1 - var(.7*lv)))
+x4 <- .7*lv + rnorm(n, sd = sqrt(1 - var(.7*lv)))
+data <- tibble::tibble(
+  x1 = x1, 
+  x2 = x2, 
+  x3 = x3, 
+  x4 = x4
+)
+```
+
+```{r, echo=TRUE, warning=FALSE}
+set.seed(23452)
+alpha_est <- psych::alpha(data)
+alpha_est_vec <- numeric()
+
+for(i in 1:500) {
+  sample_index <- sample(1:nrow(data), size = nrow(data), replace = TRUE)
+  data_resample <- data[sample_index, ]
+  alpha_bs <- psych::alpha(data_resample)
+  alpha_bs <- alpha_bs$total$raw_alpha
+  alpha_est_vec <- c(alpha_est_vec, alpha_bs)
+}
+```
+
+```{r, echo=TRUE}
+# Coefficient Alpha
+a_est_round <- alpha_est$total$raw_alpha |> round(3)
+# SD of Bootstrap Distribution
+sd_alpha_bs <- sd(alpha_est_vec)
+# Lower Bound 
+a_lower <- (alpha_est$total$raw_alpha - sd_alpha_bs * qnorm(.975)) |> round(3)
+# Upper Bound 
+a_upper <- (alpha_est$total$raw_alpha + sd_alpha_bs * qnorm(.975)) |> round(3)
+```
+
+```{r}
+tibble::tibble(
+  Alpha = a_est_round,
+  Lower = a_lower,
+  Upper = a_upper
+)
+```
+
+## Coefficient Alpha Bootstrap Distribution
+
+```{r, warning=FALSE}
+ggplot2::ggplot(
+  data <- tibble::tibble(ALPHA = alpha_est_vec),
+  ggplot2::aes(
+    x = ALPHA
+  )
+) + 
+  ggplot2::geom_histogram(
+    fill = "#A6D1E6",
+    color = "#3D3C42"
+  ) +
+      ggplot2::theme(
+    plot.background = element_rect(fill = "#FEFBF6", color = "#FEFBF6"),
+    panel.background = element_rect(fill = "#FEFBF6"),
+    axis.line.x = element_line(colour = "#3D3C42"),
+    axis.ticks.y = ggplot2::element_line(size = 0),
+    axis.text.y = ggplot2::element_blank(),
+    axis.title.y = ggplot2::element_blank(),
+    panel.grid.minor = element_line(colour = "#FEFBF6"),
+    panel.grid.major = element_line(colour = "#FEFBF6")
+  ) +
+  labs(
+    x = "Bootstrapped Alpha"
+  )
+```
+
+## The Standard Error of Measurement 
+
+* The SEM is the standard deviation of an individual's observed scores around their true score--the standard deviation of a respondent's propensity distribution. 
+
+* To estimate the SEM, however, we use $\sigma^2_e$ which is the propensity distribution SD averaged across all respondents:   
+
+$$SEM = \sigma^2_{e}=\sigma^2_{x}\sqrt{1-\rho_{xx'}}$$
+
+## Factors Affecting the SEM
+
+* Estimated sample reliability coefficient
+* Sample standard deviation of the scale
+
+## Using the SEM 
+
+* If you are willing to assume that random error is normally distributed (something we have not done until now), then you can use the standard normal distribution and the SEM to create confidence intervals around observed scale scores: 
+
+$$X\pm\sigma_{x}\sqrt{1-\rho_{xx'}} \times \Phi(.975)$$
+
+
