@@ -347,6 +347,12 @@ $$\rho_{X_{1}X_{2}}=\frac{\sigma_{X_{1}X_{2}}}{\sigma_{X_{1}}\sigma_{X_{2}}}= \f
 
 $$\frac{k}{k-1}(1-\frac{\sum{\sigma^2_{i}}}{\sum{\sigma_{ij}}+\sum{\sigma^2_{i}}})$$
 
+## Using Correlations Instead of Covariances
+
+* (Standardized) Coefficient Alpha can also be defined as the average of all inter-item correlations within a scale "stepped-up" by the Spearman-Brown Prophecy formula: 
+
+$$\alpha=\frac{k\bar{r}_{xx'}}{1 +(k-1)\bar{r}_{xx'}}$$
+
 ## Visualizing Internal Consistency 
 
 ```{r}
@@ -575,10 +581,30 @@ $$SEM = \sigma^2_{e}=\sigma^2_{x}\sqrt{1-\rho_{xx'}}$$
 * Estimated sample reliability coefficient
 * Sample standard deviation of the scale
 
-## Using the SEM 
+## Using the SEM for a Sum Score
 
 * If you are willing to assume that random error is normally distributed (something we have not done until now), then you can use the standard normal distribution and the SEM to create confidence intervals around observed scale scores: 
 
 $$X\pm\sigma_{x}\sqrt{1-\rho_{xx'}} \times \Phi(.975)$$
 
+## Using the SEM for a Mean Score
 
+* If your test scoring procedure involves computing the mean score (like ours) instead of sum score, then you need to correct the standard error of measurement by a factor of $k$:
+
+$$\frac{\sigma_{x}\sqrt{1-\rho_{xx'}}}{k}$$
+
+## What About More Complicated Designs?
+
+* Test-Retest and Alternate Forms
+  - Test Form x Occasion Measurement Design 
+* Raters and Items 
+  - Raters x Items Measurement Design
+* CTT struggles with complicated measurement designs, which is why we need Generalizability Theory!
+
+## Readings Next Week 
+
+* Chapter 9 in Measurement Theory and Applications in the Social Sciences
+  - Read the section on Measures of Interrater Reliability
+* Chapter 10 in Measurement Theory and Applications in the Social Sciences
+* Shavelson et al (1989). Generalizability Theory.
+* Chapter 4 in Handbook of Statistics Vol. 26
