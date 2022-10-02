@@ -55,14 +55,14 @@ ni <- 10
 nr <- 10
 
 # Set variance component parameters 
-var_person <- 1
+var_person <- 20
 g_coef <- .40
 d_coef <- .30
 
 # Proportion of relative and absolute error made up by:
 # pi, pr, pri for relative and i, r, and ir for absolute
-rel_error_prop <- c(.05, .75, .20)
-abs_resid_error_prop <- c(.15, .80, .05)
+rel_error_prop <- c(.15, .65, .20)
+abs_resid_error_prop <- c(.15, .70, .15)
 
 # Calculate error variances
 rel_error <- (var_person*(1 - g_coef)) / (g_coef)
@@ -116,7 +116,7 @@ re_item <- rnorm(ni, mean = 0, sd = sqrt(var_item))
 re_person_rater <- rnorm(np*nr, mean = 0, sd = sqrt(var_per_rater))
 re_person_item <- rnorm(np*ni, mean = 0, sd = sqrt(var_per_item))
 re_item_rater <- rnorm(nr*ni, mean = 0, sd = sqrt(var_rater_item))
-re_residual <- rnorm(np*ni, mean = 0, sd = sqrt(var_residual))
+re_residual <- rnorm(np*ni*nr, mean = 0, sd = sqrt(var_residual))
 
 # Generate outcome 
 y <- 4 + Z%*%c(re_person, re_item, re_rater, re_person_item, re_person_rater, re_item_rater) + re_residual
@@ -131,5 +131,11 @@ data_e2 <-
   )
 
 # Check simulation data
-mod_e1 <- lme4::lmer(RESPONSE ~ 1 + (1 | RESP_ID) + (1 | ITEM_ID), 
-                     data = data_e1)
+mod_e2 <- lme4::lmer(RESPONSE ~ 1 + (1 | RESP_ID) + (1 | ITEM_ID) + (1 | RATER_ID) +
+                       (1 | RESP_ID:ITEM_ID) + (1 | RESP_ID:RATER_ID) + 
+                       (1 | RATER_ID:ITEM_ID), 
+                     data = data_e2)
+
+# write data
+write.csv(data_e1, "lecture-6-example-1-data.csv", row.names = FALSE)
+write.csv(data_e2, "lecture-6-example-2-data.csv", row.names = FALSE)
