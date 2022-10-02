@@ -80,7 +80,7 @@ var_rater_item <- abs_resid_error*abs_resid_error_prop[3]
 
 # Create random effect id factors
 id_person <- rep(1:np, each = ni*nr)
-id_item <- rep(1:ni, each = np, nr)
+id_item <- rep(1:ni, each = nr, np)
 id_rater <- rep(1:nr, np*ni)
 
 # Create the random effects design matrix 
