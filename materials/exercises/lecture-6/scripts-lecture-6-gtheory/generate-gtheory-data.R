@@ -50,9 +50,9 @@ mod_e1 <- lme4::lmer(RESPONSE ~ 1 + (1 | RESP_ID) + (1 | ITEM_ID),
 # --- Example 2 - Person x Rater x Item --- # 
 
 # N of people and items
-np <- 2
-ni <- 2
-nr <- 2
+np <- 100
+ni <- 10
+nr <- 10
 
 # Set variance component parameters 
 var_person <- 1
@@ -115,16 +115,18 @@ re_rater <- rnorm(nr, mean = 0, sd = sqrt(var_rater))
 re_item <- rnorm(ni, mean = 0, sd = sqrt(var_item))
 re_person_rater <- rnorm(np*nr, mean = 0, sd = sqrt(var_per_rater))
 re_person_item <- rnorm(np*ni, mean = 0, sd = sqrt(var_per_item))
-re_error <- rnorm(np*ni, mean = 0, sd = sqrt(error))
+re_item_rater <- rnorm(nr*ni, mean = 0, sd = sqrt(var_rater_item))
+re_residual <- rnorm(np*ni, mean = 0, sd = sqrt(var_residual))
 
 # Generate outcome 
-y <- 4 + Z%*%c(re_person, re_item) + re_error
+y <- 4 + Z%*%c(re_person, re_item, re_rater, re_person_item, re_person_rater, re_item_rater) + re_residual
 
 # Structure data 
-data_e1 <- 
+data_e2 <- 
   tibble::tibble(
     RESP_ID = id_person,
     ITEM_ID = id_item,
+    RATER_ID = id_rater,
     RESPONSE = as.numeric(y)
   )
 
