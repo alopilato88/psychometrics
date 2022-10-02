@@ -1,0 +1,181 @@
+---
+title: "Generalizability Theory"
+format: 
+  revealjs:
+    theme: [default, psych-lecture-theme.scss] 
+    css: psych-lecture-style.css
+---
+
+## Overview
+ 
+```{r}
+#| message: false
+
+library(readr)
+library(tibble)
+library(dplyr)
+library(lme4)
+
+data_url_2 <- "https://alopilato88.github.io/psychometrics/materials/data/lecture-6-example-2-data.csv"
+
+data_e2 <- readr::read_csv(data_url_2)
+```
+
+* Introduction to Generalizability Theory (GT)
+* Example of GT Studies
+* Advanced GT topics 
+
+## What is Generalizability Theory
+
+* Generalizability theory is a framework that provides the theoretical and statistical tools needed to design and evaluate a measurement system (as opposed to a single measure). It takes a broader view of the dependability of measurements compared to Classical Test Theory (CTT). 
+
+## Generalizability vs Reliability 
+
+* <strong>Reliability</strong> asks how accurately observed score measures reflect their true score, whereas <strong>generalizability</strong> asks how accurately we can generalize a measurement to a universe of (predefined) situations. 
+
+* The cost, however, is added complexity. GT comes with <strong>A LOT</strong> of theoretical and statisticl complexity compared to CTT.
+
+## Designing a Measurement System 
+
+* A <strong> measurement system </strong> is a set of interrelated elements that act together to produce a measurement. Unlike CTT, which largely focuses on designing a singular measure (i.e. scale), GT focuses on designing a measurement system with the following elements: 
+
+  - Object of Measurement
+  - Measurement Facets (Sources of Error)
+  - Measurement Design
+  - Purpose of the Measurement 
+
+## Example: Peformance Evaluation System
+
+A small organization wants to work with you to develop a performance evaluation tool and give you free reign to design a study to evaluate its generalizability. You work with job incumbents and SMEs to develop an initial 10 item scale that measures an employee's task performance. This tool is designed to be used by an evaluator to rate an employee's performance. You get a sample of 100 employees and 10 evaluators to rate each employee. 
+
+## Example Data Frame
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| echo: true
+data_e2 |>
+  head() 
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: true
+data_e2 |>
+  tail() 
+```
+:::
+
+::::
+
+## Object of Measurement 
+
+* The <strong>object of measurement</strong> is the object in a measurement system that is being assigned scores (measurements). It is the object we are trying to differentiate among. In most behavioral and social science applications this will be persons. 
+
+* <strong>Symmetry of Generalizability Theory</strong> states that any object (facet) in a measurement system can be the object of measurement (Cardinet et al., 1976). It is up to the reasearcher to determine this. 
+
+* In our example, the object of measurement is the employee. 
+
+## Sources of Error 
+
+* GT allows you to specify multiple sources of error, which are referred to as <strong>measurement facets</strong>, that lead to error in your measurement system. 
+  - <strong>Common measurement facets</strong>: items, raters, occaisions, forms 
+
+* Each measurement facet will generally have two or more <strong>conditions</strong>, which represent different replications (levels) of the facet. 
+
+## Performance Evaluation: Measurement Facets
+
+```{r}
+knitr::kable(
+  table(data_e2$RATER_ID) |>
+    t(),
+  caption = "<strong>Measurement Facet: Raters (10 conditions)</strong>"
+)
+```
+<br>
+```{r}
+knitr::kable(
+  table(data_e2$ITEM_ID) |>
+    t(),
+  caption = "<strong>Measurement Facet: Items (10 conditions)</strong>"
+)
+```
+
+## Random vs Fixed Facets
+
+* Measurement facets can be considered <strong>fixed</strong> or <strong>random</strong>:
+  - <strong>Fixed Facet</strong>: The conditions of the measurement facet are exahustive of all the conditions we wish to generalize across.
+  - <strong>Random Facet</strong>: The conditions of the measurement facet are a sample from a larger universe and are <strong>exchangeable</strong> with other samples from the universe.
+
+* There are a lot of good reasons to treat all of our measurement facets as random--at least initially. In fact, internal consistency in CTT treats items as a random measurement facet.
+
+## Measurement Design 
+
+* The <strong>measurement design</strong> describes how the measurement facets and object of measurement are structured in relation to one another. There are two foundational structural features: 
+  - Crossed Measurement Designs 
+  - Nested Measurement Designs 
+
+## Performance Evaluation: Measurement Design
+
+```{r}
+xtabs(~ RATER_ID + ITEM_ID + RESP_ID, data_e2 
+      |> dplyr::filter(RESP_ID %in% 1:2))
+```
+
+## Complex Measurement Designs
+
+* Many different measurement designs can arise by combining crossed and nested designs together: 
+  - Persons x Items: Persons crossed with Items
+  - Raters:Persons x Items: Raters nested within People crossed with Items
+  - Persons x Items:Forms: Persons crossed with Items nested within Alternate Forms
+  - Persons x Occaisions x Items:Forms: Persons Crossed with Occaisions crossed with Items nested within Forms
+  
+## Statistical Model Underlying GT
+
+## Variance Components 
+
+## Visualizing Variance Components
+
+## Generalizability (G) Study
+
+## Population 
+
+## Universe of Admissible Observations 
+
+## Universe Score & Universe Variance 
+
+## Error: Relative & Absolute
+
+## Example: G Study Design
+
+## Example: Variance Components
+
+## Example: G Study Results
+
+## Decision Study 
+
+* Universe of Generalization
+
+## Reliability-Like Coefficients
+
+## Generalizability Coefficient
+
+## Index of Dependability 
+
+## Impact of Increasing Facet Conditions
+
+## Impact of Changing Measurement Design 
+
+## Impact of Fixing a Facet
+
+## A Note on Nested Designs
+
+## GT Assumptions 
+
+## Conditional GT Models
+
+## Multivariate GT
+
+
