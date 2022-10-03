@@ -27,7 +27,7 @@ By the end of this course, you will:
 | 4 | [Theorizing About Validity Theory](https://alopilato88.github.io/psychometrics/materials/lectures/lecture-3-theorizing-validity-theory.html) | |
 | 5 | [Validity Theory in Action](https://alopilato88.github.io/psychometrics/materials/lectures/lecture-4-validity-in-action.html) | |
 | 6 | [Rembering the Classics: Classical Test Theory](https://alopilato88.github.io/psychometrics/materials/lectures/lecture-5-ctt.html) | |
-| 7 | [Reliability Theory: Generalizability Theory]() | |
+| 7 | [Reliability Theory: Generalizability Theory](https://alopilato88.github.io/psychometrics/materials/lectures/lecture-6-gtheory.html) | |
 | 8 | [Reliability Theory: Advanced]() | |
 | 9 | [Latent Variable Models: Factor Analysis]() | |
 | 10 | [Latent Variable Models: Factor Analysis]() | |
