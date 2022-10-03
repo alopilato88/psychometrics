@@ -496,7 +496,7 @@ ggplot2::ggplot(
 
 * This is GT's explanation of the Reliability-Validity Paradox (Kane, 1982).
 
-# Redistributing Fixed Facet Variance
+## Redistributing Fixed Facet Variance
 
 * If we fix raters in our D-Study, then: 
 
