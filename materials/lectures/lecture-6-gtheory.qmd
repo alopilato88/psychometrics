@@ -34,7 +34,7 @@ data_e2 <- readr::read_csv(data_url_2)
 
 * <strong>Reliability</strong> asks how accurately observed score measures reflect their true score, whereas <strong>generalizability</strong> asks how accurately we can generalize a measurement to a universe of (predefined) situations. 
 
-* The cost, however, is added complexity. GT comes with <strong>A LOT</strong> of theoretical and statisticl complexity compared to CTT.
+* The cost, however, is added complexity. GT comes with <strong>A LOT</strong> of theoretical and statistical complexity compared to CTT.
 
 ## Designing a Measurement System 
 
@@ -75,14 +75,14 @@ data_e2 |>
 
 * The <strong>object of measurement</strong> is the object in a measurement system that is being assigned scores (measurements). It is the object we are trying to differentiate among. In most behavioral and social science applications this will be persons. 
 
-* <strong>Symmetry of Generalizability Theory</strong> states that any object (facet) in a measurement system can be the object of measurement (Cardinet et al., 1976). It is up to the reasearcher to determine this. 
+* <strong>Symmetry of Generalizability Theory</strong> states that any object (facet) in a measurement system can be the object of measurement (Cardinet et al., 1976). It is up to the researcher to determine this. 
 
 * In our example, the object of measurement is the employee. 
 
 ## Sources of Error 
 
 * GT allows you to specify multiple sources of error, which are referred to as <strong>measurement facets</strong>, that lead to error in your measurement system. 
-  - <strong>Common measurement facets</strong>: items, raters, occaisions, forms 
+  - <strong>Common measurement facets</strong>: items, raters, occasions, forms 
 
 * Each measurement facet will generally have two or more <strong>conditions</strong>, which represent different replications (levels) of the facet. 
 
@@ -107,7 +107,7 @@ knitr::kable(
 ## Random vs Fixed Facets
 
 * Measurement facets can be considered <strong>fixed</strong> or <strong>random</strong>:
-  - <strong>Fixed Facet</strong>: The conditions of the measurement facet are exahustive of all the conditions we wish to generalize across.
+  - <strong>Fixed Facet</strong>: The conditions of the measurement facet are exhaustive of all the conditions we wish to generalize across.
   - <strong>Random Facet</strong>: The conditions of the measurement facet are a sample from a larger universe and are <strong>exchangeable</strong> with other samples from the universe.
 
 * There are a lot of good reasons to treat all of our measurement facets as random--at least initially. In fact, internal consistency in CTT treats items as a random measurement facet.
@@ -146,7 +146,7 @@ xtabs(~ RATER_ID + ITEM_ID + RESP_ID, data_e2
   - Persons x Items: Persons crossed with Items
   - Raters:Persons x Items: Raters nested within People crossed with Items
   - Persons x Items:Forms: Persons crossed with Items nested within Alternate Forms
-  - Persons x Occaisions x Items:Forms: Persons Crossed with Occaisions crossed with Items nested within Forms
+  - Persons x Occasions x Items:Forms: Persons Crossed with Occasions crossed with Items nested within Forms
   
 ## Statistical Model Underlying GT
 
@@ -176,7 +176,7 @@ X_{pir} & = \mu \;\; \text{(Grand Mean)}\\
 
 ## Variance Component Model 
 
-* At its statistical core, GT is a variance component model. GT decomposes the obseved score variance into the sum of the object of measurement's and the measurement facets' variance components. 
+* At its statistical core, GT is a variance component model. GT decomposes the observed score variance into the sum of the object of measurement's and the measurement facets' variance components. 
 
 $$\sigma^2_{X_{pir}}=\sigma^2_{p}+\sigma^2_{i}+\sigma^2_{r}+\sigma^2_{pi}+\sigma^2_{pr}+\sigma^2_{ir}+\sigma^2_{e}$$
 
@@ -210,7 +210,7 @@ $$\sigma^2_{X_{pir}}=\sigma^2_{p}+\sigma^2_{i}+\sigma^2_{r}+\sigma^2_{pi}+\sigma
 
 * In a G-Study, objects of measurements are assumed to be drawn from a larger <strong>population</strong> and random measurement facets are assumed to be drawn from a <strong>universe of admissible observations (UAO)</strong>.
 
-* The researcher defines the <strong>UAO</strong> by selecting the measurement facets that make up the G-Study and defining the admissble conditions of the measurement facet (e.g. only items that measure task performance).
+* The researcher defines the <strong>UAO</strong> by selecting the measurement facets that make up the G-Study and defining the admissible conditions of the measurement facet (e.g. only items that measure task performance).
 
 ## Universe Score & Universe Score Variance 
 
@@ -222,7 +222,7 @@ $$\sigma^2_{X_{pir}}=\sigma^2_{p}+\sigma^2_{i}+\sigma^2_{r}+\sigma^2_{pi}+\sigma
 
 * GT also differs from CTT in another important way: it allows one to investigate the impacts of both <strong> relative error </strong> and <strong> absolute error </strong>.
 
-* <strong>Relative Error</strong>: Error that causes the rankings of individuals to differ across conditions within the same facet (e.g. recieving a high rating from one rater and a low rating from another). It is the sum of all of the variance components that involve an interaction with the object of measurement. 
+* <strong>Relative Error</strong>: Error that causes the rankings of individuals to differ across conditions within the same facet (e.g. receiving a high rating from one rater and a low rating from another). It is the sum of all of the variance components that involve an interaction with the object of measurement. 
 
 * <strong>Absolute Error</strong>: Error that causes the object of measurement's observed score to differ from its universe score. It is the sum of all of the variance components except the universe score variance component.
 
@@ -348,7 +348,7 @@ lme4::VarCorr(g_study_mod) |>
 
 ## Universe of Generalization 
 
-* The <strong>universe of generalization</strong> is defined by the reseracher as the conditions of a measurement facet that one wishes to generalize across. 
+* The <strong>universe of generalization</strong> is defined by the researcher as the conditions of a measurement facet that one wishes to generalize across. 
 
 * The universe of generalization is the D-Study equivalent of the UAO and in many cases will be equivalent to the UAO. However, researchers may decide to define the universe of generalization by making changes to the UAO: 
   - Fix a previously random measurement facet
@@ -363,7 +363,7 @@ lme4::VarCorr(g_study_mod) |>
 
 ## Reliability-Like Coefficients
 
-* To guage the impacts of each of those changes, we rely on two reliability-like coefficients: <strong> Generalizability Coefficient</strong> and <strong>Dependability Coefficient</strong>
+* To gauge the impacts of each of those changes, we rely on two reliability-like coefficients: <strong> Generalizability Coefficient</strong> and <strong>Dependability Coefficient</strong>
 
 :::: {.columns}
 ::: {.column width="35%"}
@@ -603,13 +603,13 @@ ggplot2::ggplot(
 
 ## A Note on Nested Designs
 
-* When one facet is nested within another facet it becomes impossible to separate the variance of the nested facet becomes confounded with the variance of the superordinate facet: 
+* When one facet is nested within another facet it becomes impossible to separate the variance of the nested facet becomes confounded with the variance of the super-ordinate facet: 
 
 ![](lecture-6-img/three-way-cross-nest.png){fig.align="center"}
 
 ## Why Nest a Facet in a D-Study?
 
-If there are some kind of contraints for a facet, then there are instances where it makes sense to nest it. In our example, 10 raters each rating all 100 employees may not actually be feasible. It might make sense to nest raters within employees and have each rater rate 10 employees. 
+If there are some kind of constraints for a facet, then there are instances where it makes sense to nest it. In our example, 10 raters each rating all 100 employees may not actually be feasible. It might make sense to nest raters within employees and have each rater rate 10 employees. 
 
 As a result, however, we could no longer estimate $\sigma^2_{r}$ or $\sigma^2_{pr}$ separate from one another. 
 
