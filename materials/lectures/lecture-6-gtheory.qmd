@@ -23,8 +23,8 @@ data_e2 <- readr::read_csv(data_url_2)
 ```
 
 * Introduction to Generalizability Theory (GT)
-* Example of GT Studies
-* Advanced GT topics 
+* Example of a Generalizability and Decision Study
+* Ideas about Advanced GT Topics 
 
 ## What is Generalizability Theory
 
