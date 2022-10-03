@@ -15,6 +15,7 @@ library(readr)
 library(tibble)
 library(dplyr)
 library(lme4)
+library(ggplot2)
 
 data_url_2 <- "https://alopilato88.github.io/psychometrics/materials/data/lecture-6-example-2-data.csv"
 
@@ -48,7 +49,7 @@ data_e2 <- readr::read_csv(data_url_2)
 
 A small organization wants to work with you to develop a performance evaluation tool and give you free reign to design a study to evaluate its generalizability. You work with job incumbents and SMEs to develop an initial 10 item scale that measures an employee's task performance. This tool is designed to be used by an evaluator to rate an employee's performance. You get a sample of 100 employees and 10 evaluators to rate each employee. 
 
-## Example Data Frame
+## Performance Evaluation Example: Data Frame
 
 :::: {.columns}
 
@@ -119,10 +120,25 @@ knitr::kable(
 
 ## Performance Evaluation: Measurement Design
 
+:::: {.columns}
+::: {.column width="50%}
+
 ```{r}
 xtabs(~ RATER_ID + ITEM_ID + RESP_ID, data_e2 
-      |> dplyr::filter(RESP_ID %in% 1:2))
+      |> dplyr::filter(RESP_ID %in% 1))
 ```
+
+:::
+
+::: {.column width="50%"}
+
+```{r}
+xtabs(~ RATER_ID + ITEM_ID + RESP_ID, data_e2 
+      |> dplyr::filter(RESP_ID %in% 2))
+```
+
+:::
+::::
 
 ## Complex Measurement Designs
 
@@ -134,48 +150,479 @@ xtabs(~ RATER_ID + ITEM_ID + RESP_ID, data_e2
   
 ## Statistical Model Underlying GT
 
-## Variance Components 
+$$\begin{align}
+X_{pir} & = \mu \;\; \text{(Grand Mean)}\\
+ & + \mu_{p}-\mu \;\; \text{(Person Effect)}\\ 
+ & + \mu_{i}-\mu \;\; \text{(Item Effect)}\\
+ & + \mu_{r}-\mu \;\; \text{(Rater Effect)}\\ 
+ & + \mu_{pi}-\mu_{p}-\mu{i}+\mu \;\; \text{(Person x Item Effect)}\\
+ & + \mu_{pr}-\mu_{p}-\mu{r}+\mu \;\; \text{(Person x Rater Effect)}\\
+ & + \mu_{ir}-\mu_{i}-\mu{r}+\mu \;\; \text{(Item x Rater Effect)}\\
+ & + X_{pir} - \mu_{pi} - \mu_{pr} - \mu_{ir} + \mu_{p} + \mu_{r} + \mu_{i} - \mu \;\; \text{(Residual)}
+\end{align}$$
 
-## Visualizing Variance Components
+## Statistical Model Underlying GT
 
-## Generalizability (G) Study
+$$\begin{align}
+X_{pir} & = \mu \;\; \text{(Grand Mean)}\\
+ & + \nu_{p} \;\; \text{(Person Effect)}\\ 
+ & + \nu_{i} \;\; \text{(Item Effect)}\\
+ & + \nu_{r} \;\; \text{(Rater Effect)}\\ 
+ & + \nu_{pi} \;\; \text{(Person x Item Effect)}\\
+ & + \nu_{pr} \;\; \text{(Person x Rater Effect)}\\
+ & + \nu_{ir} \;\; \text{(Item x Rater Effect)}\\
+ & + e_{pir} \;\; \text{(Residual)}
+\end{align}$$
 
-## Population 
+## Variance Component Model 
 
-## Universe of Admissible Observations 
+* At its statistical core, GT is a variance component model. GT decomposes the obseved score variance into the sum of the object of measurement's and the measurement facets' variance components. 
 
-## Universe Score & Universe Variance 
+$$\sigma^2_{X_{pir}}=\sigma^2_{p}+\sigma^2_{i}+\sigma^2_{r}+\sigma^2_{pi}+\sigma^2_{pr}+\sigma^2_{ir}+\sigma^2_{e}$$
+
+## Variance Components
+
+* <strong>Variance components</strong> are population parameters that describe the amount of variation for each of the random measurement facets and the object of measurement. Whereas CTT focused a lot on estimating reliability coefficients, GT is focused on estimating variance components: 
+  - $\sigma^2_{p}$: Amount of variation due to individuals' differences
+  - $\sigma^2_{r}$: Amount of variation among different raters (some raters are more lenient than others)
+  - $\sigma^2_{pr}$: Amount of variation among different person x rater pairs
+
+## Visualizing Variance Components 
+
+::: {layout-ncol=2}
+
+![](lecture-6-img/three-way-cross-nest.png)
+
+![](lecture-6-img/three-way-cross.png)
+
+![](lecture-6-img/three-way-nested.png)
+:::
+
+## Generalizability Study (G-Study)
+
+* A <strong>Generalizability Study</strong> is a study focused on designing a specific measurement system.
+
+* The main focus of a G-Study is to accurately estimate all of the variance components associated with the object of measurement and measurement facets. These estimates can then be used to inform future studies. 
+
+* G-Studies are most informative when the measurement design is fully crossed and all the measurement facets are considered random as this allows one to estimate variance components that contribute to measurement error.
+
+## Populations and Universe of Admissible Observations 
+
+* In a G-Study, objects of measurements are assumed to be drawn from a larger <strong>population</strong> and random measurement facets are assumed to be drawn from a <strong>universe of admissible observations (UAO)</strong>.
+
+* The researcher defines the <strong>UAO</strong> by selecting the measurement facets that make up the G-Study and defining the admissble conditions of the measurement facet (e.g. only items that measure task performance).
+
+## Universe Score & Universe Score Variance 
+
+* Each person (object of measurement) has a <strong>universe score</strong> which is defined as the expectation taken over the entire universe of admissible observations. We can estimate the universe score with the person mean, $\mu_{p}$. This is similar to the true score in CTT. 
+
+* <strong>Universe score variance</strong>, $\sigma^2_{p}$, is the variance of universe scores over all people in the population. It is similar to true score variance and it describes the extent to which people vary because of differences in the attribute being measured. 
 
 ## Error: Relative & Absolute
 
-## Example: G Study Design
+* GT also differs from CTT in another important way: it allows one to investigate the impacts of both <strong> relative error </strong> and <strong> absolute error </strong>.
 
-## Example: Variance Components
+* <strong>Relative Error</strong>: Error that causes the rankings of individuals to differ across conditions within the same facet (e.g. recieving a high rating from one rater and a low rating from another). It is the sum of all of the variance components that involve an interaction with the object of measurement. 
 
-## Example: G Study Results
+* <strong>Absolute Error</strong>: Error that causes the object of measurement's observed score to differ from its universe score. It is the sum of all of the variance components except the universe score variance component.
+
+## Performance Evaluation Example: Relative Error 
+
+$$\sigma^2_{rel}=\sigma^2_{pi}+\sigma^2_{pr}+\sigma^2_{ir}+\sigma^2_{e}$$
+
+## Perfromance Evaluation Example: Absolute Error
+
+$$\sigma^2_{abs}=\sigma^2_{i}+\sigma^2_{r}+\sigma^2_{pi}+\sigma^2_{pr}+\sigma^2_{ir}+\sigma^2_{e}$$
+
+## Performance Evaluation Example: G Study
+
+* Determine your population 
+* Determine your UAO 
+* If possible, keep your measurement design fully crossed and all of your facets random
+* Estimate the variance components 
+
+## Performance Evaluation Example: Data Frame
+
+* Remember what our data looks like. It is in <strong>long format</strong>, which means that each row contains a unique combination of `RESP_ID`, `ITEM_ID`, and `RATER_ID`.
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| echo: true
+data_e2 |>
+  head() 
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: true
+data_e2 |>
+  tail() 
+```
+:::
+
+::::
+
+## Performance Evaluation Example: Results 
+
+* To analyze our data, we will use the `lmer` function from the `lme4` package. The `lmer` function estimates a mixed-effects regression model (multilevel models are a special case of mixed-effect models).
+
+```{r}
+#| echo: true
+g_study_mod <- 
+  lme4::lmer(RESPONSE ~ 1 + 
+                       (1 | RESP_ID) + (1 | ITEM_ID) + (1 | RATER_ID) + 
+                       (1 | RESP_ID:ITEM_ID) + (1 | RESP_ID:RATER_ID) + 
+                       (1|ITEM_ID:RATER_ID), 
+                       REML = TRUE,
+                       data = data_e2)
+
+```
+
+## Performance Evaluation Example: Results 
+
+```{r}
+#| echo: true
+summary(g_study_mod)
+```
+
+## Performance Evaluation Example: Results 
+
+:::: {.columns}
+::: {.column width="50%"}
+
+```{r}
+#| echo: true
+#| eval: false
+lme4::VarCorr(g_study_mod) |> 
+  tibble::as_tibble() |>
+  dplyr::select(
+    VAR_COMP_NAME = grp, 
+    VAR_COMP = vcov
+  ) |> 
+  dplyr::mutate(
+    VAR_COMP_PROP = VAR_COMP / sum(VAR_COMP),
+    VAR_COMP_PROP = round(VAR_COMP_PROP, 3),
+    VAR_COMP = round(VAR_COMP, 3)
+  ) |>
+  dplyr::arrange(
+    dplyr::desc(VAR_COMP_PROP)
+  )
+```
+
+:::
+::: {.column width="50%"}
+
+```{r}
+#| echo: false
+lme4::VarCorr(g_study_mod) |> 
+  tibble::as_tibble() |>
+  dplyr::select(
+    VAR_COMP_NAME = grp, 
+    VAR_COMP = vcov
+  ) |> 
+  dplyr::mutate(
+    VAR_COMP_PROP = VAR_COMP / sum(VAR_COMP),
+    VAR_COMP_PROP = round(VAR_COMP_PROP, 3),
+    VAR_COMP = round(VAR_COMP, 3)
+  ) |>
+  dplyr::arrange(
+    dplyr::desc(VAR_COMP_PROP)
+  )
+```
+
+:::
+::::
 
 ## Decision Study 
 
-* Universe of Generalization
+* A <strong>decision study</strong> is a study that is focused using some measurement system to make a specific set of decisions (generalizations). Oftentimes, the G-Study and D-Study use the exact same data, but in theory the G-Study should be conducted using a separate set of data and that data should be used to inform how the D-Study is designed. 
+
+## Conducting a Decision Study 
+
+* To conduct a D-Study, one must: 
+  - Decide on the <strong>Universe of Generalization</strong>
+  - Use the G-Study variance components to simulate what happens to the relative and absolute error as the conditions of any measurement facet increase. 
+
+## Universe of Generalization 
+
+* The <strong>universe of generalization</strong> is defined by the reseracher as the conditions of a measurement facet that one wishes to generalize across. 
+
+* The universe of generalization is the D-Study equivalent of the UAO and in many cases will be equivalent to the UAO. However, researchers may decide to define the universe of generalization by making changes to the UAO: 
+  - Fix a previously random measurement facet
+  - Turn a crossed aspect of the measurement design into a nested aspect
+
+## The Utility of a Decision Study
+
+* D-Studies allow the researcher to simulate how the absolute and relative errors change (usually decrease) before actually conducting their study. Think of it as a way to optimize the measurement system for a specific decision (Marcoulides, 1993): 
+  - Explore how error variance shrinks by increasing the number of conditions
+  - Explore how error variance shrinks, but the generalizations narrow by fixing a facet
+  - Explore how error variance changes, by choosing to nest rather than cross two facets
 
 ## Reliability-Like Coefficients
 
-## Generalizability Coefficient
+* To guage the impacts of each of those changes, we rely on two reliability-like coefficients: <strong> Generalizability Coefficient</strong> and <strong>Dependability Coefficient</strong>
 
-## Index of Dependability 
+:::: {.columns}
+::: {.column width="35%"}
 
-## Impact of Increasing Facet Conditions
+<strong><center>Generalizability Coefficient</center></strong>
 
-## Impact of Changing Measurement Design 
+$$\rho^2=\frac{\sigma^2_{p}}{\sigma^2_{p}+\frac{\sigma^2_{pi}}{n_{i}'}+\frac{\sigma^2_{pr}}{n_{r}'}+\frac{\sigma^2_{e}}{n_{i}'n_{r}'}}$$
 
-## Impact of Fixing a Facet
+:::
+
+::: {.column width="10%"}
+
+:::
+::: {.column width="55%"}
+
+<strong><center>Dependability Coefficient</center></strong>
+
+$$\Phi=\frac{\sigma^2_{p}}{\sigma^2_{p}+\frac{\sigma^2_{i}}{n_{i}'} + \frac{\sigma^2_{r}}{n_{r}'}+\frac{\sigma^2_{pi}}{n_{i}'}+\frac{\sigma^2_{pr}}{n_{r}'}+\frac{\sigma^2_{e}}{n_{i}'n_{r}'}}$$
+
+:::
+::::
+
+## Performance Evaluation Example: Increasing Facet Conditions
+
+```{r}
+g_study_mod <- 
+  lme4::lmer(RESPONSE ~ 1 + 
+               (1 | RESP_ID) + (1 | ITEM_ID) + (1 | RATER_ID) + 
+               (1 | RESP_ID:ITEM_ID) + (1 | RESP_ID:RATER_ID) + 
+               (1|ITEM_ID:RATER_ID), 
+             REML = TRUE,
+             data = data_e2)
+
+g_study_var_comp <- 
+  g_study_mod |>
+  lme4::VarCorr() |>
+  tibble::as_tibble() |>
+  dplyr::select(
+    VAR_COMP_NAME = grp,
+    VAR_COMP = vcov
+  ) |> 
+  tidyr::pivot_wider(
+    names_from = VAR_COMP_NAME,
+    values_from = VAR_COMP
+  ) |>
+  dplyr::rename(
+    RESP_ID_RATER_ID = `RESP_ID:RATER_ID`,
+    RESP_ID_ITEM_ID = `RESP_ID:ITEM_ID`,
+    ITEM_ID_RATER_ID = `ITEM_ID:RATER_ID`
+  )
+
+n_rater_sim <- 1:20
+n_item_sim <- c(4, 8, 12, 16, 20)
+
+
+d_sim_design <- 
+  tidyr::expand_grid(
+    n_rater_sim,
+    n_item_sim
+  ) |>
+  dplyr::rename(
+    N_RATER_SIM = n_rater_sim,
+    N_ITEM_SIM = n_item_sim
+  ) |>
+  dplyr::bind_cols(
+    g_study_var_comp
+  ) |>
+  dplyr::mutate(
+    ABS_ERROR = ITEM_ID/N_ITEM_SIM + RATER_ID/N_RATER_SIM + 
+      RESP_ID_ITEM_ID/N_ITEM_SIM + RESP_ID_RATER_ID/N_RATER_SIM + 
+      ITEM_ID_RATER_ID/(N_RATER_SIM*N_ITEM_SIM) + Residual/(N_RATER_SIM*N_ITEM_SIM),
+    REL_ERROR =  RESP_ID_ITEM_ID/N_ITEM_SIM + RESP_ID_RATER_ID/N_RATER_SIM + 
+      Residual/(N_RATER_SIM*N_ITEM_SIM),
+    G_COEF = (RESP_ID) / (RESP_ID + REL_ERROR),
+    D_COEF = (RESP_ID) / (RESP_ID + ABS_ERROR)
+  )
+
+d_sim_plot_data <- 
+  d_sim_design |>
+  dplyr::select(
+    N_RATER_SIM,
+    N_ITEM_SIM, 
+    G_COEF, 
+    D_COEF
+  ) |>
+  dplyr::mutate(
+    N_RATER_SIM = as.factor(N_RATER_SIM),
+    N_ITEM_SIM = as.factor(N_ITEM_SIM)
+  ) |>
+  tidyr::pivot_longer(
+    cols = c(G_COEF, D_COEF),
+    names_to = "COEF_TYPE", 
+    values_to = "COEF_VALUE"
+  ) |>
+  dplyr::mutate(
+    COEF_TYPE = dplyr::case_when(
+      COEF_TYPE == "D_COEF" ~ "Dependability Coefficient",
+      COEF_TYPE == "G_COEF" ~ "Generalizability Coefficient"
+    )
+  )
+
+ggplot2::ggplot(
+  d_sim_plot_data,
+  ggplot2::aes(
+    x = N_RATER_SIM, 
+    y = COEF_VALUE, 
+    color = N_ITEM_SIM 
+  )
+) + 
+  ggplot2::geom_point() + 
+  ggplot2::facet_wrap(~COEF_TYPE) +
+  ggplot2::theme_minimal() +
+  ggplot2::theme(
+    plot.background = element_rect(fill = "#FEFBF6", color = "#FEFBF6"),
+    panel.background = element_rect(fill = "#FEFBF6", color = "#3D3C42"),
+  ) + 
+  ggplot2::labs(
+    x = "Number of Raters",
+    y = "Coefficient Value",
+    color = "Number of Items"
+  )
+  
+```
+
+## Fixed Facets 
+
+* Conceptually, a fixed facet is one where the sampled conditions exhaust the universe. That is, perhaps the 10 raters in our study are the only raters who will ever be providing ratings in this measurement system and thus we do not need to generalize to a larger universe of raters. 
+
+* Mathematically, when we fix a facet, we are effectively averaging over it and redistributing its variance elsewhere.
+
+* This is GT's explanation of the Reliability-Validity Paradox (Kane, 1982).
+
+# Redistributing Fixed Facet Variance
+
+* If we fix raters in our D-Study, then: 
+
+$$\sigma^2_{p*}=\sigma^2_p + \frac{\sigma^2_{pr}}{n_r}$$
+
+$$\sigma^2_{i*}=\sigma^2_i + \frac{\sigma^2_{ri}}{n_r}$$
+
+$$\sigma^2_{e*}=\sigma^2_{pi}+\frac{\sigma^2_e}{n_r}$$
+
+## Performance Evaluation Example: Fixed Facets
+
+```{r}
+g_study_var_comp <- 
+  g_study_mod |>
+  lme4::VarCorr() |>
+  tibble::as_tibble() |>
+  dplyr::select(
+    VAR_COMP_NAME = grp,
+    VAR_COMP = vcov
+  ) |> 
+  tidyr::pivot_wider(
+    names_from = VAR_COMP_NAME,
+    values_from = VAR_COMP
+  ) |>
+  dplyr::rename(
+    RESP_ID_RATER_ID = `RESP_ID:RATER_ID`,
+    RESP_ID_ITEM_ID = `RESP_ID:ITEM_ID`,
+    ITEM_ID_RATER_ID = `ITEM_ID:RATER_ID`
+  )
+
+n_rater_sim <- 1:20
+n_item_sim <- c(4, 8, 12, 16, 20)
+
+
+d_sim_design <- 
+  tidyr::expand_grid(
+    n_rater_sim,
+    n_item_sim
+  ) |>
+  dplyr::rename(
+    N_RATER_SIM = n_rater_sim,
+    N_ITEM_SIM = n_item_sim
+  ) |>
+  dplyr::bind_cols(
+    g_study_var_comp
+  ) |>
+  dplyr::mutate(
+    REL_ERROR =  RESP_ID_ITEM_ID/N_ITEM_SIM + RESP_ID_RATER_ID/N_RATER_SIM + 
+      Residual/(N_RATER_SIM*N_ITEM_SIM),
+    G_COEF = (RESP_ID) / (RESP_ID + REL_ERROR),
+    REL_ERROR_FIX = (RESP_ID_ITEM_ID/N_ITEM_SIM) + Residual/(10*N_ITEM_SIM),
+    G_COEF_FIX = (RESP_ID + RESP_ID_RATER_ID/10) / ((RESP_ID + RESP_ID_RATER_ID/10) + REL_ERROR_FIX)
+  )
+
+d_sim_plot_data <- 
+  d_sim_design |>
+  dplyr::select(
+    N_RATER_SIM,
+    N_ITEM_SIM, 
+    G_COEF, 
+    G_COEF_FIX
+  ) |>
+  dplyr::mutate(
+    N_RATER_SIM = as.factor(N_RATER_SIM),
+    N_ITEM_SIM = as.factor(N_ITEM_SIM)
+  ) |>
+  tidyr::pivot_longer(
+    cols = c(G_COEF, G_COEF_FIX),
+    names_to = "COEF_TYPE", 
+    values_to = "COEF_VALUE"
+  ) |>
+  dplyr::mutate(
+    COEF_VALUE = dplyr::case_when(
+      COEF_TYPE == "G_COEF_FIX" & N_RATER_SIM != 10 ~ NA_real_,
+      TRUE ~ COEF_VALUE
+    ),
+    COEF_TYPE = dplyr::case_when(
+      COEF_TYPE == "G_COEF_FIX" ~ "Generalizability Coefficient - Raters Fixed",
+      COEF_TYPE == "G_COEF" ~ "Generalizability Coefficient"
+    )
+  )
+
+ggplot2::ggplot(
+  d_sim_plot_data,
+  ggplot2::aes(
+    x = N_RATER_SIM, 
+    y = COEF_VALUE, 
+    color = N_ITEM_SIM 
+  )
+) + 
+  ggplot2::geom_point(size = 2) + 
+  ggplot2::facet_wrap(~COEF_TYPE) +
+  ggplot2::theme_minimal() +
+  ggplot2::theme(
+    plot.background = element_rect(fill = "#FEFBF6", color = "#FEFBF6"),
+    panel.background = element_rect(fill = "#FEFBF6", color = "#3D3C42"),
+  ) + 
+  ggplot2::labs(
+    x = "Number of Raters",
+    y = "Coefficient Value",
+    color = "Number of Items"
+  )
+```
 
 ## A Note on Nested Designs
 
-## GT Assumptions 
+* When one facet is nested within another facet it becomes impossible to separate the variance of the nested facet becomes confounded with the variance of the superordinate facet: 
 
-## Conditional GT Models
+![](lecture-6-img/three-way-cross-nest.png){fig.align="center"}
 
-## Multivariate GT
+## Why Nest a Facet in a D-Study?
 
+If there are some kind of contraints for a facet, then there are instances where it makes sense to nest it. In our example, 10 raters each rating all 100 employees may not actually be feasible. It might make sense to nest raters within employees and have each rater rate 10 employees. 
 
+As a result, however, we could no longer estimate $\sigma^2_{r}$ or $\sigma^2_{pr}$ separate from one another. 
+
+## Future Areas of Research {.smaller}
+
+* Clarifying the assumptions of GT (they are murky at best)
+* Expanding on Multivariate GT (yes we only just talked about univariate GT)
+  - See Jiang et al. (2020)
+* Variance Component Estimation and Inference 
+  - See LoPilato et al. (2015) or Jiang et al. (2022)
+* Conditional GT Models using mixed-effect regression models 
+  - See Putka et al. (2008)
+* Exploring the effects and solutions to ill-structured measurement designs
+  - See Putka et al. (2008)
+* Mixing economics, operations, and GT to optimize measurement systems 
+  - See Marcoulides (1994)
