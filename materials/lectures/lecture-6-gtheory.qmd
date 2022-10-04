@@ -228,7 +228,7 @@ $$\sigma^2_{X_{pir}}=\sigma^2_{p}+\sigma^2_{i}+\sigma^2_{r}+\sigma^2_{pi}+\sigma
 
 ## Performance Evaluation Example: Relative Error 
 
-$$\sigma^2_{rel}=\sigma^2_{pi}+\sigma^2_{pr}+\sigma^2_{ir}+\sigma^2_{e}$$
+$$\sigma^2_{rel}=\sigma^2_{pi}+\sigma^2_{pr}+\sigma^2_{e}$$
 
 ## Perfromance Evaluation Example: Absolute Error
 
