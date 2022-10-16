@@ -71,7 +71,8 @@ create_multiple_ordinal_response <- function(
 
 # --- Set simulation parameters --- #
 
-set.seed(342534)
+# set.seed(342534) # CFA Data Seed
+set.seed(43523) # EFA Data Sees
 n_theta <- 3
 n <- 500
 
