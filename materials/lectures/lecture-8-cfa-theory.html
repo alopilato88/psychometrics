@@ -7,7 +7,7 @@
 <link href="lecture-8-cfa-theory_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="lecture-8-cfa-theory_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="lecture-8-cfa-theory_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.1.179">
+  <meta name="generator" content="quarto-1.1.113">
 
   <title>Confirmatory Factor Analysis</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -19,7 +19,7 @@
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.column{flex: 1;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -413,7 +413,7 @@
 <li>Charles Spearman (1904) develops factor analysis to test is theory of general intelligence</li>
 <li>Louis Thurstone (1930s) expands on Spearman’s work and shows how to extract multiple factors</li>
 <li>Joreskog (1960s) introduces a way to obtain maximum likelihood solutions for CFA and LISREL is born</li>
-<li>From the 1960s and onwards there has been a lot of reserach on CFA and more general latent variable frameworks</li>
+<li>From the 1960s and onward there has been a lot of research on CFA and more general latent variable frameworks</li>
 </ul>
 </section>
 <section id="the-common-factor-model" class="slide level2">
@@ -424,7 +424,7 @@
 <h2>The Statistical Logic Underlying Factor Analysis</h2>
 <ul>
 <li><p>All factor analytic methods (EFA + CFA) try to do one specific thing: <strong>reproduce the observed covariance or correlation structure in one’s observed data</strong>.</p></li>
-<li><p>Each factor model you build implies a specific covariance structure, <span class="math inline">\(\mathbf{\Sigma(\Theta)}\)</span>, and its your goal to specify a model that implies a covariance structure that closely matches the covrariance structure of your observed data, <span class="math inline">\(\mathbf{S}\)</span>.</p></li>
+<li><p>Each factor model you build implies a specific covariance structure, <span class="math inline">\(\mathbf{\Sigma(\Theta)}\)</span>, and its your goal to specify a model that implies a covariance structure that closely matches the covariance structure of your observed data, <span class="math inline">\(\mathbf{S}\)</span>.</p></li>
 </ul>
 <p><span class="math display">\[min(\mathbf{\Sigma(\Theta)}-\mathbf{S})\]</span></p>
 </section>
@@ -498,7 +498,7 @@ E[\mathbf{x}\mathbf{x}']&amp;=E[(\mathbf{\Lambda_{x}}\mathbf{\xi}+\mathbf{\delta
 <section id="measurement-error-where-does-it-go" class="slide level2">
 <h2>Measurement Error: Where does it go?</h2>
 <ul>
-<li>Factor analylsis partitions measurement error from observed varinace in the theta-delta matrix: <span class="math inline">\(\mathbf{\Theta_{\delta}}\)</span></li>
+<li>Factor analysis partitions measurement error from observed variance in the theta-delta matrix: <span class="math inline">\(\mathbf{\Theta_{\delta}}\)</span></li>
 </ul>
 <p><span class="math display">\[\mathbf{S}=\underbrace{\mathbf{\Lambda_{x}\Phi\Lambda_{x}'}}_{\text{Communality}}+ \underbrace{\mathbf{\Theta_{\delta}}}_{\text{Systematic &amp; Random Error}}\]</span></p>
 </section>
@@ -831,7 +831,7 @@ X_{53}\\
 <ul>
 <li>With CFA you get to specify:
 <ul>
-<li>The number and kinds of latent varibles (e.g.&nbsp;method factors vs substantive factors)</li>
+<li>The number and kinds of latent variables (e.g.&nbsp;method factors vs substantive factors)</li>
 <li>Which variables measure which latent variables (although you typically want to restrict a manifest variable to one latent variable).</li>
 <li>Which latent variables will correlate with one another.</li>
 <li>Which disturbance (uniqueness) terms should correlate with one another.</li>
@@ -850,59 +850,215 @@ X_{53}\\
 </ul></li>
 </ul>
 </section>
+<section id="the-algebra-ish-behind-model-identification" class="slide level2">
+<h2>The Algebra (ish) Behind Model Identification</h2>
+<ul>
+<li>Find <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>:</li>
+</ul>
+<p><span class="math display">\[5 = x + y\]</span></p>
+<ul>
+<li>Find <span class="math inline">\(x\)</span>:</li>
+</ul>
+<p><span class="math display">\[5 = 1 + x\]</span></p>
+</section>
 <section id="model-identification" class="slide level2">
 <h2>Model Identification</h2>
+<ul>
+<li><p>Identification focuses on understanding what conclusions could be drawn about the population model if one had unlimited data. It is about understanding if their is enough information in the observed data (indicator covariance structure), with an infinite sample size, to draw conclusions about the unobserved population model (statistical parameters).</p></li>
+<li><p>Identification + Statistical Inference = Inference</p></li>
+</ul>
+</section>
+<section id="model-identification-degrees-of-freedom" class="slide level2">
+<h2>Model Identification: Degrees of Freedom</h2>
+<ul>
+<li>The amount of information a researcher has available for learning about the population model is equal to the number of unique variances and covariances in one’s observed covariance matrix–it has nothing to do with the sample size of one’s data:</li>
+</ul>
+<p><span class="math display">\[\frac{p(p+1)}{2}=\text{# of variances and distinct covariances}\]</span></p>
+<ul>
+<li><p>The minimal amount of information required for learning about the population model is equal to the number of freely estimated parameters (12 factor loadings, 6 covariances + variances, 15 error variances)</p></li>
+<li><p><strong>Model Degrees of Freedom = Known Information - Number of Estimated Parameters</strong></p></li>
+</ul>
+</section>
+<section id="identifying-the-latent-variables" class="slide level2">
+<h2>Identifying the Latent Variables</h2>
+<ul>
+<li>Because latent variables are not observable in our data, we need to determine the scale (metric) of the latent variable. We can do this in one of two ways:
+<ul>
+<li>For each latent variable, fix one factor loadings equal to 1</li>
+<li>For each latent variable, fix its variance to 1</li>
+</ul></li>
+</ul>
+</section>
+<section id="is-your-model-identified" class="slide level2">
+<h2>Is your model identified?</h2>
+<ul>
+<li>Depending on the observed information you have available your model will be:
+<ul>
+<li>Underidentified (Negative Degrees of Freedom)</li>
+<li>Just Identified (0 Degrees of Freedom)</li>
+<li>Overidentified (Greater than 0 Degrees of Freedom)</li>
+</ul></li>
+<li>You want your model to be overidentified!</li>
+</ul>
+</section>
+<section id="identification-conditions" class="slide level2">
+<h2>Identification Conditions</h2>
+<ul>
+<li><p>To ensure your model is identified, you need to have at least 0 degrees of freedom, but it is much better to have more than 0!</p></li>
+<li><p>A sufficient condition for model identification is to have three indicators for each latent variable (but more indicators is (mostly) better!). Think of a unidimensional factor model: how many knowns and unknowns?</p></li>
+</ul>
+</section>
+<section id="empirical-underindentification" class="slide level2">
+<h2>Empirical Underindentification</h2>
+<ul>
+<li><p>Because identification is not hard enough already, we also need to worry about empirical underidentification, which occurs when the amount of observed information we theoretically have, <span class="math inline">\(\frac{p(p+1)}{2}\)</span>, is greater than the information contained in our actual covariance matrix.</p></li>
+<li><p>Empirical underidentification occurs for a variety of reasons:</p>
+<ul>
+<li>Weak to no correlation (covariation) between variables that have model implied correlations</li>
+<li>Multicollinearity</li>
+</ul></li>
+</ul>
 </section>
 <section id="model-estimation" class="slide level2">
 <h2>Model Estimation</h2>
 <ul>
-<li>Maximum Likelihood Estimation</li>
-<li>Robust Maximum Likelihood Estimation</li>
-<li>Least-Squares Estimation</li>
+<li>To estimate any statistical model, we need an estimation method that usually tries to maximize or minimize some discrepancy (cost) function. With CFA, we have a handful of estimation methods to choose from:
+<ul>
+<li>Maximum Likelihood Estimation (Assumes multivariate normality)</li>
+<li>Robust Maximum Likelihood Estimation (Multivariate normality with corrections)</li>
+<li>Diagonally Weighted Least-Squares Estimation (Use with categorical data)</li>
+</ul></li>
 </ul>
 </section>
 <section id="mle-overview" class="slide level2">
 <h2>MLE Overview</h2>
 <ul>
-<li>Fit function</li>
+<li>Maximum Likelihood Estimation is a method of estimation that seeks to maximize (usually through iterative algorithms) to maximize the data’s likelihood function (or, identically, its log likelihood function). For CFA, MLE assumes the likelihood function is multivariate normal and estimates the parameters by minimizing the following function:</li>
 </ul>
+<p><span class="math display">\[F_{ML}=\log|\mathbf{\Sigma(\Theta)}|+\text{tr}[\mathbf{S\Sigma(\Theta)^{-1}}]-\log|\mathbf{S}|-p\]</span></p>
 </section>
 <section id="model-evaluation" class="slide level2">
 <h2>Model Evaluation</h2>
 <ul>
-<li>Overall goodness of fit
+<li><p>Model evaluation asks the question: How well does model reproduce the observed statistical features of my data such as the covariance matrix.</p></li>
+<li><p>Overall goodness of fit</p>
 <ul>
 <li>Absolute Fit Indices</li>
 <li>Parsimony Adjusted Fit Indices</li>
 <li>Incremental Fit Indices</li>
 </ul></li>
-<li>Areas of localized strain</li>
-<li>Magnitude &amp; Direction of Parameter Estimates</li>
+<li><p>Areas of localized strain</p></li>
+<li><p>Magnitude &amp; Direction of Parameter Estimates</p></li>
 </ul>
 </section>
-<section id="absolute-fit-indices" class="slide level2">
-<h2>Absolute Fit Indices</h2>
+<section id="absolute-fit-indices-chi-square" class="slide level2">
+<h2>Absolute Fit Indices: Chi-Square</h2>
+<ul>
+<li><p>Assuming a lot of things (correct model, multivariate normality, large sample, etc.), <span class="math inline">\((N-1)F_{ML}\)</span> is distributed <span class="math inline">\(\chi^2_{\text{df}}\)</span>.</p>
+<ul>
+<li>Something to note: <span class="math inline">\(E[\chi^2_{\text{df}}]=\text{df}\)</span></li>
+</ul></li>
+<li><p>The chi-square tests the null hypothesis: <span class="math inline">\(\mathbf{S}=\mathbf{\Sigma(\Theta)}\)</span>. A significant test indicates that it does not.</p></li>
+<li><p>Although it should always be reported, the <span class="math inline">\(\chi^2\)</span> test has some flaws, most notably it is too sensitive to sample size and at large samples it will almost always be significant.</p></li>
+</ul>
 </section>
-<section id="comparative-fit-indices" class="slide level2">
-<h2>Comparative Fit Indices</h2>
+<section id="absolute-fit-indices-srmr" class="slide level2">
+<h2>Absolute Fit Indices: SRMR</h2>
+<ul>
+<li><p>Standardized Root Mean Square Residual or SRMR is equal to the square root of the mean squared difference between the observed correlation matrix, <span class="math inline">\(\mathbf{R}\)</span> and the model implied correlation matrix, <span class="math inline">\(\mathbf{R(\Theta)}\)</span>.</p></li>
+<li><p>Rule of thumb: SRMR &lt; .08 for a “good” model.</p></li>
+</ul>
+<p><span class="math display">\[
+\begin{bmatrix}
+1&amp;.4\\
+.4&amp;1
+\end{bmatrix} -
+\begin{bmatrix}
+1&amp;.2\\
+.2&amp;1
+\end{bmatrix} =
+\begin{bmatrix}
+0&amp;.2\\
+.2&amp;0
+\end{bmatrix},
+\sqrt{\frac{0^2+0^2+.2^2}{3}}
+\]</span></p>
+</section>
+<section id="parsimony-adjusted-fit-indices-rmsea" class="slide level2">
+<h2>Parsimony Adjusted Fit Indices: RMSEA</h2>
+<ul>
+<li>Root Mean Square Error of Approximation or RMSEA:</li>
+</ul>
+<p><span class="math display">\[\sqrt{\frac{\frac{\chi^2-\text{df}}{N-1}}{\text{df}}}\]</span></p>
+<ul>
+<li>Rule of Thumb: RMSEA &lt; .06</li>
+</ul>
+</section>
+<section id="incremental-fit-indices" class="slide level2">
+<h2>Incremental Fit Indices</h2>
+<ul>
+<li>Incremental fit indices compare the fit of your model to some “worst fit” comparison model. Unlike the absolute fit indices, values closer to 1 for the incremental fit indices indicate good fit.
+<ul>
+<li>Tucker-Lewis Index (TLI or NNFI)</li>
+<li>Comparative Fit Index (CFI)</li>
+</ul></li>
+</ul>
+</section>
+<section id="tli" class="slide level2">
+<h2>TLI</h2>
+<p><span class="math display">\[\frac{\frac{\chi^2_{0}}{df_0}-\frac{\chi^2_{T}}{df_{T}}}{\frac{\chi^2_0}{df_0}-1}\]</span></p>
+<ul>
+<li>Rule of Thumb: TLI &gt; .95</li>
+</ul>
+</section>
+<section id="cfi" class="slide level2">
+<h2>CFI</h2>
+<p><span class="math display">\[\frac{\max(\chi^2_{0}-df_{0},0)-\max(\chi^2_{T}-df_{T},0)}{\max(\chi^2_{0}-df_{0},0)}\]</span></p>
+<ul>
+<li>Rule of Thumb: CFI &gt; .95</li>
+</ul>
+</section>
+<section id="localized-strain" class="slide level2">
+<h2>Localized Strain</h2>
+<ul>
+<li><p>The previous indices all deal with global model fit. The indices may indicate your model fits well overall, but could miss areas where your model is performing poorly.</p></li>
+<li><p>Examine the residual correlation matrix and look at modification indices to determine if there are certain parameters that are not being estimated well.</p></li>
+<li><p>Use sound substantive and statistical theory as a guide before making changes!</p></li>
+</ul>
+</section>
+<section id="parameter-magnitude-direction" class="slide level2">
+<h2>Parameter Magnitude &amp; Direction</h2>
+<ul>
+<li><p>Like all models, you will want to examine each of the parameter estimates and determine if their direction and magnitude corresponds with your hypotheses and theory.</p></li>
+<li><p>If you use some version of ML estimation, you will also have significance tests to guide you.</p></li>
+</ul>
 </section>
 <section id="model-respecification" class="slide level2">
 <h2>Model Respecification</h2>
 <ul>
+<li>After you evaluate your model, you may determine that you need to respecify certain parts of the model:
+<ul>
 <li>Indicator selection &amp; pattern of indicator-factor relationship</li>
-<li>Measurement Error Theory</li>
+<li>Measurement Error Theory (Correlated residuals–be careful here!)</li>
 <li>Number of factors</li>
+</ul></li>
 </ul>
 </section>
 <section id="model-comparison" class="slide level2">
 <h2>Model Comparison</h2>
 <ul>
-<li>Chi-square Difference Test</li>
-<li>AIC and BIC</li>
+<li>You will always have a “target” theoretical model you are estimating from your data, but you will often also have competing models as well that you would like to test your target model against. To do this, we can rely on:
+<ul>
+<li>Chi-square Difference Test for nested models</li>
+<li>AIC and BIC for non-nested models</li>
+</ul></li>
 </ul>
 </section>
-<section id="model-interpretation" class="slide level2">
-<h2>Model Interpretation</h2>
+<section id="nested-model-comparison" class="slide level2">
+<h2>Nested Model Comparison</h2>
+</section>
+<section id="cfa-example" class="slide level2">
+<h2>CFA Example</h2>
 <div class="footer footer-default">
 
 </div>

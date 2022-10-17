@@ -41,7 +41,7 @@ efa_data <- readr::read_csv(efa_data_url)
 * Charles Spearman (1904) develops factor analysis to test is theory of general intelligence
 * Louis Thurstone (1930s) expands on Spearman's work and shows how to extract multiple factors
 * Joreskog (1960s) introduces a way to obtain maximum likelihood solutions for CFA and LISREL is born
-* From the 1960s and onwards there has been a lot of reserach on CFA and more general latent variable frameworks 
+* From the 1960s and onward there has been a lot of research on CFA and more general latent variable frameworks 
 
 ## The Common Factor Model
 
@@ -62,7 +62,7 @@ semPlot::semPaths(common_factor_fit)
 
 * All factor analytic methods (EFA + CFA) try to do one specific thing: <strong>reproduce the observed covariance or correlation structure in one's observed data</strong>. 
 
-* Each factor model you build implies a specific covariance structure, $\mathbf{\Sigma(\Theta)}$, and its your goal to specify a model that implies a covariance structure that closely matches the covrariance structure of your observed data, $\mathbf{S}$.
+* Each factor model you build implies a specific covariance structure, $\mathbf{\Sigma(\Theta)}$, and its your goal to specify a model that implies a covariance structure that closely matches the covariance structure of your observed data, $\mathbf{S}$.
 
 $$min(\mathbf{\Sigma(\Theta)}-\mathbf{S})$$
 
@@ -134,7 +134,7 @@ $$
 
 ## Measurement Error: Where does it go?
 
-* Factor analylsis partitions measurement error from observed varinace in the theta-delta matrix: $\mathbf{\Theta_{\delta}}$
+* Factor analysis partitions measurement error from observed variance in the theta-delta matrix: $\mathbf{\Theta_{\delta}}$
 
 $$\mathbf{S}=\underbrace{\mathbf{\Lambda_{x}\Phi\Lambda_{x}'}}_{\text{Communality}}+ \underbrace{\mathbf{\Theta_{\delta}}}_{\text{Systematic & Random Error}}$$
 
@@ -382,7 +382,7 @@ $$
 ## Model Pathways
 
 * With CFA you get to specify:
-  - The number and kinds of latent varibles (e.g. method factors vs substantive factors)
+  - The number and kinds of latent variables (e.g. method factors vs substantive factors)
   - Which variables measure which latent variables (although you typically want to restrict a manifest variable to one latent variable).
   - Which latent variables will correlate with one another.
   - Which disturbance (uniqueness) terms should correlate with one another.
@@ -408,7 +408,7 @@ $$5 = 1 + x$$
 
 ## Model Identification 
 
-* Identification focuses on understanding what conclusions could be drawn about the population model if one had unlimited data. It is about understanding if their is enough information in the observed data (indicator covariance structure), with an infinte sample size, to draw conclusions about the unobserved population model (statistical parameters).
+* Identification focuses on understanding what conclusions could be drawn about the population model if one had unlimited data. It is about understanding if their is enough information in the observed data (indicator covariance structure), with an infinite sample size, to draw conclusions about the unobserved population model (statistical parameters).
 
 * Identification + Statistical Inference = Inference 
 
@@ -425,12 +425,12 @@ $$\frac{p(p+1)}{2}=\text{# of variances and distinct covariances}$$
 ## Identifying the Latent Variables
 
 * Because latent variables are not observable in our data, we need to determine the scale (metric) of the latent variable. We can do this in one of two ways: 
-  - For each latent variable, fix one ofactor loadings equal to 1
+  - For each latent variable, fix one factor loadings equal to 1
   - For each latent variable, fix its variance to 1
 
 ## Is your model identified?
 
-* Depedning on the observed information you have available your model will be:
+* Depending on the observed information you have available your model will be:
   - Underidentified (Negative Degrees of Freedom)
   - Just Identified (0 Degrees of Freedom)
   - Overidentified (Greater than 0 Degrees of Freedom)
@@ -453,10 +453,10 @@ $$\frac{p(p+1)}{2}=\text{# of variances and distinct covariances}$$
 
 ## Model Estimation
 
-* To estimate any statistical model, we need an estimation method that usually tries to maximize or minimize some discrepency (cost) function. With CFA, we have a handful of estimation methods to choose from:
+* To estimate any statistical model, we need an estimation method that usually tries to maximize or minimize some discrepancy (cost) function. With CFA, we have a handful of estimation methods to choose from:
   - Maximum Likelihood Estimation (Assumes multivariate normality)
   - Robust Maximum Likelihood Estimation (Multivariate normality with corrections)
-  - Diagnoally Weighted Least-Squares Estimation (Use with categorical data)
+  - Diagonally Weighted Least-Squares Estimation (Use with categorical data)
 
 ## MLE Overview 
 
@@ -506,20 +506,60 @@ $$
 \sqrt{\frac{0^2+0^2+.2^2}{3}}
 $$
 
-## Parsimony Adjusted Fit Indices
+## Parsimony Adjusted Fit Indices: RMSEA
+
+* Root Mean Square Error of Approximation or RMSEA:
+
+$$\sqrt{\frac{\frac{\chi^2-\text{df}}{N-1}}{\text{df}}}$$
+
+* Rule of Thumb: RMSEA < .06 
 
 ## Incremental Fit Indices
 
+* Incremental fit indices compare the fit of your model to some "worst fit" comparison model. Unlike the absolute fit indices, values closer to 1 for the incremental fit indices indicate good fit. 
+  - Tucker-Lewis Index (TLI or NNFI)
+  - Comparative Fit Index (CFI)
+
+## TLI 
+
+$$\frac{\frac{\chi^2_{0}}{df_0}-\frac{\chi^2_{T}}{df_{T}}}{\frac{\chi^2_0}{df_0}-1}$$
+
+* Rule of Thumb: TLI > .95 
+
+## CFI 
+
+$$\frac{\max(\chi^2_{0}-df_{0},0)-\max(\chi^2_{T}-df_{T},0)}{\max(\chi^2_{0}-df_{0},0)}$$
+
+* Rule of Thumb: CFI > .95
+
+## Localized Strain
+
+* The previous indices all deal with global model fit. The indices may indicate your model fits well overall, but could miss areas where your model is performing poorly. 
+
+* Examine the residual correlation matrix and look at modification indices to determine if there are certain parameters that are not being estimated well. 
+
+* Use sound substantive and statistical theory as a guide before making changes!
+
+## Parameter Magnitude & Direction 
+
+* Like all models, you will want to examine each of the parameter estimates and determine if their direction and magnitude corresponds with your hypotheses and theory. 
+
+* If you use some version of ML estimation, you will also have significance tests to guide you.
+
 ## Model Respecification 
 
-* Indicator selection & pattern of indicator-factor relationship
-* Measurement Error Theory
-* Number of factors
+* After you evaluate your model, you may determine that you need to respecify certain parts of the model:
+  - Indicator selection & pattern of indicator-factor relationship
+  - Measurement Error Theory (Correlated residuals--be careful here!)
+  - Number of factors
 
 ## Model Comparison 
 
-* Chi-square Difference Test
-* AIC and BIC
+* You will always have a "target" theoretical model you are estimating from your data, but you will often also have competing models as well that you would like to test your target model against. To do this, we can rely on: 
+  - Chi-square Difference Test for nested models
+  - AIC and BIC for non-nested models
+
+## Nested Model Comparison
 
 ## CFA Example 
 
