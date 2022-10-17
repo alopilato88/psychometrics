@@ -537,7 +537,9 @@ target_model_results <-
               data = cfa_data,
               estimator = "MLM")
 
-summary(target_model_results, fit.measures = TRUE)
+summary(target_model_results, 
+        standardized = TRUE,
+        fit.measures = TRUE)
 ```
 
 ## Model Evaluation
@@ -601,8 +603,6 @@ $$\sqrt{\frac{\frac{\chi^2-\text{df}}{N-1}}{\text{df}}}$$
 * Rule of Thumb: TLI > .95 
 
 $$\frac{\frac{\chi^2_{0}}{df_0}-\frac{\chi^2_{T}}{df_{T}}}{\frac{\chi^2_0}{df_0}-1}$$
-
-
 
 ## Comparative Fit Index
 
