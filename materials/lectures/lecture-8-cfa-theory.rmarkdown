@@ -7,7 +7,9 @@ format:
     css: psych-lecture-style.css
 ---
 
+
 ## Overview 
+
 
 ```{r}
 #| message: false
@@ -28,6 +30,7 @@ cfa_data <- readr::read_csv(cfa_data_url)
 efa_data <- readr::read_csv(efa_data_url)
 ```
 
+
 * Introduction to factor analysis
 * Overview of EFA
 * Overview of CFA 
@@ -45,6 +48,7 @@ efa_data <- readr::read_csv(efa_data_url)
 
 ## The Common Factor Model
 
+
 ```{r}
 common_factor_syntax <- "
 
@@ -57,6 +61,7 @@ common_factor_fit <- lavaan::cfa(common_factor_syntax, data = efa_data)
 
 semPlot::semPaths(common_factor_fit)
 ```
+
 
 ## The Statistical Logic Underlying Factor Analysis
 
@@ -188,6 +193,7 @@ $$\mathbf{S}=\underbrace{\mathbf{\Lambda_{x}\Phi\Lambda_{x}'}}_{\text{Communalit
 
 ## EFA Example: R Code
 
+
 ```{r}
 #| echo: true
 #| eval: false
@@ -225,18 +231,21 @@ efa_solution <-
 )
 ```
 
+
 ## Parallel Analysis
+
 
 ```{r}
 psych::fa.parallel(
-  x = efa_cor_matrix,
-  n.obs = 500,
+  x = efa_data,
   fa = "pc",
   fm = "ml"
 )
 ```
 
+
 ## VSS {.scrollable}
+
 
 ```{r}
 psych::vss(
@@ -247,7 +256,9 @@ psych::vss(
 )
 ```
 
+
 ## EFA Solution {.scrollable}
+
 
 ```{r}
   psych::fa(
@@ -256,6 +267,7 @@ psych::vss(
     fm = "ml"
 )
 ```
+
 
 # Confirmatory Factor Analysis
 
@@ -269,6 +281,7 @@ psych::vss(
 * With CFA a researcher directly specifies the factor model unlike EFA.
 
 ## Our Population Model 
+
 
 ```{r}
 pop_mod_syntax <- "
@@ -286,6 +299,7 @@ population_model <- lavaan::cfa(pop_mod_syntax, data = cfa_data)
 
 semPlot::semPaths(population_model)
 ```
+
 
 ## Population Equations 
 
@@ -521,5 +535,6 @@ $$
 * AIC and BIC
 
 ## CFA Example 
+
 
 

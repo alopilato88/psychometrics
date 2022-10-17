@@ -716,21 +716,139 @@ Minimum correlation of possible factor scores     0.74 0.79 0.68</code></pre>
 </section>
 <section id="what-is-cfa" class="slide level2">
 <h2>What is CFA?</h2>
+<ul>
+<li>CFA can be thought of as theory-driven factor analysis:
+<ul>
+<li>Researcher knows the number of factors (and their interpretation)</li>
+<li>Researcher knows which indicators load onto which factor</li>
+<li>Researcher knows (or has an idea) of the error structure</li>
+</ul></li>
+<li>With CFA a researcher directly specifies the factor model unlike EFA.</li>
+</ul>
 </section>
 <section id="our-population-model" class="slide level2">
 <h2>Our Population Model</h2>
+
+<img data-src="lecture-8-cfa-theory_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch"></section>
+<section id="population-equations" class="slide level2">
+<h2>Population Equations</h2>
+<p><span class="math display">\[
+\begin{bmatrix}
+X_{11}\\
+X_{21}\\
+X_{31}\\
+\vdots\\
+X_{43}\\
+X_{53}\\
+\end{bmatrix} =
+\begin{bmatrix}
+\lambda_{11}&amp;0&amp;0\\
+\lambda_{21}&amp;0&amp;0\\
+\lambda_{31}&amp;0&amp;0\\
+\vdots&amp;\vdots&amp;\vdots\\
+0&amp;0&amp;\lambda_{43}\\
+0&amp;0&amp;\lambda_{53}\\
+\end{bmatrix}
+\begin{bmatrix}
+\xi_{1}\\
+\xi_{2}\\
+\xi_{3}\\
+\end{bmatrix} +
+\begin{bmatrix}
+\delta_{11}\\
+\delta_{21}\\
+\delta_{31}\\
+\vdots\\
+\delta_{43}\\
+\delta_{53}\\
+\end{bmatrix}
+\]</span></p>
 </section>
-<section id="cfa-equations" class="slide level2">
-<h2>CFA Equations</h2>
-</section>
-<section id="cfa-matrix-lisrel-notation" class="slide level2">
-<h2>CFA Matrix (LISREL) Notation</h2>
+<section id="model-implied-population-covariance" class="slide level2 smaller">
+<h2>Model Implied Population Covariance</h2>
+<p><span class="math display">\[
+\mathbf{S} = \mathbf{\Lambda_{x}\Phi\Lambda_{x}'}+\mathbf{\Theta_{\delta}}
+\]</span></p>
+<p><span class="math display">\[
+\mathbf{\Lambda_{x}\Phi\Lambda_{x}'} =
+\begin{bmatrix}
+\lambda_{11}&amp;0&amp;0\\
+\lambda_{21}&amp;0&amp;0\\
+\lambda_{31}&amp;0&amp;0\\
+\vdots&amp;\vdots&amp;\vdots\\
+0&amp;0&amp;\lambda_{43}\\
+0&amp;0&amp;\lambda_{53}\\
+\end{bmatrix}
+\begin{bmatrix}
+\phi^2_{1}&amp;\phi_{1,2}&amp;\phi_{1,3}\\
+\phi_{2,1}&amp;\phi^2_{2}&amp;\phi_{2,3}\\
+\phi_{3,1}&amp;\phi_{3,2}&amp;\phi^2_{3}\\
+\end{bmatrix}
+\begin{bmatrix}
+\lambda_{11}&amp;\lambda_{21}&amp;\lambda_{31}&amp;\cdots&amp;0\\
+0&amp;0&amp;0&amp;\cdots&amp;0\\
+0&amp;0&amp;0&amp;\cdots&amp;\lambda_{53}
+\end{bmatrix}
+\]</span></p>
+<p><span class="math display">\[
+\mathbf{\Theta_{\delta}} =
+\begin{bmatrix}
+\Theta_{1}&amp;0&amp;0&amp;\cdots&amp;0\\
+0&amp;\Theta_{2}&amp;0&amp;\cdots&amp;0\\
+\vdots&amp;\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\
+0&amp;0&amp;0&amp;0&amp;\Theta_{15}\\
+\end{bmatrix}
+\]</span></p>
 </section>
 <section id="cfa-workflow" class="slide level2">
 <h2>CFA Workflow</h2>
-</section>
+
+<img data-src="lecture-8-img/cfa-workflow.png" class="r-stretch"></section>
 <section id="model-specification" class="slide level2">
 <h2>Model Specification</h2>
+<ul>
+<li>Model specification is the process of translating your hypotheses and assumptions into a statistical model (Model building!):
+<ul>
+<li>What form the model will take</li>
+<li>What paths should be present among the different variables</li>
+<li>Status of the parameters (fixed, free &amp; constrained, free &amp; unconstrained)</li>
+</ul></li>
+</ul>
+</section>
+<section id="form-of-the-model" class="slide level2">
+<h2>Form of the Model</h2>
+<ul>
+<li><p>When building a model, you must first think about what form it will take: linear relationships, variables to include, interactions among variables, etc.</p></li>
+<li><p>With CFA, the model form is constrained to linear relationships among the manifest and latent variables and only a measurement model is specified. But there are two specific forms to choose from:</p>
+<ul>
+<li>Reflective Model (Most cases will be this!)</li>
+<li>Formative Model</li>
+</ul></li>
+</ul>
+</section>
+<section id="model-pathways" class="slide level2">
+<h2>Model Pathways</h2>
+<ul>
+<li>With CFA you get to specify:
+<ul>
+<li>The number and kinds of latent varibles (e.g.&nbsp;method factors vs substantive factors)</li>
+<li>Which variables measure which latent variables (although you typically want to restrict a manifest variable to one latent variable).</li>
+<li>Which latent variables will correlate with one another.</li>
+<li>Which disturbance (uniqueness) terms should correlate with one another.</li>
+</ul></li>
+</ul>
+</section>
+<section id="parameter-status" class="slide level2">
+<h2>Parameter Status</h2>
+<ul>
+<li><p>Each pathway you specify in your model is a parameter that needs to be either estimated by an algorithm or specified by the researcher.</p></li>
+<li><p>Parameters can be:</p>
+<ul>
+<li>Fixed by the researcher (set to 0, 1, or any number really)</li>
+<li>Estimated and Unconstrained (let the model figure it out)</li>
+<li>Estimated and Constrained (let the model figure it out with a little researcher help)</li>
+</ul></li>
+</ul>
 </section>
 <section id="model-identification" class="slide level2">
 <h2>Model Identification</h2>
