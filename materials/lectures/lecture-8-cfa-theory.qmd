@@ -176,9 +176,8 @@ $$\mathbf{S}=\underbrace{\mathbf{\Lambda_{x}\Phi\Lambda_{x}'}}_{\text{Communalit
   - Scree Plot 
   - Parallel Analysis
   - Very Simple Structure (VSS)
-  - Fit Indices 
 
-* Again, there is no one size fits all solution, you should exercise sound judgment, use all of the above methods, and carefully report what you have done. 
+* Overall, you should exercise sound judgment, use all of the above methods, and carefully report what you have done. 
 
 ## Factor Rotation in EFA
 
@@ -237,7 +236,7 @@ psych::fa.parallel(
 )
 ```
 
-## VSS {.scrollable}
+## Very Simple Structure {.scrollable}
 
 ```{r}
 psych::vss(
@@ -408,7 +407,9 @@ $$5 = 1 + x$$
 
 ## Model Identification 
 
-* Identification focuses on understanding what conclusions could be drawn about the population model if one had unlimited data. It is about understanding if their is enough information in the observed data (indicator covariance structure), with an infinite sample size, to draw conclusions about the unobserved population model (statistical parameters).
+* Identification focuses on understanding what conclusions could be drawn about the population model if one had unlimited data. 
+
+* Idenitifcation is about understanding if there is enough information in the observed data, with an infinite sample size, to draw conclusions about the unobserved population model (statistical parameters).
 
 * Identification + Statistical Inference = Inference 
 
@@ -441,7 +442,9 @@ $$\frac{p(p+1)}{2}=\text{# of variances and distinct covariances}$$
 
 * To ensure your model is identified, you need to have at least 0 degrees of freedom, but it is much better to have more than 0! 
 
-* A sufficient condition for model identification is to have three indicators for each latent variable (but more indicators is (mostly) better!). Think of a unidimensional factor model: how many knowns and unknowns? 
+* A sufficient condition for model identification is to have three indicators for each latent variable (but more indicators is (mostly) better!). 
+
+* Think of a unidimensional factor model: how many knowns and unknowns? 
 
 ## Empirical Underindentification
 
@@ -511,6 +514,12 @@ factor_2~~factor_3
 * Maximum Likelihood Estimation is a method of estimation that seeks to maximize (usually through iterative algorithms) to maximize the data's likelihood function (or, identically, its log likelihood function). For CFA, MLE assumes the likelihood function is multivariate normal and estimates the parameters by minimizing the following function:
 
 $$F_{ML}=\log|\mathbf{\Sigma(\Theta)}|+\text{tr}[\mathbf{S\Sigma(\Theta)^{-1}}]-\log|\mathbf{S}|-p$$
+
+## View our CFA Data {.scrollable = TRUE}
+
+```{r}
+head(cfa_data)
+```
 
 ## Estimate CFA Model {.scrollable}
 
