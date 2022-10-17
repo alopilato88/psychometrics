@@ -236,8 +236,10 @@ efa_solution <-
 
 
 ```{r}
+efa_cor_matrix <- cor(efa_data)
 psych::fa.parallel(
-  x = efa_data,
+  x = efa_cor_matrix,
+  n.obs = 500,
   fa = "pc",
   fm = "ml"
 )
