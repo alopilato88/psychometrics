@@ -361,7 +361,7 @@ $$
 
 ## CFA Workflow
 
-![](lecture-8-img/cfa-workflow.png)
+![Hoyle, R. H. (2012). Model specification in structural equation modeling.](lecture-8-img/cfa-workflow.png)
 
 ## Model Specification 
 
@@ -409,7 +409,7 @@ $$5 = 1 + x$$
 
 * Identification focuses on understanding what conclusions could be drawn about the population model if one had unlimited data. 
 
-* Idenitifcation is about understanding if there is enough information in the observed data, with an infinite sample size, to draw conclusions about the unobserved population model (statistical parameters).
+* Identification is about understanding if there is enough information in the observed data, with an infinite sample size, to draw conclusions about the unobserved population model (statistical parameters).
 
 * Identification + Statistical Inference = Inference 
 
