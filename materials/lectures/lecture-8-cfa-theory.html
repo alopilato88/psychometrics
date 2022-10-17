@@ -919,6 +919,50 @@ X_{53}\\
 </ul></li>
 </ul>
 </section>
+<section id="specifying-your-model-in-lavaan" class="slide level2 scrollable">
+<h2>Specifying Your Model in lavaan</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Write the model syntax</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>target_model_syntax <span class="ot">&lt;-</span> <span class="st">"</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="st"># Specifying that factor 1 is measured by the first five indicator variables</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a></span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="st"># The metric of Factor 1 is (by default) identified by setting factor loading LV_1_1 to 1</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="st">factor_1 =~ LV_1_1 + LV_1_2 + LV_1_3 + LV_1_4 + LV_1_5</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="st">factor_2 =~ LV_2_1 + LV_2_2 + LV_2_3 + LV_2_4 + LV_2_5</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a><span class="st">factor_3 =~ LV_3_1 + LV_3_2 + LV_3_3 + LV_3_4 + LV_3_5</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a></span>
+<span id="cb5-11"><a href="#cb5-11"></a><span class="st"># Specifying the factor covariance structure</span></span>
+<span id="cb5-12"><a href="#cb5-12"></a></span>
+<span id="cb5-13"><a href="#cb5-13"></a><span class="st">factor_1~~factor_1 # Factor variances</span></span>
+<span id="cb5-14"><a href="#cb5-14"></a><span class="st">factor_2~~factor_2</span></span>
+<span id="cb5-15"><a href="#cb5-15"></a><span class="st">factor_3~~factor_3</span></span>
+<span id="cb5-16"><a href="#cb5-16"></a></span>
+<span id="cb5-17"><a href="#cb5-17"></a><span class="st">factor_1~~factor_2 # Factor covariances</span></span>
+<span id="cb5-18"><a href="#cb5-18"></a><span class="st">factor_1~~factor_3</span></span>
+<span id="cb5-19"><a href="#cb5-19"></a><span class="st">factor_2~~factor_3</span></span>
+<span id="cb5-20"><a href="#cb5-20"></a><span class="st">"</span></span>
+<span id="cb5-21"><a href="#cb5-21"></a></span>
+<span id="cb5-22"><a href="#cb5-22"></a>alternative_model_syntax <span class="ot">&lt;-</span> <span class="st">"</span></span>
+<span id="cb5-23"><a href="#cb5-23"></a></span>
+<span id="cb5-24"><a href="#cb5-24"></a><span class="st"># All of the loadings are freely estimated: NA*LV_P_1</span></span>
+<span id="cb5-25"><a href="#cb5-25"></a><span class="st">factor_1 =~ NA*LV_1_1 + LV_1_2 + LV_1_3 + LV_1_4 + LV_1_5</span></span>
+<span id="cb5-26"><a href="#cb5-26"></a><span class="st">factor_2 =~ NA*LV_2_1 + LV_2_2 + LV_2_3 + LV_2_4 + LV_2_5</span></span>
+<span id="cb5-27"><a href="#cb5-27"></a><span class="st">factor_3 =~ NA*LV_3_1 + LV_3_2 + LV_3_3 + LV_3_4 + LV_3_5</span></span>
+<span id="cb5-28"><a href="#cb5-28"></a></span>
+<span id="cb5-29"><a href="#cb5-29"></a><span class="st"># Specifying the factor covariance structure</span></span>
+<span id="cb5-30"><a href="#cb5-30"></a></span>
+<span id="cb5-31"><a href="#cb5-31"></a><span class="st"># Factor metric is identified by fixing the factor variance to 1</span></span>
+<span id="cb5-32"><a href="#cb5-32"></a><span class="st">factor_1~~1*factor_1 # Factor variances</span></span>
+<span id="cb5-33"><a href="#cb5-33"></a><span class="st">factor_2~~1*factor_2</span></span>
+<span id="cb5-34"><a href="#cb5-34"></a><span class="st">factor_3~~1*factor_3</span></span>
+<span id="cb5-35"><a href="#cb5-35"></a></span>
+<span id="cb5-36"><a href="#cb5-36"></a><span class="st">factor_1~~factor_2 # Factor covariances</span></span>
+<span id="cb5-37"><a href="#cb5-37"></a><span class="st">factor_1~~factor_3</span></span>
+<span id="cb5-38"><a href="#cb5-38"></a><span class="st">factor_2~~factor_3</span></span>
+<span id="cb5-39"><a href="#cb5-39"></a><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
 <section id="model-estimation" class="slide level2">
 <h2>Model Estimation</h2>
 <ul>
@@ -937,169 +981,30 @@ X_{53}\\
 </ul>
 <p><span class="math display">\[F_{ML}=\log|\mathbf{\Sigma(\Theta)}|+\text{tr}[\mathbf{S\Sigma(\Theta)^{-1}}]-\log|\mathbf{S}|-p\]</span></p>
 </section>
-<section id="model-evaluation" class="slide level2">
-<h2>Model Evaluation</h2>
-<ul>
-<li><p>Model evaluation asks the question: How well does model reproduce the observed statistical features of my data such as the covariance matrix.</p></li>
-<li><p>Overall goodness of fit</p>
-<ul>
-<li>Absolute Fit Indices</li>
-<li>Parsimony Adjusted Fit Indices</li>
-<li>Incremental Fit Indices</li>
-</ul></li>
-<li><p>Areas of localized strain</p></li>
-<li><p>Magnitude &amp; Direction of Parameter Estimates</p></li>
-</ul>
-</section>
-<section id="absolute-fit-indices-chi-square" class="slide level2">
-<h2>Absolute Fit Indices: Chi-Square</h2>
-<ul>
-<li><p>Assuming a lot of things (correct model, multivariate normality, large sample, etc.), <span class="math inline">\((N-1)F_{ML}\)</span> is distributed <span class="math inline">\(\chi^2_{\text{df}}\)</span>.</p>
-<ul>
-<li>Something to note: <span class="math inline">\(E[\chi^2_{\text{df}}]=\text{df}\)</span></li>
-</ul></li>
-<li><p>The chi-square tests the null hypothesis: <span class="math inline">\(\mathbf{S}=\mathbf{\Sigma(\Theta)}\)</span>. A significant test indicates that it does not.</p></li>
-<li><p>Although it should always be reported, the <span class="math inline">\(\chi^2\)</span> test has some flaws, most notably it is too sensitive to sample size and at large samples it will almost always be significant.</p></li>
-</ul>
-</section>
-<section id="absolute-fit-indices-srmr" class="slide level2">
-<h2>Absolute Fit Indices: SRMR</h2>
-<ul>
-<li><p>Standardized Root Mean Square Residual or SRMR is equal to the square root of the mean squared difference between the observed correlation matrix, <span class="math inline">\(\mathbf{R}\)</span> and the model implied correlation matrix, <span class="math inline">\(\mathbf{R(\Theta)}\)</span>.</p></li>
-<li><p>Rule of thumb: SRMR &lt; .08 for a “good” model.</p></li>
-</ul>
-<p><span class="math display">\[
-\begin{bmatrix}
-1&amp;.4\\
-.4&amp;1
-\end{bmatrix} -
-\begin{bmatrix}
-1&amp;.2\\
-.2&amp;1
-\end{bmatrix} =
-\begin{bmatrix}
-0&amp;.2\\
-.2&amp;0
-\end{bmatrix},
-\sqrt{\frac{0^2+0^2+.2^2}{3}}
-\]</span></p>
-</section>
-<section id="parsimony-adjusted-fit-indices-rmsea" class="slide level2">
-<h2>Parsimony Adjusted Fit Indices: RMSEA</h2>
-<ul>
-<li>Root Mean Square Error of Approximation or RMSEA:</li>
-</ul>
-<p><span class="math display">\[\sqrt{\frac{\frac{\chi^2-\text{df}}{N-1}}{\text{df}}}\]</span></p>
-<ul>
-<li>Rule of Thumb: RMSEA &lt; .06</li>
-</ul>
-</section>
-<section id="incremental-fit-indices" class="slide level2">
-<h2>Incremental Fit Indices</h2>
-<ul>
-<li>Incremental fit indices compare the fit of your model to some “worst fit” comparison model. Unlike the absolute fit indices, values closer to 1 for the incremental fit indices indicate good fit.
-<ul>
-<li>Tucker-Lewis Index (TLI or NNFI)</li>
-<li>Comparative Fit Index (CFI)</li>
-</ul></li>
-</ul>
-</section>
-<section id="tli" class="slide level2">
-<h2>TLI</h2>
-<p><span class="math display">\[\frac{\frac{\chi^2_{0}}{df_0}-\frac{\chi^2_{T}}{df_{T}}}{\frac{\chi^2_0}{df_0}-1}\]</span></p>
-<ul>
-<li>Rule of Thumb: TLI &gt; .95</li>
-</ul>
-</section>
-<section id="cfi" class="slide level2">
-<h2>CFI</h2>
-<p><span class="math display">\[\frac{\max(\chi^2_{0}-df_{0},0)-\max(\chi^2_{T}-df_{T},0)}{\max(\chi^2_{0}-df_{0},0)}\]</span></p>
-<ul>
-<li>Rule of Thumb: CFI &gt; .95</li>
-</ul>
-</section>
-<section id="localized-strain" class="slide level2">
-<h2>Localized Strain</h2>
-<ul>
-<li><p>The previous indices all deal with global model fit. The indices may indicate your model fits well overall, but could miss areas where your model is performing poorly.</p></li>
-<li><p>Examine the residual correlation matrix and look at modification indices to determine if there are certain parameters that are not being estimated well.</p></li>
-<li><p>Use sound substantive and statistical theory as a guide before making changes!</p></li>
-</ul>
-</section>
-<section id="parameter-magnitude-direction" class="slide level2">
-<h2>Parameter Magnitude &amp; Direction</h2>
-<ul>
-<li><p>Like all models, you will want to examine each of the parameter estimates and determine if their direction and magnitude corresponds with your hypotheses and theory.</p></li>
-<li><p>If you use some version of ML estimation, you will also have significance tests to guide you.</p></li>
-</ul>
-</section>
-<section id="model-respecification" class="slide level2">
-<h2>Model Respecification</h2>
-<ul>
-<li>After you evaluate your model, you may determine that you need to respecify certain parts of the model:
-<ul>
-<li>Indicator selection &amp; pattern of indicator-factor relationship</li>
-<li>Measurement Error Theory (Correlated residuals–be careful here!)</li>
-<li>Number of factors</li>
-</ul></li>
-</ul>
-</section>
-<section id="model-comparison" class="slide level2">
-<h2>Model Comparison</h2>
-<ul>
-<li>You will always have a “target” theoretical model you are estimating from your data, but you will often also have competing models as well that you would like to test your target model against. To do this, we can rely on:
-<ul>
-<li>Chi-square Difference Test for nested models</li>
-<li>AIC and BIC for non-nested models</li>
-</ul></li>
-</ul>
-</section>
-<section id="nested-model-comparison" class="slide level2 smaller">
-<h2>Nested Model Comparison</h2>
-<ul>
-<li><p>A model can be considered nested within another model if its free and unconstrained parameters are a subset of the other model’s free and unconstrained parameters. Think of this like hierarchical regression tests.</p></li>
-<li><p>We can use a change-in-chi-square test which is just the restricted models chi-square minus the less restricted model’s chi-square. This difference is chi-square distributed with dfs equal to the difference in degrees of freedom.</p></li>
-</ul>
-<p><span class="math display">\[\chi^2_{R}-\chi^2_{U}, \text{df}_{R}-\text{df}_{U}\sim\chi^2_{R-U}\]</span></p>
-<ul>
-<li>We can test <span class="math inline">\(\chi^2_{R-U}\)</span> using a chi-square distribution with degrees of freedom equal to <span class="math inline">\(\text{df}_{R}-\text{df}_U\)</span>. A significant test indicates that the less restricted model fits the data better than the restricted model and we should prefer the less restricted model. When the test is non-significant, we should use the more restricted model under model parsimony.</li>
-</ul>
-</section>
-<section id="cfa-example-with-lavaan" class="slide level2 scrollable">
-<h2>CFA Example with lavaan</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Write the model syntax</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>target_model_syntax <span class="ot">&lt;-</span> <span class="st">"</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="st">factor_1 =~ LV_1_1 + LV_1_2 + LV_1_3 + LV_1_4 + LV_1_5</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="st">factor_2 =~ LV_2_1 + LV_2_2 + LV_2_3 + LV_2_4 + LV_2_5</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a><span class="st">factor_3 =~ LV_3_1 + LV_3_2 + LV_3_3 + LV_3_4 + LV_3_5</span></span>
-<span id="cb5-6"><a href="#cb5-6"></a></span>
-<span id="cb5-7"><a href="#cb5-7"></a><span class="st">factor_1~~factor_1</span></span>
-<span id="cb5-8"><a href="#cb5-8"></a><span class="st">factor_2~~factor_2</span></span>
-<span id="cb5-9"><a href="#cb5-9"></a><span class="st">factor_3~~factor_3</span></span>
-<span id="cb5-10"><a href="#cb5-10"></a><span class="st">"</span></span>
-<span id="cb5-11"><a href="#cb5-11"></a></span>
-<span id="cb5-12"><a href="#cb5-12"></a><span class="co"># Estimate your model </span></span>
-<span id="cb5-13"><a href="#cb5-13"></a>target_model_results <span class="ot">&lt;-</span> </span>
-<span id="cb5-14"><a href="#cb5-14"></a>  lavaan<span class="sc">::</span><span class="fu">cfa</span>(<span class="at">model =</span> target_model_syntax, </span>
-<span id="cb5-15"><a href="#cb5-15"></a>              <span class="at">data =</span> cfa_data,</span>
-<span id="cb5-16"><a href="#cb5-16"></a>              <span class="at">estimator =</span> <span class="st">"MLM"</span>)</span>
-<span id="cb5-17"><a href="#cb5-17"></a></span>
-<span id="cb5-18"><a href="#cb5-18"></a><span class="co"># Evaluate your model fit</span></span>
-<span id="cb5-19"><a href="#cb5-19"></a><span class="fu">summary</span>(target_model_results)</span>
-<span id="cb5-20"><a href="#cb5-20"></a>lavaan<span class="sc">::</span><span class="fu">fitmeasures</span>(target_model_results)</span>
-<span id="cb5-21"><a href="#cb5-21"></a></span>
-<span id="cb5-22"><a href="#cb5-22"></a><span class="co"># Look for localized areas of strain</span></span>
-<span id="cb5-23"><a href="#cb5-23"></a>lavaan<span class="sc">::</span><span class="fu">residuals</span>(target_model_results)</span>
-<span id="cb5-24"><a href="#cb5-24"></a>lavaan<span class="sc">::</span><span class="fu">modificationindices</span>(target_model_results)</span>
-<span id="cb5-25"><a href="#cb5-25"></a></span>
-<span id="cb5-26"><a href="#cb5-26"></a><span class="co"># Look at a standardized solution</span></span>
-<span id="cb5-27"><a href="#cb5-27"></a>lavaan<span class="sc">::</span><span class="fu">standardizedsolution</span>(target_model_results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
 <section id="estimate-cfa-model" class="slide level2 scrollable">
 <h2>Estimate CFA Model</h2>
 <div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># Write the model syntax</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>target_model_syntax <span class="ot">&lt;-</span> <span class="st">"</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="st">factor_1 =~ LV_1_1 + LV_1_2 + LV_1_3 + LV_1_4 + LV_1_5</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="st">factor_2 =~ LV_2_1 + LV_2_2 + LV_2_3 + LV_2_4 + LV_2_5</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="st">factor_3 =~ LV_3_1 + LV_3_2 + LV_3_3 + LV_3_4 + LV_3_5</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="st">factor_1~~factor_1</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a><span class="st">factor_2~~factor_2</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="st">factor_3~~factor_3</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a><span class="st">"</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a></span>
+<span id="cb6-12"><a href="#cb6-12"></a><span class="co"># Estimate your model </span></span>
+<span id="cb6-13"><a href="#cb6-13"></a>target_model_results <span class="ot">&lt;-</span> </span>
+<span id="cb6-14"><a href="#cb6-14"></a>  lavaan<span class="sc">::</span><span class="fu">cfa</span>(<span class="at">model =</span> target_model_syntax, </span>
+<span id="cb6-15"><a href="#cb6-15"></a>              <span class="at">data =</span> cfa_data,</span>
+<span id="cb6-16"><a href="#cb6-16"></a>              <span class="at">estimator =</span> <span class="st">"MLM"</span>)</span>
+<span id="cb6-17"><a href="#cb6-17"></a></span>
+<span id="cb6-18"><a href="#cb6-18"></a><span class="fu">summary</span>(target_model_results, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>lavaan 0.6-12 ended normally after 47 iterations
 
@@ -1214,9 +1119,110 @@ Variances:
 </div>
 </div>
 </section>
+<section id="model-evaluation" class="slide level2">
+<h2>Model Evaluation</h2>
+<ul>
+<li><p>Model evaluation asks the question: How well does model reproduce the observed statistical features of my data such as the covariance matrix.</p></li>
+<li><p>Overall goodness of fit</p>
+<ul>
+<li>Absolute Fit Indices</li>
+<li>Parsimony Adjusted Fit Indices</li>
+<li>Incremental Fit Indices</li>
+</ul></li>
+<li><p>Areas of localized strain</p></li>
+<li><p>Magnitude &amp; Direction of Parameter Estimates</p></li>
+</ul>
+</section>
+<section id="absolute-fit-indices-chi-square" class="slide level2">
+<h2>Absolute Fit Indices: Chi-Square</h2>
+<ul>
+<li><p>Assuming a lot of things (correct model, multivariate normality, large sample, etc.), <span class="math inline">\((N-1)F_{ML}\)</span> is distributed <span class="math inline">\(\chi^2_{\text{df}}\)</span>.</p>
+<ul>
+<li>Something to note: <span class="math inline">\(E[\chi^2_{\text{df}}]=\text{df}\)</span></li>
+</ul></li>
+<li><p>The chi-square tests the null hypothesis: <span class="math inline">\(\mathbf{S}=\mathbf{\Sigma(\Theta)}\)</span>. A significant test indicates that it does not.</p></li>
+<li><p>Although it should always be reported, the <span class="math inline">\(\chi^2\)</span> test has some flaws, most notably it is too sensitive to sample size and at large samples it will almost always be significant.</p></li>
+</ul>
+</section>
+<section id="absolute-fit-indices-srmr" class="slide level2">
+<h2>Absolute Fit Indices: SRMR</h2>
+<ul>
+<li><p>Standardized Root Mean Square Residual or SRMR is equal to the square root of the mean squared difference between the observed correlation matrix, <span class="math inline">\(\mathbf{R}\)</span> and the model implied correlation matrix, <span class="math inline">\(\mathbf{R(\Theta)}\)</span>.</p></li>
+<li><p>Rule of thumb: SRMR &lt; .08 for a “good” model.</p></li>
+</ul>
+<p><span class="math display">\[
+\begin{bmatrix}
+1&amp;.4\\
+.4&amp;1
+\end{bmatrix} -
+\begin{bmatrix}
+1&amp;.2\\
+.2&amp;1
+\end{bmatrix} =
+\begin{bmatrix}
+0&amp;.2\\
+.2&amp;0
+\end{bmatrix},
+\sqrt{\frac{0^2+0^2+.2^2}{3}}
+\]</span></p>
+</section>
+<section id="parsimony-adjusted-fit-indices-rmsea" class="slide level2">
+<h2>Parsimony Adjusted Fit Indices: RMSEA</h2>
+<ul>
+<li>Root Mean Square Error of Approximation or RMSEA:</li>
+</ul>
+<p><span class="math display">\[\sqrt{\frac{\frac{\chi^2-\text{df}}{N-1}}{\text{df}}}\]</span></p>
+<ul>
+<li>Rule of Thumb: RMSEA &lt; .06</li>
+</ul>
+</section>
+<section id="incremental-fit-indices" class="slide level2">
+<h2>Incremental Fit Indices</h2>
+<ul>
+<li>Incremental fit indices compare the fit of your model to some “worst fit” comparison model. Unlike the absolute fit indices, values closer to 1 for the incremental fit indices indicate good fit.
+<ul>
+<li>Tucker-Lewis Index (TLI or NNFI)</li>
+<li>Comparative Fit Index (CFI)</li>
+</ul></li>
+</ul>
+</section>
+<section id="tucker-lewis-index" class="slide level2">
+<h2>Tucker-Lewis Index</h2>
+<ul>
+<li>Rule of Thumb: TLI &gt; .95</li>
+</ul>
+<p><span class="math display">\[\frac{\frac{\chi^2_{0}}{df_0}-\frac{\chi^2_{T}}{df_{T}}}{\frac{\chi^2_0}{df_0}-1}\]</span></p>
+</section>
+<section id="comparative-fit-index" class="slide level2">
+<h2>Comparative Fit Index</h2>
+<ul>
+<li>Rule of Thumb: CFI &gt; .95</li>
+</ul>
+<p><span class="math display">\[\frac{\max(\chi^2_{0}-df_{0},0)-\max(\chi^2_{T}-df_{T},0)}{\max(\chi^2_{0}-df_{0},0)}\]</span></p>
+</section>
+<section id="localized-strain" class="slide level2">
+<h2>Localized Strain</h2>
+<ul>
+<li><p>The previous indices all deal with global model fit. The indices may indicate your model fits well overall, but could miss areas where your model is performing poorly.</p></li>
+<li><p>Examine the residual correlation matrix and look at modification indices to determine if there are certain parameters that are not being estimated well.</p></li>
+<li><p>Use sound substantive and statistical theory as a guide before making changes!</p></li>
+</ul>
+</section>
+<section id="parameter-magnitude-direction" class="slide level2">
+<h2>Parameter Magnitude &amp; Direction</h2>
+<ul>
+<li><p>Like all models, you will want to examine each of the parameter estimates and determine if their direction and magnitude corresponds with your hypotheses and theory.</p></li>
+<li><p>If you use some version of ML estimation, you will also have significance tests to guide you.</p></li>
+</ul>
+</section>
 <section id="evaluate-global-fit" class="slide level2 scrollable">
 <h2>Evaluate Global Fit</h2>
 <div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># Evaluate your model fit</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>lavaan<span class="sc">::</span><span class="fu">fitmeasures</span>(target_model_results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>                         npar                          fmin 
                        33.000                         0.088 
@@ -1291,9 +1297,11 @@ Variances:
 </div>
 </div>
 </section>
-<section id="evalute-localized-areas-of-strain" class="slide level2 scrollable">
-<h2>Evalute Localized Areas of Strain</h2>
+<section id="evaluate-localized-areas-of-strain" class="slide level2 scrollable">
+<h2>Evaluate Localized Areas of Strain</h2>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># Look for localized areas of strain</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>lavaan<span class="sc">::</span><span class="fu">residuals</span>(target_model_results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$type
 [1] "raw"
@@ -1334,148 +1342,155 @@ LV_3_5  0.030 -0.003  0.020 -0.049  0.000</code></pre>
 </div>
 </div>
 </section>
-<section id="evalute-localized-areas-of-strain-1" class="slide level2 scrollable">
-<h2>Evalute Localized Areas of Strain</h2>
+<section id="evaluate-localized-areas-of-strain-1" class="slide level2 scrollable">
+<h2>Evaluate Localized Areas of Strain</h2>
 <div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>lavaan<span class="sc">::</span><span class="fu">modificationindices</span>(</span>
+<span id="cb12-2"><a href="#cb12-2"></a>  target_model_results, </span>
+<span id="cb12-3"><a href="#cb12-3"></a>  <span class="at">sort =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb12-4"><a href="#cb12-4"></a>  <span class="at">maximum.number =</span> <span class="dv">10</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>         lhs op    rhs    mi    epc sepc.lv sepc.all sepc.nox
-37  factor_1 =~ LV_2_1 1.552  0.082   0.090    0.048    0.048
-38  factor_1 =~ LV_2_2 0.959 -0.071  -0.078   -0.045   -0.045
-39  factor_1 =~ LV_2_3 0.641  0.064   0.070    0.042    0.042
-40  factor_1 =~ LV_2_4 0.687 -0.054  -0.060   -0.034   -0.034
-41  factor_1 =~ LV_2_5 0.078 -0.018  -0.020   -0.012   -0.012
-42  factor_1 =~ LV_3_1 1.730  0.099   0.109    0.083    0.083
-43  factor_1 =~ LV_3_2 2.213 -0.137  -0.151   -0.087   -0.087
-44  factor_1 =~ LV_3_3 0.048 -0.021  -0.024   -0.014   -0.014
-45  factor_1 =~ LV_3_4 0.120 -0.032  -0.036   -0.020   -0.020
-46  factor_1 =~ LV_3_5 1.229  0.113   0.124    0.067    0.067
-47  factor_2 =~ LV_1_1 0.116  0.017   0.028    0.016    0.016
-48  factor_2 =~ LV_1_2 0.010  0.004   0.007    0.004    0.004
-49  factor_2 =~ LV_1_3 1.797  0.049   0.080    0.061    0.061
-50  factor_2 =~ LV_1_4 0.103 -0.015  -0.025   -0.014   -0.014
-51  factor_2 =~ LV_1_5 0.813 -0.040  -0.065   -0.035   -0.035
-52  factor_2 =~ LV_3_1 0.168 -0.017  -0.027   -0.020   -0.020
-53  factor_2 =~ LV_3_2 0.810 -0.042  -0.069   -0.040   -0.040
-54  factor_2 =~ LV_3_3 0.636 -0.042  -0.069   -0.041   -0.041
-55  factor_2 =~ LV_3_4 2.922  0.083   0.136    0.077    0.077
-56  factor_2 =~ LV_3_5 0.032 -0.009  -0.015   -0.008   -0.008
-57  factor_3 =~ LV_1_1 3.635  0.340   0.194    0.110    0.110
-58  factor_3 =~ LV_1_2 5.014 -0.352  -0.201   -0.116   -0.116
-59  factor_3 =~ LV_1_3 1.239  0.146   0.083    0.064    0.064
-60  factor_3 =~ LV_1_4 0.204 -0.078  -0.045   -0.025   -0.025
-61  factor_3 =~ LV_1_5 0.108  0.054   0.031    0.016    0.016
-62  factor_3 =~ LV_2_1 1.093  0.131   0.075    0.040    0.040
-63  factor_3 =~ LV_2_2 2.732 -0.230  -0.132   -0.076   -0.076
-64  factor_3 =~ LV_2_3 0.142  0.058   0.033    0.020    0.020
-65  factor_3 =~ LV_2_4 0.628 -0.100  -0.057   -0.032   -0.032
-66  factor_3 =~ LV_2_5 0.328  0.073   0.041    0.023    0.023
-67    LV_1_1 ~~ LV_1_2 0.556 -0.064  -0.064   -0.042   -0.042
-68    LV_1_1 ~~ LV_1_3 0.355  0.042   0.042    0.030    0.030
-69    LV_1_1 ~~ LV_1_4 0.136  0.034   0.034    0.019    0.019
-70    LV_1_1 ~~ LV_1_5 1.098 -0.095  -0.095   -0.075   -0.075
-71    LV_1_1 ~~ LV_2_1 0.574  0.057   0.057    0.046    0.046
-72    LV_1_1 ~~ LV_2_2 0.443  0.061   0.061    0.032    0.032
-73    LV_1_1 ~~ LV_2_3 1.118  0.107   0.107    0.050    0.050
-74    LV_1_1 ~~ LV_2_4 1.311 -0.092  -0.092   -0.059   -0.059
-75    LV_1_1 ~~ LV_2_5 0.409 -0.052  -0.052   -0.033   -0.033
-76    LV_1_1 ~~ LV_3_1 0.568  0.059   0.059    0.036    0.036
-77    LV_1_1 ~~ LV_3_2 0.004  0.005   0.005    0.003    0.003
-78    LV_1_1 ~~ LV_3_3 0.225 -0.049  -0.049   -0.022   -0.022
-79    LV_1_1 ~~ LV_3_4 1.065  0.093   0.093    0.053    0.053
-80    LV_1_1 ~~ LV_3_5 0.523  0.064   0.064    0.040    0.040
-81    LV_1_2 ~~ LV_1_3 0.451 -0.042  -0.042   -0.038   -0.038
-82    LV_1_2 ~~ LV_1_4 0.292 -0.045  -0.045   -0.031   -0.031
 83    LV_1_2 ~~ LV_1_5 7.865  0.267   0.267    0.264    0.264
-84    LV_1_2 ~~ LV_2_1 0.043 -0.013  -0.013   -0.013   -0.013
-85    LV_1_2 ~~ LV_2_2 1.360 -0.090  -0.090   -0.060   -0.060
-86    LV_1_2 ~~ LV_2_3 0.288  0.046   0.046    0.027    0.027
-87    LV_1_2 ~~ LV_2_4 0.388 -0.042  -0.042   -0.034   -0.034
-88    LV_1_2 ~~ LV_2_5 3.739  0.133   0.133    0.104    0.104
-89    LV_1_2 ~~ LV_3_1 0.565  0.050   0.050    0.038    0.038
-90    LV_1_2 ~~ LV_3_2 1.011 -0.074  -0.074   -0.056   -0.056
-91    LV_1_2 ~~ LV_3_3 1.299  0.100   0.100    0.057    0.057
-92    LV_1_2 ~~ LV_3_4 1.820 -0.104  -0.104   -0.073   -0.073
-93    LV_1_2 ~~ LV_3_5 0.675 -0.062  -0.062   -0.049   -0.049
-94    LV_1_3 ~~ LV_1_4 1.561  0.085   0.085    0.064    0.064
-95    LV_1_3 ~~ LV_1_5 2.740 -0.110  -0.110   -0.120   -0.120
-96    LV_1_3 ~~ LV_2_1 3.273  0.099   0.099    0.110    0.110
-97    LV_1_3 ~~ LV_2_2 1.065  0.069   0.069    0.050    0.050
-98    LV_1_3 ~~ LV_2_3 2.931  0.127   0.127    0.081    0.081
-99    LV_1_3 ~~ LV_2_4 0.567 -0.044  -0.044   -0.039   -0.039
-100   LV_1_3 ~~ LV_2_5 3.460 -0.111  -0.111   -0.095   -0.095
-101   LV_1_3 ~~ LV_3_1 0.001 -0.002  -0.002   -0.002   -0.002
-102   LV_1_3 ~~ LV_3_2 0.641  0.050   0.050    0.042    0.042
-103   LV_1_3 ~~ LV_3_3 0.034 -0.014  -0.014   -0.009   -0.009
-104   LV_1_3 ~~ LV_3_4 3.003  0.115   0.115    0.089    0.089
-105   LV_1_3 ~~ LV_3_5 1.410 -0.077  -0.077   -0.066   -0.066
-106   LV_1_4 ~~ LV_1_5 0.075 -0.025  -0.025   -0.021   -0.021
-107   LV_1_4 ~~ LV_2_1 0.103  0.023   0.023    0.020    0.020
-108   LV_1_4 ~~ LV_2_2 0.062  0.022   0.022    0.012    0.012
-109   LV_1_4 ~~ LV_2_3 0.180 -0.041  -0.041   -0.020   -0.020
-110   LV_1_4 ~~ LV_2_4 0.051  0.018   0.018    0.012    0.012
-111   LV_1_4 ~~ LV_2_5 0.848 -0.072  -0.072   -0.047   -0.047
-112   LV_1_4 ~~ LV_3_1 2.164 -0.112  -0.112   -0.071   -0.071
-113   LV_1_4 ~~ LV_3_2 0.000  0.001   0.001    0.001    0.001
-114   LV_1_4 ~~ LV_3_3 0.170  0.041   0.041    0.020    0.020
-115   LV_1_4 ~~ LV_3_4 0.298  0.048   0.048    0.028    0.028
-116   LV_1_4 ~~ LV_3_5 0.101 -0.027  -0.027   -0.018   -0.018
-117   LV_1_5 ~~ LV_2_1 0.694 -0.051  -0.051   -0.063   -0.063
-118   LV_1_5 ~~ LV_2_2 0.097 -0.023  -0.023   -0.018   -0.018
-119   LV_1_5 ~~ LV_2_3 1.180 -0.089  -0.089   -0.062   -0.062
-120   LV_1_5 ~~ LV_2_4 0.984  0.065   0.065    0.062    0.062
-121   LV_1_5 ~~ LV_2_5 0.015 -0.008  -0.008   -0.008   -0.008
-122   LV_1_5 ~~ LV_3_1 1.243  0.071   0.071    0.065    0.065
-123   LV_1_5 ~~ LV_3_2 0.356 -0.042  -0.042   -0.039   -0.039
-124   LV_1_5 ~~ LV_3_3 0.558 -0.063  -0.063   -0.043   -0.043
-125   LV_1_5 ~~ LV_3_4 2.370 -0.114  -0.114   -0.097   -0.097
-126   LV_1_5 ~~ LV_3_5 3.835  0.144   0.144    0.137    0.137
-127   LV_2_1 ~~ LV_2_2 0.006 -0.007  -0.007   -0.006   -0.006
-128   LV_2_1 ~~ LV_2_3 0.059 -0.022  -0.022   -0.016   -0.016
-129   LV_2_1 ~~ LV_2_4 0.004 -0.007  -0.007   -0.007   -0.007
-130   LV_2_1 ~~ LV_2_5 0.405 -0.069  -0.069   -0.067   -0.067
-131   LV_2_1 ~~ LV_3_1 0.794 -0.057  -0.057   -0.053   -0.053
-132   LV_2_1 ~~ LV_3_2 0.506  0.050   0.050    0.047    0.047
-133   LV_2_1 ~~ LV_3_3 3.810 -0.164  -0.164   -0.115   -0.115
-134   LV_2_1 ~~ LV_3_4 0.674  0.060   0.060    0.053    0.053
-135   LV_2_1 ~~ LV_3_5 0.011  0.008   0.008    0.007    0.007
-136   LV_2_2 ~~ LV_2_3 1.338  0.116   0.116    0.055    0.055
-137   LV_2_2 ~~ LV_2_4 0.002 -0.003  -0.003   -0.002   -0.002
-138   LV_2_2 ~~ LV_2_5 0.111  0.029   0.029    0.019    0.019
-139   LV_2_2 ~~ LV_3_1 0.232  0.037   0.037    0.023    0.023
-140   LV_2_2 ~~ LV_3_2 0.162  0.034   0.034    0.021    0.021
-141   LV_2_2 ~~ LV_3_3 0.020 -0.014  -0.014   -0.007   -0.007
-142   LV_2_2 ~~ LV_3_4 0.123  0.031   0.031    0.018    0.018
+58  factor_3 =~ LV_1_2 5.014 -0.352  -0.201   -0.116   -0.116
 143   LV_2_2 ~~ LV_3_5 4.716 -0.189  -0.189   -0.121   -0.121
-144   LV_2_3 ~~ LV_2_4 0.023 -0.014  -0.014   -0.008   -0.008
-145   LV_2_3 ~~ LV_2_5 0.540 -0.067  -0.067   -0.037   -0.037
-146   LV_2_3 ~~ LV_3_1 0.416 -0.055  -0.055   -0.030   -0.030
-147   LV_2_3 ~~ LV_3_2 0.104 -0.030  -0.030   -0.016   -0.016
-148   LV_2_3 ~~ LV_3_3 2.175  0.167   0.167    0.067    0.067
-149   LV_2_3 ~~ LV_3_4 0.711 -0.083  -0.083   -0.042   -0.042
-150   LV_2_3 ~~ LV_3_5 0.534  0.070   0.070    0.039    0.039
-151   LV_2_4 ~~ LV_2_5 0.490  0.064   0.064    0.049    0.049
-152   LV_2_4 ~~ LV_3_1 2.382 -0.105  -0.105   -0.078   -0.078
-153   LV_2_4 ~~ LV_3_2 0.145  0.028   0.028    0.021    0.021
-154   LV_2_4 ~~ LV_3_3 0.421  0.058   0.058    0.032    0.032
-155   LV_2_4 ~~ LV_3_4 0.987 -0.078  -0.078   -0.054   -0.054
-156   LV_2_4 ~~ LV_3_5 0.293  0.042   0.042    0.032    0.032
-157   LV_2_5 ~~ LV_3_1 3.504  0.129   0.129    0.094    0.094
-158   LV_2_5 ~~ LV_3_2 3.872 -0.148  -0.148   -0.108   -0.108
-159   LV_2_5 ~~ LV_3_3 0.512  0.065   0.065    0.035    0.035
-160   LV_2_5 ~~ LV_3_4 3.029  0.138   0.138    0.093    0.093
-161   LV_2_5 ~~ LV_3_5 0.027  0.013   0.013    0.010    0.010
-162   LV_3_1 ~~ LV_3_2 2.758 -0.130  -0.130   -0.091   -0.091
-163   LV_3_1 ~~ LV_3_3 0.195  0.039   0.039    0.021    0.021
-164   LV_3_1 ~~ LV_3_4 0.001 -0.002  -0.002   -0.002   -0.002
-165   LV_3_1 ~~ LV_3_5 0.445  0.056   0.056    0.041    0.041
-166   LV_3_2 ~~ LV_3_3 1.762  0.134   0.134    0.070    0.070
 167   LV_3_2 ~~ LV_3_4 4.016  0.219   0.219    0.143    0.143
-168   LV_3_2 ~~ LV_3_5 0.008 -0.012  -0.012   -0.008   -0.008
-169   LV_3_3 ~~ LV_3_4 2.894 -0.178  -0.178   -0.087   -0.087
-170   LV_3_3 ~~ LV_3_5 0.097  0.033   0.033    0.018    0.018
-171   LV_3_4 ~~ LV_3_5 1.973 -0.176  -0.176   -0.119   -0.119</code></pre>
+158   LV_2_5 ~~ LV_3_2 3.872 -0.148  -0.148   -0.108   -0.108
+126   LV_1_5 ~~ LV_3_5 3.835  0.144   0.144    0.137    0.137
+133   LV_2_1 ~~ LV_3_3 3.810 -0.164  -0.164   -0.115   -0.115
+88    LV_1_2 ~~ LV_2_5 3.739  0.133   0.133    0.104    0.104
+57  factor_3 =~ LV_1_1 3.635  0.340   0.194    0.110    0.110
+157   LV_2_5 ~~ LV_3_1 3.504  0.129   0.129    0.094    0.094</code></pre>
 </div>
 </div>
+</section>
+<section id="using-modification-indices-to-identify-misfit" class="slide level2">
+<h2>Using Modification Indices to Identify Misfit</h2>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># Misspecify model</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a>misspec_model_syntax <span class="ot">&lt;-</span> <span class="st">"</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a><span class="st">factor_1 =~ LV_1_1 + LV_1_2 + LV_1_3 + LV_1_4 + LV_1_5 + LV_2_1</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a><span class="st">factor_2 =~ LV_2_2 + LV_2_3 + LV_2_4 + LV_2_5</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a><span class="st">factor_3 =~ LV_3_1 + LV_3_2 + LV_3_3 + LV_3_4 + LV_3_5</span></span>
+<span id="cb14-6"><a href="#cb14-6"></a></span>
+<span id="cb14-7"><a href="#cb14-7"></a><span class="st">factor_1~~factor_1</span></span>
+<span id="cb14-8"><a href="#cb14-8"></a><span class="st">factor_2~~factor_2</span></span>
+<span id="cb14-9"><a href="#cb14-9"></a><span class="st">factor_3~~factor_3</span></span>
+<span id="cb14-10"><a href="#cb14-10"></a><span class="st">"</span></span>
+<span id="cb14-11"><a href="#cb14-11"></a></span>
+<span id="cb14-12"><a href="#cb14-12"></a><span class="co"># Estimate your model </span></span>
+<span id="cb14-13"><a href="#cb14-13"></a>misspec_model_results <span class="ot">&lt;-</span> </span>
+<span id="cb14-14"><a href="#cb14-14"></a>  lavaan<span class="sc">::</span><span class="fu">cfa</span>(<span class="at">model =</span> misspec_model_syntax, </span>
+<span id="cb14-15"><a href="#cb14-15"></a>              <span class="at">data =</span> cfa_data,</span>
+<span id="cb14-16"><a href="#cb14-16"></a>              <span class="at">estimator =</span> <span class="st">"MLM"</span>)</span>
+<span id="cb14-17"><a href="#cb14-17"></a></span>
+<span id="cb14-18"><a href="#cb14-18"></a>lavaan<span class="sc">::</span><span class="fu">modificationindices</span>(</span>
+<span id="cb14-19"><a href="#cb14-19"></a>  misspec_model_results, </span>
+<span id="cb14-20"><a href="#cb14-20"></a>  <span class="at">sort =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb14-21"><a href="#cb14-21"></a>  <span class="at">maximum.number =</span> <span class="dv">10</span></span>
+<span id="cb14-22"><a href="#cb14-22"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>         lhs op    rhs      mi    epc sepc.lv sepc.all sepc.nox
+51  factor_2 =~ LV_2_1 275.876  1.607   1.729    0.926    0.926
+129   LV_2_1 ~~ LV_2_4  42.825  0.659   0.659    0.354    0.354
+130   LV_2_1 ~~ LV_2_5  34.208  0.588   0.588    0.316    0.316
+83    LV_1_2 ~~ LV_1_5  18.493  0.382   0.382    0.355    0.355
+127   LV_2_1 ~~ LV_2_2  16.444  0.440   0.440    0.198    0.198
+117   LV_1_5 ~~ LV_2_1  16.274 -0.388  -0.388   -0.246   -0.246
+50  factor_2 =~ LV_1_5  11.915 -0.259  -0.278   -0.149   -0.149
+58  factor_3 =~ LV_1_2   6.502 -0.408  -0.233   -0.135   -0.135
+62  factor_3 =~ LV_2_1   4.960  0.463   0.265    0.142    0.142
+160   LV_2_5 ~~ LV_3_4   4.942  0.189   0.189    0.130    0.130</code></pre>
+</div>
+</div>
+</section>
+<section id="model-respecification" class="slide level2">
+<h2>Model Respecification</h2>
+<ul>
+<li>After you evaluate your model, you may determine that you need to respecify certain parts of the model:
+<ul>
+<li>Indicator selection &amp; pattern of indicator-factor relationship</li>
+<li>Measurement Error Theory (Correlated residuals–be careful here!)</li>
+<li>Number of factors</li>
+</ul></li>
+</ul>
+</section>
+<section id="model-comparison" class="slide level2">
+<h2>Model Comparison</h2>
+<ul>
+<li>You will always have a “target” theoretical model you are estimating from your data, but you will often also have competing models as well that you would like to test your target model against. To do this, we can rely on:
+<ul>
+<li>Chi-square Difference Test for nested models</li>
+<li>AIC and BIC for non-nested models</li>
+</ul></li>
+</ul>
+</section>
+<section id="nested-model-comparison" class="slide level2 smaller">
+<h2>Nested Model Comparison</h2>
+<ul>
+<li><p>A model can be considered nested within another model if its free and unconstrained parameters are a subset of the other model’s free and unconstrained parameters. Think of this like hierarchical regression tests.</p></li>
+<li><p>We can use a change-in-chi-square test which is just the restricted models chi-square minus the less restricted model’s chi-square. This difference is chi-square distributed with degrees of freedom equal to the difference in degrees of freedom.</p></li>
+</ul>
+<p><span class="math display">\[\chi^2_{R}-\chi^2_{U}, \text{df}_{R}-\text{df}_{U}\sim\chi^2_{R-U}\]</span></p>
+<ul>
+<li>We can test <span class="math inline">\(\chi^2_{R-U}\)</span> using a chi-square distribution with degrees of freedom equal to <span class="math inline">\(\text{df}_{R}-\text{df}_U\)</span>. A significant test indicates that the less restricted model fits the data better than the restricted model and we should prefer the less restricted model. When the test is non-significant, we should use the more restricted model under model parsimony.</li>
+</ul>
+</section>
+<section id="model-comparison-in-lavaan" class="slide level2 scrollable">
+<h2>Model Comparison in lavaan</h2>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># Create a competing model </span></span>
+<span id="cb16-2"><a href="#cb16-2"></a>competing_model_syntax <span class="ot">&lt;-</span> <span class="st">"</span></span>
+<span id="cb16-3"><a href="#cb16-3"></a></span>
+<span id="cb16-4"><a href="#cb16-4"></a><span class="st">factor_1 =~ LV_1_1 + LV_1_2 + LV_1_3 + LV_1_4 + LV_1_5 + LV_2_1 + LV_2_2 + </span></span>
+<span id="cb16-5"><a href="#cb16-5"></a><span class="st">            LV_2_3 + LV_2_4 + LV_2_5 + LV_3_1 + LV_3_1 + LV_3_2 + LV_3_3 +</span></span>
+<span id="cb16-6"><a href="#cb16-6"></a><span class="st">            LV_3_4 + LV_3_5</span></span>
+<span id="cb16-7"><a href="#cb16-7"></a><span class="st">"</span></span>
+<span id="cb16-8"><a href="#cb16-8"></a></span>
+<span id="cb16-9"><a href="#cb16-9"></a>competing_model <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">cfa</span>(</span>
+<span id="cb16-10"><a href="#cb16-10"></a>  <span class="at">model =</span> competing_model_syntax, </span>
+<span id="cb16-11"><a href="#cb16-11"></a>  <span class="at">data =</span> cfa_data,</span>
+<span id="cb16-12"><a href="#cb16-12"></a>  <span class="at">estimator =</span> <span class="st">"MLM"</span></span>
+<span id="cb16-13"><a href="#cb16-13"></a>)</span>
+<span id="cb16-14"><a href="#cb16-14"></a></span>
+<span id="cb16-15"><a href="#cb16-15"></a>lavaan<span class="sc">::</span><span class="fu">anova</span>(target_model_results, competing_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Scaled Chi-Squared Difference Test (method = "satorra.bentler.2001")
+
+lavaan NOTE:
+    The "Chisq" column contains standard test statistics, not the
+    robust test that should be reported per model. A robust difference
+    test is a function of two standard (not robust) statistics.
+ 
+                     Df   AIC   BIC   Chisq Chisq diff Df diff Pr(&gt;Chisq)    
+target_model_results 87 26692 26831  87.594                                  
+competing_model      90 27572 27699 974.005      543.6       3  &lt; 2.2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># The chi-square values that would not have been significant</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="fu">qchisq</span>(.<span class="dv">05</span>, <span class="dv">3</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7.814728</code></pre>
+</div>
+</div>
+</section>
+<section id="readings-for-next-week" class="slide level2">
+<h2>Readings for Next Week</h2>
+<p>For next week please read chapters 4 &amp; 5 in CFA for Applied Researchers. Feel free to skim chapters 6 through 8, which focus on applications of CFA–we will be talking about some of this next week!</p>
 <div class="footer footer-default">
 
 </div>

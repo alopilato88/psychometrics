@@ -451,6 +451,54 @@ $$\frac{p(p+1)}{2}=\text{# of variances and distinct covariances}$$
   - Weak to no correlation (covariation) between variables that have model implied correlations
   - Multicollinearity 
 
+## Specifying Your Model in lavaan {.scrollable}
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Write the model syntax
+target_model_syntax <- "
+
+# Specifying that factor 1 is measured by the first five indicator variables
+
+# The metric of Factor 1 is (by default) identified by setting factor loading LV_1_1 to 1
+factor_1 =~ LV_1_1 + LV_1_2 + LV_1_3 + LV_1_4 + LV_1_5
+factor_2 =~ LV_2_1 + LV_2_2 + LV_2_3 + LV_2_4 + LV_2_5
+factor_3 =~ LV_3_1 + LV_3_2 + LV_3_3 + LV_3_4 + LV_3_5
+
+# Specifying the factor covariance structure
+
+factor_1~~factor_1 # Factor variances
+factor_2~~factor_2
+factor_3~~factor_3
+
+factor_1~~factor_2 # Factor covariances
+factor_1~~factor_3
+factor_2~~factor_3
+"
+
+alternative_model_syntax <- "
+
+# All of the loadings are freely estimated: NA*LV_P_1
+factor_1 =~ NA*LV_1_1 + LV_1_2 + LV_1_3 + LV_1_4 + LV_1_5
+factor_2 =~ NA*LV_2_1 + LV_2_2 + LV_2_3 + LV_2_4 + LV_2_5
+factor_3 =~ NA*LV_3_1 + LV_3_2 + LV_3_3 + LV_3_4 + LV_3_5
+
+# Specifying the factor covariance structure
+
+# Factor metric is identified by fixing the factor variance to 1
+factor_1~~1*factor_1 # Factor variances
+factor_2~~1*factor_2
+factor_3~~1*factor_3
+
+factor_1~~factor_2 # Factor covariances
+factor_1~~factor_3
+factor_2~~factor_3
+"
+```
+
+
 ## Model Estimation
 
 * To estimate any statistical model, we need an estimation method that usually tries to maximize or minimize some discrepancy (cost) function. With CFA, we have a handful of estimation methods to choose from:
@@ -463,6 +511,34 @@ $$\frac{p(p+1)}{2}=\text{# of variances and distinct covariances}$$
 * Maximum Likelihood Estimation is a method of estimation that seeks to maximize (usually through iterative algorithms) to maximize the data's likelihood function (or, identically, its log likelihood function). For CFA, MLE assumes the likelihood function is multivariate normal and estimates the parameters by minimizing the following function:
 
 $$F_{ML}=\log|\mathbf{\Sigma(\Theta)}|+\text{tr}[\mathbf{S\Sigma(\Theta)^{-1}}]-\log|\mathbf{S}|-p$$
+
+## Estimate CFA Model {.scrollable}
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| code-summary: "Show the code"
+
+
+# Write the model syntax
+target_model_syntax <- "
+factor_1 =~ LV_1_1 + LV_1_2 + LV_1_3 + LV_1_4 + LV_1_5
+factor_2 =~ LV_2_1 + LV_2_2 + LV_2_3 + LV_2_4 + LV_2_5
+factor_3 =~ LV_3_1 + LV_3_2 + LV_3_3 + LV_3_4 + LV_3_5
+
+factor_1~~factor_1
+factor_2~~factor_2
+factor_3~~factor_3
+"
+
+# Estimate your model 
+target_model_results <- 
+  lavaan::cfa(model = target_model_syntax, 
+              data = cfa_data,
+              estimator = "MLM")
+
+summary(target_model_results, fit.measures = TRUE)
+```
 
 ## Model Evaluation
 
@@ -520,17 +596,19 @@ $$\sqrt{\frac{\frac{\chi^2-\text{df}}{N-1}}{\text{df}}}$$
   - Tucker-Lewis Index (TLI or NNFI)
   - Comparative Fit Index (CFI)
 
-## TLI 
-
-$$\frac{\frac{\chi^2_{0}}{df_0}-\frac{\chi^2_{T}}{df_{T}}}{\frac{\chi^2_0}{df_0}-1}$$
+## Tucker-Lewis Index
 
 * Rule of Thumb: TLI > .95 
 
-## CFI 
+$$\frac{\frac{\chi^2_{0}}{df_0}-\frac{\chi^2_{T}}{df_{T}}}{\frac{\chi^2_0}{df_0}-1}$$
 
-$$\frac{\max(\chi^2_{0}-df_{0},0)-\max(\chi^2_{T}-df_{T},0)}{\max(\chi^2_{0}-df_{0},0)}$$
+
+
+## Comparative Fit Index
 
 * Rule of Thumb: CFI > .95
+
+$$\frac{\max(\chi^2_{0}-df_{0},0)-\max(\chi^2_{T}-df_{T},0)}{\max(\chi^2_{0}-df_{0},0)}$$
 
 ## Localized Strain
 
@@ -545,6 +623,75 @@ $$\frac{\max(\chi^2_{0}-df_{0},0)-\max(\chi^2_{T}-df_{T},0)}{\max(\chi^2_{0}-df_
 * Like all models, you will want to examine each of the parameter estimates and determine if their direction and magnitude corresponds with your hypotheses and theory. 
 
 * If you use some version of ML estimation, you will also have significance tests to guide you.
+
+## Evaluate Global Fit {.scrollable}
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| code-summary: "Show the code"
+
+# Evaluate your model fit
+lavaan::fitmeasures(target_model_results)
+
+```
+
+## Evaluate Localized Areas of Strain {.scrollable}
+
+```{r}
+#| echo: true
+#| #| code-fold: true
+#| code-summary: "Show the code"
+
+# Look for localized areas of strain
+lavaan::residuals(target_model_results)
+```
+
+## Evaluate Localized Areas of Strain {.scrollable}
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| code-summary: "Show the code"
+
+lavaan::modificationindices(
+  target_model_results, 
+  sort = TRUE, 
+  maximum.number = 10
+)
+```
+
+## Using Modification Indices to Identify Misfit
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| code-summary: "Show the code"
+
+# Misspecify model
+misspec_model_syntax <- "
+factor_1 =~ LV_1_1 + LV_1_2 + LV_1_3 + LV_1_4 + LV_1_5 + LV_2_1
+factor_2 =~ LV_2_2 + LV_2_3 + LV_2_4 + LV_2_5
+factor_3 =~ LV_3_1 + LV_3_2 + LV_3_3 + LV_3_4 + LV_3_5
+
+factor_1~~factor_1
+factor_2~~factor_2
+factor_3~~factor_3
+"
+
+# Estimate your model 
+misspec_model_results <- 
+  lavaan::cfa(model = misspec_model_syntax, 
+              data = cfa_data,
+              estimator = "MLM")
+
+lavaan::modificationindices(
+  misspec_model_results, 
+  sort = TRUE, 
+  maximum.number = 10
+)
+
+```
 
 ## Model Respecification 
 
@@ -563,88 +710,39 @@ $$\frac{\max(\chi^2_{0}-df_{0},0)-\max(\chi^2_{T}-df_{T},0)}{\max(\chi^2_{0}-df_
 
 * A model can be considered nested within another model if its free and unconstrained parameters are a subset of the other model's free and unconstrained parameters. Think of this like hierarchical regression tests. 
 
-* We can use a change-in-chi-square test which is just the restricted models chi-square minus the less restricted model's chi-square. This difference is chi-square distributed with dfs equal to the difference in degrees of freedom.
+* We can use a change-in-chi-square test which is just the restricted models chi-square minus the less restricted model's chi-square. This difference is chi-square distributed with degrees of freedom equal to the difference in degrees of freedom.
 
 $$\chi^2_{R}-\chi^2_{U}, \text{df}_{R}-\text{df}_{U}\sim\chi^2_{R-U}$$
 
 * We can test $\chi^2_{R-U}$ using a chi-square distribution with degrees of freedom equal to $\text{df}_{R}-\text{df}_U$. A significant test indicates that the less restricted model fits the data better than the restricted model and we should prefer the less restricted model. When the test is non-significant, we should use the more restricted model under model parsimony. 
 
-## CFA Example with lavaan {.scrollable}
+## Model Comparison in lavaan {.scrollable}
 
 ```{r}
 #| echo: true
-#| eval: false
+#| code-fold: true
+#| code-summary: "Show the code"
 
-# Write the model syntax
-target_model_syntax <- "
-factor_1 =~ LV_1_1 + LV_1_2 + LV_1_3 + LV_1_4 + LV_1_5
-factor_2 =~ LV_2_1 + LV_2_2 + LV_2_3 + LV_2_4 + LV_2_5
-factor_3 =~ LV_3_1 + LV_3_2 + LV_3_3 + LV_3_4 + LV_3_5
+# Create a competing model 
+competing_model_syntax <- "
 
-factor_1~~factor_1
-factor_2~~factor_2
-factor_3~~factor_3
+factor_1 =~ LV_1_1 + LV_1_2 + LV_1_3 + LV_1_4 + LV_1_5 + LV_2_1 + LV_2_2 + 
+            LV_2_3 + LV_2_4 + LV_2_5 + LV_3_1 + LV_3_1 + LV_3_2 + LV_3_3 +
+            LV_3_4 + LV_3_5
 "
 
-# Estimate your model 
-target_model_results <- 
-  lavaan::cfa(model = target_model_syntax, 
-              data = cfa_data,
-              estimator = "MLM")
+competing_model <- lavaan::cfa(
+  model = competing_model_syntax, 
+  data = cfa_data,
+  estimator = "MLM"
+)
 
-# Evaluate your model fit
-summary(target_model_results)
-lavaan::fitmeasures(target_model_results)
+lavaan::anova(target_model_results, competing_model)
 
-# Look for localized areas of strain
-lavaan::residuals(target_model_results)
-lavaan::modificationindices(target_model_results)
-
-# Look at a standardized solution
-lavaan::standardizedsolution(target_model_results)
+# The chi-square values that would not have been significant
+qchisq(.05, 3, lower.tail = FALSE)
 ```
 
-## Estimate CFA Model {.scrollable}
+## Readings for Next Week
 
-```{r}
-
-# Write the model syntax
-target_model_syntax <- "
-factor_1 =~ LV_1_1 + LV_1_2 + LV_1_3 + LV_1_4 + LV_1_5
-factor_2 =~ LV_2_1 + LV_2_2 + LV_2_3 + LV_2_4 + LV_2_5
-factor_3 =~ LV_3_1 + LV_3_2 + LV_3_3 + LV_3_4 + LV_3_5
-
-factor_1~~factor_1
-factor_2~~factor_2
-factor_3~~factor_3
-"
-
-# Estimate your model 
-target_model_results <- 
-  lavaan::cfa(model = target_model_syntax, 
-              data = cfa_data,
-              estimator = "MLM")
-
-summary(target_model_results, fit.measures = TRUE)
-```
-
-## Evaluate Global Fit {.scrollable}
-
-```{r}
-# Evaluate your model fit
-lavaan::fitmeasures(target_model_results)
-
-```
-
-## Evalute Localized Areas of Strain {.scrollable}
-
-```{r}
-# Look for localized areas of strain
-lavaan::residuals(target_model_results)
-```
-
-## Evalute Localized Areas of Strain {.scrollable}
-
-```{r}
-lavaan::modificationindices(target_model_results)
-```
+For next week please read chapters 4 & 5 in CFA for Applied Researchers. Feel free to skim chapters 6 through 8, which focus on applications of CFA--we will be talking about some of this next week! 
