@@ -412,7 +412,7 @@ $$5 = 1 + x$$
 
 * Identification + Statistical Inference = Inference 
 
-## Model Identification: Degrees of Freedom
+## Model Identification: Degrees of Freedom {.smaller}
 
 * The amount of information a researcher has available for learning about the population model is equal to the number of unique variances and covariances in one's observed covariance matrix--it has nothing to do with the sample size of one's data: 
 
@@ -559,8 +559,92 @@ $$\frac{\max(\chi^2_{0}-df_{0},0)-\max(\chi^2_{T}-df_{T},0)}{\max(\chi^2_{0}-df_
   - Chi-square Difference Test for nested models
   - AIC and BIC for non-nested models
 
-## Nested Model Comparison
+## Nested Model Comparison {.smaller}
 
-## CFA Example 
+* A model can be considered nested within another model if its free and unconstrained parameters are a subset of the other model's free and unconstrained parameters. Think of this like hierarchical regression tests. 
 
+* We can use a change-in-chi-square test which is just the restricted models chi-square minus the less restricted model's chi-square. This difference is chi-square distributed with dfs equal to the difference in degrees of freedom.
 
+$$\chi^2_{R}-\chi^2_{U}, \text{df}_{R}-\text{df}_{U}\sim\chi^2_{R-U}$$
+
+* We can test $\chi^2_{R-U}$ using a chi-square distribution with degrees of freedom equal to $\text{df}_{R}-\text{df}_U$. A significant test indicates that the less restricted model fits the data better than the restricted model and we should prefer the less restricted model. When the test is non-significant, we should use the more restricted model under model parsimony. 
+
+## CFA Example with lavaan {.scrollable}
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Write the model syntax
+target_model_syntax <- "
+factor_1 =~ LV_1_1 + LV_1_2 + LV_1_3 + LV_1_4 + LV_1_5
+factor_2 =~ LV_2_1 + LV_2_2 + LV_2_3 + LV_2_4 + LV_2_5
+factor_3 =~ LV_3_1 + LV_3_2 + LV_3_3 + LV_3_4 + LV_3_5
+
+factor_1~~factor_1
+factor_2~~factor_2
+factor_3~~factor_3
+"
+
+# Estimate your model 
+target_model_results <- 
+  lavaan::cfa(model = target_model_syntax, 
+              data = cfa_data,
+              estimator = "MLM")
+
+# Evaluate your model fit
+summary(target_model_results)
+lavaan::fitmeasures(target_model_results)
+
+# Look for localized areas of strain
+lavaan::residuals(target_model_results)
+lavaan::modificationindices(target_model_results)
+
+# Look at a standardized solution
+lavaan::standardizedsolution(target_model_results)
+```
+
+## Estimate CFA Model {.scrollable}
+
+```{r}
+
+# Write the model syntax
+target_model_syntax <- "
+factor_1 =~ LV_1_1 + LV_1_2 + LV_1_3 + LV_1_4 + LV_1_5
+factor_2 =~ LV_2_1 + LV_2_2 + LV_2_3 + LV_2_4 + LV_2_5
+factor_3 =~ LV_3_1 + LV_3_2 + LV_3_3 + LV_3_4 + LV_3_5
+
+factor_1~~factor_1
+factor_2~~factor_2
+factor_3~~factor_3
+"
+
+# Estimate your model 
+target_model_results <- 
+  lavaan::cfa(model = target_model_syntax, 
+              data = cfa_data,
+              estimator = "MLM")
+
+summary(target_model_results, fit.measures = TRUE)
+```
+
+## Evaluate Global Fit {.scrollable}
+
+```{r}
+# Evaluate your model fit
+lavaan::fitmeasures(target_model_results)
+
+```
+
+## Evalute Localized Areas of Strain {.scrollable}
+
+```{r}
+# Look for localized areas of strain
+lavaan::residuals(target_model_results)
+```
+
+## Evalute Localized Areas of Strain {.scrollable}
+
+```{r}
+lavaan::modificationindices(target_model_results)
+```
