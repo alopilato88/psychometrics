@@ -515,7 +515,7 @@ factor_2~~factor_3
 
 $$F_{ML}=\log|\mathbf{\Sigma(\Theta)}|+\text{tr}[\mathbf{S\Sigma(\Theta)^{-1}}]-\log|\mathbf{S}|-p$$
 
-## View our CFA Data {.scrollable = TRUE}
+## View our CFA Data {.scrollable}
 
 ```{r}
 head(cfa_data)
