@@ -208,16 +208,83 @@ psych::fa.parallel(
   fm = "ml"
 )
 
+# Conduct VSS Analysis
+psych::vss(
+  x = efa_data,
+  n = 8,
+  rotate = "promax",
+  fm = "ml"
+)
 
+# Estimate the EFA model with 3 factors
+efa_solution <- 
+  psych::fa(
+    r = efa_data,
+    nfactors = 3,
+    fm = "ml"
+)
+```
 
+## Parallel Analysis
 
+```{r}
+psych::fa.parallel(
+  x = efa_data,
+  fa = "pc",
+  fm = "ml"
+)
+```
+
+## VSS {.scrollable}
+
+```{r}
+psych::vss(
+  x = efa_data,
+  n = 8,
+  rotate = "promax",
+  fm = "ml"
+)
+```
+
+## EFA Solution {.scrollable}
+
+```{r}
+  psych::fa(
+    r = efa_data,
+    nfactors = 3,
+    fm = "ml"
+)
 ```
 
 # Confirmatory Factor Analysis
 
 ## What is CFA?
 
+* CFA can be thought of as theory-driven factor analysis:
+  - Researcher knows the number of factors (and their interpretation)
+  - Researcher knows which indicators load onto which factor 
+  - Researcher knows (or has an idea) of the error structure
+
+* With CFA a researcher directly specifies the factor model unlike EFA.
+
 ## Our Population Model 
+
+```{r}
+pop_mod_syntax <- "
+
+f1 =~ NA*LV_1_1 + LV_1_2 + LV_1_3 + LV_1_4 + LV_1_5
+f2 =~ NA*LV_2_1 + LV_2_2 + LV_2_3 + LV_2_4 + LV_2_5
+f3 =~ NA*LV_3_1 + LV_3_2 + LV_3_3 + LV_3_4 + LV_3_5
+
+f1~~1*f1
+f2~~1*f2
+f3~~1*f3
+"
+
+population_model <- lavaan::cfa(pop_mod_syntax, data = cfa_data)
+
+semPlot::semPaths(population_model)
+```
 
 ## CFA Equations
 
@@ -225,7 +292,20 @@ psych::fa.parallel(
 
 ## CFA Workflow
 
+![](lecture-8-img/cfa-workflow.png)
+
 ## Model Specification 
+
+* Model specification is the process of translating your hypotheses and assumptions into a statistical model (Model building!): 
+  - What form the model will take
+  - What paths should be present among the different variables 
+  - Status of the parameters (fixed, free & constrained, free & unconstrained)
+
+## Form of the Model 
+
+## Model Pathways
+
+## Parameter Status 
 
 ## Model Identification 
 

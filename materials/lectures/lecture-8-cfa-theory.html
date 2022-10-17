@@ -27,6 +27,70 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="lecture-8-cfa-theory_files/libs/revealjs/dist/theme/quarto.css" id="theme">
   <link rel="stylesheet" href="psych-lecture-style.css">
@@ -411,6 +475,7 @@ E[\mathbf{x}\mathbf{x}']&amp;=E[(\mathbf{\Lambda_{x}}\mathbf{\xi}+\mathbf{\delta
 &amp;=E[\mathbf{\Lambda_{x}}\mathbf{\xi}\mathbf{\xi'}\mathbf{\Lambda_{x}}] + 2E[\mathbf{\Lambda_{x}\xi}\delta']+E[\mathbf{\delta\delta'}]\\
 &amp;=\mathbf{\Lambda_{x}}E[\mathbf{\xi\xi'}]\mathbf{\Lambda_{x}} + 2 \mathbf{\Lambda_{x}}E[\mathbf{\xi\delta'}]+E[\mathbf{\delta\delta'}]\\
 &amp;=\mathbf{\Lambda_{x}\Phi\Lambda_{x}'}+\mathbf{\Theta_{\delta}}\\
+&amp;=\mathbf{\Sigma(\Theta)}\\
 \end{align}
 \]</span></p>
 </section>
@@ -459,26 +524,190 @@ E[\mathbf{x}\mathbf{x}']&amp;=E[(\mathbf{\Lambda_{x}}\mathbf{\xi}+\mathbf{\delta
 <li><p>Similar to CFA, EFA tries to maximize (or minimize) a fit function that compares the model implied covariance matrix to the observed covariance matrix, but <strong>EFA does not place any constraints on which items measure which factors!</strong></p></li>
 </ul>
 </section>
-<section id="efa-workflow" class="slide level2">
-<h2>EFA Workflow</h2>
+<section id="researcher-degrees-of-freedom-in-efa" class="slide level2">
+<h2>Researcher Degrees of Freedom in EFA</h2>
 <ol type="1">
-<li>Estimate model (Factor Extraction Method)</li>
-<li>Determine if factors should correlate (Factor Rotation Method)</li>
-<li>Repeat steps 1-2 extracting an increasing number of factors</li>
-<li>Factor Retention Method</li>
+<li>How to estimate model (Factor Extraction Method)</li>
+<li>How to determine the number of factors (Factor Retention Method)</li>
+<li>Determine if factors should correlate with one another (Factor Rotation Method)</li>
 </ol>
 </section>
 <section id="factor-extraction-in-efa" class="slide level2">
 <h2>Factor Extraction in EFA</h2>
-</section>
-<section id="factor-rotation-in-efa" class="slide level2">
-<h2>Factor Rotation in EFA</h2>
+<ul>
+<li>Factor extraction in EFA refers to the model estimation method:
+<ul>
+<li>Maximum Likelihood (ML) Estimation (My preferred)</li>
+<li>Principal Axis Factoring (PAF)</li>
+<li>Variety of least square methods</li>
+<li>SO MUCH MORE!</li>
+</ul></li>
+<li>Like all things, there is no one size fits all solution, but just <strong>do not use Principal Components Analysis!</strong></li>
+</ul>
 </section>
 <section id="factor-retention-in-efa" class="slide level2">
 <h2>Factor Retention in EFA</h2>
+<ul>
+<li>Given the exploratory nature of EFA, the researcher may not know the exact number of factors underlying their data, so they must rely on several heuristic and statistical methods to determine the number:
+<ul>
+<li>Eigenvalues &gt; 1.0 rule (Kaiser Criterion)</li>
+<li>Scree Plot</li>
+<li>Parallel Analysis</li>
+<li>Very Simple Structure (VSS)</li>
+<li>Fit Indices</li>
+</ul></li>
+<li>Again, there is no one size fits all solution, you should exercise sound judgment, use all of the above methods, and carefully report what you have done.</li>
+</ul>
 </section>
-<section id="efa-example" class="slide level2">
-<h2>EFA Example</h2>
+<section id="factor-rotation-in-efa" class="slide level2">
+<h2>Factor Rotation in EFA</h2>
+<ul>
+<li><p>The TLDR here is that you can specify that the factors in your model should either correlate (oblique rotation) or not correlate (orthogonal rotation). The rotation method you choose should improve the interpretability of your factor model.</p></li>
+<li><p>The rule of thumb here is use an oblique rotation like promax or oblimin because all social and behavioral data tends to be correlated.</p></li>
+</ul>
+</section>
+<section id="efa-example-r-code" class="slide level2">
+<h2>EFA Example: R Code</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Estimate the sample correlation matrix </span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>efa_cor_matrix <span class="ot">&lt;-</span> <span class="fu">cor</span>(efa_data)</span>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="co"># Plot the scree plot with the Kaiser Criterion</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>psych<span class="sc">::</span><span class="fu">scree</span>(efa_data, <span class="at">factors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-6"><a href="#cb1-6"></a></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="co"># Determine the % of total variation the components account for</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="fu">eigen</span>(efa_cor_matrix)<span class="sc">$</span>values <span class="sc">/</span> <span class="fu">sum</span>(<span class="fu">eigen</span>(efa_cor_matrix)<span class="sc">$</span>values)</span>
+<span id="cb1-9"><a href="#cb1-9"></a></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="co"># Conduct Parallel Analysis</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a>psych<span class="sc">::</span><span class="fu">fa.parallel</span>(</span>
+<span id="cb1-12"><a href="#cb1-12"></a>  <span class="at">x =</span> efa_data,</span>
+<span id="cb1-13"><a href="#cb1-13"></a>  <span class="at">fa =</span> <span class="st">"pc"</span>,</span>
+<span id="cb1-14"><a href="#cb1-14"></a>  <span class="at">fm =</span> <span class="st">"ml"</span></span>
+<span id="cb1-15"><a href="#cb1-15"></a>)</span>
+<span id="cb1-16"><a href="#cb1-16"></a></span>
+<span id="cb1-17"><a href="#cb1-17"></a><span class="co"># Conduct VSS Analysis</span></span>
+<span id="cb1-18"><a href="#cb1-18"></a>psych<span class="sc">::</span><span class="fu">vss</span>(</span>
+<span id="cb1-19"><a href="#cb1-19"></a>  <span class="at">x =</span> efa_data,</span>
+<span id="cb1-20"><a href="#cb1-20"></a>  <span class="at">n =</span> <span class="dv">8</span>,</span>
+<span id="cb1-21"><a href="#cb1-21"></a>  <span class="at">rotate =</span> <span class="st">"promax"</span>,</span>
+<span id="cb1-22"><a href="#cb1-22"></a>  <span class="at">fm =</span> <span class="st">"ml"</span></span>
+<span id="cb1-23"><a href="#cb1-23"></a>)</span>
+<span id="cb1-24"><a href="#cb1-24"></a></span>
+<span id="cb1-25"><a href="#cb1-25"></a><span class="co"># Estimate the EFA model with 3 factors</span></span>
+<span id="cb1-26"><a href="#cb1-26"></a>efa_solution <span class="ot">&lt;-</span> </span>
+<span id="cb1-27"><a href="#cb1-27"></a>  psych<span class="sc">::</span><span class="fu">fa</span>(</span>
+<span id="cb1-28"><a href="#cb1-28"></a>    <span class="at">r =</span> efa_data,</span>
+<span id="cb1-29"><a href="#cb1-29"></a>    <span class="at">nfactors =</span> <span class="dv">3</span>,</span>
+<span id="cb1-30"><a href="#cb1-30"></a>    <span class="at">fm =</span> <span class="st">"ml"</span></span>
+<span id="cb1-31"><a href="#cb1-31"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="parallel-analysis" class="slide level2">
+<h2>Parallel Analysis</h2>
+<div class="cell">
+
+<div class="cell-output cell-output-stdout">
+<pre><code>Parallel analysis suggests that the number of factors =  NA  and the number of components =  3 </code></pre>
+</div>
+</div>
+<img data-src="lecture-8-cfa-theory_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
+<section id="vss" class="slide level2 scrollable">
+<h2>VSS</h2>
+<div class="cell">
+
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Very Simple Structure
+Call: psych::vss(x = efa_data, n = 8, rotate = "promax", fm = "ml")
+VSS complexity 1 achieves a maximimum of 0.77  with  1  factors
+VSS complexity 2 achieves a maximimum of 0.66  with  2  factors
+
+The Velicer MAP achieves a minimum of 0.02  with  3  factors 
+BIC achieves a minimum of  -332.86  with  3  factors
+Sample Size adjusted BIC achieves a minimum of  -132.89  with  3  factors
+
+Statistics by number of factors 
+  vss1 vss2   map dof chisq     prob sqresid  fit RMSEA  BIC SABIC complex
+1 0.77 0.00 0.035  90 906.5 4.4e-135     9.2 0.77 0.135  347   633     1.0
+2 0.66 0.66 0.025  76 363.3  4.6e-39    13.3 0.66 0.087 -109   132     1.0
+3 0.60 0.63 0.020  63  58.7  6.3e-01    14.2 0.64 0.000 -333  -133     1.0
+4 0.60 0.64 0.033  51  39.4  8.8e-01    13.7 0.65 0.000 -278  -116     1.1
+5 0.60 0.62 0.048  40  20.9  9.9e-01    13.9 0.64 0.000 -228  -101     1.2
+6 0.54 0.59 0.063  30  14.9  9.9e-01    15.6 0.60 0.000 -172   -76     1.2
+7 0.43 0.56 0.086  21  10.6  9.7e-01    17.0 0.57 0.000 -120   -53     1.2
+8 0.43 0.51 0.118  13   4.4  9.9e-01    18.6 0.52 0.000  -76   -35     1.3
+  eChisq   SRMR eCRMS eBIC
+1 1048.2 0.0999 0.108  489
+2  407.9 0.0623 0.073  -64
+3   33.7 0.0179 0.023 -358
+4   20.1 0.0138 0.020 -297
+5   12.2 0.0108 0.017 -236
+6    9.9 0.0097 0.018 -177
+7    7.3 0.0083 0.019 -123
+8    3.2 0.0055 0.016  -78</code></pre>
+</div>
+</div>
+<img data-src="lecture-8-cfa-theory_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
+<section id="efa-solution" class="slide level2 scrollable">
+<h2>EFA Solution</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Factor Analysis using method =  ml
+Call: psych::fa(r = efa_data, nfactors = 3, fm = "ml")
+Standardized loadings (pattern matrix) based upon correlation matrix
+         ML1   ML2   ML3   h2   u2 com
+LV_1_1  0.63  0.04 -0.09 0.36 0.64 1.0
+LV_1_2  0.73 -0.02  0.05 0.56 0.44 1.0
+LV_1_3  0.69  0.01 -0.01 0.48 0.52 1.0
+LV_1_4  0.65  0.02  0.00 0.44 0.56 1.0
+LV_1_5  0.83 -0.01  0.05 0.72 0.28 1.0
+LV_2_1  0.01  0.90 -0.01 0.82 0.18 1.0
+LV_2_2  0.15  0.61 -0.09 0.42 0.58 1.2
+LV_2_3 -0.05  0.39  0.08 0.16 0.84 1.1
+LV_2_4 -0.07  0.79  0.05 0.60 0.40 1.0
+LV_2_5  0.02  0.73  0.04 0.57 0.43 1.0
+LV_3_1 -0.01 -0.05  0.51 0.23 0.77 1.0
+LV_3_2 -0.02 -0.01  0.83 0.66 0.34 1.0
+LV_3_3 -0.07  0.05  0.39 0.14 0.86 1.1
+LV_3_4  0.03  0.07  0.63 0.46 0.54 1.0
+LV_3_5  0.08  0.01  0.73 0.62 0.38 1.0
+
+                       ML1  ML2  ML3
+SS loadings           2.59 2.55 2.09
+Proportion Var        0.17 0.17 0.14
+Cumulative Var        0.17 0.34 0.48
+Proportion Explained  0.36 0.35 0.29
+Cumulative Proportion 0.36 0.71 1.00
+
+ With factor correlations of 
+     ML1  ML2  ML3
+ML1 1.00 0.52 0.60
+ML2 0.52 1.00 0.46
+ML3 0.60 0.46 1.00
+
+Mean item complexity =  1
+Test of the hypothesis that 3 factors are sufficient.
+
+The degrees of freedom for the null model are  105  and the objective function was  5.81 with Chi Square of  2866.57
+The degrees of freedom for the model are 63  and the objective function was  0.12 
+
+The root mean square of the residuals (RMSR) is  0.02 
+The df corrected root mean square of the residuals is  0.02 
+
+The harmonic number of observations is  500 with the empirical chi square  33.69  with prob &lt;  1 
+The total number of observations was  500  with Likelihood Chi Square =  58.66  with prob &lt;  0.63 
+
+Tucker Lewis Index of factoring reliability =  1.003
+RMSEA index =  0  and the 90 % confidence intervals are  0 0.023
+BIC =  -332.86
+Fit based upon off diagonal values = 1
+Measures of factor score adequacy             
+                                                   ML1  ML2  ML3
+Correlation of (regression) scores with factors   0.93 0.95 0.92
+Multiple R square of scores with factors          0.87 0.89 0.84
+Minimum correlation of possible factor scores     0.74 0.79 0.68</code></pre>
+</div>
+</div>
 </section></section>
 <section>
 <section id="confirmatory-factor-analysis" class="title-slide slide level1 center">
