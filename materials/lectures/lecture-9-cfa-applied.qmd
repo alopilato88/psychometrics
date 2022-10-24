@@ -1,0 +1,785 @@
+---
+title: "Applying Confirmatory Factor Analysis"
+format: 
+  revealjs:
+    theme: [default, psych-lecture-theme.scss] 
+    css: psych-lecture-style.css
+---
+
+## Overview 
+
+```{r}
+#| echo: false
+library(lavaan)
+library(tibble)
+library(dplyr)
+library(readr)
+library(semPlot)
+
+data_constraint_url <- "https://alopilato88.github.io/psychometrics/materials/data/lecture-9-data-constraint.csv"
+data_higher_order_url <- "https://alopilato88.github.io/psychometrics/materials/data/lecture-9-data-higher-order.csv"
+data_bifactor_url <- "https://alopilato88.github.io/psychometrics/materials/data/lecture-9-data-bifactor.csv"
+data_trimodel_url <- "https://alopilato88.github.io/psychometrics/materials/data/lecture-9-data-tri-model.csv"
+
+data_constraint <- readr::read_csv(data_constraint_url)
+data_higher_order <- readr::read_csv(data_higher_order_url)
+data_bifactor <- readr::read_csv(data_bifactor_url)
+data_trimodel <- readr::read_csv(data_trimodel_url)
+```
+
+* Introduction to applications of CFA
+* Conceptual introduction to the TRI Model
+* Overview and specification of several different CFA models
+
+## Applications of CFA 
+
+* Assessing the properties of your measurements
+  - Parallel vs Tau Equivalent vs Congeneric 
+* Assessing multidimensionality 
+* Partitioning variance due to different constructs 
+
+## Trait-Reputation-Identity Model 
+
+![Connelly et al (2022). A multirater perspective on personality and performance: An empirical examination of the Trait-Reputation-Identity Model.](lecture-9-img/tri-model-diagram.png)
+
+# Building to the TRI Model
+
+## Unidimensional (Congeneric) CFA
+
+```{r}
+#| echo: false
+
+congeneric_model_syntax <- "
+LV =~ NA*X1 + X2 + X3 + X4
+
+X1 + X2 + X3 + X4 ~ 1
+LV ~~ 1*LV
+"
+
+congeneric_fit <- lavaan::cfa(
+  model = congeneric_model_syntax,
+  data = data_constraint
+)
+
+semPlot::semPaths(
+  congeneric_fit, 
+  what = "est", 
+  edge.label.cex=1.25, 
+  fade = F, 
+  edge.color = "#3D3C42",
+  bg = "#FEFBF6"
+)
+```
+
+## Congeneric Model Specification {.scrollable}
+
+```{r}
+#| echo: true
+
+congeneric_model_syntax <- "
+LV =~ NA*X1 + X2 + X3 + X4
+
+X1 + X2 + X3 + X4 ~ 1 # Estimate intercepts
+LV ~~ 1*LV # Identification Constraint
+"
+```
+
+## Congeneric Model Evaluation {.scrollable}
+
+```{r}
+summary(congeneric_fit, standardized = TRUE)
+```
+
+
+## Adding Constraints 
+
+* Constraining parameters is a very powerful way to test a variety of hypotheses: 
+  - Equivalence of parameter estimates
+  - Measurement Invariance
+  - Nonlinear effects
+
+## Essential Tau Equivalence 
+
+```{r}
+#| echo: false
+
+essential_tau_model_syntax <- "
+
+LV =~ A*X1 + NA*X1 + A*X2 + A*X3 + A*X4
+
+X1 + X2 + X3 + X4 ~ 1 
+LV ~~ 1*LV
+"
+
+essential_tau_fit <- lavaan::cfa(
+  model = essential_tau_model_syntax,
+  data = data_constraint
+)
+
+semPlot::semPaths(
+  essential_tau_fit, 
+  what = "est", 
+  edge.label.cex=1.25, 
+  fade = F, 
+  edge.color = "#3D3C42",
+  bg = "#FEFBF6"
+)
+```
+
+## Essential Tau Equivalance Model Specification {.scrollable}
+
+```{r}
+#| echo: true
+
+essential_tau_model_syntax <- "
+
+LV =~ A*X1 + NA*X1 + A*X2 + A*X3 + A*X4 # Constraining factor loadings
+
+X1 + X2 + X3 + X4 ~ 1 # Estimating means
+LV ~~ 1*LV # Identity constraint
+"
+```
+
+## Essential Tau Equivalence Model Evaluation {.scrollable}
+
+```{r}
+summary(essential_tau_fit, standardized = TRUE)
+```
+
+## Tau Equivalence
+
+```{r}
+#| echo: false
+
+tau_model_syntax <- "
+
+LV =~ A*X1 + NA*X1 + A*X2 + A*X3 + A*X4 # Factor loading constraint
+
+X1 + X2 + X3 + X4 ~ B*1 # Intercept constraint
+LV ~~ 1*LV # Identity constraint
+"
+
+tau_fit <- lavaan::cfa(
+  model = tau_model_syntax,
+  data = data_constraint
+)
+
+semPlot::semPaths(
+  tau_fit, 
+  what = "est", 
+  edge.label.cex=1.25, 
+  fade = F, 
+  edge.color = "#3D3C42",
+  bg = "#FEFBF6"
+)
+```
+
+## Tau Equivalence Model Specification {.scrollable}
+
+```{r}
+#| echo: true
+
+tau_model_syntax <- "
+
+LV =~ A*X1 + NA*X1 + A*X2 + A*X3 + A*X4 # Factor loading constraint
+
+X1 + X2 + X3 + X4 ~ B*1 # Intercept constraint
+LV ~~ 1*LV # Identity constraint
+"
+```
+
+## Tau Equivalence Model Specification {.scrollable}
+
+```{r}
+summary(tau_fit, standardized = TRUE)
+```
+
+## Parallel Items 
+
+```{r}
+#| echo: false
+
+parallel_model_syntax <- "
+
+LV =~ A*X1 + NA*X1 + A*X2 + A*X3 + A*X4 # Factor loading constraint
+
+X1 + X2 + X3 + X4 ~ B*1 # Intercept constraint
+
+# Error variance constraints
+X1 ~~ C*X1
+X2 ~~ C*X2
+X3 ~~ C*X3
+X4 ~~ C*X4
+
+LV ~~ 1*LV # Identity constraint
+"
+
+parallel_fit <- lavaan::cfa(
+  model = parallel_model_syntax,
+  data = data_constraint
+)
+
+semPlot::semPaths(
+  parallel_fit, 
+  what = "est", 
+  edge.label.cex=1.25, 
+  fade = F, 
+  edge.color = "#3D3C42",
+  bg = "#FEFBF6"
+)
+```
+
+## Parallel Model Specification {.scrollable}
+
+```{r}
+#| echo: true
+
+parallel_model_syntax <- "
+
+LV =~ A*X1 + NA*X1 + A*X2 + A*X3 + A*X4 # Factor loading constraint
+
+X1 + X2 + X3 + X4 ~ B*1 # Intercept constraint
+
+# Error variance constraints
+X1 ~~ C*X1
+X2 ~~ C*X2
+X3 ~~ C*X3
+X4 ~~ C*X4
+
+LV ~~ 1*LV # Identity constraint
+"
+```
+
+## Parallel Model Evaluation {.scrollable}
+
+```{r}
+summary(parallel_fit, standardized = TRUE)
+```
+
+## Testing Models with Constraints
+
+* When you add constraints to one model, the resulting model is nested within the original model. This means we can use a likelihood ratio (chi-square difference) test to determine which model fits our data best. 
+
+* Parallel $\subset$ (Essential) Tau Equivalence $\subset$ Congeneric
+
+* You typically want to choose the most parsimonious model that still fits your data well. 
+
+## Using the LRT {.scrollable}
+
+```{r}
+#| echo: true
+anova(congeneric_fit, essential_tau_fit) # Congeneric v Essential Tau Equivalence
+anova(essential_tau_fit, tau_fit) # Essential Tau vs Tau Equivalence
+anova(tau_fit, parallel_fit) # Tau Equivalence vs Parallel Equivalence
+```
+
+## Multidimensional Models 
+
+```{r}
+#| echo: false
+
+multidimensional_model_syntax <- "
+
+F1 =~ NA*X1 + X2 + X3 + X4
+F2 =~ NA*X5 + X6 + X7 + X8
+F3 =~ NA*X9 + X10 + X11 + X12
+
+F1 ~~ 1*F1
+F2 ~~ 1*F2
+F3 ~~ 1*F3
+"
+
+multidimensional_fit <- lavaan::cfa(
+  model = multidimensional_model_syntax,
+  data = data_higher_order
+)
+
+semPlot::semPaths(
+  multidimensional_fit, 
+  what = "std", 
+  edge.label.cex=1.25, 
+  fade = F, 
+  edge.color = "#3D3C42",
+  bg = "#FEFBF6"
+)
+```
+
+## Multidimensional Model Specification {.scrollable}
+
+```{r}
+#| echo: true
+
+multidimensional_model_syntax <- "
+
+# Specifying three different factors
+F1 =~ NA*X1 + X2 + X3 + X4
+F2 =~ NA*X5 + X6 + X7 + X8
+F3 =~ NA*X9 + X10 + X11 + X12
+
+F1 ~~ 1*F1
+F2 ~~ 1*F2
+F3 ~~ 1*F3
+"
+```
+
+## Multidimensional Model Evaluation {.scrollable}
+
+```{r}
+summary(multidimensional_fit, standardized = TRUE)
+```
+
+## Testing Multidimensionality 
+
+```{r}
+unidimensional_model_syntax <- "
+
+# Specifying three different factors
+F1 =~ NA*X1 + X2 + X3 + X4 + X5 + X6 + X7 + X8 + X9 + X10 + X11 + X12
+
+F1 ~~ 1*F1
+"
+
+unidimensional_fit <- lavaan::cfa(
+  model = unidimensional_model_syntax,
+  data = data_higher_order
+)
+```
+
+```{r}
+#| echo: true
+anova(unidimensional_fit, multidimensional_fit)
+```
+
+## Higher-Order Models
+
+```{r}
+#| echo: false
+
+high_ord_model_syntax <- "
+
+F1 =~ X1 + X2 + X3 + X4
+F2 =~ X5 + X6 + X7 + X8
+F3 =~ X9 + X10 + X11 + X12
+
+HIGH_ORD_FACTOR =~ NA*F1 + F2 + F3
+
+HIGH_ORD_FACTOR ~~ 1*HIGH_ORD_FACTOR
+"
+
+high_ord_fit <- lavaan::cfa(
+  model = high_ord_model_syntax,
+  data = data_higher_order
+)
+
+semPlot::semPaths(
+  high_ord_fit, 
+  what = "std", 
+  edge.label.cex=1.25, 
+  fade = F, 
+  edge.color = "#3D3C42",
+  bg = "#FEFBF6"
+)
+```
+
+## Higher-Order Model Specification {.scrollable}
+
+```{r}
+#| echo: true
+high_ord_model_syntax <- "
+
+# Lower order factros identified with anchor variable (leading indicator)
+F1 =~ X1 + X2 + X3 + X4
+F2 =~ X5 + X6 + X7 + X8
+F3 =~ X9 + X10 + X11 + X12
+
+HIGH_ORD_FACTOR =~ NA*F1 + F2 + F3
+
+HIGH_ORD_FACTOR ~~ 1*HIGH_ORD_FACTOR # Identity constraint
+"
+```
+
+## Higher Order Model Evaluation
+
+```{r}
+summary(high_ord_fit, standardized = TRUE)
+```
+
+## A Note of Caution on Correlated Error Models
+
+* Unless you have theoretical rationale that is guiding your error structure, it is best to avoid correlated error models. 
+
+* Correlated errors can arise because of model misspecification or chance. 
+
+## Exploring Modification Indices
+
+```{r}
+#| echo: true
+lavaan::modificationindices(unidimensional_fit, sort = T, maximum.number = 10)
+```
+
+## Correlated Error Models 
+
+```{r}
+correlated_error_model_syntax <- "
+
+# Specifying three different factors
+F1 =~ NA*X1 + X2 + X3 + X4 + X5 + X6 + X7 + X8 + X9 + X10 + X11 + X12
+
+F1 ~~ 1*F1
+
+X1 + X2 + X3 ~~ X4
+X1 + X2 ~~ X3
+X1 ~~ X2
+
+X5 + X6 + X7 ~~ X8
+X5 + X6 ~~ X7
+X5 ~~ X6
+
+X9 + X10 + X11 ~~ X12
+X9 + X10 ~~ X11
+X9 ~~ X10
+
+X5 ~~ X12
+"
+
+ce_fit <- lavaan::cfa(
+  model = correlated_error_model_syntax,
+  data = data_higher_order
+)
+
+semPlot::semPaths(
+  ce_fit, 
+  what = "std", 
+  sizeLat = 5,
+  edge.label.cex=1, 
+  fade = F, 
+  edge.color = "#3D3C42",
+  bg = "#FEFBF6"
+)
+```
+
+## Correlated Error Model Specification {.scrollable}
+
+```{r}
+#| echo: true
+
+correlated_error_model_syntax <- "
+
+# Specifying three different factors
+F1 =~ NA*X1 + X2 + X3 + X4 + X5 + X6 + X7 + X8 + X9 + X10 + X11 + X12
+
+F1 ~~ 1*F1
+
+# Correlating Error Terms
+X1 + X2 + X3 ~~ X4
+X1 + X2 ~~ X3
+X1 ~~ X2
+
+X5 + X6 + X7 ~~ X8
+X5 + X6 ~~ X7
+X5 ~~ X6
+
+X9 + X10 + X11 ~~ X12
+X9 + X10 ~~ X11
+X9 ~~ X10
+
+X5 ~~ X12
+"
+```
+
+## Correlated Error Model Evaluation
+
+```{r}
+summary(ce_fit, standardized = TRUE)
+```
+
+## Bifactor Models
+
+```{r}
+bifactor_model_syntax <- "
+
+GEN_FACTOR =~ NA*X1 + X2 + X3 + X4 + X5 + X6 + X7 + X8
+METHOD1_FACTOR =~ NA*X1 + X2 + X3 + X4
+METHOD2_FACTOR =~ NA*X5 + X6 + X7 + X8
+
+GEN_FACTOR ~~ 1*GEN_FACTOR
+METHOD1_FACTOR ~~ 1*METHOD1_FACTOR
+METHOD2_FACTOR ~~ 1*METHOD2_FACTOR
+
+METHOD1_FACTOR + METHOD2_FACTOR ~~ 0*GEN_FACTOR
+METHOD1_FACTOR ~~ 0*METHOD2_FACTOR
+"
+
+bifactor_fit <- lavaan::cfa(
+  model = bifactor_model_syntax,
+  data = data_bifactor
+)
+
+semPlot::semPaths(
+  bifactor_fit, 
+  what = "std", 
+  edge.label.cex=1, 
+  fade = F, 
+  edge.color = "#3D3C42",
+  bg = "#FEFBF6"
+)
+```
+
+## Bifactor Model Specification
+
+```{r}
+#| echo: true
+
+bifactor_model_syntax <- "
+
+GEN_FACTOR =~ NA*X1 + X2 + X3 + X4 + X5 + X6 + X7 + X8
+METHOD1_FACTOR =~ NA*X1 + X2 + X3 + X4
+METHOD2_FACTOR =~ NA*X5 + X6 + X7 + X8
+
+GEN_FACTOR ~~ 1*GEN_FACTOR
+METHOD1_FACTOR ~~ 1*METHOD1_FACTOR
+METHOD2_FACTOR ~~ 1*METHOD2_FACTOR
+
+METHOD1_FACTOR + METHOD2_FACTOR ~~ 0*GEN_FACTOR
+METHOD1_FACTOR ~~ 0*METHOD2_FACTOR
+"
+```
+
+## Bifactor Model Evaluation {.scrollable}
+
+```{r}
+summary(bifactor_fit, standardized = TRUE)
+```
+
+# TRI Model
+
+## Tips on Reading CFA Methods Section
+
+* Do you know all the constraints that were applied? 
+
+* Do the authors provide all of the parameter estimates and SEs (even if they are included as a supplement)?
+
+* Do the reported degrees of freedom seem correct?
+
+* If needed, could you write your own code to match the model in the paper? 
+
+## TRI Model
+
+* The Trait, Identity, and Reputation model combines the bifactor model, correlated error model, and high-order models all together. 
+
+* It is statistically complex, but conceptually understandable. 
+
+* Simulating and fitting this model is a bit painful / time-consuming!
+
+## TRI Model 
+
+```{r}
+tri_model_syntax <- "
+
+TRAIT =~ 
+  NA*SELF_1 + SELF_2 + SELF_3 + SELF_4 + SELF_5 + SELF_6 +
+  T_OBS_1*OBS1_1 + T_OBS_2*OBS1_2 + T_OBS_3*OBS1_3 + T_OBS_4*OBS1_4 + T_OBS_5*OBS1_5 + T_OBS_6*OBS1_6 +
+  T_OBS_1*OBS2_1 + T_OBS_2*OBS2_2 + T_OBS_3*OBS2_3 + T_OBS_4*OBS2_4 + T_OBS_5*OBS2_5 + T_OBS_6*OBS2_6 +
+  T_OBS_1*OBS3_1 + T_OBS_2*OBS3_2 + T_OBS_3*OBS3_3 + T_OBS_4*OBS3_4 + T_OBS_5*OBS3_5 + T_OBS_6*OBS3_6
+  
+IDENTITY =~ 
+  NA*SELF_1 + SELF_2 + SELF_3 + SELF_4 + SELF_5 + SELF_6
+
+OBS_1 =~ 
+  NA*OBS1_1 + OBS_1*OBS1_1 + OBS_2*OBS1_2 + OBS_3*OBS1_3 + OBS_4*OBS1_4 + OBS_5*OBS1_5 + OBS_6*OBS1_6
+
+OBS_2 =~ 
+  NA*OBS2_1 + OBS_1*OBS2_1 + OBS_2*OBS2_2 + OBS_3*OBS2_3 + OBS_4*OBS2_4 + OBS_5*OBS2_5 + OBS_6*OBS2_6
+  
+OBS_3 =~ 
+  NA*OBS3_1 + OBS_1*OBS3_1 + OBS_2*OBS3_2 + OBS_3*OBS3_3 + OBS_4*OBS3_4 + OBS_5*OBS3_5 + OBS_6*OBS3_6
+
+REPUTATION =~ 
+  NA*OBS_1 + REP_OBS*OBS_1 + REP_OBS*OBS_2 + REP_OBS*OBS_3
+
+TRAIT ~~ 1*TRAIT
+IDENTITY ~~ 1*IDENTITY
+REPUTATION ~~ 1*REPUTATION
+
+OBS_1 ~~ 1*OBS_1
+OBS_2 ~~ 1*OBS_2
+OBS_3 ~~ 1*OBS_3
+
+# OBS_1 ~~ OBS_VAR*OBS_1
+# OBS_2 ~~ OBS_VAR*OBS_2
+# OBS_3 ~~ OBS_VAR*OBS_3
+
+TRAIT ~~ 0*IDENTITY + 0*REPUTATION
+IDENTITY ~~ 0*REPUTATION
+
+OBS1_1 + OBS2_1 + OBS3_1 ~~ R_SO_1*SELF_1
+OBS1_2 + OBS2_2 + OBS3_2 ~~ R_SO_2*SELF_2
+OBS1_3 + OBS2_3 + OBS3_3 ~~ R_SO_3*SELF_3
+OBS1_4 + OBS2_4 + OBS3_4 ~~ R_SO_4*SELF_4
+OBS1_5 + OBS2_5 + OBS3_5 ~~ R_SO_5*SELF_5
+OBS1_6 + OBS2_6 + OBS3_6 ~~ R_SO_6*SELF_6
+
+OBS1_1 + OBS2_1 ~~ COV_O_1*OBS3_1
+OBS1_1 ~~ COV_O_1*OBS2_1
+
+OBS1_2 + OBS2_2 ~~ COV_O_2*OBS3_2
+OBS1_2 ~~ COV_O_2*OBS2_2
+
+OBS1_3 + OBS2_3 ~~ COV_O_3*OBS3_3
+OBS1_3 ~~ COV_O_3*OBS2_3
+
+OBS1_4 + OBS2_4 ~~ COV_O_4*OBS3_4
+OBS1_4 ~~ COV_O_4*OBS2_4
+
+OBS1_5 + OBS2_5 ~~ COV_O_5*OBS3_5
+OBS1_5 ~~ COV_O_5*OBS2_5
+
+OBS1_6 + OBS2_6 ~~ COV_O_6*OBS3_6
+OBS1_6 ~~ COV_O_6*OBS2_6
+
+OBS1_1 ~~ R_O_1*OBS1_1
+OBS2_1 ~~ R_O_1*OBS2_1
+OBS3_1 ~~ R_O_1*OBS3_1
+
+OBS1_2 ~~ R_O_2*OBS1_2
+OBS2_2 ~~ R_O_2*OBS2_2
+OBS3_2 ~~ R_O_2*OBS3_2
+
+OBS1_3 ~~ R_O_3*OBS1_3
+OBS2_3 ~~ R_O_3*OBS2_3
+OBS3_3 ~~ R_O_3*OBS3_3
+
+OBS1_4 ~~ R_O_4*OBS1_4
+OBS2_4 ~~ R_O_4*OBS2_4
+OBS3_4 ~~ R_O_4*OBS3_4
+
+OBS1_5 ~~ R_O_5*OBS1_5
+OBS2_5 ~~ R_O_5*OBS2_5
+OBS3_5 ~~ R_O_5*OBS3_5
+
+OBS1_6 ~~ R_O_6*OBS1_6
+OBS2_6 ~~ R_O_6*OBS2_6
+OBS3_6 ~~ R_O_6*OBS3_6
+"
+
+tri_fit <- lavaan::cfa(
+  model = tri_model_syntax,
+  data = data_trimodel
+)
+
+semPlot::semPaths(
+  tri_fit, 
+  what = "std", 
+  edge.label.cex=1, 
+  fade = F, 
+  edge.color = "#3D3C42",
+  bg = "#FEFBF6"
+)
+```
+
+## TRI Model Specification {.scrollable}
+
+```{r}
+#| echo: true
+
+tri_model_syntax <- "
+
+TRAIT =~ 
+  NA*SELF_1 + SELF_2 + SELF_3 + SELF_4 + SELF_5 + SELF_6 +
+  T_OBS_1*OBS1_1 + T_OBS_2*OBS1_2 + T_OBS_3*OBS1_3 + T_OBS_4*OBS1_4 + T_OBS_5*OBS1_5 + T_OBS_6*OBS1_6 +
+  T_OBS_1*OBS2_1 + T_OBS_2*OBS2_2 + T_OBS_3*OBS2_3 + T_OBS_4*OBS2_4 + T_OBS_5*OBS2_5 + T_OBS_6*OBS2_6 +
+  T_OBS_1*OBS3_1 + T_OBS_2*OBS3_2 + T_OBS_3*OBS3_3 + T_OBS_4*OBS3_4 + T_OBS_5*OBS3_5 + T_OBS_6*OBS3_6
+  
+IDENTITY =~ 
+  NA*SELF_1 + SELF_2 + SELF_3 + SELF_4 + SELF_5 + SELF_6
+
+OBS_1 =~ 
+  NA*OBS1_1 + OBS_1*OBS1_1 + OBS_2*OBS1_2 + OBS_3*OBS1_3 + OBS_4*OBS1_4 + OBS_5*OBS1_5 + OBS_6*OBS1_6
+
+OBS_2 =~ 
+  NA*OBS2_1 + OBS_1*OBS2_1 + OBS_2*OBS2_2 + OBS_3*OBS2_3 + OBS_4*OBS2_4 + OBS_5*OBS2_5 + OBS_6*OBS2_6
+  
+OBS_3 =~ 
+  NA*OBS3_1 + OBS_1*OBS3_1 + OBS_2*OBS3_2 + OBS_3*OBS3_3 + OBS_4*OBS3_4 + OBS_5*OBS3_5 + OBS_6*OBS3_6
+
+REPUTATION =~ 
+  NA*OBS_1 + REP_OBS*OBS_1 + REP_OBS*OBS_2 + REP_OBS*OBS_3
+
+TRAIT ~~ 1*TRAIT
+IDENTITY ~~ 1*IDENTITY
+REPUTATION ~~ 1*REPUTATION
+
+OBS_1 ~~ 1*OBS_1
+OBS_2 ~~ 1*OBS_2
+OBS_3 ~~ 1*OBS_3
+
+# OBS_1 ~~ OBS_VAR*OBS_1
+# OBS_2 ~~ OBS_VAR*OBS_2
+# OBS_3 ~~ OBS_VAR*OBS_3
+
+TRAIT ~~ 0*IDENTITY + 0*REPUTATION
+IDENTITY ~~ 0*REPUTATION
+
+OBS1_1 + OBS2_1 + OBS3_1 ~~ R_SO_1*SELF_1
+OBS1_2 + OBS2_2 + OBS3_2 ~~ R_SO_2*SELF_2
+OBS1_3 + OBS2_3 + OBS3_3 ~~ R_SO_3*SELF_3
+OBS1_4 + OBS2_4 + OBS3_4 ~~ R_SO_4*SELF_4
+OBS1_5 + OBS2_5 + OBS3_5 ~~ R_SO_5*SELF_5
+OBS1_6 + OBS2_6 + OBS3_6 ~~ R_SO_6*SELF_6
+
+OBS1_1 + OBS2_1 ~~ COV_O_1*OBS3_1
+OBS1_1 ~~ COV_O_1*OBS2_1
+
+OBS1_2 + OBS2_2 ~~ COV_O_2*OBS3_2
+OBS1_2 ~~ COV_O_2*OBS2_2
+
+OBS1_3 + OBS2_3 ~~ COV_O_3*OBS3_3
+OBS1_3 ~~ COV_O_3*OBS2_3
+
+OBS1_4 + OBS2_4 ~~ COV_O_4*OBS3_4
+OBS1_4 ~~ COV_O_4*OBS2_4
+
+OBS1_5 + OBS2_5 ~~ COV_O_5*OBS3_5
+OBS1_5 ~~ COV_O_5*OBS2_5
+
+OBS1_6 + OBS2_6 ~~ COV_O_6*OBS3_6
+OBS1_6 ~~ COV_O_6*OBS2_6
+
+OBS1_1 ~~ R_O_1*OBS1_1
+OBS2_1 ~~ R_O_1*OBS2_1
+OBS3_1 ~~ R_O_1*OBS3_1
+
+OBS1_2 ~~ R_O_2*OBS1_2
+OBS2_2 ~~ R_O_2*OBS2_2
+OBS3_2 ~~ R_O_2*OBS3_2
+
+OBS1_3 ~~ R_O_3*OBS1_3
+OBS2_3 ~~ R_O_3*OBS2_3
+OBS3_3 ~~ R_O_3*OBS3_3
+
+OBS1_4 ~~ R_O_4*OBS1_4
+OBS2_4 ~~ R_O_4*OBS2_4
+OBS3_4 ~~ R_O_4*OBS3_4
+
+OBS1_5 ~~ R_O_5*OBS1_5
+OBS2_5 ~~ R_O_5*OBS2_5
+OBS3_5 ~~ R_O_5*OBS3_5
+
+OBS1_6 ~~ R_O_6*OBS1_6
+OBS2_6 ~~ R_O_6*OBS2_6
+OBS3_6 ~~ R_O_6*OBS3_6
+"
+```
+
+## TRI Model Evaluation {.scrollable}
+
+```{r}
+summary(tri_fit, standardized = TRUE)
+```
+
+## Readings for Next Week 
+
+* We start IRT next week! 
+
+* Read Chapter 14 in Measurement Theory and Applications for the Social Sciences and the article by Reise et al. (2005). Item response theory: Fundamentals, applications, and promise in psychological research.
+
