@@ -31,7 +31,7 @@ By the end of this course, you will:
 | 8 | [Reliability Theory: Advanced]() | |
 | 9 | [Latent Variable Models: Factor Analysis](https://alopilato88.github.io/psychometrics/materials/lectures/lecture-8-cfa-theory.html) | |
 | 10 | [Latent Variable Models: Factor Analysis](https://alopilato88.github.io/psychometrics/materials/lectures/lecture-9-cfa-applied.html) | |
-| 11 | [Latent Variable Models: Understanding Item Response Theory]() | |
+| 11 | [Latent Variable Models: Understanding Item Response Theory] (https://alopilato88.github.io/psychometrics/materials/lectures/lecture-10-irt.html) | |
 | 12 | [Latent Variable Models: Applying Item Response Theory]() | |
 | 13 | [Frontiers of Psychometrics: Network Psychometrics]() | |
 | 14 | [Frontiers of Psychometrics: Computational Psychometrics]() | |
