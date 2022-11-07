@@ -1,0 +1,679 @@
+---
+title: "Item Response Theory"
+format: 
+  revealjs:
+    theme: [default, psych-lecture-theme.scss] 
+    css: psych-lecture-style.css
+---
+
+## Overview 
+
+```{r}
+#| echo: false
+library(mirt)
+library(tibble)
+library(dplyr)
+library(readr)
+library(ggplot2)
+
+simulate_irt_mod <- function(
+  a = 1.3,
+  b = .80,
+  c = 0,
+  u = 1,
+  theta
+) {
+  
+  # Generate logit
+  logit <- a*(theta - b)
+  
+  # Generate prob
+  prob <- c + (u - c) * (1/(1 + exp(-logit)))
+  
+  # Generate responses
+  resp <- rbinom(length(theta), size = 1, prob = prob)
+  
+  return(resp)
+}
+```
+
+* Comparison of IRT to CTT and factor analysis 
+* Overview of dichotomous IRT models 
+* Overview of IRT model testing
+
+## What is IRT?
+
+* IRT is a measurement theory that uses generalized linear latent variable models to model the response to a binary item.  
+
+* Unlike CTT or GT, which model aggregated (sum score and mean score, respectively) item scores, IRT is focused on the individual items that make up a test. 
+
+## How does IRT differ from CTT?
+
+* In IRT:
+  - Item parameters such as item difficulty and item discrimination are invariant to the respondent population.
+  - The standard error of measurement (and reliability) is conditional on the ability of a respondent.
+  - Estimates of an individuals theta (ability / latent variable) are not confounded with item parameter estimates.
+* Cost of IRT: 
+  - Stronger modeling assumptions.
+
+## How do IRT Models differ from Factor Analysis Models?
+
+* Think of factor analysis as analogous to linear regression with a latent (unobserved) predictor and IRT as analogous to logistic regression with a latent predictor. 
+
+* Use IRT models to model responses to binary items.
+
+## Applications of IRT
+
+* Educational measurement
+  - Cognitive tests: GRE & SAT (right / wrong responses)
+* Attitude measurement
+  - Likert scales with less than 5 responses
+  - Binary agreement scales
+  - Ideal point models
+* Personality measurement
+  - Binary agreement scales
+
+## Item Response Function 
+
+* The item response function is any function that describes the probability of correctly responding to an item as a monotonically increasing function of theta (someone's ability).
+
+```{r}
+set.seed(3)
+theta <- rnorm(50000)
+item_resp <- simulate_irt_mod(a = 1, b = 0, theta = theta)
+emp_irf <- tibble::tibble(
+  THETA = theta,
+  RESP = item_resp
+) |>
+  dplyr::mutate(
+    THETA = round(THETA, 1)
+  ) |>
+  dplyr::group_by(
+    THETA
+  ) |>
+  dplyr::summarise(
+    PROB_CORRECT = mean(RESP)
+  )
+
+one_pl_fun <- function(theta) (1 + exp(-(theta - 0)))^-1
+
+ggplot2::ggplot(
+  data = emp_irf,
+  ggplot2::aes(
+    x = THETA,
+    y = PROB_CORRECT
+  ) 
+) +
+  ggplot2::geom_point() + 
+  ggplot2::geom_function(
+    fun = one_pl_fun,
+    color = "#A6D1E6",
+    lwd = 2,
+    alpha = .7
+  ) + 
+  ggplot2::theme(
+    plot.background = element_rect(fill = "#FEFBF6", color = "#FEFBF6"),
+    panel.background = element_rect(fill = "#FEFBF6"),
+    axis.line.x = element_line(colour = "#3D3C42"),
+    axis.line.y = element_line(colour = "#3D3C42"),
+    # axis.ticks.y = ggplot2::element_line(size = 0),
+    # axis.text.y = ggplot2::element_blank(),
+    # axis.title.y = ggplot2::element_blank(),
+    panel.grid.minor = element_line(colour = "#FEFBF6"),
+    panel.grid.major = element_line(colour = "#FEFBF6")
+  ) +
+  ggplot2::labs(
+    x = "Theta (Ability / Latent Variable)",
+    y = "Probability of Response = 1"
+  )
+```
+
+## IRT Models
+
+* When analyzing binary data, IRT has typically relied on a class of item response functions called the logistic functions:
+
+$$P(X = 1)=\frac{e^{f(\Theta_{i})}}{1 + e^{f(\Theta_{i})}}=\frac{1}{1 + e^{-f(\Theta_{i})}}$$
+
+* The logistic functions have been further classified based on the number of parameters they use to model the item response: 1PL, 2PL, 3PL, and 4PL
+
+## One Parameter Logistic Model
+
+* The one parameter logistic (1PL) model describes an individual's item response using only a single parameter: b. The discrimination parameter, a, is a constrained parameter.
+
+* b is the difficulty parameter, it tells us how difficult the item is (for cognitive tests) or what level of theta is needed (attitude measurements) for an individual to respond 1 to the item:
+
+$$P(X = 1)=\frac{1}{1 + e^{-a(\Theta_{i}-b_{j})}}$$
+
+## 1PL Iten Response Function
+
+```{r}
+one_pl_fun1 <- function(theta) (1 + exp(-(theta - -1)))^-1
+one_pl_fun2 <- function(theta) (1 + exp(-(theta - 1)))^-1
+
+ggplot2::ggplot(
+  data = data.frame(theta = seq(-5, 5, len = 100)),
+  ggplot2::aes(
+    x = theta
+  ) 
+) +
+  ggplot2::geom_function(
+    fun = one_pl_fun1,
+    color = "#A6D1E6",
+    lwd = 2
+  ) + 
+  ggplot2::geom_function(
+    fun = one_pl_fun2,
+    color = "#A6D1E6",
+    lwd = 2
+  ) + 
+  ggplot2::theme(
+    plot.background = element_rect(fill = "#FEFBF6", color = "#FEFBF6"),
+    panel.background = element_rect(fill = "#FEFBF6"),
+    axis.line.x = element_line(colour = "#3D3C42"),
+    axis.line.y = element_line(colour = "#3D3C42"),
+    # axis.ticks.y = ggplot2::element_line(size = 0),
+    # axis.text.y = ggplot2::element_blank(),
+    # axis.title.y = ggplot2::element_blank(),
+    panel.grid.minor = element_line(colour = "#FEFBF6"),
+    panel.grid.major = element_line(colour = "#FEFBF6")
+  ) +
+  ggplot2::labs(
+    x = "Theta (Ability / Latent Variable)",
+    y = "Probability of Response = 1",
+    title = "IRF for b = -1 & b = 1"
+  ) + 
+  ggplot2::geom_segment(
+    x = 1,
+    y = 0,
+    xend = 1, 
+    yend = .50, 
+    color = "#3D3C42"
+  ) + 
+  ggplot2::geom_segment(
+    x = -1,
+    y = 0,
+    xend = -1,
+    yend = .50, 
+    color = "#3D3C42"
+  ) + 
+  ggplot2::geom_segment(
+    x = -5,
+    y = .50,
+    xend = 1,
+    yend = .50, 
+    color = "#3D3C42"
+  )
+
+```
+
+## Rasch Models: A Quick Aside
+
+* Rasch Models = 1PL Model with a (discrimination parameter set equal to 1 for all items). 
+
+* Although Rasch models can be equivalent to the 1PL model, Rasch models are less of a theory of measurement and more of an ideology of measurement. 
+
+* IRT (Logistic models) tries to build models that best describe the item responses (descriptive model of item response), whereas Rasch models try to build items that fit the Rasch model (normative model of item response).
+
+## Two Parameter Logistic Model 
+
+* The 2PL is equivalent to the 1PL except now the discrimination parameter, a, is freely estimated for each item: 
+
+$$P(X = 1)=\frac{1}{1 + e^{-a_{j}(\Theta_{i}-b_{j})}}$$
+
+* The discrimination parameter tells us how well a given item can differentiate among respondents with differing levels of theta. 
+
+## 2PL Item Response Function
+
+```{r}
+two_pl_fun1 <- function(theta) (1 + exp(-.10*(theta - 0)))^-1
+two_pl_fun2 <- function(theta) (1 + exp(-1.5*(theta - 0)))^-1
+two_pl_fun3 <- function(theta) (1 + exp(-10*(theta - 0)))^-1
+
+ggplot2::ggplot(
+  data = data.frame(theta = seq(-5, 5, len = 100)),
+  ggplot2::aes(
+    x = theta
+  ) 
+) +
+  ggplot2::geom_function(
+    fun = two_pl_fun1,
+    color = "#7F5283",
+    lwd = 2
+  ) + 
+  ggplot2::geom_function(
+    fun = two_pl_fun2,
+    color = "#3D3C42",
+    lwd = 2
+  ) + 
+    ggplot2::geom_function(
+    fun = two_pl_fun3,
+    color = "#A6D1E6",
+    lwd = 2
+  ) +
+  ggplot2::theme(
+    plot.background = element_rect(fill = "#FEFBF6", color = "#FEFBF6"),
+    panel.background = element_rect(fill = "#FEFBF6"),
+    axis.line.x = element_line(colour = "#3D3C42"),
+    axis.line.y = element_line(colour = "#3D3C42"),
+    # axis.ticks.y = ggplot2::element_line(size = 0),
+    # axis.text.y = ggplot2::element_blank(),
+    # axis.title.y = ggplot2::element_blank(),
+    panel.grid.minor = element_line(colour = "#FEFBF6"),
+    panel.grid.major = element_line(colour = "#FEFBF6")
+  ) +
+  ggplot2::labs(
+    x = "Theta (Ability / Latent Variable)",
+    y = "Probability of Response = 1",
+    title = "IRF for a = .10, 1.5, & 10"
+  ) 
+
+```
+
+## Three Parameter Logistic Model 
+
+* The 3PL is equivalent to the 2PL model with an additional parameter added, c, the guessing parameter, which had previously been constrained to 0:  
+
+$$P(X = 1)=c_{j} + (1 - c_{j})\frac{1}{1 + e^{-a_{j}(\Theta_{i}-b_{j})}}$$
+
+* The guessing parameter, c, changes the lower asymptote of the IRF from 0 to c.  
+
+## 3PL Item Response Function
+
+```{r}
+three_pl_fun1 <- function(theta) .25 + (1 - .25)*(1 + exp(-1.5*(theta - 0)))^-1
+three_pl_fun2 <- function(theta) (1 + exp(-1.5*(theta - 0)))^-1
+
+ggplot2::ggplot(
+  data = data.frame(theta = seq(-5, 5, len = 100)),
+  ggplot2::aes(
+    x = theta
+  ) 
+) +
+  ggplot2::geom_function(
+    fun = three_pl_fun1,
+    color = "#7F5283",
+    lwd = 2
+  ) + 
+  ggplot2::geom_function(
+    fun = three_pl_fun2,
+    color = "#3D3C42",
+    lwd = 2
+  ) + 
+  ggplot2::theme(
+    plot.background = element_rect(fill = "#FEFBF6", color = "#FEFBF6"),
+    panel.background = element_rect(fill = "#FEFBF6"),
+    axis.line.x = element_line(colour = "#3D3C42"),
+    axis.line.y = element_line(colour = "#3D3C42"),
+    # axis.ticks.y = ggplot2::element_line(size = 0),
+    # axis.text.y = ggplot2::element_blank(),
+    # axis.title.y = ggplot2::element_blank(),
+    panel.grid.minor = element_line(colour = "#FEFBF6"),
+    panel.grid.major = element_line(colour = "#FEFBF6")
+  ) +
+  ggplot2::labs(
+    x = "Theta (Ability / Latent Variable)",
+    y = "Probability of Response = 1",
+    title = "IRF for c = .25 & 0"
+  ) 
+
+```
+
+## Four Parameter Logistic Model 
+
+* The 4PL is equivalent to the 3PL model with an additional parameter added, u, the upper limit, which had previously been constrained to 1:  
+
+$$P(X = 1)=c_{j} + (u_{j} - c_{j})\frac{1}{1 + e^{-a_{j}(\Theta_{i}-b_{j})}}$$
+
+* The upper limit parameter, u, changes the upper asymptote of the IRF from 1 to u.  
+
+## 4PL Item Response Function
+
+```{r}
+four_pl_fun1 <- function(theta) .25 + (1 - .25)*(1 + exp(-1.5*(theta - 0)))^-1
+four_pl_fun2 <- function(theta) .25 + (.80 - .25)*(1 + exp(-1.5*(theta - 0)))^-1
+
+ggplot2::ggplot(
+  data = data.frame(theta = seq(-5, 5, len = 100)),
+  ggplot2::aes(
+    x = theta
+  ) 
+) +
+  ggplot2::geom_function(
+    fun = four_pl_fun1,
+    color = "#7F5283",
+    lwd = 2
+  ) + 
+  ggplot2::geom_function(
+    fun = four_pl_fun2,
+    color = "#3D3C42",
+    lwd = 2
+  ) + 
+  ggplot2::theme(
+    plot.background = element_rect(fill = "#FEFBF6", color = "#FEFBF6"),
+    panel.background = element_rect(fill = "#FEFBF6"),
+    axis.line.x = element_line(colour = "#3D3C42"),
+    axis.line.y = element_line(colour = "#3D3C42"),
+    # axis.ticks.y = ggplot2::element_line(size = 0),
+    # axis.text.y = ggplot2::element_blank(),
+    # axis.title.y = ggplot2::element_blank(),
+    panel.grid.minor = element_line(colour = "#FEFBF6"),
+    panel.grid.major = element_line(colour = "#FEFBF6")
+  ) +
+  ggplot2::labs(
+    x = "Theta (Ability / Latent Variable)",
+    y = "Probability of Response = 1",
+    title = "IRF for u = 1 & .80"
+  ) +
+  ggplot2::ylim(c(0, 1))
+
+```
+
+## Estimating IRT Logistic Parameter Models with R
+
+* There are two main R packages for estimating IRT logistic models: 
+  - `ltm`
+  - `mirt`
+
+## A Glimpse of Our Data
+
+```{r}
+set.seed(2344)
+theta <- rnorm(2000)
+
+item_par_df <- tibble::tibble(
+  a = round(runif(.6, 2, n = 15), 3),
+  b = round(rnorm(15), 3)
+)
+
+twopl_df <- purrr::map_dfc(
+  1:15,
+  function(i) {
+    simulate_irt_mod(
+      a = as.numeric(item_par_df[i, 1]),
+      b = as.numeric(item_par_df[i, 2]),
+      theta = theta
+    )
+  }
+)
+
+names(twopl_df) <- paste0("ITEM_", 1:15)
+
+head(twopl_df)
+```
+
+## Estimating the 2PL Model with `mirt`
+
+```{r}
+#| echo: true
+twopl_mod <- "F = ITEM_1-ITEM_15"
+
+twopl_fit <- mirt(data = twopl_df, model = twopl_mod,
+                  itemtype = "2PL", SE = TRUE, verbose = FALSE)
+
+twopl_params <- coef(twopl_fit, IRTpars = TRUE, simplify = TRUE)
+```
+
+## Examining Item Parameters {.scrollable}
+
+```{r}
+twopl_params
+```
+
+## Benefits of IRT 
+
+* Item Parameter Invariance 
+* Conditional Standard Errors of Measurement (Item information)
+  - Our items (and tests) can be better at measuring different levels of theta
+
+## Item Information 
+
+```{r}
+#| echo: true
+plot(twopl_fit, type = "infotrace", which.items = c(3, 5, 14))
+```
+
+## Test Information
+
+```{r}
+plot(twopl_fit, type = "infoSE", theta_lim = c(-3, 3))
+```
+
+## Test Information At High Levels of Theta
+
+```{r}
+#| echo: false
+#| message: false
+
+set.seed(23443)
+theta <- rnorm(2000)
+
+item_par_df <- tibble::tibble(
+  a = round(runif(.6, 2, n = 15), 3),
+  b = round(runif(15, 1, 5), 3)
+)
+
+twopl_df_difficult <- purrr::map_dfc(
+  1:15,
+  function(i) {
+    simulate_irt_mod(
+      a = as.numeric(item_par_df[i, 1]),
+      b = as.numeric(item_par_df[i, 2]),
+      theta = theta
+    )
+  }
+)
+
+names(twopl_df_difficult) <- paste0("ITEM_", 1:15)
+
+twopl_mod <- "F = ITEM_1-ITEM_15"
+
+twopl_fit_difficult <- mirt(data = twopl_df_difficult, model = twopl_mod,
+                  itemtype = "2PL", SE = TRUE, verbose = FALSE)
+```
+
+```{r}
+plot(twopl_fit_difficult, type = "infoSE", theta_lim = c(-3, 3))
+```
+
+## IRT Assumptions
+
+* (Unidimensional) IRT makes the following three assumptions: 
+  - Unidimensionality 
+  - Local Independence
+  - Correct Functional Form 
+
+## Unidimensionality 
+
+* Unidimensional IRT requires that each item measure one and only one dimension. There is a multidimensional extension of IRT, but we will not cover that here. 
+
+* You can test unidimensionality using several different methods:
+  - Scree plot
+  - Horns Parallel Analysis
+  - Model testing using `mirt`
+
+## Horns Parallel Analysis
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Calculate tetrachoric correlation matrix
+twopl_cor <- psych::tetrachoric(twopl_df)
+
+# Horns Parallel Analysis
+psych::fa.parallel(
+  x = twopl_cor$rho,
+  cor = "tet",
+  n.obs = 2000, 
+  fa = "pc",
+  fm = "ml"
+)
+```
+
+## Parallel Analysis Results
+
+```{r}
+# Calculate tetrachoric correlation matrix
+twopl_cor <- psych::tetrachoric(twopl_df)
+
+# Horns Parallel Analysis
+psych::fa.parallel(
+  x = twopl_cor$rho,
+  cor = "tet",
+  n.obs = 2000, 
+  fa = "pc",
+  fm = "ml"
+)
+```
+
+## Local Independence 
+
+* Local independence is the assumption that once you control for theta, there should be no remaining correlation among the items. That is, if we look at a group of individuals with very high levels of theta, the item responses should not correlate. 
+
+* Local independence & Unidimensionality are very similar assumptions--if unidimensionality holds, then local independence should hold as well. 
+
+* Yen's Q3 Statistic estimates the correlations among the item residuals
+
+## Testing Local Independence
+
+```{r}
+#| echo: true
+mirt::residuals(twopl_fit, type = "Q3")
+```
+
+## Correct Functional Form 
+
+* Correct functional form assumption is the assumption that you are using the correct IRT model to model the item response data. 
+
+* To test this, you will want to estimate and test differing IRT models (1PL to 3PL / maybe 4PL)
+
+## Model Fit 
+
+* Two ways to think about model fit in IRT: 
+  - Item Fit: How well a given IRT model fits an item response.
+  - Person Fit: How well a given IRT model fits an individual's response pattern.
+
+* If you are building a new measure, then you typically want to ensure all of your items fit well! 
+
+## Item Fit
+
+* The majority of the item fit statistics are based off of a chi-square test or likelihood ratio test--essentially the difference between the observed responses and the model predicted responses. We will look at two tests:
+  - Signed $\chi^2$ or S-X2
+  - G Statistic
+
+## Examining Item Fit {.scrollable}
+
+```{r}
+#| echo: true
+mirt::itemfit(twopl_fit, fit_stats = c("S_X2", "G2"))
+```
+
+## Person Fit 
+
+* Person fit addresses the question: "Does a respondent's response pattern match what the model predicts?" 
+
+* There are different types of indices, but we will focus on one: $Z_{h}$. 
+
+* With $Z_{h}$ we want to look our for values less than -2 or greater than 2. 
+
+## Examining Person Fit 
+
+```{r}
+#| echo: true
+person_fit <- mirt::personfit(twopl_fit)
+head(person_fit)
+```
+
+## Plotting Person Fit
+
+```{r}
+ggplot2::ggplot(
+  person_fit |>
+    dplyr::mutate(
+      ID = 1:nrow(person_fit)
+    ),
+  ggplot2::aes(
+   x = ID,
+   y = Zh
+  )
+) + 
+  ggplot2::geom_point() + 
+  ggplot2::theme(
+    plot.background = element_rect(fill = "#FEFBF6", color = "#FEFBF6"),
+    panel.background = element_rect(fill = "#FEFBF6"),
+    axis.line.x = element_line(colour = "#3D3C42"),
+    axis.line.y = element_line(colour = "#3D3C42"),
+    # axis.ticks.y = ggplot2::element_line(size = 0),
+    # axis.text.y = ggplot2::element_blank(),
+    # axis.title.y = ggplot2::element_blank(),
+    panel.grid.minor = element_line(colour = "#FEFBF6"),
+    panel.grid.major = element_line(colour = "#FEFBF6")
+  ) + 
+  ggplot2::labs(
+    x = "Person",
+    y = "Zh"
+  )
+```
+
+## Model Comparison 
+
+* 1PL $\subset$ 2PL $\subset$ 3PL $\subset$ 4PL
+* We can use a log likelihood test to determine which model fits the data the best.
+
+## Estimating Theta 
+
+* Using our estimated model, we can estimate (or predict) what an individual's theta is. We can then use that prediction in other models as a predictor of some kind. 
+
+* We can estimate theta using several different techniques. They should all produce fairly similar estimates:
+  - Maximum Likelihood Estimation 
+  - Maximum a Posteriori (MAP - mode of posterior distribution)
+  - Expected a Posteriori (EAP - mean of posterior distribution)
+
+## Examining Theta Estimates 
+
+```{r}
+#| echo: true
+theta_mle <- mirt::fscores(twopl_fit, method = "ML", full.scores = TRUE, full.scores.SE = TRUE)
+theta_map <- mirt::fscores(twopl_fit, method = "MAP", full.scores = TRUE, full.scores.SE = TRUE)
+theta_eap <- mirt::fscores(twopl_fit, method = "EAP", full.scores = TRUE, full.scores.SE = TRUE)
+```
+
+```{r}
+theta_df <- 
+  tibble::tibble(
+    THETA_MLE = theta_mle[,1], 
+    THETA_MLE_SE = theta_mle[,2],
+    THETA_MAP = theta_map[,1], 
+    THETA_MAP_SE = theta_map[,2],
+    THETA_EAP = theta_eap[,1], 
+    THETA_EAP_SE = theta_eap[,2],
+  ) |>
+  dplyr::mutate(
+    THETA_MLE = dplyr::case_when(
+      THETA_MLE == Inf ~ NA_real_,
+      THETA_MLE == -Inf ~ NA_real_,
+      TRUE ~ THETA_MLE
+    )
+  )
+
+head(theta_df)
+```
+
+## Correlating Theta 
+
+```{r}
+cor(as.matrix(theta_df[, c("THETA_MLE", "THETA_MAP", "THETA_EAP")]), use = "complete.obs") |>
+  round(3)
+```
+
+## Estimating Item Parameters 
+
+* Like CFA, there are different estimators available. We will talk about three: 
+  - Joint Maximum Likelihood Estimation (Don't use this!)
+  - Marginal Maximum Likelihood Estimation (Most defaults use this)
+  - Bayesian Estimation (Can be best of the three, but needs priors)
+
+## Readings for Next Week 
+
+* Lang & Tay (2021)
+
