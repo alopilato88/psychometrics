@@ -1,0 +1,390 @@
+---
+title: "Network Psychometrics - Part 1"
+format: 
+  revealjs:
+    theme: [default, psych-lecture-theme.scss] 
+    css: psych-lecture-style.css
+---
+
+## Overview 
+
+```{r}
+#| echo: false
+library(dplyr)
+library(igraph)
+library(qgraph)
+library(tibble)
+library(bootnet)
+```
+
+* Introduction to the network approach to psychometrics
+* Introduction to network analysis
+* Introduction to network (graphical) models
+
+## Modern Psychometric Methods
+
+* Latent Variable Models (IRT, CFA, EFA, etc.)
+  - Reflective models
+  - Formative models
+
+## Challenges with Latent Variable Models
+
+* Latent variable models do a poor job of specifying: 
+  - The temporal precedence of the latent variable
+  - The causal response processes
+  - Causal associations among observed variables
+
+## The Network Approach 
+
+* Discontent with current methods led a group of reserachers to introduce and build on: 
+  - Network theories of psychological phenomena 
+  - Network (graphical) models
+
+## Network Theories: Constructs as Dynamical Systems
+
+* Reframe theories of psychological phenomena as a dynamic system of interactions among observable variables, which are referred to as **autonomous causal entities**.
+
+* Most network psychometric theories pull from the literature on dynamic systems and complex systems. An example is considering depression not as a construct, but as an attractor state of the depression system. 
+
+## Network (Graphical) Models
+
+* Network psychometric analysis relies **heavily** on a class of statistical models called graphical models to estimate the network that underlies the observed variables. 
+
+* One of the most common ways to estimate the underlying network is to use a model called the **Gaussian Graphical Model**, which is just a partial correlation matrix.
+
+# Network Analysis 
+
+## What is a Network? 
+
+* Networks (graphs) are mathematical objects that represent connections among different entities. 
+
+* Mathematically, networks consist of a: 
+  - Set of nodes or vertices 
+  - Set of edges or links
+
+## Examples of Networks 
+
+* Social Networks 
+* Organizational Networks
+* Biological Networks
+* Information Networks
+
+## What is a Psychometric Network?
+
+* A psychometric network is a network in which the nodes are the observed variables and the edges are the conditional relationships among those observed variables.
+
+## Network Types 
+
+* We can broadly categorize networks by the directionality (or lack thereof) and weights of the edges:
+  - Undirected vs Directed Networks
+  - Unweighted vs Weighted Networks
+
+* Psychometric network analysis typically deals with undirected and weighted networks.
+
+## Matrix Representation of a Network
+
+```{r}
+w <- matrix(
+  c(
+    0, .50, .40, 0, 0, -.10,
+    .50, 0, .30, -.30, 0, 0,
+    .40, .30, 0, 0, 0, 0,
+    0, -.30, 0, 0, .40, .30, 
+    0, 0, 0, .40, 0, .20, 
+    -.10, 0, 0, .30, .20, 0
+  ),
+  nrow = 6, ncol = 6, byrow = TRUE
+)
+
+a <- matrix(as.numeric(w != 0), nrow = 6, ncol = 6, byrow = T)
+```
+
+* The easiest way to mathematically manipulate a network is to turn it into a matrix. This matrix is referred to as an **adjacency matrix**. 
+
+* Non-zero elements in the matrix represent connections between two nodes in the network. 
+
+## Unweighted, Undirected Network
+
+```{r}
+qgraph::qgraph(a, color = c(bg = "#FEFBF6"), bg = "#FEFBF6")
+```
+
+
+## Adjacency Matrix
+
+```{r}
+a
+```
+
+## Weighted, Unirected Network 
+
+```{r}
+qgraph::qgraph(w, edge.labels = T, color = c(bg = "#FEFBF6"), bg = "#FEFBF6")
+```
+
+## Weight Matrix 
+
+```{r}
+w
+```
+
+## Analyzing Networks
+
+* Local network properties: Metrics focused on specific parts of a network
+* Global network properties: Metrics focused on the network as a whole
+
+## Local Network Properties: Centrality 
+
+* Centrality is a class of network metrics that measure the importance of a given node by counting and, at times, weighting the number of direct or indirect connections a node has with other nodes.
+
+* Centrality metrics can be subdivided into: 
+  - Direct connection centrality metrics
+  - Indirect connection centrality metrics 
+
+## Direct Connection Centrality Metrics
+
+:::: {.columns}
+
+::: {.column width="50%"}
+**Degree Centrality**: 
+
+$$\sum_{j=1}^{n}{a_{ij}}$$
+
+**Strength**: 
+
+$$\sum_{j=1}^{n}{\lvert w_{ij}\rvert}$$
+
+:::
+
+::: {.column width="50%"}
+**Weighted Degree Centrality**: 
+
+$$\sum_{j=1}^{n}{a_{ij}^{1-\alpha}\lvert w_{ij}\rvert^{\alpha}}$$
+
+**Expected Influence**: 
+
+$$\sum_{j=1}^{n}{a_{ij}w_{ij}}$$
+
+:::
+
+::::
+
+## Direct Connection Centrality Example 
+
+```{r}
+#| echo: true
+#| fig-align: center
+rowSums(a) # Degree
+rowSums(a*abs(w)) # Strength
+rowSums(a*w) # Expected Influence
+```
+
+```{r}
+#| fig-align: center
+qgraph::qgraph(w, edge.labels = T, color = c(bg = "#FEFBF6"), bg = "#FEFBF6")
+```
+
+## Direct Connection Centrality `qgraph` Example 
+
+```{r}
+#| echo: true
+qgraph::centralityPlot(w, include = c("Strength", "ExpectedInfluence"))
+```
+
+## Path Metrics
+
+* Before we can calculate the indirect connection centrality metrics, we first need to understand path metrics:
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+**Length**: The distance between two nodes.
+
+$$\text{Length}(i, j)=\frac{1}{\rvert w_{ij} \lvert^{\alpha}}$$
+
+:::
+
+::: {.column width="50%"}
+
+**Distance**: The shortest path between two nodes.
+
+$$\text{Distance}(i, j)=min(w_{ik}+ \dots + w_{lj})$$
+
+:::
+
+::::
+
+## Indirect Connection Centrality Metrics 
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+**Closeness**: 
+
+$$\frac{1}{\sum_{j=1}^{n}\text{Distance}(i,j)}$$
+
+**Betweeness**:
+
+$$\sum_{<j,k>}\frac{\text{# shortest paths from j to k that go through i}}{\text{# shortest paths between j and k}}$$
+
+:::
+
+::: {.column width="50%"}
+
+
+**Expected Influence Two**: 
+
+$$\sum_{j=1}^{n}a_{ij}w_{ij}+\sum_{j=1}^{n}a_{ij}w_{ij}\sum_{k=1}^{n}a_{jk}w_{jk}$$
+
+:::
+
+::::
+
+## Indirect Connection Centrality Example 
+
+```{r}
+#| echo: true
+#| fig-align: center
+(rowSums(w) + a%*%rowSums(w)) |> t()  # Expected Influence 2
+qgraph::centralityPlot(w, include = c("all"))
+```
+
+## Local Network Properties: Clustering
+
+* Clustering is a metric that looks at how often two nodes that are connected to the same focal node are also connected to one another: the friend of my friend is also my friend.
+
+* I haven't seen this used a whole lot in psychometric network analysis. 
+
+## Global Network Properties: Density
+
+* It is often of interest to undestand how connected your network is. This can be calculated using a network metric called **density**.
+
+$$\text{Density}=\frac{\text{# Observed Edges}}{\text{# Possible Edges}}=\frac{\sum_{<i, j>}a_{ij}}{n(n-1)}$$
+
+## Global Network Properties: Small Worlds
+
+* Six degrees of Kevin Bacon
+* Small world network models are characterized by high clustering and short average path lengths--this does not happen when networks form completely at random.  
+
+## Calculating Density and Small World Index in R
+
+```{r}
+#| echo: true
+toy_graph <- qgraph::qgraph(w, DoNotPlot = TRUE) # Create your graph
+toy_graph |> igraph::as.igraph() |> igraph::edge_density() # Calculate density
+qgraph::smallworldIndex(toy_graph)$index # Calculate small world index
+```
+
+## Global Network Properties: Community Detection
+
+* In network analysis, community detection is a set of alogrithms that attempt to find hidden communities within a network by identifying sets of nodes that have more connections among themselves than they have with other nodes outside of the set. 
+
+* Common algorithms: 
+  - Walktrap Algorithm
+  - Louvain Algorithm
+  - Fast-Greedy Algorithm
+
+## Community Detection Example
+
+```{r}
+#| echo: true
+# Need to take the absolute value of the weighted network
+toy_graph <- qgraph(abs(w), DoNotPlot = TRUE)
+toy_graph |> igraph::as.igraph() |> igraph::walktrap.community()
+```
+
+# Network Models
+
+## What makes Network Psychometrics Pscyhometric? 
+
+* Psychometric network analysis is "the analysis of multivariate psychometric data using network structure estimation and network description" (Borsboom et al., 2021).
+
+* Estimating the network structure from psychometric data is what makes psychometric network analysis psychometric.
+
+## Estimating Psychometric Networks
+
+* Rather than assume that our data is generated by a some latent variable, we assume that our data was generated by some unobserved system (network) of interactions among our variables.
+
+* Psychometric network analysis uses a network model called a **Pairwise Markov Random Field (PMRF) Model** to estimate the underlying network. 
+
+## Pairwise Markov Random Fields 
+
+* PMRF models are network models that use the conditional relationships among one's variables (e.g. the relationship between x and y controlling for z) to estimate the edges between two nodes (variables).
+
+* Types of PMRF models: 
+  - Guassian Graphical Model (GGM)
+  - Ising Model
+  - Mixed Graphical Models
+
+## Gaussian Graphical Model and Partial Correlations
+
+* Given a set of variables, the GGM uses the partial correlations among those variables as a means to estimate the edges. 
+
+* Partial correlation for three variables: x, y, & z:
+
+$$r_{xy.z}=\frac{r_{xy}-r_{xz}r_{yz}}{\sqrt{1-r_{xz}^2}\sqrt{1-r_{yz}^2}}$$
+
+## Estimating the Saturated GGM 
+
+* To estimate a saturated GGM (all correlations among all variables), we just need the covariance matrix:
+
+$$\mathbf{K}=\mathbf{\Sigma^{-1}}$$
+
+$$\omega_{ij}=-\frac{k_{ij}}{\sqrt{k_{ii}}\sqrt{k_{jj}}}$$
+
+## Example of the Saturated GGM {.scrollable}
+
+```{r}
+sigma_mat <- matrix(c(1, .50, .25, .50, 1, .50, .25, .50, 1), nrow = 3, ncol = 3, byrow = T)
+k <- solve(sigma_mat)
+scale_mat <- sqrt(diag(k))^-1 |> diag(3)
+omega <- scale_mat%*%-k%*%scale_mat + diag(3)
+```
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+```{r}
+#| echo: true
+# Correlation Matrix
+sigma_mat
+
+# Partial Correlation Matrix
+round(omega, 2)
+```
+
+:::
+::: {.column width="50%"}
+
+```{r}
+qgraph::qgraph(omega, color = c(bg = "#FEFBF6"), bg = "#FEFBF6")
+```
+
+:::
+::::
+
+## Model Selection for GGM
+
+* Data are noisy and it is likely there will be partial correlations by chance. We want to weed those correlations out using some kind of model selection.
+
+* Several ways to select the "best" GGM for your data: 
+  - Thresholding & Pruning
+  - Model Search using information criteria
+  - Regularization using the GLASSO
+
+## Some Critiques of Psychometric Network Analysis
+
+* **Model Selection**: Are network models appropriate for psychological data?
+* **Study Design**: Can we infer anything about a dynamical system from cross-sectional data? 
+* **Estimation Reliability**: How stable/replicable are psychometric networks?  
+* **Interpretation of Measures**: Can we even interpet network metrics applied to psychometric networks?
+
+::: aside
+See Neal et al. (2022). Critiques of network analysis of multivariate data in psychological science. 
+:::
+
+
+

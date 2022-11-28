@@ -1,0 +1,270 @@
+---
+title: "Network Psychometrics - Part 2"
+subtitle: "(Electric Boogaloo? Ben-galoo?)"
+format: revealjs
+editor: visual
+---
+
+## Network Psychometrics
+
+-   In Part 1, you learned the theory and rationale and math of psychometric networks
+
+-   In Part 2, we learn how to **DO** estimation of psychometric networks
+
+![](images/paste-143C7CE3.png){width="200"}
+
+## Reminder from Part 1
+
+-   Networks serve as an abstraction to represent the relationships (edges) between entities (nodes)
+
+-   KEY!!!
+
+## Reminder from Part 1
+
+-   Networks serve as an abstraction to represent the relationships (edges) between entities (nodes)
+
+-   DISTINGUISHING!!!
+
+## Reminder from Part 1
+
+-   Networks serve as an abstraction to represent the relationships (edges) between entities (nodes)
+
+-   FACTOR!!!
+
+## Reminder from Part 1
+
+-   In social networks, your data both nodes and edges that are observed
+
+    -   Obvi there are more complex situations where you have missing data
+
+        -   Network missingness can be very tricky (Morrissett, 2013; Kossinets, 2006)
+
+    -   This is neither time nor place for that though...
+
+## Reminder from Part 1
+
+![](images/paste-FC8FA37C.png){width="200"}
+
+## Reminder from Part 1
+
+-   I/O context:
+
+    -   Teams / Co-workers
+
+-   Clinical:
+
+    -   We can form a network between therapist and patients in group therapy setting (Koelhy & Shivy, 1998)
+
+-   Developmental
+
+    -   We can form a network of how babbies interact with other babbies (Cochran & Brassard, 1979)
+
+## Psychometric Networks
+
+-   When do psychometric network analysis / using psychometric network models:
+
+    -   All your nodes (items) are observed
+
+    -   You are e s t i m a t i n g the relationships (edges) between nodes (items)
+
+## Psychometric Networks
+
+-   When do psychometric network analysis / using psychometric network models:
+
+    -   All your nodes (items) are observed
+
+    -   You are e s t i m a t i n g the relationships (edges) between nodes (items)
+
+-   How do we do that?
+
+## There are many paths to Rome
+
+1.  Start with a substantive question utilizing network theory (e.g. "I want to understand Construct X as a dynamic construct and/or complex system."
+    1.  Sachisthal et al. (2019)
+
+        1.  Scientific Interests Network - Psychometric network on student's interest in science
+
+## There are many paths to Rome
+
+![](images/paste-1FAA56D3.png){fig-align="center"}
+
+## There are many paths to Rome
+
+1.  Theoretical perspectives on interests are all over the place.
+2.  Interests can potentially be conceptualized as "interacting indicators of interest components...indicators of affective, behavioral, and cognitive (including value and knowledge) components"
+3.  These indicator make up the variable of interest rather than being indicators of it
+4.  Provides new targets for interventions
+
+## There are many paths to Rome
+
+2.  Collect data
+    1.  Research designs for network psychometrics can be:
+
+        1.  Longitudinal (e.g. EMA design; see Emorie Beck \@ UC Davis for lots of examples of this)
+
+        2.  Cross-sectional
+
+    2.  Sampling should be no different than any other psychological study
+
+## There are many paths to Rome
+
+3.  Analyze data
+
+    Time for F U N
+
+    <div>
+
+    ![](images/paste-6B9CC074.png){fig-align="center" width="400"}
+
+    </div>
+
+## Analyzing Psychometric Network Data
+
+We can do this with raw data OR correlation matrix
+
+```{r, echo=T}
+
+# First, we will load (or install first if you don't have it!) the qgraph AND the psych package:
+
+library(qgraph)
+library(psych)
+library(dplyr) # Also loading this because I don't align with Alex's use of |> pipe
+```
+
+## Analyzing Psychometric Network Data
+
+```{r, echo=T}
+# Next, let's examine our dataset
+
+data("bfi")
+
+glimpse(head(bfi))
+```
+
+## Analyzing Psychometric Network Data
+
+```{r}
+
+# Lets start with just viewing the correlation matrix
+
+select(bfi, matches("[A-Z][0-9]")) %>% 
+    psych::corPlot()
+```
+
+## Analyzing Psychometric Network Data
+
+```{r}
+# We can start by visualizing this as a network:
+
+qgraph(cor(select(bfi, matches("[A-Z][0-9]")), use = 'complete.obs'))
+```
+
+## Analyzing Psychometric Network Data
+
+The previous network was an unregularized
+
+-   This means **all** edges were estimated, even super tiny ones
+
+-   But, what happens if we \~ regularize \~ it?
+
+## Analyzing Psychometric Network Data
+
+Quick aside:
+
+What is regularization?
+
+A process of "shrinking" tiny values towards zero.
+
+![](images/paste-34DB6608.png)
+
+## Analyzing Psychometric Network Data
+
+-   What we can see is that the correlation matrix is much more "sparse"
+
+-   There are substantially more 0's all over the place and the previously bigger values are smaller than before.
+
+```{r, fig.align='center'}
+corPlot(round(EBICglasso(S = cor(select(bfi, matches("[A-Z][0-9]")), use = 'complete.obs'), n = nrow(select(bfi, matches("[A-Z][0-9]")))), 2))
+```
+
+## Analyzing Psychometric Network Data
+
+What does this regularized network look like?
+
+```{r, fig.align='center'}
+qgraph(round(EBICglasso(S = cor(select(bfi, matches("[A-Z][0-9]")), use = 'complete.obs'), n = nrow(select(bfi, matches("[A-Z][0-9]")))), 2))
+```
+
+## Analyzing Psychometric Network Data
+
+Why do we regularize?
+
+-   Separating signal from noise
+
+-   We know everything is (to a degree) correlated with everything
+
+-   Regularization helps siphon the signal from the noise and what's left over is "truth" and aid with selecting the "true" model.
+
+## Analyzing Psychometric Network Data
+
+Now that we've estimated a psychometric network... what can we do?
+
+1\) Estimate **global** network properties
+
+2\) Estimate **individual node** properties
+
+## Analyzing Psychometric Network Data
+
+1\) Estimate **global** network properties
+
+Example: *Smallworldness*
+
+Smallworldness - A ratio of the number of triangles in a network (transitivity) to the the average number of steps along the shortest paths for all possible pairs of network nodes.
+
+Substantive value: Lots of networks have smallworld properties (see Jonathan Kleinberg or Aaron Clauset's work on this for example of small-world networks all over the place). A smallworld network implies any two nodes in the network can reach each other through a short sequence of other nodes (Kleinberg, 2001)
+
+Daleage et al. (2016) demonstrate that attitudinal networks display smallworld characteristics
+
+Carter et al. (2020) demonstrate the utility of smallworld networks for predicting turnover
+
+```{r}
+qgraph(round(EBICglasso(S = cor(select(bfi, matches("[A-Z][0-9]")), use = 'complete.obs'), n = nrow(select(bfi, matches("[A-Z][0-9]")))), 2), DoNotPlot = T) %>% 
+  smallworldness() %>% 
+  data.frame()
+```
+
+## Analyzing Psychometric Network Data
+
+2\) Estimate **individual node** properties
+
+```{r}
+qgraph(round(EBICglasso(S = cor(select(bfi, matches("[A-Z][0-9]")), 
+                                use = 'complete.obs'), 
+                        n = nrow(select(bfi, matches("[A-Z][0-9]")))), 2), 
+       DoNotPlot = T) %>% 
+  qgraph::centrality() %>% 
+  data.frame() %>% 
+  select(Betweenness, Closeness) %>% 
+  arrange(-Betweenness) %>% 
+  head()
+```
+
+## Analyzing Psychometric Network Data
+
+Additional things you can do with networks:
+
+-   Community Detection
+
+    -   Do different nodes "hang out" together?
+
+-   Network Comparison Test (NCT)
+
+    -   Do different groups have the same / different network structures?
+
+    -   BIG open area for research imo
+
+        -   Lots of existing work on graph comparisons in CS / Stats
+
+        -   How does it translate to psychometric data?
+
+            -   Cosma Shalizi is prolific in this space

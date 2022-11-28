@@ -1,0 +1,15 @@
+a:link {
+  font-weight: bold;
+}
+
+a:visited {
+  font-weight: bold;
+}
+
+.list-tab { 
+  margin-left: 40px; 
+}
+
+.small-text {
+  font-size: 32px;
+}
