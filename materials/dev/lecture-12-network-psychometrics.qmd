@@ -37,7 +37,7 @@ library(bootnet)
 
 ## The Network Approach 
 
-* Discontent with current methods led a group of reserachers to introduce and build on: 
+* Discontent with current methods led a group of researchers to introduce and build on: 
   - Network theories of psychological phenomena 
   - Network (graphical) models
 
@@ -260,7 +260,7 @@ qgraph::centralityPlot(w, include = c("all"))
 
 ## Global Network Properties: Density
 
-* It is often of interest to undestand how connected your network is. This can be calculated using a network metric called **density**.
+* It is often of interest to understand how connected your network is. This can be calculated using a network metric called **density**.
 
 $$\text{Density}=\frac{\text{# Observed Edges}}{\text{# Possible Edges}}=\frac{\sum_{<i, j>}a_{ij}}{n(n-1)}$$
 
@@ -280,7 +280,7 @@ qgraph::smallworldIndex(toy_graph)$index # Calculate small world index
 
 ## Global Network Properties: Community Detection
 
-* In network analysis, community detection is a set of alogrithms that attempt to find hidden communities within a network by identifying sets of nodes that have more connections among themselves than they have with other nodes outside of the set. 
+* In network analysis, community detection is a set of algorithms that attempt to find hidden communities within a network by identifying sets of nodes that have more connections among themselves than they have with other nodes outside of the set. 
 
 * Common algorithms: 
   - Walktrap Algorithm
@@ -564,7 +564,7 @@ Additional things you can do with networks:
 * **Model Selection**: Are network models appropriate for psychological data?
 * **Study Design**: Can we infer anything about a dynamical system from cross-sectional data? 
 * **Estimation Reliability**: How stable/replicable are psychometric networks?  
-* **Interpretation of Measures**: Can we even interpet network metrics applied to psychometric networks?
+* **Interpretation of Measures**: Can we even interpret network metrics applied to psychometric networks?
 
 ::: aside
 See Neal et al. (2022). Critiques of network analysis of multivariate data in psychological science. 
