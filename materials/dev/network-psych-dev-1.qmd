@@ -375,6 +375,16 @@ qgraph::qgraph(omega, color = c(bg = "#FEFBF6"), bg = "#FEFBF6")
   - Model Search using information criteria
   - Regularization using the GLASSO
 
-## Thresholding & Pruning 
+## Some Critiques of Psychometric Network Analysis
 
-* **Thresholding**: 
+* **Model Selection**: Are network models appropriate for psychological data?
+* **Study Design**: Can we infer anything about a dynamical system from cross-sectional data? 
+* **Estimation Reliability**: How stable/replicable are psychometric networks?  
+* **Interpretation of Measures**: Can we even interpet network metrics applied to psychometric networks?
+
+::: aside
+See Neal et al. (2022). Critiques of network analysis of multivariate data in psychological science. 
+:::
+
+
+
