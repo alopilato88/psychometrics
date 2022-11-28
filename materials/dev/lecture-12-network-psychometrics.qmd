@@ -298,14 +298,13 @@ toy_graph |> igraph::as.igraph() |> igraph::walktrap.community()
 
 # Network Models
 
-
 ## Network Psychometrics
 
 -   In Part 1, you learned the theory and rationale and math of psychometric networks
 
 -   In Part 2, we learn how to **DO** estimation of psychometric networks
 
-![](images/paste-143C7CE3.png){width="200"}
+![](lecture-12-img/paste-143C7CE3.png){width="200"}
 
 ## Reminder from Part 1
 
@@ -337,7 +336,7 @@ toy_graph |> igraph::as.igraph() |> igraph::walktrap.community()
 
 ## Reminder from Part 1
 
-![](images/paste-FC8FA37C.png){width="200"}
+![](lecture-12-img/paste-FC8FA37C.png){width="200"}
 
 ## Reminder from Part 1
 
@@ -379,7 +378,7 @@ toy_graph |> igraph::as.igraph() |> igraph::walktrap.community()
 
 ## There are many paths to Rome
 
-![](images/paste-1FAA56D3.png){fig-align="center"}
+![](lecture-12-img/paste-1FAA56D3.png){fig-align="center"}
 
 ## There are many paths to Rome
 
@@ -404,7 +403,7 @@ toy_graph |> igraph::as.igraph() |> igraph::walktrap.community()
 
     <div>
 
-    ![](images/paste-6B9CC074.png){fig-align="center" width="400"}
+    ![](lecture-12-img/paste-6B9CC074.png){fig-align="center" width="400"}
 
     </div>
 
@@ -465,7 +464,7 @@ What is regularization?
 
 A process of "shrinking" tiny values towards zero.
 
-![](images/paste-34DB6608.png)
+![](lecture-12-img/paste-34DB6608.png)
 
 ## Analyzing Psychometric Network Data
 
