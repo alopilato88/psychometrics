@@ -34,7 +34,7 @@ By the end of this course, you will:
 | 11 | [Latent Variable Models: Understanding Item Response Theory](https://alopilato88.github.io/psychometrics/materials/lectures/lecture-10-irt.html) | |
 | 12 | [Latent Variable Models: Applying Item Response Theory]() | |
 | 13 | [Frontiers of Psychometrics: Network Psychometrics](https://alopilato88.github.io/psychometrics/materials/lectures/lecture-12-network-psychometrics.html) | |
-| 14 | [Frontiers of Psychometrics: Computational Psychometrics]() | |
+| 14 | [Frontiers of Psychometrics: Computational Psychometrics](https://alopilato88.github.io/psychometrics/materials/lectures/lecture-13-comp-psychometrics.html) | |
 
 -----
 
