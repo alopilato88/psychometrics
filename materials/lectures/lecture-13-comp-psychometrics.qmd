@@ -15,7 +15,7 @@ AI (well really machine learning) + (generally large) digital behavior data
 * Digital interviews
 * Digital profiles of candidates
 * Automated screening procedures (resume scraping)
-* Gamified assessments
+* Game-based assessments
 
 ## The Malcolm Mantra
 
@@ -59,7 +59,7 @@ Jones-Rooy, A. (2019). I'm a data scientist who is skeptical about data.
 
 * MEASUREMENT!
   - Validity becomes especially important!
-  - How do we make sense of digital trace data especially from gamified assessments?
+  - How do we make sense of digital trace data especially from game-based assessments?
 
 * ETHICS!
   - AI Audits[^1]
