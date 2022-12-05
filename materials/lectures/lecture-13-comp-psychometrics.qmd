@@ -1,0 +1,73 @@
+---
+title: "A Future of Psychometrics"
+format: 
+  revealjs:
+    theme: [default, psych-lecture-theme.scss] 
+    css: psych-lecture-style.css
+---
+
+## Computational Psychometrics: What is it? 
+
+AI (well really machine learning) + (generally large) digital behavior data
+
+## AI in the Workplace 
+
+* Digital interviews
+* Digital profiles of candidates
+* Automated screening procedures (resume scraping)
+* Gamified assessments
+
+## The Malcolm Mantra
+
+![](lecture-13-img/goldblum-quote.jpg){fig-align="center"}
+
+## GIGO
+
+![](lecture-13-img/garbage-in-garbage-out.png){fig-align="center"}
+
+## Data Skepticism {.smaller}
+
+> Data is an imperfect approximation of some aspect of the world at a certain time and place. (I know, that definition is a lot less sexy than we were all hoping for.) It’s what results when humans want to know something about something, try to measure it, and then combine those measurements in particular ways.
+
+
+> Data doesn’t say anything. Humans say things. They say what they notice or look for in data—data that only exists in the first place because humans chose to collect it, and they collected it using human-made tools.
+
+::: aside
+Jones-Rooy, A. (2019). I'm a data scientist who is skeptical about data.
+:::
+
+## Data Imperfections
+
+* Random Error (Noise!)
+* Systematic Error (Selection Bias)
+* Errors of choosing what to measure (Validity issues)
+* Errors of Exclusion (Generalization errors)
+
+::: aside
+Jones-Rooy, A. (2019). I'm a data scientist who is skeptical about data.
+:::
+
+## GIGO in Action 
+
+* [Amazon's automated resume discriminated against women](https://www.reuters.com/article/us-amazon-com-jobs-automation-insight/amazon-scraps-secret-ai-recruiting-tool-that-showed-bias-against-women-idUSKCN1MK08G)
+
+* [Predicted recidivism scores discriminates against Black people](https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing)
+
+* [Racial discrimination in facial recognition technology](https://sitn.hms.harvard.edu/flash/2020/racial-discrimination-in-face-recognition-technology/) 
+
+## The Role for Psychometrics
+
+* MEASUREMENT!
+  - Validity becomes especially important!
+  - How do we make sense of digital trace data especially from gamified assessments?
+
+* ETHICS!
+  - AI Audits[^1]
+  
+  [^1]: Landers & Behrend. (2022). Auditing the AI auditors: A framework for evaluating fairness and bias in high stakes AI predictive models.
+
+## It's been fun! 
+
+Thanks for bearing with me this semester! I enjoyed teaching y'all! Always feel free to email me with questions / comments / new articles. 
+
+**Have a great holiday break!**
